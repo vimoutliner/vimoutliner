@@ -1,0 +1,10 @@
+This is a mirror of http://www.vim.org/scripts/script.php?script_id=1878
+
+If you're familiar with VimOutliner, at http://vimoutliner.org, you know it's a fantastic outlining tool that can easily become your default way to use Vim. The one major annoyance I've found is that it ships with one or two colorschemes. 
+Unlike most syntax files, the colors are hard-coded in, so if you try to use a different colorscheme, the syntax highlighting disappears.
+
+Fortunately, there's an easy fix. This tiny package is simply an updated syntax file, in which I have linked the syntax groups to established Vim groups, like Normal, Comment, and so on. You can now open a VimOutliner file in any colorscheme you like. 
+
+Youll still get some occasional weirdnesses (certain elements can default to invisible), in which case you can either change colorschemes, tweak the colorscheme itself, or tweak syntax/vo_base.vim. Anyhow, it usually works.
+
+(More info at http://www.billpowellisalive.com/2007/01/vimoutliner-and-a-tweak-to-use-colorschemes/)
