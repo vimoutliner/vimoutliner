@@ -1,0 +1,1423 @@
+? CHANGELOG
+
+RCS file: /root/VimOutliner/VimOutliner/INSTALL,v
+Working file: INSTALL
+head: 1.2
+branch:
+locks: strict
+access list:
+symbolic names:
+keyword substitution: kv
+total revisions: 2;	selected revisions: 2
+description:
+----------------------------
+revision 1.2
+date: 2004-11-27 19:30:43 +0000;  author: noel;  state: Exp;  lines: +2 -2
+
+Minor syntax and installation adjustments.
+Change to vo_checkbox to fix a typo.
+----------------------------
+revision 1.1
+date: 2004-02-17 22:00:15 +0000;  author: noel;  state: Exp;
+These files are only in cvs for backup purposes. They should be extracted
+from vo_readme.txt and never edited themselves:
+  INSTALL
+  LICENSE
+  VERSION
+=============================================================================
+
+RCS file: /root/VimOutliner/VimOutliner/Attic/INSTALL.TXT,v
+Working file: INSTALL.TXT
+head: 1.3
+branch:
+locks: strict
+access list:
+symbolic names:
+keyword substitution: kv
+total revisions: 3;	selected revisions: 3
+description:
+Quick installation instructions for developers.
+----------------------------
+revision 1.3
+date: 2003-06-20 14:13:15 +0000;  author: noel;  state: dead;  lines: +0 -0
+Final documentation tweaks for the final 0.3.0 release.
+----------------------------
+revision 1.2
+date: 2003-06-18 13:50:55 +0000;  author: noel;  state: Exp;  lines: +1 -1
+Modified the installation title.
+----------------------------
+revision 1.1
+date: 2003-03-20 22:56:49 +0000;  author: noel;  state: Exp;
+Initial revision
+=============================================================================
+
+RCS file: /root/VimOutliner/VimOutliner/LICENSE,v
+Working file: LICENSE
+head: 1.2
+branch:
+locks: strict
+access list:
+symbolic names:
+keyword substitution: kv
+total revisions: 2;	selected revisions: 2
+description:
+----------------------------
+revision 1.2
+date: 2004-11-27 19:30:43 +0000;  author: noel;  state: Exp;  lines: +4 -2
+
+Minor syntax and installation adjustments.
+Change to vo_checkbox to fix a typo.
+----------------------------
+revision 1.1
+date: 2004-02-17 22:00:15 +0000;  author: noel;  state: Exp;
+These files are only in cvs for backup purposes. They should be extracted
+from vo_readme.txt and never edited themselves:
+  INSTALL
+  LICENSE
+  VERSION
+=============================================================================
+
+RCS file: /root/VimOutliner/VimOutliner/VERSION,v
+Working file: VERSION
+head: 1.4
+branch:
+locks: strict
+access list:
+symbolic names:
+keyword substitution: kv
+total revisions: 4;	selected revisions: 4
+description:
+----------------------------
+revision 1.4
+date: 2005-06-07 17:48:50 +0000;  author: noel;  state: Exp;  lines: +4 -0
+Updated to include help on VO objects.
+----------------------------
+revision 1.3
+date: 2005-06-07 17:41:42 +0000;  author: noel;  state: Exp;  lines: +10 -10
+Updated version.
+----------------------------
+revision 1.2
+date: 2004-11-27 19:30:43 +0000;  author: noel;  state: Exp;  lines: +9 -14
+
+Minor syntax and installation adjustments.
+Change to vo_checkbox to fix a typo.
+----------------------------
+revision 1.1
+date: 2004-02-17 22:00:15 +0000;  author: noel;  state: Exp;
+These files are only in cvs for backup purposes. They should be extracted
+from vo_readme.txt and never edited themselves:
+  INSTALL
+  LICENSE
+  VERSION
+=============================================================================
+
+RCS file: /root/VimOutliner/VimOutliner/install.sh,v
+Working file: install.sh
+head: 1.3
+branch:
+locks: strict
+access list:
+symbolic names:
+keyword substitution: kv
+total revisions: 3;	selected revisions: 3
+description:
+----------------------------
+revision 1.3
+date: 2005-06-06 18:42:29 +0000;  author: noel;  state: Exp;  lines: +3 -0
+Added support for color schemes.
+----------------------------
+revision 1.2
+date: 2004-11-27 19:30:43 +0000;  author: noel;  state: Exp;  lines: +2 -2
+
+Minor syntax and installation adjustments.
+Change to vo_checkbox to fix a typo.
+----------------------------
+revision 1.1
+date: 2004-05-02 19:03:01 +0000;  author: noel;  state: Exp;
+Added to the distro.
+=============================================================================
+
+RCS file: /root/VimOutliner/VimOutliner/vimoutlinerrc,v
+Working file: vimoutlinerrc
+head: 1.6
+branch:
+locks: strict
+access list:
+symbolic names:
+keyword substitution: kv
+total revisions: 6;	selected revisions: 6
+description:
+----------------------------
+revision 1.6
+date: 2005-06-07 12:39:01 +0000;  author: noel;  state: Exp;  lines: +9 -78
+Enabled checkboxes and hoisting by default.
+Added Vim colorscheme support.
+----------------------------
+revision 1.5
+date: 2005-01-19 15:06:20 +0000;  author: noel;  state: Exp;  lines: +4 -3
+Fixed another W18 error.
+Enabled hoisting and checkboxes by default.
+----------------------------
+revision 1.4
+date: 2004-05-24 15:56:34 +0000;  author: noel;  state: Exp;  lines: +45 -0
+Added highlighting and folding support for:
+	Tables (marked with '|')
+	User-defined, wrapping text (marked with '>')
+	User-defined, non-wrapping text (marked with '<')
+----------------------------
+revision 1.3
+date: 2004-05-17 17:27:55 +0000;  author: noel;  state: Exp;  lines: +2 -2
+Fixed plugin loaders for checkboxes and hoisting.
+----------------------------
+revision 1.2
+date: 2004-03-18 13:23:53 +0000;  author: noel;  state: Exp;  lines: +1 -0
+Added a line to change the background.
+----------------------------
+revision 1.1
+date: 2004-02-17 21:50:36 +0000;  author: noel;  state: Exp;
+This file will be provided from now on to make it easy for people
+to customize their settings. The install process will rename this file
+to .vimoutlinerrc and put it into the user's home directory.
+=============================================================================
+
+RCS file: /root/VimOutliner/VimOutliner/Attic/vo_INSTALL.TXT,v
+Working file: vo_INSTALL.TXT
+head: 1.2
+branch:
+locks: strict
+access list:
+symbolic names:
+keyword substitution: kv
+total revisions: 2;	selected revisions: 2
+description:
+----------------------------
+revision 1.2
+date: 2005-06-07 17:24:05 +0000;  author: noel;  state: dead;  lines: +0 -0
+*** empty log message ***
+----------------------------
+revision 1.1
+date: 2003-06-26 19:52:07 +0000;  author: noel;  state: Exp;
+Initial add to VimOutliner
+=============================================================================
+
+RCS file: /root/VimOutliner/VimOutliner/Attic/vo_README.otl,v
+Working file: vo_README.otl
+head: 1.4
+branch:
+locks: strict
+access list:
+symbolic names:
+keyword substitution: kv
+total revisions: 4;	selected revisions: 4
+description:
+----------------------------
+revision 1.4
+date: 2005-06-07 17:24:05 +0000;  author: noel;  state: dead;  lines: +0 -0
+*** empty log message ***
+----------------------------
+revision 1.3
+date: 2003-10-17 02:17:07 +0000;  author: noel;  state: Exp;  lines: +2 -2
+Changed version numbers.
+----------------------------
+revision 1.2
+date: 2003-06-20 14:13:15 +0000;  author: noel;  state: Exp;  lines: +4 -41
+Final documentation tweaks for the final 0.3.0 release.
+----------------------------
+revision 1.1
+date: 2003-06-18 13:55:03 +0000;  author: noel;  state: Exp;
+Added this documentation to Vim Outliner.
+=============================================================================
+
+RCS file: /root/VimOutliner/VimOutliner/add-ons/plugins/vo_checkbox.otl,v
+Working file: add-ons/plugins/vo_checkbox.otl
+head: 1.3
+branch:
+locks: strict
+access list:
+symbolic names:
+keyword substitution: kv
+total revisions: 3;	selected revisions: 3
+description:
+----------------------------
+revision 1.3
+date: 2004-11-27 19:30:43 +0000;  author: noel;  state: Exp;  lines: +12 -8
+
+Minor syntax and installation adjustments.
+Change to vo_checkbox to fix a typo.
+----------------------------
+revision 1.2
+date: 2004-05-17 15:57:58 +0000;  author: noel;  state: Exp;  lines: +6 -0
+Modified documentation to match current version.
+----------------------------
+revision 1.1
+date: 2003-10-23 22:13:00 +0000;  author: noel;  state: Exp;
+Instructions for vo_checkbox.vim
+=============================================================================
+
+RCS file: /root/VimOutliner/VimOutliner/add-ons/plugins/vo_checkbox.vim,v
+Working file: add-ons/plugins/vo_checkbox.vim
+head: 1.18
+branch:
+locks: strict
+access list:
+symbolic names:
+keyword substitution: kv
+total revisions: 18;	selected revisions: 18
+description:
+----------------------------
+revision 1.18
+date: 2005-06-07 15:08:59 +0000;  author: noel;  state: Exp;  lines: +12 -45
+Fixed a bug that added checkboxes to body text, preformatted body text,
+tables, user-defined text and user-defined preformatted text lines.
+Fixed a bug where ,,cb would modify terms like 'test%' or ',,c%'. Now
+it only modifies this term: ' [0-9]*%'.
+----------------------------
+revision 1.17
+date: 2005-06-07 13:53:22 +0000;  author: noel;  state: Exp;  lines: +8 -2
+Added ,,cp. It is the same as ,,c%
+----------------------------
+revision 1.16
+date: 2004-05-27 22:22:48 +0000;  author: noel;  state: Exp;  lines: +24 -4
+Made ,,cd smart so it would try to delete non-existent checkboxes.
+Fixed a recursion bug in NewHMD to branches with a single child would
+be computed properly.
+----------------------------
+revision 1.15
+date: 2004-05-27 18:11:53 +0000;  author: noel;  state: Exp;  lines: +25 -5
+Added smart (only the entire tree in which the child exists), automatic
+completion calculations to the ,,cx command.
+Added smart (only for parents, not children) '%' sign insertion for
+,,c%.
+----------------------------
+revision 1.14
+date: 2004-05-17 15:53:38 +0000;  author: noel;  state: Exp;  lines: +13 -7
+Modified SwitchBox() to be more selective.
+----------------------------
+revision 1.13
+date: 2004-05-17 15:43:23 +0000;  author: noel;  state: Exp;  lines: +7 -3
+Fixed a broken key mapping: ,,c%.
+----------------------------
+revision 1.12
+date: 2004-02-23 12:19:27 +0000;  author: noel;  state: Exp;  lines: +26 -9
+Fixed Up-to-date problem.
+Fixed 'Safely script names'.
+----------------------------
+revision 1.11
+date: 2003-09-05 16:37:55 +0000;  author: cepl;  state: Exp;  lines: +41 -2
+Added ,cp binding for the new function InsertCheckBoxPerCent,
+which adds not only the checkbox but also percentage sign.
+----------------------------
+revision 1.10
+date: 2003-08-23 16:42:15 +0000;  author: noel;  state: Exp;  lines: +18 -17
+Modified completion percentages to be recursive.
+This:
+[_] 0% Project
+	[_] 33% Task
+		[_] Subtask
+		[X] Subtask
+		[X] Subtask
+	[_] 0% Task
+		[_] Subtask
+		[_] 50% Subtask
+			[X] Subsubtask
+			[_] Subsubtask
+			[X] Subsubtask
+			[_]  Subsubtask
+
+Becomes this:
+[_] 29% Project
+	[_] 33% Task
+		[_] Subtask
+		[X] Subtask
+		[X] Subtask
+	[_] 25% Task
+		[_] Subtask
+		[_] 50% Subtask
+			[X] Subsubtask
+			[_] Subsubtask
+			[X] Subsubtask
+			[_]  Subsubtask
+----------------------------
+revision 1.9
+date: 2003-08-16 13:49:53 +0000;  author: noel;  state: Exp;  lines: +9 -7
+added ! to functions.
+----------------------------
+revision 1.8
+date: 2003-08-11 19:16:28 +0000;  author: noel;  state: Exp;  lines: +30 -5
+Fixed a bug in which any line that contained the letter x was counted as
+completed.
+----------------------------
+revision 1.7
+date: 2003-08-03 23:56:46 +0000;  author: noel;  state: Exp;  lines: +89 -40
+
+Replaced HowManyDone() with a new routine. The new routine is recursive,
+ignores headings that don't have checkboxes and does not care what the
+current folding states of the parent or children are. The heading at the
+top of the tree does not even need to have a checkbox. This will work:
+
+Projects
+	[_] Software
+		[_] Input
+		[_] Processing
+			[_] Math
+			[_] Database
+			[_] Networking
+		[_] Output
+	[_] Hardware
+		[_] Keyboard
+		[_] Harddisk
+		[_] Processor
+		[_] Printer
+
+One only needs to ,,cx on Projects to update everything (everything shown).
+As before, including a % on a parent heading with childred, will be replaced
+with a percentage of completion. Nice work Matej!
+----------------------------
+revision 1.6
+date: 2003-07-14 00:36:57 +0000;  author: noel;  state: Exp;  lines: +9 -5
+Changed [x] to [X] to make it look more full. If the consensus is
+[x], I'll gladly put it back.
+----------------------------
+revision 1.5
+date: 2003-07-10 16:29:50 +0000;  author: cepl;  state: Exp;  lines: +75 -3
+Calculation of the subtree completion added. The very first alpha
+draft.
+----------------------------
+revision 1.4
+date: 2003-07-08 23:48:43 +0000;  author: noel;  state: Exp;  lines: +6 -3
+Fixed a bug in <localleader>cd. It used to only delete unchecked boxes.
+Now it does both.
+----------------------------
+revision 1.3
+date: 2003-07-07 14:17:04 +0000;  author: noel;  state: Exp;  lines: +11 -6
+Fixed the folding of the new headers.
+----------------------------
+revision 1.2
+date: 2003-07-07 14:14:02 +0000;  author: noel;  state: Exp;  lines: +24 -0
+Added appropriate headers.
+----------------------------
+revision 1.1
+date: 2003-07-07 13:52:45 +0000;  author: noel;  state: Exp;
+Changed checkbox.vim to vo_checkbox.vim
+=============================================================================
+
+RCS file: /root/VimOutliner/VimOutliner/add-ons/plugins/vo_hoist.otl,v
+Working file: add-ons/plugins/vo_hoist.otl
+head: 1.1
+branch:
+locks: strict
+access list:
+symbolic names:
+keyword substitution: kv
+total revisions: 1;	selected revisions: 1
+description:
+----------------------------
+revision 1.1
+date: 2003-10-23 22:12:20 +0000;  author: noel;  state: Exp;
+Instructions for vo_hoist.vim.
+=============================================================================
+
+RCS file: /root/VimOutliner/VimOutliner/add-ons/plugins/vo_hoist.vim,v
+Working file: add-ons/plugins/vo_hoist.vim
+head: 1.9
+branch:
+locks: strict
+access list:
+symbolic names:
+keyword substitution: kv
+total revisions: 9;	selected revisions: 9
+description:
+----------------------------
+revision 1.9
+date: 2003-11-12 17:26:09 +0000;  author: noel;  state: Exp;  lines: +6 -2
+Added a command to place the cursor on the first line of
+a hoisted outline.
+----------------------------
+revision 1.8
+date: 2003-11-12 17:10:51 +0000;  author: noel;  state: Exp;  lines: +9 -3
+Fixed a bug that occurs on a level 1 heading with no children.
+----------------------------
+revision 1.7
+date: 2003-10-23 22:14:14 +0000;  author: noel;  state: Exp;  lines: +13 -5
+Minor changes to DeHoist() to compensate for current foldlevel settings.
+----------------------------
+revision 1.6
+date: 2003-08-17 15:35:24 +0000;  author: noel;  state: Exp;  lines: +10 -9
+Put the new mappings in the correct place this time.
+Added a : and <cr> to the ZZ command.
+----------------------------
+revision 1.5
+date: 2003-08-17 14:47:42 +0000;  author: noel;  state: Exp;  lines: +8 -2
+Added ZZ, qa, and x to the list of commands that de-hoist the current
+outline.
+----------------------------
+revision 1.4
+date: 2003-08-17 00:07:31 +0000;  author: noel;  state: Exp;  lines: +13 -10
+Added "silent" to commands generating tedious messages.
+----------------------------
+revision 1.3
+date: 2003-08-16 20:08:06 +0000;  author: noel;  state: Exp;  lines: +11 -6
+Removed a need to exclude fold level 1 headings.
+----------------------------
+revision 1.2
+date: 2003-08-16 19:02:44 +0000;  author: noel;  state: Exp;  lines: +84 -31
+First fully functional version. May need some tweaks but it works and is
+quite easy to use.
+----------------------------
+revision 1.1
+date: 2003-08-14 21:05:05 +0000;  author: noel;  state: Exp;
+First publicly available, experiment verison
+=============================================================================
+
+RCS file: /root/VimOutliner/VimOutliner/colors/vo_dark.vim,v
+Working file: colors/vo_dark.vim
+head: 1.2
+branch:
+locks: strict
+access list:
+symbolic names:
+keyword substitution: kv
+total revisions: 2;	selected revisions: 2
+description:
+----------------------------
+revision 1.2
+date: 2005-06-07 15:24:30 +0000;  author: noel;  state: Exp;  lines: +1 -1
+The color darkyellow does not appear to exist on some systems. This color
+has been changed to darkred.
+----------------------------
+revision 1.1
+date: 2005-06-06 18:45:11 +0000;  author: noel;  state: Exp;
+These are the new color scheme files.
+=============================================================================
+
+RCS file: /root/VimOutliner/VimOutliner/colors/vo_light.vim,v
+Working file: colors/vo_light.vim
+head: 1.2
+branch:
+locks: strict
+access list:
+symbolic names:
+keyword substitution: kv
+total revisions: 2;	selected revisions: 2
+description:
+----------------------------
+revision 1.2
+date: 2005-06-07 15:24:30 +0000;  author: noel;  state: Exp;  lines: +3 -3
+The color darkyellow does not appear to exist on some systems. This color
+has been changed to darkred.
+----------------------------
+revision 1.1
+date: 2005-06-06 18:45:11 +0000;  author: noel;  state: Exp;
+These are the new color scheme files.
+=============================================================================
+
+RCS file: /root/VimOutliner/VimOutliner/doc/vo_readme.txt,v
+Working file: doc/vo_readme.txt
+head: 1.9
+branch:
+locks: strict
+access list:
+symbolic names:
+keyword substitution: kv
+total revisions: 9;	selected revisions: 9
+description:
+----------------------------
+revision 1.9
+date: 2005-06-07 17:48:21 +0000;  author: noel;  state: Exp;  lines: +4 -0
+Added a better VERSION description.
+----------------------------
+revision 1.8
+date: 2005-06-07 16:44:58 +0000;  author: noel;  state: Exp;  lines: +294 -150
+Added a section about VO objects.
+Added the ,,cp command.
+----------------------------
+revision 1.7
+date: 2004-05-28 15:28:47 +0000;  author: noel;  state: Exp;  lines: +274 -28
+Added complete help for vo_checkbox.vim.
+----------------------------
+revision 1.6
+date: 2004-05-17 17:16:28 +0000;  author: noel;  state: Exp;  lines: +1 -1
+Changed 0.3.2 to 0.3.3 in the tite.
+----------------------------
+revision 1.5
+date: 2004-05-17 15:21:25 +0000;  author: noel;  state: Exp;  lines: +75 -69
+Modified to reflecte 0.3.3 changes.
+----------------------------
+revision 1.4
+date: 2004-02-17 21:52:41 +0000;  author: noel;  state: Exp;  lines: +263 -111
+Modified heavily by Stefan Schiedl for 0.3.2.
+----------------------------
+revision 1.3
+date: 2003-10-17 02:18:07 +0000;  author: noel;  state: Exp;  lines: +44 -7
+Changed version numbers.
+----------------------------
+revision 1.2
+date: 2003-06-20 14:13:15 +0000;  author: noel;  state: Exp;  lines: +5 -42
+Final documentation tweaks for the final 0.3.0 release.
+----------------------------
+revision 1.1
+date: 2003-06-18 13:55:03 +0000;  author: noel;  state: Exp;
+Added this documentation to Vim Outliner.
+=============================================================================
+
+RCS file: /root/VimOutliner/VimOutliner/experimental/Attic/checkbox.vim,v
+Working file: experimental/checkbox.vim
+head: 1.2
+branch:
+locks: strict
+access list:
+symbolic names:
+keyword substitution: kv
+total revisions: 2;	selected revisions: 2
+description:
+----------------------------
+revision 1.2
+date: 2003-07-07 13:52:45 +0000;  author: noel;  state: dead;  lines: +0 -0
+Changed checkbox.vim to vo_checkbox.vim
+----------------------------
+revision 1.1
+date: 2003-07-07 01:22:35 +0000;  author: noel;  state: Exp;
+Initial experimental version of checkboxes.
+Contains only one function and two mappings.
+The only capabilities are to add and delete check boxes from
+the beginnings of headings.
+=============================================================================
+
+RCS file: /root/VimOutliner/VimOutliner/filetype/Attic/filetype.vim,v
+Working file: filetype/filetype.vim
+head: 1.5
+branch:
+locks: strict
+access list:
+symbolic names:
+	arelease: 1.1.1.1
+	avendor: 1.1.1
+	testfork: 1.3.0.2
+keyword substitution: kv
+total revisions: 6;	selected revisions: 6
+description:
+VimOutliner filetype.vim
+----------------------------
+revision 1.5
+date: 2005-06-07 17:26:52 +0000;  author: noel;  state: dead;  lines: +5 -2
+*** empty log message ***
+----------------------------
+revision 1.4
+date: 2003-03-01 17:37:17 +0000;  author: noel;  state: Exp;  lines: +6 -3
+Changed the filetype name to our new standard: vo_base
+----------------------------
+revision 1.3
+date: 2003-02-14 17:49:43 +0000;  author: noel;  state: Exp;  lines: +6 -4
+Removed unnecessary filetype commands
+----------------------------
+revision 1.2
+date: 2003-02-09 15:07:35 +0000;  author: noel;  state: Exp;  lines: +8 -7
+Changed the auto commands. Setting the "filetype plugin indent on"
+option here does not work with ftplugins.
+----------------------------
+revision 1.1
+date: 2003-02-08 21:11:26 +0000;  author: noel;  state: Exp;
+branches:  1.1.1;
+Initial revision
+----------------------------
+revision 1.1.1.1
+date: 2003-03-20 22:35:15 +0000;  author: noel;  state: Exp;  lines: +17 -8
+no message
+=============================================================================
+
+RCS file: /root/VimOutliner/VimOutliner/filetype/vo_base.vim,v
+Working file: filetype/vo_base.vim
+head: 1.1
+branch:
+locks: strict
+access list:
+symbolic names:
+keyword substitution: kv
+total revisions: 1;	selected revisions: 1
+description:
+----------------------------
+revision 1.1
+date: 2005-01-19 16:12:37 +0000;  author: noel;  state: Exp;
+Finally added to CVS.
+Don't know how I missed this one.
+=============================================================================
+
+RCS file: /root/VimOutliner/VimOutliner/ftplugin/vo_base.vim,v
+Working file: ftplugin/vo_base.vim
+head: 2.59
+branch:
+locks: strict
+access list:
+symbolic names:
+keyword substitution: kv
+total revisions: 59;	selected revisions: 59
+description:
+Vim Outliner Main Program File
+----------------------------
+revision 2.59
+date: 2005-06-07 19:50:45 +0000;  author: noel;  state: Exp;  lines: +2 -1
+Re-removed the did_filetype() function. Restored the original variable-based
+solution.
+----------------------------
+revision 2.58
+date: 2005-06-07 12:47:38 +0000;  author: noel;  state: Exp;  lines: +1 -2
+Modified switch that prevents the filetype from being loaded more than once.
+----------------------------
+revision 2.57
+date: 2004-05-24 22:31:11 +0000;  author: noel;  state: Exp;  lines: +0 -6
+Removed a redundant PreformattedBodyText() function.
+----------------------------
+revision 2.56
+date: 2004-05-24 15:56:34 +0000;  author: noel;  state: Exp;  lines: +78 -0
+Added highlighting and folding support for:
+	Tables (marked with '|')
+	User-defined, wrapping text (marked with '>')
+	User-defined, non-wrapping text (marked with '<')
+----------------------------
+revision 2.55
+date: 2004-05-17 15:18:20 +0000;  author: noel;  state: Exp;  lines: +20 -1
+Added Steve Litt's simple executable lines.
+----------------------------
+revision 2.54
+date: 2004-05-17 14:18:27 +0000;  author: noel;  state: Exp;  lines: +41 -16
+Replaced system calls to 'date' with strftime().
+Modified the time- and date-stamp functions.
+normal	<localleader>t	append the time to the current heading
+normal	<localleader>T	prepend the time to the current heading
+insert	<localleader>t	insert the time at the cursor
+normal	<localleader>d	append the date to the current heading
+normal	<localleader>D	prepend the date to the current heading
+insert	<localleader>d	insert the date at the cursor
+----------------------------
+revision 2.53
+date: 2004-05-17 13:32:38 +0000;  author: noel;  state: Exp;  lines: +2 -2
+Added <cr> to end of sort commands.
+----------------------------
+revision 2.52
+date: 2004-05-17 13:30:12 +0000;  author: noel;  state: Exp;  lines: +167 -2
+Added child-aware sorting functions.
+Mapped <localleader>s to sort ascending.
+Mapped <localleader>S to sort descending.
+----------------------------
+revision 2.51
+date: 2004-03-18 13:25:46 +0000;  author: noel;  state: Exp;  lines: +1 -1
+Fixed a mapping command for <localleader>w
+----------------------------
+revision 2.50
+date: 2004-02-17 21:47:31 +0000;  author: noel;  state: Exp;  lines: +0 -217
+Removed the detailed revision log. It's getting too big. From now on
+'cvs log' will need to be used to see the log.
+----------------------------
+revision 2.49
+date: 2003-10-17 01:37:10 +0000;  author: noel;  state: Exp;  lines: +24 -10
+Fixed a minor folding issue.
+----------------------------
+revision 2.48
+date: 2003-08-04 13:25:17 +0000;  author: noel;  state: Exp;  lines: +37 -7
+Corrected a type for <localleader>w
+----------------------------
+revision 2.47
+date: 2003-06-16 23:57:20 +0000;  author: noel;  state: Exp;  lines: +7 -3
+Set UseSpaceColon=0. This is now the standard.
+----------------------------
+revision 2.46
+date: 2003-06-04 11:54:25 +0000;  author: noel;  state: Exp;  lines: +24 -6
+The behavior of the "d" and "t" commands have been improved and put into
+functions. These commands are now mapped to call the improved functions.
+----------------------------
+revision 2.45
+date: 2003-06-04 11:25:56 +0000;  author: noel;  state: Exp;  lines: +12 -3
+Moved the modification to the tags path outside the "if" statement in
+autocommands in ftplugin. Completely removed the line from syntax.
+----------------------------
+revision 2.44
+date: 2003-05-27 13:33:34 +0000;  author: noel;  state: Exp;  lines: +45 -29
+Added Vim style folds to both vo_base files to make them easier to read.
+Added a mode line to the end of each to activate the folds.
+Added a "Documentation" section that is mostly empty. This section will
+eventually be extracted automatically to form the online help via Vim's
+built-in help mechanisms.
+----------------------------
+revision 2.43
+date: 2003-05-23 18:36:44 +0000;  author: noel;  state: Exp;  lines: +7 -4
+More trouble with the ,,d function and retaining proper indentation.
+----------------------------
+revision 2.42
+date: 2003-05-23 16:02:42 +0000;  author: noel;  state: Exp;  lines: +8 -2
+Added tag file support for ~/.vimoutliner.
+----------------------------
+revision 2.41
+date: 2003-05-23 13:55:25 +0000;  author: noel;  state: Exp;  lines: +10 -6
+Modified the d and t commands. They did not work properly on closed folds.
+Commented-out the d and t commands when in insert mode. I have not used them
+and they don't work properly.
+----------------------------
+revision 2.40
+date: 2003-05-17 23:29:25 +0000;  author: noel;  state: Exp;  lines: +11 -6
+Modified date and time (,,d/,,t) to place date/time at beginning of
+line instead of end of line to allow for sorting.
+----------------------------
+revision 2.39
+date: 2003-05-17 22:49:26 +0000;  author: noel;  state: Exp;  lines: +20 -16
+Changed ^M to <cr> in all occurrances.
+Modified date (<leader>d) and time (<leader>t) to add date/time to end of
+current line.
+----------------------------
+revision 2.38
+date: 2003-03-05 17:58:22 +0000;  author: cepl;  state: Exp;  lines: +6 -3
+Personal configuration file was not run from the user's $HOME directory.
+Fixed.
+----------------------------
+revision 2.37
+date: 2003-03-03 16:24:49 +0000;  author: noel;  state: Exp;  lines: +6 -3
+Added ~/.vim and ~/.vimoutliner as places to look for tag files.
+----------------------------
+revision 2.36
+date: 2003-03-01 17:37:41 +0000;  author: noel;  state: Exp;  lines: +13 -5
+Changed the filetype name to our new standard: vo_base
+----------------------------
+revision 2.35
+date: 2003-02-09 15:04:56 +0000;  author: noel;  state: Exp;  lines: +70 -55
+Changed key mappings to be local to the current buffer only. They
+will also be loaded for any subsequent .otl file.
+Changed key mappings to use an easily modifiable leader. In this case
+",,".
+Changed the scope of some variables. They had a buffer scoping but now
+have a function scope.
+----------------------------
+revision 2.34
+date: 2003-02-08 22:07:47 +0000;  author: noel;  state: Exp;  lines: +5 -63
+Removed spellfix functions. Perhaps I'll make them another plugin.
+----------------------------
+revision 2.33
+date: 2003-02-08 21:31:01 +0000;  author: noel;  state: Exp;  lines: +5 -116
+Split out syntax settings as Dillon originally showed.
+----------------------------
+revision 2.32
+date: 2003-01-30 01:47:41 +0000;  author: noel;  state: Exp;  lines: +6 -3
+modified switches sent to ispell to make it guess better.
+----------------------------
+revision 2.31
+date: 2003-01-28 22:31:37 +0000;  author: noel;  state: Exp;  lines: +6 -3
+Modified setlocal foldtext.... to set foldtext....
+----------------------------
+revision 2.30
+date: 2003-01-22 22:03:12 +0000;  author: noel;  state: Exp;  lines: +8 -3
+Fixed bodytext folding method.
+----------------------------
+revision 2.29
+date: 2003-01-21 00:18:50 +0000;  author: noel;  state: Exp;  lines: +20 -7
+Fixed a problem with runtimepath.
+Added a use_space_colon setting to that one can choose between bodytext
+marked with a : or with a space-:.
+----------------------------
+revision 2.28
+date: 2003-01-19 16:46:27 +0000;  author: noel;  state: Exp;  lines: +11 -3
+Removed some strange escape characters from a revision comment.
+----------------------------
+revision 2.27
+date: 2003-01-19 16:16:54 +0000;  author: noel;  state: Exp;  lines: +101 -88
+Added detection of the color scheme and an alternative set of colors
+for dark backgrounds. (well actually for non-"light" backgrounds) at
+Dillon Jones' request.
+Set the "current_syntax" at Dillon's request.
+Modified the exe lines in the source to remove the debugging style I was
+using.
+----------------------------
+revision 2.26
+date: 2003-01-16 00:56:51 +0000;  author: noel;  state: Exp;  lines: +26 -23
+Changed a bunch of set commands to setlocal commands at the
+suggestion of Jeffrey Hood. Thanks, Jeffrey!
+----------------------------
+revision 2.25
+date: 2003-01-13 17:05:08 +0000;  author: noel;  state: Exp;  lines: +14 -11
+Fixed a problem with the new regex that define headings.
+----------------------------
+revision 2.24
+date: 2003-01-12 19:08:32 +0000;  author: noel;  state: Exp;  lines: +36 -25
+Converted from _ to :
+----------------------------
+revision 2.23
+date: 2003-01-11 21:00:33 +0000;  author: noel;  state: Exp;  lines: +55 -38
+Added Matej requirement for personalization settings via
+.vimoutlinerrc.
+Added Steve's style of bodytext that allows for wrapping and formatting
+with have the headings wrap as well. It is currently set for "_" as
+the bodytext marker.
+Added ,,b to set all bodytext to Steve's style.
+Added ,,B to set all bodytext to my style. This will also make it
+possible for Steve's style to be quickly reformatted for pretty
+printing with :ha.
+----------------------------
+revision 2.22
+date: 2003-01-11 00:35:32 +0000;  author: noel;  state: Exp;  lines: +7 -2
+[6~Added support for .vimoutlinerrc in both ~ and ~/.vimoutliner.
+----------------------------
+revision 2.21
+date: 2002-12-12 13:38:58 +0000;  author: noel;  state: Exp;  lines: +10 -3
+Fixed a spelling problem when words contain a '.
+----------------------------
+revision 2.20
+date: 2002-12-11 23:33:16 +0000;  author: noel;  state: Exp;  lines: +7 -3
+Removed a debug setting, again (sigh).
+Added some iskeyword symbols so spell-check would work on things
+like: don't
+----------------------------
+revision 2.19
+date: 2002-12-11 22:55:19 +0000;  author: noel;  state: Exp;  lines: +24 -11
+Fixed body text end error. I was checking for too specific a case.
+----------------------------
+revision 2.18
+date: 2002-12-11 14:57:52 +0000;  author: noel;  state: Exp;  lines: +7 -4
+Fixed wrapmargin setting and a line counter error during folding.
+----------------------------
+revision 2.17
+date: 2002-12-11 00:42:47 +0000;  author: noel;  state: Exp;  lines: +7 -3
+Removed a debug setting, again.
+----------------------------
+revision 2.16
+date: 2002-12-10 22:21:09 +0000;  author: noel;  state: Exp;  lines: +19 -14
+Moved body text up one tab level. It seems to be more intuitive
+to others.
+----------------------------
+revision 2.15
+date: 2002-12-10 19:24:13 +0000;  author: noel;  state: Exp;  lines: +6 -2
+Added a function to auto-wrap lines. This could be a problem for entering long headings.
+----------------------------
+revision 2.14
+date: 2002-12-10 18:11:13 +0000;  author: noel;  state: Exp;  lines: +9 -3
+Removed a debug feature
+----------------------------
+revision 2.13
+date: 2002-12-10 17:59:42 +0000;  author: noel;  state: Exp;  lines: +45 -15
+Added bodytext.
+Added bodytext folding.
+Modified MyFoldText to show [TEXT] for folded bodytext.
+Added an autocommand to re-sync the folding.
+----------------------------
+revision 2.12
+date: 2002-12-09 18:16:49 +0000;  author: noel;  state: Exp;  lines: +11 -4
+Fixed a typo and added an extra \ before & for adding upper cas3e
+words.
+----------------------------
+revision 2.11
+date: 2002-12-09 17:15:37 +0000;  author: noel;  state: Exp;  lines: +13 -5
+Added ,,kA.
+Swapped functions of ,,ka and ,,kA.
+	,,ka	add lowercase version of word to dictionary
+	,,kA	add word as it appears to dictionary
+----------------------------
+revision 2.10
+date: 2002-12-09 17:08:47 +0000;  author: noel;  state: Exp;  lines: +15 -8
+Fixed an error that occurs when there is just a single spelling checker.
+----------------------------
+revision 2.9
+date: 2002-12-09 16:42:02 +0000;  author: noel;  state: Exp;  lines: +13 -7
+Fixed error messages on searches with no matches.
+This is part of the spell-check search.
+----------------------------
+revision 2.8
+date: 2002-12-09 14:21:29 +0000;  author: noel;  state: Exp;  lines: +11 -8
+Fixed spelling highlighting and and spelling searches so that only real matches are highlighed and possible to jump to with ,,kn and ,,kN (and n and N after
+that).
+Modified the "source" statement that load spellfix.vim. Spellfix.vim now
+needs to be in ~/.vimoutliner.
+----------------------------
+revision 2.7
+date: 2002-12-07 22:08:02 +0000;  author: noel;  state: Exp;  lines: +30 -39
+finished integration of spellfix.vim
+----------------------------
+revision 2.6
+date: 2002-12-07 16:46:47 +0000;  author: noel;  state: Exp;  lines: +86 -6
+Added these commands to enhance the spelling checker
+	,,kk	speck-check document highlighting errors
+	,,ka	add the word under the cursor to the selected dictionary
+	,,kn	search forward to the next spelling error
+		N and n both work well with this
+	,,kN	search backward to the next spelling error
+		N and n both work well with this
+	,,kq	unhighlight the spelling errors
+----------------------------
+revision 2.5
+date: 2002-11-27 22:54:28 +0000;  author: noel;  state: Exp;  lines: +22 -16
+Changed date and time formats.
+changed the mappings of ,,0-,,9 so that ,,1 corresponds to show only
+1 level.
+----------------------------
+revision 2.4
+date: 2002-11-26 00:36:08 +0000;  author: noel;  state: Exp;  lines: +68 -62
+Added more comments.
+Added Steve's GPL header.
+Will keep the RCS info in my version but will remove it for
+distribution.
+----------------------------
+revision 2.3
+date: 2002-11-21 19:30:37 +0000;  author: noel;  state: Exp;  lines: +21 -8
+Included a patchfile from Steve to:
+	move the if loaded behavior to a place in the file after the settings
+	add an if loaded behavior for the file extension autocommmand
+	added the nocindent setting
+	changed the ,,,, mapping
+	clear the indexexpr setting
+----------------------------
+revision 2.2
+date: 2002-11-16 00:00:10 +0000;  author: noel;  state: Exp;  lines: +215 -196
+Added more comments.
+Switched the polarity of the if exists(loaded_outliner) function
+Commented-out some experimental features.
+Grouped the user preferences together and separated out the
+VimOutliner operational settings.
+----------------------------
+revision 2.1
+date: 2002-11-15 23:37:39 +0000;  author: noel;  state: Exp;
+Version 2 Beta Candidate before pre-release modifications
+=============================================================================
+
+RCS file: /root/VimOutliner/VimOutliner/otf/otf.vim,v
+Working file: otf/otf.vim
+head: 1.3
+branch:
+locks: strict
+access list:
+symbolic names:
+keyword substitution: kv
+total revisions: 3;	selected revisions: 3
+description:
+----------------------------
+revision 1.3
+date: 2003-06-03 19:56:09 +0000;  author: gabriel;  state: Exp;  lines: +2 -2
+changed bash function to perl,corrected file name error in otf.vi
+----------------------------
+revision 1.2
+date: 2003-06-02 21:01:16 +0000;  author: gabriel;  state: Exp;  lines: +9 -9
+created wishlist_demo.otl
+changed output files of Createotl() in otf.vim so users need only a ~/bin directory
+----------------------------
+revision 1.1
+date: 2003-06-01 13:16:32 +0000;  author: gabriel;  state: Exp;
+new 'on the fly' files
+=============================================================================
+
+RCS file: /root/VimOutliner/VimOutliner/otf/otfREADME,v
+Working file: otf/otfREADME
+head: 1.4
+branch:
+locks: strict
+access list:
+symbolic names:
+keyword substitution: kv
+total revisions: 4;	selected revisions: 4
+description:
+----------------------------
+revision 1.4
+date: 2003-06-03 20:21:43 +0000;  author: gabriel;  state: Exp;  lines: +2 -1
+instruction where to put otl.pl
+----------------------------
+revision 1.3
+date: 2003-06-03 19:56:09 +0000;  author: gabriel;  state: Exp;  lines: +2 -3
+changed bash function to perl,corrected file name error in otf.vi
+----------------------------
+revision 1.2
+date: 2003-06-02 21:01:16 +0000;  author: gabriel;  state: Exp;  lines: +12 -7
+created wishlist_demo.otl
+changed output files of Createotl() in otf.vim so users need only a ~/bin directory
+----------------------------
+revision 1.1
+date: 2003-06-01 13:16:32 +0000;  author: gabriel;  state: Exp;
+new 'on the fly' files
+=============================================================================
+
+RCS file: /root/VimOutliner/VimOutliner/otf/otl,v
+Working file: otf/otl
+head: 1.2
+branch:
+locks: strict
+access list:
+symbolic names:
+keyword substitution: kv
+total revisions: 2;	selected revisions: 2
+description:
+----------------------------
+revision 1.2
+date: 2003-06-02 21:01:16 +0000;  author: gabriel;  state: Exp;  lines: +2 -5
+created wishlist_demo.otl
+changed output files of Createotl() in otf.vim so users need only a ~/bin directory
+----------------------------
+revision 1.1
+date: 2003-06-01 13:16:32 +0000;  author: gabriel;  state: Exp;
+new 'on the fly' files
+=============================================================================
+
+RCS file: /root/VimOutliner/VimOutliner/otf/otl.pl,v
+Working file: otf/otl.pl
+head: 1.1
+branch:
+locks: strict
+access list:
+symbolic names:
+keyword substitution: kv
+total revisions: 1;	selected revisions: 1
+description:
+----------------------------
+revision 1.1
+date: 2003-06-03 19:57:00 +0000;  author: gabriel;  state: Exp;
+new script replacing otl
+=============================================================================
+
+RCS file: /root/VimOutliner/VimOutliner/otf/wishlist_demo.otl,v
+Working file: otf/wishlist_demo.otl
+head: 1.3
+branch:
+locks: strict
+access list:
+symbolic names:
+keyword substitution: kv
+total revisions: 3;	selected revisions: 3
+description:
+----------------------------
+revision 1.3
+date: 2003-06-03 20:21:43 +0000;  author: gabriel;  state: Exp;  lines: +2 -1
+instruction where to put otl.pl
+----------------------------
+revision 1.2
+date: 2003-06-02 21:29:49 +0000;  author: gabriel;  state: Exp;  lines: +28 -18
+changed Otl fns branch so it had the correct parents
+----------------------------
+revision 1.1
+date: 2003-06-02 21:01:16 +0000;  author: gabriel;  state: Exp;
+created wishlist_demo.otl
+changed output files of Createotl() in otf.vim so users need only a ~/bin directory
+=============================================================================
+
+RCS file: /root/VimOutliner/VimOutliner/scripts/vo_maketags.pl,v
+Working file: scripts/vo_maketags.pl
+head: 1.1
+branch:
+locks: strict
+access list:
+symbolic names:
+keyword substitution: kv
+total revisions: 1;	selected revisions: 1
+description:
+----------------------------
+revision 1.1
+date: 2003-06-20 14:13:15 +0000;  author: noel;  state: Exp;
+Final documentation tweaks for the final 0.3.0 release.
+=============================================================================
+
+RCS file: /root/VimOutliner/VimOutliner/syntax/vo_base.vim,v
+Working file: syntax/vo_base.vim
+head: 2.47
+branch:
+locks: strict
+access list:
+symbolic names:
+keyword substitution: kv
+total revisions: 47;	selected revisions: 47
+description:
+Vim Outliner Main Program File
+----------------------------
+revision 2.47
+date: 2005-06-07 15:24:30 +0000;  author: noel;  state: Exp;  lines: +4 -4
+The color darkyellow does not appear to exist on some systems. This color
+has been changed to darkred.
+----------------------------
+revision 2.46
+date: 2005-01-19 15:03:55 +0000;  author: noel;  state: Exp;  lines: +2 -1
+Fixed another W18 error.
+----------------------------
+revision 2.45
+date: 2004-11-27 19:30:43 +0000;  author: noel;  state: Exp;  lines: +6 -5
+
+Minor syntax and installation adjustments.
+Change to vo_checkbox to fix a typo.
+----------------------------
+revision 2.44
+date: 2004-05-24 15:56:34 +0000;  author: noel;  state: Exp;  lines: +142 -19
+Added highlighting and folding support for:
+	Tables (marked with '|')
+	User-defined, wrapping text (marked with '>')
+	User-defined, non-wrapping text (marked with '<')
+----------------------------
+revision 2.43
+date: 2004-02-17 21:48:47 +0000;  author: noel;  state: Exp;  lines: +0 -297
+Removed the embedded and out-of-date documentation.
+Removed the detailed revision log. It's too large. From now on
+'cvs log' will be needed to see the log.
+----------------------------
+revision 2.42
+date: 2003-10-17 01:34:03 +0000;  author: noel;  state: Exp;  lines: +43 -30
+
+Modified highlighting to support extended character sets.
+----------------------------
+revision 2.41
+date: 2003-06-04 11:25:56 +0000;  author: noel;  state: Exp;  lines: +5 -3
+Moved the modification to the tags path outside the "if" statement in
+autocommands in ftplugin. Completely removed the line from syntax.
+----------------------------
+revision 2.40
+date: 2003-05-27 15:03:26 +0000;  author: noel;  state: Exp;  lines: +88 -23
+Added some documentation on the commands.
+----------------------------
+revision 2.39
+date: 2003-05-27 13:33:34 +0000;  author: noel;  state: Exp;  lines: +73 -16
+Added Vim style folds to both vo_base files to make them easier to read.
+Added a mode line to the end of each to activate the folds.
+Added a "Documentation" section that is mostly empty. This section will
+eventually be extracted automatically to form the online help via Vim's
+built-in help mechanisms.
+----------------------------
+revision 2.38
+date: 2003-05-23 16:02:42 +0000;  author: noel;  state: Exp;  lines: +8 -3
+Added tag file support for ~/.vimoutliner.
+----------------------------
+revision 2.37
+date: 2003-03-01 17:07:53 +0000;  author: noel;  state: Exp;  lines: +34 -36
+Removed the bold and underline glamour.
+It did not work with the level colorization nor properly cross line boundries.
+----------------------------
+revision 2.36
+date: 2003-02-12 15:40:26 +0000;  author: noel;  state: Exp;  lines: +41 -32
+Added some glamour. *word* make word bold and _word_ underlines a word.
+----------------------------
+revision 2.35
+date: 2003-02-09 14:54:10 +0000;  author: noel;  state: Exp;  lines: +7 -3
+Removed syntax highlighting for SpellErrors and BadWord. The plugins
+include their own.
+----------------------------
+revision 2.34
+date: 2003-02-08 21:59:25 +0000;  author: noel;  state: Exp;  lines: +36 -31
+Added SpellErrors and BadWord to the contains attributes of headings
+and bodytext. Now we're compatible with engspchk and vimspell.
+----------------------------
+revision 2.33
+date: 2003-02-08 21:34:46 +0000;  author: noel;  state: Exp;  lines: +5 -213
+Split out functions as Dillon originally showed.
+----------------------------
+revision 2.32
+date: 2003-01-30 01:47:41 +0000;  author: noel;  state: Exp;  lines: +6 -3
+modified switches sent to ispell to make it guess better.
+----------------------------
+revision 2.31
+date: 2003-01-28 22:31:37 +0000;  author: noel;  state: Exp;  lines: +6 -3
+Modified setlocal foldtext.... to set foldtext....
+----------------------------
+revision 2.30
+date: 2003-01-22 22:03:12 +0000;  author: noel;  state: Exp;  lines: +8 -3
+Fixed bodytext folding method.
+----------------------------
+revision 2.29
+date: 2003-01-21 00:18:50 +0000;  author: noel;  state: Exp;  lines: +20 -7
+Fixed a problem with runtimepath.
+Added a use_space_colon setting to that one can choose between bodytext
+marked with a : or with a space-:.
+----------------------------
+revision 2.28
+date: 2003-01-19 16:46:27 +0000;  author: noel;  state: Exp;  lines: +11 -3
+Removed some strange escape characters from a revision comment.
+----------------------------
+revision 2.27
+date: 2003-01-19 16:16:54 +0000;  author: noel;  state: Exp;  lines: +101 -88
+Added detection of the color scheme and an alternative set of colors
+for dark backgrounds. (well actually for non-"light" backgrounds) at
+Dillon Jones' request.
+Set the "current_syntax" at Dillon's request.
+Modified the exe lines in the source to remove the debugging style I was
+using.
+----------------------------
+revision 2.26
+date: 2003-01-16 00:56:51 +0000;  author: noel;  state: Exp;  lines: +26 -23
+Changed a bunch of set commands to setlocal commands at the
+suggestion of Jeffrey Hood. Thanks, Jeffrey!
+----------------------------
+revision 2.25
+date: 2003-01-13 17:05:08 +0000;  author: noel;  state: Exp;  lines: +14 -11
+Fixed a problem with the new regex that define headings.
+----------------------------
+revision 2.24
+date: 2003-01-12 19:08:32 +0000;  author: noel;  state: Exp;  lines: +36 -25
+Converted from _ to :
+----------------------------
+revision 2.23
+date: 2003-01-11 21:00:33 +0000;  author: noel;  state: Exp;  lines: +55 -38
+Added Matej requirement for personalization settings via
+.vimoutlinerrc.
+Added Steve's style of bodytext that allows for wrapping and formatting
+with have the headings wrap as well. It is currently set for "_" as
+the bodytext marker.
+Added ,,b to set all bodytext to Steve's style.
+Added ,,B to set all bodytext to my style. This will also make it
+possible for Steve's style to be quickly reformatted for pretty
+printing with :ha.
+----------------------------
+revision 2.22
+date: 2003-01-11 00:35:32 +0000;  author: noel;  state: Exp;  lines: +7 -2
+[6~Added support for .vimoutlinerrc in both ~ and ~/.vimoutliner.
+----------------------------
+revision 2.21
+date: 2002-12-12 13:38:58 +0000;  author: noel;  state: Exp;  lines: +10 -3
+Fixed a spelling problem when words contain a '.
+----------------------------
+revision 2.20
+date: 2002-12-11 23:33:16 +0000;  author: noel;  state: Exp;  lines: +7 -3
+Removed a debug setting, again (sigh).
+Added some iskeyword symbols so spell-check would work on things
+like: don't
+----------------------------
+revision 2.19
+date: 2002-12-11 22:55:19 +0000;  author: noel;  state: Exp;  lines: +24 -11
+Fixed body text end error. I was checking for too specific a case.
+----------------------------
+revision 2.18
+date: 2002-12-11 14:57:52 +0000;  author: noel;  state: Exp;  lines: +7 -4
+Fixed wrapmargin setting and a line counter error during folding.
+----------------------------
+revision 2.17
+date: 2002-12-11 00:42:47 +0000;  author: noel;  state: Exp;  lines: +7 -3
+Removed a debug setting, again.
+----------------------------
+revision 2.16
+date: 2002-12-10 22:21:09 +0000;  author: noel;  state: Exp;  lines: +19 -14
+Moved body text up one tab level. It seems to be more intuitive
+to others.
+----------------------------
+revision 2.15
+date: 2002-12-10 19:24:13 +0000;  author: noel;  state: Exp;  lines: +6 -2
+Added a function to auto-wrap lines. This could be a problem for entering long headings.
+----------------------------
+revision 2.14
+date: 2002-12-10 18:11:13 +0000;  author: noel;  state: Exp;  lines: +9 -3
+Removed a debug feature
+----------------------------
+revision 2.13
+date: 2002-12-10 17:59:42 +0000;  author: noel;  state: Exp;  lines: +45 -15
+Added bodytext.
+Added bodytext folding.
+Modified MyFoldText to show [TEXT] for folded bodytext.
+Added an autocommand to re-sync the folding.
+----------------------------
+revision 2.12
+date: 2002-12-09 18:16:49 +0000;  author: noel;  state: Exp;  lines: +11 -4
+Fixed a typo and added an extra \ before & for adding upper cas3e
+words.
+----------------------------
+revision 2.11
+date: 2002-12-09 17:15:37 +0000;  author: noel;  state: Exp;  lines: +13 -5
+Added ,,kA.
+Swapped functions of ,,ka and ,,kA.
+	,,ka	add lowercase version of word to dictionary
+	,,kA	add word as it appears to dictionary
+----------------------------
+revision 2.10
+date: 2002-12-09 17:08:47 +0000;  author: noel;  state: Exp;  lines: +15 -8
+Fixed an error that occurs when there is just a single spelling checker.
+----------------------------
+revision 2.9
+date: 2002-12-09 16:42:02 +0000;  author: noel;  state: Exp;  lines: +13 -7
+Fixed error messages on searches with no matches.
+This is part of the spell-check search.
+----------------------------
+revision 2.8
+date: 2002-12-09 14:21:29 +0000;  author: noel;  state: Exp;  lines: +11 -8
+Fixed spelling highlighting and and spelling searches so that only real matches are highlighed and possible to jump to with ,,kn and ,,kN (and n and N after
+that).
+Modified the "source" statement that load spellfix.vim. Spellfix.vim now
+needs to be in ~/.vimoutliner.
+----------------------------
+revision 2.7
+date: 2002-12-07 22:08:02 +0000;  author: noel;  state: Exp;  lines: +30 -39
+finished integration of spellfix.vim
+----------------------------
+revision 2.6
+date: 2002-12-07 16:46:47 +0000;  author: noel;  state: Exp;  lines: +86 -6
+Added these commands to enhance the spelling checker
+	,,kk	speck-check document highlighting errors
+	,,ka	add the word under the cursor to the selected dictionary
+	,,kn	search forward to the next spelling error
+		N and n both work well with this
+	,,kN	search backward to the next spelling error
+		N and n both work well with this
+	,,kq	unhighlight the spelling errors
+----------------------------
+revision 2.5
+date: 2002-11-27 22:54:28 +0000;  author: noel;  state: Exp;  lines: +22 -16
+Changed date and time formats.
+changed the mappings of ,,0-,,9 so that ,,1 corresponds to show only
+1 level.
+----------------------------
+revision 2.4
+date: 2002-11-26 00:36:08 +0000;  author: noel;  state: Exp;  lines: +68 -62
+Added more comments.
+Added Steve's GPL header.
+Will keep the RCS info in my version but will remove it for
+distribution.
+----------------------------
+revision 2.3
+date: 2002-11-21 19:30:37 +0000;  author: noel;  state: Exp;  lines: +21 -8
+Included a patchfile from Steve to:
+	move the if loaded behavior to a place in the file after the settings
+	add an if loaded behavior for the file extension autocommmand
+	added the nocindent setting
+	changed the ,,,, mapping
+	clear the indexexpr setting
+----------------------------
+revision 2.2
+date: 2002-11-16 00:00:10 +0000;  author: noel;  state: Exp;  lines: +215 -196
+Added more comments.
+Switched the polarity of the if exists(loaded_outliner) function
+Commented-out some experimental features.
+Grouped the user preferences together and separated out the
+VimOutliner operational settings.
+----------------------------
+revision 2.1
+date: 2002-11-15 23:37:39 +0000;  author: noel;  state: Exp;
+Version 2 Beta Candidate before pre-release modifications
+=============================================================================
+
+RCS file: /root/VimOutliner/VimOutliner/tarballs/vimoutliner-0.3.2.tar.gz,v
+Working file: tarballs/vimoutliner-0.3.2.tar.gz
+head: 1.1
+branch:
+locks: strict
+access list:
+symbolic names:
+keyword substitution: kv
+total revisions: 1;	selected revisions: 1
+description:
+----------------------------
+revision 1.1
+date: 2004-02-23 12:34:28 +0000;  author: noel;  state: Exp;
+Adding for posterity's sake.
+=============================================================================
+
+RCS file: /root/VimOutliner/VimOutliner/tarballs/vimoutliner-0.3.2a.tar.gz,v
+Working file: tarballs/vimoutliner-0.3.2a.tar.gz
+head: 1.1
+branch:
+locks: strict
+access list:
+symbolic names:
+keyword substitution: kv
+total revisions: 1;	selected revisions: 1
+description:
+----------------------------
+revision 1.1
+date: 2004-02-23 12:34:28 +0000;  author: noel;  state: Exp;
+Adding for posterity's sake.
+=============================================================================
+
+RCS file: /root/VimOutliner/VimOutliner/tarballs/vimoutliner.0.3.1.tgz,v
+Working file: tarballs/vimoutliner.0.3.1.tgz
+head: 1.1
+branch:
+locks: strict
+access list:
+symbolic names:
+keyword substitution: kv
+total revisions: 1;	selected revisions: 1
+description:
+----------------------------
+revision 1.1
+date: 2003-10-17 02:21:28 +0000;  author: noel;  state: Exp;
+Official version 0.3.1
+=============================================================================

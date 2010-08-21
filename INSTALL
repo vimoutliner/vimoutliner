@@ -1,0 +1,138 @@
+INSTALLING AND TESTING VIMOUTLINER                           
+
+    How do I install VimOutliner?
+        Automatic Method		|vo-auto-install|
+        Updating        		|vo-updating|
+    	Manual Method			|vo-manual-install|
+        Testing                         |vo-testing|
+
+        Automatic method                            
+
+	     The new automatic installation targets Unix-compatible
+             platforms. 
+             $ tar xzvf vimoutliner-0.3.x.tar.gz
+             $ cd vimoutliner
+             $ ./install.sh
+
+             First you can decide whether to install the VimOutliner
+             files or abort the process leaving everything unchanged.
+             Assuming you confirmed the installation, the script
+             creates the necessary directory tree and copies the files
+             which provide the core functionality and documentation.
+
+             With the second question you decide whether you want to
+             install some brand new add-ons, currently implementing
+             hoisting and checkboxes.
+
+        Updating an existing installation                   
+
+             Updating an existing installation might require some
+             manual work.
+
+             If you are already working with a previous VimOutliner
+             release, there is a slight chance that the current directory
+             tree is different from your current one. In this case, you
+             will have to manually migrate your files to the new locations.
+
+             The installation script creates unique backups of files
+             being replaced with newer versions. So if you put some
+             local customisations into, say $HOME/.vimoutlinerrc, you'll
+             probably have to merge the backup with the new file by hand.
+            
+
+        Manual method                                 
+
+            You can also copy the files from the unpacked distribution
+            tarball into their destination folders by yourself. The
+            following steps are a description of what has to go where
+            and assume some knowledge of your vim setup.
+            
+            If you encounter problems, please contact the mailinglist
+            for an immediate solution and more complete future
+            documentation. www.lists.vimoutliner.org
+            
+            If you want to setup VimOutliner on a system running Microsoft
+            Windows, the directory $HOME denotes the base folder of the
+            vim installation.  If you're on Unix based system, $HOME
+            is as usual.
+
+            You need the following subtrees in your $HOME directory:
+              $HOME/.vim/
+                  doc/  ftdetect/  ftplugin/  syntax/
+              $HOME/.vimoutliner/
+                  plugins/  scripts/
+
+            The distribution tarball unpacks into a directory vimoutliner
+            with the following contents
+              add-ons/
+                plugins/               (2)
+                scripts/               (2)
+              doc/                     (1)
+              ftdetect/                (1)
+              ftplugin/                (1)
+              install.sh*
+              scripts/                 (2)
+              syntax/                  (1)
+              vimoutlinerrc            (3)
+
+            (1) The content of these folders should be copied to their
+                namesakes in the $HOME/.vim folder
+            (2) The content of these folders should be copied to their
+                namesakes in the $HOME/.vimoutliner folder
+            (3) This file needs to be moved to $HOME/.vimoutlinerrc
+
+            Your $HOME/.vimrc file should contain the lines
+                 filetype plugin indent on
+                 syntax on
+
+            Your $HOME/.vim/ftplugin/vo_base.vim file should contain
+            the lines
+                 runtime! ftdetect/*.vim
+                
+            Finally, you need to integrate the online help provided
+            with VimOutliner into the vim help system.  Start vim
+            and execute the following command:
+	        :helptags $HOME/.vim/doc
+
+            At this point, VimOutliner should be functional.
+	    Type "help vo" to get started.
+            
+    Testing base functionality                               
+
+        rm $HOME/vo_test.otl
+        gvim $HOME/vo_test.otl
+            or vim $HOME/vo_test.otl
+        Verify the following:
+            Tabs indent the text
+            Different indent levels are different colors
+            Lines starting with a colon and space word-wrap
+		 Lines starting with colons are body text. They should
+		 word wrap and should be a special color (typically
+		 green, but it can vary). Verify that paragraphs of body
+		 text can be reformatted with the Vim gq commands.
+
+    Verify interoutline linking
+
+        Interoutline linking currently requires a working perl installation
+        to generate the necessary tag file. We are looking into porting
+        this to vim's own scripting language.
+
+        Place the following two lines in $HOME/vo_test.otl:
+            _tag_newfile
+                $HOME/vo_newfile.otl
+        Note that in the preceding, the 2nd line should be indented
+        from the first.
+
+        To create VimOutliner's tag file $HOME/.vimoutliner/vo_tags.tag,
+        run vo_maketags.pl, which resides in $HOME/.vimoutliner/scripts/:
+            $ $HOME/.vimoutliner/scripts/vo_maketags.pl $HOME/vo_test.otl
+
+        In $HOME/vo_test.otl
+            Cursor to the _tag_newfile marker
+            Press Ctrl+K
+                You should be brought to $HOME/vo_newfile.otl 
+            Press Ctrl+N
+                You should be brought back to $HOME/vo_test.otl 
+            Note:
+                Ctrl+K is a VimOutliner synonym for Ctrl+]
+                Ctrl+N is a VimOutliner synonym for Ctrl+T
