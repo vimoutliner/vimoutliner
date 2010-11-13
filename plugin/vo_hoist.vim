@@ -56,6 +56,11 @@
 "
 "}}}2
 
+" Load guard {{{1
+if &filetype != 'vo_base'
+	finish
+endif
+
 " Load the plugin {{{1
 " mappings {{{1
 map <silent> <buffer> <localleader>h :call Hoist(line("."))<cr>

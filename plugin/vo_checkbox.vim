@@ -152,6 +152,11 @@
 "Added appropriate headers.
 "}}}1
 
+" Load guard {{{1
+if &filetype != 'vo_base'
+	finish
+endif
+
 " InsertCheckBox() {{{1
 " Insert a checkbox at the beginning of a header without disturbing the
 " current folding.
