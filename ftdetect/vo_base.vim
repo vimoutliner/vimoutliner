@@ -74,9 +74,6 @@
 "Revision 1.1  2003/02/08 21:11:26  noel
 "Initial revision
 "
-if exists("did_load_filetypes")
-  finish
-endif
 augroup filetypedetect
   au! BufRead,BufNewFile *.otl		setfiletype vo_base
   au! BufRead,BufNewFile *.oln		setfiletype xoutliner
