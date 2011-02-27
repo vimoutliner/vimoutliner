@@ -1,0 +1,88 @@
+
+body
+{
+    width: 600px;
+    font-size: 0.9em;
+    font-family: sans;
+}
+
+ul
+{
+    list-style-type: none;
+    line-height: 1.5em;
+    padding-left: 20px;
+}
+
+.date
+{
+    font-size: 0.6em;
+}
+
+.outline
+{
+    margin-bottom: 30px;
+}
+
+.percent
+{
+    color: blue;
+}
+
+.comment, .counts
+{
+    font-size: 0.7em;
+    line-height: 1em;
+    padding-top: 2px;
+    margin-bottom: 5px;
+    font-family: sans;
+}
+
+.comment_pre
+{  
+    font-style: normal;
+    font-family: courier;
+    white-space: pre;
+}
+
+.counts
+{
+    margin-left: 10px;
+}
+
+.counts:before { content: "("; }
+.counts:after  { content: ")"; }
+
+.todo
+{
+    padding-left: 4px;
+}
+
+.done
+{
+    background-color: #f4f4f4;
+    color: #777;
+    padding-left: 4px;
+}
+
+.done:before
+{
+    font-size: 1.5em;
+    color: green;
+    content: "\2611  ";
+}
+
+.todo:before
+{
+    font-size: 1.5em;
+    color: #777;
+    content: "\2610  ";
+}
+
+.legend .todo, .legend .done { border: 0 }
+.legend
+{
+    margin-bottom: 30px;
+    margin-top: 20px;
+}
+
+

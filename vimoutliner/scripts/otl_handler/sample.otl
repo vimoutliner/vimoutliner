@@ -1,0 +1,39 @@
+<:title=Sample OTL list :counts=1 :timer=1 :style=styles/theme1.css :legend=1 :last_mod=1
+
+: Theme examples:
+: <a href="sample.otl">basic</a> <a href="sample.otl?counts=0&amp;style=styles/theme2.css&amp;legend=0&amp;js=/javascript/jquery.js,/javascript/theme2.js">advanced</a> <a href="sample.otl?counts=0&amp;style=styles/theme3.css&amp;legend=0&amp;timer=0&amp;js=/javascript/jquery.js,/javascript/theme3.js&amp;sort=1">advanced2</a>
+
+[_] 29% Things to get for party
+	[_] 25% Food
+		[_] Chips
+		[_] Dips
+		[X] Honey roasted peanuts
+		[_] Sausage
+	[_] 33% Party favors
+		[_] Hats
+		[_] Whistles
+		[X] Beer bong
+
+[_] 19% House projects
+	[_] 25% Paint
+		[_] 50% Buy supplies
+			[_] Paint
+			[X] Brushes
+			[X] Trays 2006-09-14
+			[_] Overalls
+		[_] 0% Rooms done
+			[_] Bathroom
+			[_] Bedroom
+				: Red?
+	[_] 13% Upgrade electrical
+		[_] 2 circuits to computer room
+		[_] 40% Get equipment
+			[X] Romex wire
+			[_] Entry feed wire
+				: How much of this do I really need? I should probably go out to the street and measure stuff.
+				: Make sure the inspector has access to examine stuff on side of house.
+			[_] Service meter
+			[X] Grounding rods
+			[_] Breakers
+		[_] Learn about electricity
+			[_] Don't die

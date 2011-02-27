@@ -1,0 +1,27 @@
+A
+	: This is some early multi-line body text which should wrap. This is some 
+	: early multi-line body text which should wrap. This is some early 
+	: multi-line body text which should wrap. 
+	a
+		: single line body text
+	b
+		1
+	c
+B
+	d
+		2
+		3
+		4
+C
+
+This is a very long heading line that should be longer than the wrap width and so tests this case
+Heading with a 	tab in the middle
+	: body text with tab 	in it
+Body text with empy line in it
+	: First line
+	: 
+	: Third line
+Difficult characters
+	[_] ' " &
+Last line body text
+	: This is a last line of body text
