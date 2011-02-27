@@ -1,0 +1,7 @@
+#!/bin/sh
+echo "$1"
+echo "$1" | perl -pe 's/./-/g;'
+cd "$1"
+find . \
+    | sort \
+    | perl -pe 's|^\./||; s|[^/]+/|\t|g; s/([^\t])/[_] $1/;'
