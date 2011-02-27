@@ -3,7 +3,7 @@
 homedir=$HOME
 #homedir=./test
 vimdir=$homedir/.vim
-vodir=$homedir/.vimoutliner
+vodir=$vimdir/vimoutliner
 OS=`uname`
 
 #BACKUP FILE NAMES
@@ -41,7 +41,7 @@ function copydir {
 	for i in $files; do 
 		echo "    installing: $2/$i"
 		install $backupargs $1/$i $2
-	 done
+	done
 }
 
 #START THE INSTALL
@@ -61,13 +61,13 @@ sure? || exit
 created=0
 echo checking/creating needed directories
 make_dir $vimdir
+make_dir $vimdir/plugin
 make_dir $vimdir/syntax
 make_dir $vimdir/ftplugin
 make_dir $vimdir/ftdetect
 make_dir $vimdir/doc
 make_dir $vimdir/colors
 make_dir $vodir
-make_dir $vodir/plugins
 make_dir $vodir/scripts
 if [ $created -eq 0 ]; then echo "    none created"; fi
 
@@ -136,7 +136,7 @@ EOT
 echo -n "Would you like to install these "
 if sure?; then
 	echo installing add-ons
-	copydir add-ons/plugins $vodir/plugins
+	copydir plugin $vimdir/plugin
 	copydir add-ons/scripts $vodir/scripts
 fi
 
