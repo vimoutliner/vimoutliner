@@ -22,6 +22,11 @@ headings
 heading.
 
 
+EXECUTABLE LINES~
+
+,,e   normal   Execute the executable tag line under cursor
+
+
 FOLDING~
          
 ,,1   all      set foldlevel=0
@@ -54,13 +59,12 @@ OTHER~
 
 ,,f   normal   Directory listing of the current directory
 ,,w   insert   Save changes and return to insert mode
-,,e   normal   Execute the executable tag line under cursor
 ,,D   all      VimOutliner reserved command
 
 
-TAGGING~
+TAGGING/INTEROUTLINE~
 
-<C-K>   normal  Follow tag (Synonym for Ctrl+])
+<C-K>   normal  Follow tag/interoutline (Synonym for Ctrl+])
 <C-N>   normal  Return from tag (Synonym for Ctrl+T)
 
 
