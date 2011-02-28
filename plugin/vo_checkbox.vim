@@ -152,10 +152,27 @@
 "Added appropriate headers.
 "}}}1
 
-" Load guard {{{1
-if &filetype != 'vo_base'
+" Mappings {{{1
+" insert a chechbox
+map <buffer> <localleader>cb :call SafelyInsertCheckBox()<cr>
+map <buffer> <localleader>c% :call SafelyInsertCheckBoxPercent()<cr>
+map <buffer> <localleader>cp :call SafelyInsertCheckBoxPercentAlways()<cr>
+map <buffer> <localleader>cB :call InsertCheckBox()<cr>
+
+" delete a chechbox
+map <buffer> <localleader>cd :call DeleteCheckbox()<cr>
+
+" switch the status of the box
+map <buffer> <localleader>cx :call SwitchBox()<cr>:call NewHMD(FindRootParent(line(".")))<cr>
+
+" calculate the proportion of work done on the subtree
+map <buffer> <localleader>cz :call NewHMD(FindRootParent(line(".")))<cr>
+
+" Load guard for functions {{{1
+if exists('s:loaded')
 	finish
 endif
+let s:loaded = 1
 
 " InsertCheckBox() {{{1
 " Insert a checkbox at the beginning of a header without disturbing the
@@ -164,7 +181,6 @@ function! InsertCheckBox()
 	let @x = "[_] "
 	normal! ^"xP
 endfunction
-"}}}1
 " Safely InsertCheckBox() {{{1
 " Insert a checkbox at the beginning of a header without disturbing the
 " current folding only if there is no checkbox already.
@@ -301,22 +317,6 @@ function! NewHMD(line)
    endif
 endf
 
-" mappings {{{1
-" insert a chechbox
-map <buffer> <localleader>cb :call SafelyInsertCheckBox()<cr>
-map <buffer> <localleader>c% :call SafelyInsertCheckBoxPercent()<cr>
-map <buffer> <localleader>cp :call SafelyInsertCheckBoxPercentAlways()<cr>
-map <buffer> <localleader>cB :call InsertCheckBox()<cr>
 
-" delete a chechbox
-map <buffer> <localleader>cd :call DeleteCheckbox()<cr>
-
-" switch the status of the box
-map <buffer> <localleader>cx :call SwitchBox()<cr>:call NewHMD(FindRootParent(line(".")))<cr>
-
-" calculate the proportion of work done on the subtree
-map <buffer> <localleader>cz :call NewHMD(FindRootParent(line(".")))<cr>
-
-"}}}1
-
+"Modeline {{{1
 " vim600: set foldlevel=0 foldmethod=marker:
