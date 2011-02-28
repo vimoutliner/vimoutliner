@@ -40,7 +40,12 @@ function copydir {
 	files=`ls $1`
 	for i in $files; do 
 		echo "    installing: $2/$i"
-		install $backupargs $1/$i $2
+		if [[ -d $1/$i ]]; then
+			mkdir -p $2/$i
+			copydir $1/$i $2/$i
+		else
+			install $backupargs $1/$i $2
+		fi
 	done
 }
 
@@ -61,13 +66,13 @@ sure? || exit
 created=0
 echo checking/creating needed directories
 make_dir $vimdir
-make_dir $vimdir/plugin
 make_dir $vimdir/syntax
 make_dir $vimdir/ftplugin
 make_dir $vimdir/ftdetect
 make_dir $vimdir/doc
 make_dir $vimdir/colors
 make_dir $vodir
+make_dir $vodir/plugin
 make_dir $vodir/scripts
 if [ $created -eq 0 ]; then echo "    none created"; fi
 
@@ -128,7 +133,7 @@ Add-ons
     checkboxes and a script to convert a Vim Outliner .otl file
     to an html file. If installed, they must be enabled in the 
     .vimoutlinerrc file in your home directory. These files will be 
-    stored in $vodir/plugins and 
+    stored in $vodir/plugin and 
     $vodir/scripts.
 
 EOT
@@ -136,8 +141,8 @@ EOT
 echo -n "Would you like to install these "
 if sure?; then
 	echo installing add-ons
-	copydir plugin $vimdir/plugin
-	copydir add-ons/scripts $vodir/scripts
+	copydir vimoutliner/plugin $vodir/plugin
+	copydir vimoutliner/scripts $vodir/scripts
 fi
 
 #ALL DONE
