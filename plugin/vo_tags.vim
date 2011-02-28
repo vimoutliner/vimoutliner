@@ -1,4 +1,4 @@
-" File:        plugin/delimitMate.vim
+" File:        plugin/vo_tags.vim
 " Version:     1.0
 " Modified:    2011-02-28
 " Description: This plugin provides inter-outline links for vimoutliner.
@@ -62,31 +62,26 @@ let s:loaded = 1
 
 " s:follow_link() {{{2
 " Follow an interoutline link.
-function s:follow_link()
+function! s:follow_link()
 	" Check if it's a valid link.
 	let line = getline('.')
 	if line !~? '^\t*_tag_\w\+\s*$'
-		echom 'Vimoutliner: "'.line.'" doesn''t not look like an interoutline link.'
+		echom 'Vimoutliner: "'.substitute(line, '^\s*', '', '').'" doesn''t not look like an inter-outline link.'
 		return
 	endif
 	" Split line.
 	let line2 = getline(line('.') + 1)
-	" The following pattern is very magic.
+	" The following pattern is very magic. Don't remember where this bit came
+	" from, please let me know if you do.
 	let [_,file,row,col,_,_,_,_,_,_] = matchlist(line2, '\v^\s*([^:]+)%(:(\d+))?%(:(\d+))?$')
-	"let line2 = substitute(line2, '^\s*\(\S.*\)\s*$','\1','')
-	"let file = substitute(line2, '^\(.\{-}\)\(:\d\+\)\{0,2}$','\1','')
 	" Expand '%'.
-	let inner = 0
+	let is_inner_link = 0
 	if file == '%'
 		let file = expand('%:p')
-		let inner = 1
+		let is_inner_link = 1
 	endif
-	"let row = substitute(line2, '^.\{-}\(:\d\+\)\?\(:\d\+\)\?$','\1','')
-	"let row = substitute(row, ':','','')
-	let row = row == '' ? 0 : row * 1
-	"let col = substitute(line2, '^.\{-}:\d\+\(:\d\+\)\?$','\1','')
-	"let col = substitute(col, ':','','')
-	let col = col == '' ? 0 : col * 1
+	let row = (row == '' ? 0 : row * 1)
+	let col = (col == '' ? 0 : col * 1)
 
 	" Check if file path exists.
 	let file = s:get_absolute_path(expand('%:h'), file)
@@ -133,7 +128,7 @@ function s:follow_link()
 	" Now let's jump to that outline.
 	try
 		call s:update_jump_list()
-		if inner == 0
+		if !is_inner_link
 			exec "buffer ".bufnr(substitute(file, '^'.getcwd().'/','',''), 1)
 		endif
 		if row > 0
@@ -194,7 +189,7 @@ function! s:jump_back()
 endfunction
 " s:create_link() {{{2
 " Create an interoutline link with the current keyword under the cursor.
-function s:create_link()
+function! s:create_link()
 	let line = getline('.')
 	" Check if the there's is a single word in the current line and a current
 	" link doesn't exists.
