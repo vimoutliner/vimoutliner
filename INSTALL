@@ -34,9 +34,9 @@ INSTALLING AND TESTING VIMOUTLINER
              tree is different from your current one. In this case, you
              will have to manually migrate your files to the new locations.
 
-             The installation script creates unique backups of files
-             being replaced with newer versions. So if you put some
-             local customisations into, say $HOME/.vimoutlinerrc, you'll
+             The installation script creates unique backups of files being
+             replaced with newer versions. So if you put some local
+             customisations into, say $HOME/.vim/vimoutlinerrc, you'll
              probably have to merge the backup with the new file by hand.
             
 
@@ -57,38 +57,34 @@ INSTALLING AND TESTING VIMOUTLINER
             is as usual.
 
             You need the following subtrees in your $HOME directory:
-              $HOME/.vim/
-                  doc/  ftdetect/  ftplugin/  syntax/
-              $HOME/.vimoutliner/
-                  plugins/  scripts/
+                $HOME/.vim/
+                    doc/
+                    ftdetect/
+                    ftplugin/
+                    syntax/
+                    vimoutliner/
+                        plugins/
+                        scripts/
 
             The distribution tarball unpacks into a directory vimoutliner
             with the following contents
-              add-ons/
-                plugins/               (2)
-                scripts/               (2)
+              vimoutliner/
+                plugins/               (1)
+                scripts/               (1)
               doc/                     (1)
               ftdetect/                (1)
               ftplugin/                (1)
               install.sh*
-              scripts/                 (2)
               syntax/                  (1)
-              vimoutlinerrc            (3)
+              vimoutlinerrc            (1)
 
             (1) The content of these folders should be copied to their
                 namesakes in the $HOME/.vim folder
-            (2) The content of these folders should be copied to their
-                namesakes in the $HOME/.vimoutliner folder
-            (3) This file needs to be moved to $HOME/.vimoutlinerrc
 
             Your $HOME/.vimrc file should contain the lines
                  filetype plugin indent on
                  syntax on
 
-            Your $HOME/.vim/ftplugin/vo_base.vim file should contain
-            the lines
-                 runtime! ftdetect/*.vim
-                
             Finally, you need to integrate the online help provided
             with VimOutliner into the vim help system.  Start vim
             and execute the following command:
@@ -113,19 +109,11 @@ INSTALLING AND TESTING VIMOUTLINER
 
     Verify interoutline linking
 
-        Interoutline linking currently requires a working perl installation
-        to generate the necessary tag file. We are looking into porting
-        this to vim's own scripting language.
-
         Place the following two lines in $HOME/vo_test.otl:
             _tag_newfile
                 $HOME/vo_newfile.otl
         Note that in the preceding, the 2nd line should be indented
         from the first.
-
-        To create VimOutliner's tag file $HOME/.vimoutliner/vo_tags.tag,
-        run vo_maketags.pl, which resides in $HOME/.vimoutliner/scripts/:
-            $ $HOME/.vimoutliner/scripts/vo_maketags.pl $HOME/vo_test.otl
 
         In $HOME/vo_test.otl
             Cursor to the _tag_newfile marker
@@ -133,6 +121,3 @@ INSTALLING AND TESTING VIMOUTLINER
                 You should be brought to $HOME/vo_newfile.otl 
             Press Ctrl+N
                 You should be brought back to $HOME/vo_test.otl 
-            Note:
-                Ctrl+K is a VimOutliner synonym for Ctrl+]
-                Ctrl+N is a VimOutliner synonym for Ctrl+T
