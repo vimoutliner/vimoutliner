@@ -3,9 +3,14 @@
 " section of an outline. It will adjust the indents and not paste into the
 " middle of a branch.
 
-if &filetype != 'vo_base'
+map <buffer>p :call VOput()<cr>
+map <buffer>P ]P
+
+if exists('s:loaded')
 	finish
 endif
+let s:loaded = 1
+
 function! IsParent(line)
 	if a:line == line("$")
 		return 0
@@ -30,7 +35,4 @@ function! VOput()
 		normal! ]p
 	endif
 endfunction
-
-map <buffer>p :call VOput()<cr>
-map <buffer>P ]P
 
