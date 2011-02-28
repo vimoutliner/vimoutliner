@@ -2,6 +2,7 @@
 " will do what one would expect when pasting cut/copied nodes into another
 " section of an outline. It will adjust the indents and not paste into the
 " middle of a branch.
+" http://www.lists.vimoutliner.org/pipermail/vimoutliner/2008-October/002366.html
 
 map <buffer>p :call VOput()<cr>
 map <buffer>P ]P
