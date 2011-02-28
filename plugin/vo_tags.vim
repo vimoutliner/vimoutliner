@@ -14,11 +14,6 @@ if v:version < 700
 	finish
 endif
 
-" Only load for VO files.
-if &filetype !=? 'vo_base'
-	finish
-endif
-
 " Create outlines' jump-list.
 if !exists('w:vo_jump_list')
 	let w:vo_jump_list = []
