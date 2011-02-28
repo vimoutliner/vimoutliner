@@ -1,3 +1,8 @@
+" Here is a small script that remaps the p and P normal commands such that VO
+" will do what one would expect when pasting cut/copied nodes into another
+" section of an outline. It will adjust the indents and not paste into the
+" middle of a branch.
+
 if &filetype != 'vo_base'
 	finish
 endif
