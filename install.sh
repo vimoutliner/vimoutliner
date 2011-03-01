@@ -116,9 +116,9 @@ copyfile syntax/vo_base.vim $vimdir
 copyfile ftplugin/vo_base.vim $vimdir
 copyfile ftdetect/vo_base.vim $vimdir
 copyfile doc/vo_readme.txt $vimdir
+copyfile doc/vo_cheatsheet.txt $vimdir
 copyfile colors/vo_dark.vim $vimdir
 copyfile colors/vo_light.vim $vimdir
-copyfile scripts/vo_maketags.pl $vodir
 cp -f vimoutlinerrc .vimoutlinerrc
 copyfile .vimoutlinerrc $homedir
 
