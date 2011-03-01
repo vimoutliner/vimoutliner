@@ -51,25 +51,27 @@ endif
 
 " Don't re-load functions.
 if exists('s:loaded')
-	finish
+	"finish
 endif
 let s:loaded = 1
 
-" s:follow_link() {{{2
-" Follow an interoutline link.
-function! s:follow_link()
+" s:get_link() {{{2
+" Get link data.
+function! s:get_link(linenr)
 	" Check if it's a valid link.
-	let line = getline('.')
-	if line !~? '^\t*_tag_\w\+\s*$'
-		echom 'Vimoutliner: "'.substitute(line, '^\s*', '', '').'" doesn''t not look like an inter-outline link.'
-		return
+	let line = getline(a:linenr)
+	if line =~? '^\t*_tag_\w\+\s*$'
+		" Don't remember where this bit came from, please let me know if you do.
+		" The following pattern is very magic.
+		let [_,file,row,col,_,_,_,_,_,_] = matchlist(getline(a:linenr + 1), '\v^\s*([^:]+)%(:(\d+))?%(:(\d+))?$')
+		" Expand '%'.
+	elseif line =~? '^\t*_ilink_\(.\{-}:\s\)\?\s*\S.*$'
+		" The following pattern is very magic.
+		let [_,file,row,col,_,_,_,_,_,_] = matchlist(line, '\v^\s*_ilink_%(.{-}:\s)?\s*([^:]+)%(:(\d+))?%(:(\d+))?$')
+		" Expand '%'.
+	else
+		return ['',0,0,0]
 	endif
-	" Split line.
-	let line2 = getline(line('.') + 1)
-	" The following pattern is very magic. Don't remember where this bit came
-	" from, please let me know if you do.
-	let [_,file,row,col,_,_,_,_,_,_] = matchlist(line2, '\v^\s*([^:]+)%(:(\d+))?%(:(\d+))?$')
-	" Expand '%'.
 	let is_inner_link = 0
 	if file == '%'
 		let file = expand('%:p')
@@ -77,6 +79,19 @@ function! s:follow_link()
 	endif
 	let row = (row == '' ? 0 : row * 1)
 	let col = (col == '' ? 0 : col * 1)
+
+	return [file, row, col, is_inner_link]
+endfunction
+
+" s:follow_link() {{{2
+" Follow an interoutline link.
+function! s:follow_link()
+	" Get link data.
+	let [file, row, col, is_inner_link] = s:get_link(line('.'))
+	if file == ''
+		echom 'Vimoutliner: "'.substitute(getline('.'), '^\s*', '', '').'" doesn''t not look like an inter-outline link.'
+		return
+	endif
 
 	" Check if file path exists.
 	let file = s:get_absolute_path(expand('%:h'), file)
@@ -186,38 +201,37 @@ endfunction
 " Create an interoutline link with the current keyword under the cursor.
 function! s:create_link()
 	let line = getline('.')
-	" Check if the there's is a single word in the current line and a current
+	" Check if the there's is some content in the current line and a current
 	" link doesn't exists.
-	if line =~# '^\s*\w\+$' &&
-				\ ( line('.') == line('$') ||
-				\ indent('.') >= indent(line('.') + 1 ) ||
-				\ match(getline(line('.') + 1), '^\s*\S.\s*$') == -1)
-		call setline(line('.'), substitute(line, '^\(\s*\)\%(_tag_\)\?\(\w\+\)$','\1_tag_\3', ''))
-		call inputsave()
-		let input = input('Linked outline''s path: ', '', 'file')
-		call inputrestore()
-		if input == ''
-			" User canceled.
-			return ''
-		endif
-		let path = substitute(input, '^\s*\(\S.\{-}\)\s*$', '\1', '')
-		"if path !~ '\.otl$'
-			"" Add extension.
-			"let path = path.'.otl'
-		"endif
-		call append(line('.'), path)
-		let linenr = line('.')
-		let indent = indent(linenr)
-		" Adjust indentation.
-		normal! j
-		while indent >= indent(linenr + 1)
-			normal! >>
-		endwhile
-		normal! k$
-	else
-		echom 'Vimoutliner: "'.substitute(line,'^\s*\(\S.*$\)','\1','').'" does not seem to be a proper tag name.'
+	if line =~# '^\s*_link_\%([^:]\{-}:\s\)\?\s*\S\+.*$'
+		echom 'Vimoutliner: Looks like "'.substitute(line,'^\s*\(\S.*$\)','\1','').'" is already a link.'
+		return
+	endif
+	call inputsave()
+	let path = input('Linked outline''s path: ', '', 'file')
+	call inputrestore()
+	if path == ''
+		" User canceled.
 		return ''
 	endif
+	let path = substitute(path, '^\s*\(\S.\{-}\)\s*$', '\1', '')
+	"if path !~ '\.otl$'
+		"" Add extension.
+		"let path = path.'.otl'
+	"endif
+	let tag = '_ilink_'
+	let [_,indent,label,_,_,_,_,_,_,_] = matchlist(line, '^\(\s*\)\%(_ilink_\)\?\s*\(\S.\{-1,}\S\)\?\s*\%(:\s\)\?\s*$')
+	if indent =~ ''
+		let indent = substitute(getline(line('.')-1), '^\(\t\)\+\S.*$','\1', '')
+	endif
+	if label !~ '^\s*$'
+		let label .= ': '
+	else
+		let label = ''
+	endif
+
+	call setline(line('.'), indent.tag.' '.label.path)
+	echo ''
 endfunction
 " Autocommands {{{1
 augroup vo_links
