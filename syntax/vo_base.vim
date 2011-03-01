@@ -217,6 +217,7 @@ syn clear
 syn sync fromstart
 
 syn match outlTags '_tag_\w*' contained
+syn match outlTags '_ilink_\s*\(.\{-}:\s\)\?.*' contained
 
 " Noel's style of body text {{{2
 syntax region BT1 start=+^ \S+ skip=+^ \S+ end=+^\S+me=e-1 end=+^\(\t\)\{1}\S+me=e-2 contains=spellErr,SpellErrors,BadWord contained
