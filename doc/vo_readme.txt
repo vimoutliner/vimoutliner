@@ -1220,4 +1220,4 @@ OTHER INFORMATION                                                *vo-other-info*
             The whole purpose of outlines is to use your brain
             New ways of using your brain produce new ways to use outlines
 
-:vim:set filetype=help textwidth=78
+:vim:set filetype=help textwidth=78:
