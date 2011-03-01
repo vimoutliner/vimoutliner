@@ -661,7 +661,7 @@ for rc in split(globpath('$HOME,$HOME/.vimoutliner','.vimoutlinerrc'), "\n") + s
 	echom rc
 	exec "source " . rc
 endfor
-ru! .vimoutlinerrc vimoutlinerrc
+ru! vimoutlinerrc vimoutliner/vimoutlinerrc
 " More sophisticated version of the modules loading; thanks to Preben 'Peppe'
 " Guldberg for telling me how to split string and make semi-lists with vim.
 " - Matej Cepl

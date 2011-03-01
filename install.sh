@@ -119,8 +119,7 @@ copyfile doc/vo_readme.txt $vimdir
 copyfile doc/vo_cheatsheet.txt $vimdir
 copyfile colors/vo_dark.vim $vimdir
 copyfile colors/vo_light.vim $vimdir
-cp -f vimoutlinerrc .vimoutlinerrc
-copyfile .vimoutlinerrc $homedir
+copyfile vimoutliner/vimoutlinerrc $vimdir
 
 #INCORPORATE DOCS
 echo installing documentation
