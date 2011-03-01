@@ -51,7 +51,7 @@ endif
 
 " Don't re-load functions.
 if exists('s:loaded')
-	"finish
+	finish
 endif
 let s:loaded = 1
 
