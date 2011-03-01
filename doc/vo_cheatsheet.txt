@@ -1,4 +1,4 @@
- *vo-cheatsheet.txt*  Last change: 2011-02-28 
+ *vo_cheatsheet.txt*  Last change: 2011-03-01 
 
 VIMOUTLINER CHEAT SHEET~
 
