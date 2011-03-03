@@ -213,11 +213,19 @@ INSTALLING AND TESTING VIMOUTLINER                                  *vo-install*
 
     Verify interoutline linking
 
+        Interoutline linking currently requires a working perl installation
+        to generate the necessary tag file. We are looking into porting
+        this to vim's own scripting language.
+
         Place the following two lines in $HOME/vo_test.otl:
             _tag_newfile
                 $HOME/vo_newfile.otl
-        Note that in the preceding, the 2nd line should be indented from the
-        first.
+        Note that in the preceding, the 2nd line should be indented
+        from the first.
+
+        To create VimOutliner's tag file $HOME/.vimoutliner/vo_tags.tag,
+        run vo_maketags.pl, which resides in $HOME/.vimoutliner/scripts/:
+            $ $HOME/.vimoutliner/scripts/vo_maketags.pl $HOME/vo_test.otl
 
         In $HOME/vo_test.otl
             Cursor to the _tag_newfile marker
@@ -225,7 +233,9 @@ INSTALLING AND TESTING VIMOUTLINER                                  *vo-install*
                 You should be brought to $HOME/vo_newfile.otl 
             Press Ctrl+N
                 You should be brought back to $HOME/vo_test.otl 
-
+            Note:
+                Ctrl+K is a VimOutliner synonym for Ctrl+]
+                Ctrl+N is a VimOutliner synonym for Ctrl+T
 
     Debian Installation                                              *vo-debian*
 

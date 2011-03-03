@@ -120,6 +120,7 @@ copyfile doc/vo_cheatsheet.txt $vimdir
 copyfile colors/vo_dark.vim $vimdir
 copyfile colors/vo_light.vim $vimdir
 copyfile vimoutliner/vimoutlinerrc $vimdir
+copyfile vimoutliner/scripts/vo_maketags.pl $vimdir
 
 #INCORPORATE DOCS
 echo installing documentation
