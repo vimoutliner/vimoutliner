@@ -78,7 +78,7 @@ use strict;
 use vars qw($TAGFILENAME);
 use Cwd;
 
-$TAGFILENAME = $ENV{"HOME"} . "/.vimoutliner/vo_tags.tag";
+$TAGFILENAME = $ENV{"HOME"} . "/.vim/vimoutliner/vo_tags.tag";
 
 sub process1Outline($$); #Early prototype the recursive routine
 sub makeDirectory($);    #Early prototype the recursive routine

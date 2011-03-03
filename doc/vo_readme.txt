@@ -223,9 +223,9 @@ INSTALLING AND TESTING VIMOUTLINER                                  *vo-install*
         Note that in the preceding, the 2nd line should be indented
         from the first.
 
-        To create VimOutliner's tag file $HOME/.vimoutliner/vo_tags.tag,
+        To create VimOutliner's tag file $HOME/.vim/vimoutliner/vo_tags.tag,
         run vo_maketags.pl, which resides in $HOME/.vimoutliner/scripts/:
-            $ $HOME/.vimoutliner/scripts/vo_maketags.pl $HOME/vo_test.otl
+            $ $HOME/.vim/vimoutliner/scripts/vo_maketags.pl $HOME/vo_test.otl
 
         In $HOME/vo_test.otl
             Cursor to the _tag_newfile marker

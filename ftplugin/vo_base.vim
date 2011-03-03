@@ -649,6 +649,9 @@ if !exists("autocommand_vo_loaded")
 endif
 "}}}1
 
+" this command needs to be run every time so Vim doesn't forget where to look
+setlocal tags^=$HOME/.vim/vimoutliner/vo_tags.tag
+
 " Added an indication of current syntax as per Dillon Jones' request
 let b:current_syntax = "outliner"
 
