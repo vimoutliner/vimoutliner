@@ -9,7 +9,7 @@
 " you do not want to load any VO modules leave it blank (default). This
 " variable can be freely modified in ~/.vimoutlinerrc.
 "let g:vo_modules2load = ""
-let g:vo_modules_load = "checkbox:hoist:tags:smart_paste"
+let g:vo_modules_load = "checkbox:hoist:smart_paste"
 
 "User Preferences ***************************************************
 "let maplocalleader = ",,"		" this is prepended to VO key mappings
