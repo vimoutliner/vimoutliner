@@ -1,7 +1,7 @@
 #!/usr/bin/perl -w
 # #######################################################################
-# vo_maketags.pl: Vim outline tagging system, main program, version 0.1.2
-#   Copyright (C) 2001-2003 by Steve Litt (slitt@troubleshooters.com)
+# vo_maketags.pl: Vim outline tagging system, main program, version 0.3.5
+#   Copyright (C) 2001-2003, 2011 by Steve Litt (slitt@troubleshooters.com)
 #
 #   This program is free software; you can redistribute it and/or modify
 #   it under the terms of the GNU General Public License as published by
@@ -69,6 +69,13 @@
 #	exist.  
 #Steve Litt, 5/30/2001
 #End of version 0.1.2
+# V0.3.5 release 20110303
+#       Changed vo_tags.tag directory from
+#       $HOME/.vimoutliner/
+#       to
+#       $HOME/.vim/vimoutliner/
+#Steve Litt, 3/3/2011
+#End of version 0.3.5 release 20110303
 #END OF HISTORY
 #
 # #######################################################################
@@ -79,6 +86,8 @@ use vars qw($TAGFILENAME);
 use Cwd;
 
 $TAGFILENAME = $ENV{"HOME"} . "/.vim/vimoutliner/vo_tags.tag";
+##### OLD LOCATION BELOW, REMOVE IN 0.3.6, COMMENT FOR NOW
+#$TAGFILENAME = $ENV{"HOME"} . "/.vimoutliner/vo_tags.tag";
 
 sub process1Outline($$); #Early prototype the recursive routine
 sub makeDirectory($);    #Early prototype the recursive routine
