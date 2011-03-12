@@ -821,9 +821,9 @@ PLUGINS                                                             *vo-plugins*
             [_]     an unchecked item or incomplete task
             [X]     a checked item or complete task
             %       a placeholder for percentage of completion
-
+<
             Several ,,-commands make up the user interface:
-
+>
             ,,cb  Insert a check box on the current line or each line
                   of the currently selected range (including lines in
                   selected but closed folds). This command is currently
@@ -1077,13 +1077,21 @@ PLUGINS                                                             *vo-plugins*
 <
         Hoisting                                                 *vo-hoisting*
 
+            NOTE: THIS PLUGIN IS NOT FINISHED AND MIGHT CAUSE DATA LOSS!!!
+                  USE IT AT YOUR OWN RISK.
+
             Hoisting is a way to focus on the offspring of the currently
             selected outline item. The subitems will be presented as top level
             items in the automatically extracted hoist-file located in the
             same directory as the main outline file. You cannot hoist parts of
             an already hoisted file again.
 
-            If you installed the add-on, you hoist the subtopics of the
+            To enable this plugin uncomment the following line in
+            ~/.vim/vimoutliner/vimoutlinerrc:
+>
+            "let g:vo_modules_load .= ':hoist'
+<
+            Once it is enabled, you hoist the subtopics of the
             currently selected item with
 
             ,,h   Hoist the subtopics into a temporary file
