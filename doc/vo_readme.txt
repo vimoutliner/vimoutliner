@@ -133,7 +133,7 @@ You need the following subtrees in your $HOME directory: >
         vimoutliner/
             plugins/
             scripts/
->
+<
 The distribution tarball unpacks into a directory vimoutliner with the
 following contents: >
 
@@ -147,7 +147,7 @@ following contents: >
     syntax/                  (1)
     syntax/                  (1)
     vimoutlinerrc            (1)
->
+<
 (1) The content of these folders should be copied to their namesakes in the
 $HOME/.vim folder
 
@@ -155,12 +155,12 @@ Your $HOME/.vimrc file should contain the lines >
 
      filetype plugin indent on
      syntax on
->
+<
 Finally, you need to integrate the online help provided with VimOutliner into
 the vim help system.  Start vim and execute the following command: >
             following command: >
     :helptags $HOME/.vim/doc
->
+<
 At this point, VimOutliner should be functional.  Type ":help vo" to get
 started.
             
@@ -190,7 +190,7 @@ $HOME/.vimoutlinerrc file:
     " Uncomment this next line to force using VO on 
     " a dark background
     " colorscheme vo_dark 
->
+<
 To create your own scheme follow these simple steps:
 
 1. Go to your $HOME/.vim/colors directory.  If you don't have one, create it.
@@ -206,7 +206,7 @@ To create your own scheme follow these simple steps:
    something like this:
 >
     colorscheme noel
->
+<
 That's all there is to it.
 
 
@@ -216,7 +216,7 @@ Open a new outline with the following:
 >
     rm $HOME/vo_test.otl
     gvim $HOME/vo_test.otl or vim $HOME/vo_test.otl
->
+<
 Verify the following:
 - Tabs indent the text
 - Different indent levels are different colors
@@ -237,7 +237,7 @@ Place the following two lines in $HOME/vo_test.otl:
 >
     _tag_newfile
         $HOME/vo_newfile.otl
->
+<
 Note that in the preceding, the 2nd line should be indented from the first.
 
 To create VimOutliner's tag file $HOME/.vim/vimoutliner/vo_tags.tag, run
@@ -293,7 +293,7 @@ Insert the following line:
 Save and exit
 >
     gvim $HOME/vo_test.emdl
->
+<
 You should get:
 -level colors,
 -body text (lines starting with colon)
@@ -561,7 +561,7 @@ create your own menu entries. Just add lines like these to your
     amenu &VO.&Reports.&Big\ Project :!otl2html.py -S big.css % > %.html
     amenu &VO.&Reports.&Hot\ List :!otl2html.py -S todo.css % > %.html
     amenu &VO.&Reports.&Weekly :!otl2html.py -S weekly.css % > %.html
->
+<
 I'm sure you get the idea.
 
 
@@ -577,7 +577,7 @@ specify other objects. Here is a list of each of the non-heading types:
     |        table
     >        user-defined, text block (wrapping)
     <        user-defined, preformatted text block (non-wrapping)
->
+<
 The body text marker, :, is used to specify lines that are automatically
 wrapped and reformatted. VO and post-processors are free to wrap and reformat
 this text as well as use proportionally- spaced fonts. A post-processor will
@@ -598,6 +598,7 @@ When folded, body text looks something like this:
 >
     Kirby the Wonder Dog
 	[TEXT] -------------------------------- (6 lines)
+<
 The preformatted text marker, ;, is used to mark text that should not be
 reformatted nor wrapped by VO or any post-processor. A post- processor would
 use a fixed-space font, like courier, to render these lines. A post-processor
@@ -1071,6 +1072,7 @@ Let's start with planning a small party; say a barbeque.
    with zc and zo to see the effects of opening and closing folds. Even if you
    place the cursor on 'Barbeque' and zo it, you still have a good
    understanding of how complete the project is.
+>
     [_] 69% Barbeque
         [X] 100% Guests
             [X] Bill and Barb
