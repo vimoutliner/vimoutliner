@@ -240,9 +240,9 @@ Place the following two lines in $HOME/vo_test.otl:
 >
 Note that in the preceding, the 2nd line should be indented from the first.
 
-        To create VimOutliner's tag file $HOME/.vim/vimoutliner/vo_tags.tag,
-        run vo_maketags.pl, which resides in $HOME/.vimoutliner/scripts/:
-            $ $HOME/.vim/vimoutliner/scripts/vo_maketags.pl $HOME/vo_test.otl
+To create VimOutliner's tag file $HOME/.vim/vimoutliner/vo_tags.tag, run
+vo_maketags.pl, which resides in $HOME/.vimoutliner/scripts/: $
+$HOME/.vim/vimoutliner/scripts/vo_maketags.pl $HOME/vo_test.otl
 
 Try the following:
 - In $HOME/vo_test.otl
