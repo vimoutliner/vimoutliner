@@ -658,7 +658,6 @@ let b:current_syntax = "outliner"
 " Personal configuration options files as per Matej Cepl
 " Don't add $HOME to rtp
 for rc in split(globpath('$HOME,$HOME/.vimoutliner','.vimoutlinerrc'), "\n") + split(globpath('$HOME,$HOME/.vimouliner', 'vimoutlinerrc'), "\n")
-	echom rc
 	exec "source " . rc
 endfor
 ru! vimoutlinerrc vimoutliner/vimoutlinerrc
