@@ -5,10 +5,10 @@
 # Copyright 2001 Noel Henson All rights reserved
 #
 # ALPHA VERSION!!!
-# $Revision: 1.43 $
-# $Date: 2005/06/07 13:16:40 $
+# $Revision: 1.52 $
+# $Date: 2008/10/11 22:04:09 $
 # $Author: noel $
-# $Source: /home/noel/active/NoelOTL/RCS/otl2html.py,v $
+# $Source: /home/noel/active/otl2html/RCS/otl2html.py,v $
 # $Locker:  $
 
 ###########################################################################
@@ -32,6 +32,7 @@ import sys
 from string import *
 from re import *
 from time import *
+from os import system,popen
 
 ###########################################################################
 # global variables
@@ -106,6 +107,8 @@ def showSyntax():
    print "			This will cause an item to be right-justified."
    print "				|  whatever |"
    print "			This will cause an item to be centered."
+   print "				|  whatever  |"
+   print "			This will cause an item to be default aligned."
    print "				| whatever |"
    print
    print "   Character Styles"
@@ -132,6 +135,20 @@ def showSyntax():
    print "			[about.html About] [http://www.cnn.com CNN]"
    print "			or with an image:"
    print "			[http://www.ted.com [http://www.ted.com/logo.png]]"
+   print "			Links starting with a '+' will be opened in a new"
+   print "			window. Eg. [+about.html About]"
+   print
+   print "   Including external files"
+   print "	!filename!	Examples:"
+   print "			!file.txt!"
+   print
+   print "   Including external outlines (first line is parent)"
+   print "	!!filename!!	Examples:"
+   print "			!!menu.otl!!"
+   print
+   print "   Including output from executing external programs"
+   print "	!!!program args!!!	Examples:"
+   print "			!!!date +%Y%m%d!!!"
    print
    print "   Note:"
    print "	When using -D, the top-level headings become divisions (<div>)"
@@ -150,8 +167,8 @@ def showSyntax():
 def showVersion():
    print
    print "RCS"
-   print " $Revision: 1.43 $"
-   print " $Date: 2005/06/07 13:16:40 $"
+   print " $Revision: 1.52 $"
+   print " $Date: 2008/10/11 22:04:09 $"
    print " $Author: noel $"
    print
 
@@ -414,9 +431,72 @@ def handleTable(linein,lineLevel):
 def linkOrImage(line):
   line = sub('\[(\S+?)\]','<img src="\\1" alt="\\1">',line)
   line = sub('\[(\S+)\s(.*?)\]','<a href="\\1">\\2</a>',line)
+  line = sub('(<a href=")\+(.*)"\>','\\1\\2" target=_new>',line)
   line = replace(line,'<img src="X" alt="X">','[X]')
   line = replace(line,'<img src="_" alt="_">','[_]')
   return line
+
+# tabs
+# return a string with 'count' tabs
+# input: count
+# output: string of tabs
+
+def tabs(count):
+  out = ""
+  if (count == 0): return ""
+  for i in range (0,count-1):
+    out = out + "\t"
+  return out
+
+# includeFile
+# include the specified file, if it exists
+# input: line and lineLevel
+# output: line is replaced by the contents of the file
+
+def includeFile(line,lineLevel):
+  filename = sub('!(\S+?)!','\\1',lstrip(rstrip(line)))
+  incfile = open(filename,"r")
+  linein = incfile.readline()
+  while linein != "":
+    linein = sub('^',tabs(lineLevel),linein)
+    processLine(linein)
+    linein = incfile.readline()
+  incfile.close()
+  return
+
+# includeOutline
+# include the specified file, if it exists
+# input: line and lineLevel
+# output: line is replaced by the contents of the file
+
+def includeOutline(line,lineLevel):
+  filename = sub('!!(\S+?)!!','\\1',lstrip(rstrip(line)))
+  incfile = open(filename,"r")
+  linein = incfile.readline()
+  linein = sub('^',tabs(lineLevel),linein)
+  processLine(linein)
+  linein = incfile.readline()
+  while linein != "":
+    linein = sub('^',tabs(lineLevel+1),linein)
+    processLine(linein)
+    linein = incfile.readline()
+  incfile.close()
+  return
+
+# execProgram
+# execute the specified program
+# input: line
+# output: program specified is replaced by program output
+
+def execProgram(line):
+  program = sub('.*!!!(.*)!!!.*','\\1',lstrip(rstrip(line)))
+  child = popen(program)
+  out = child.read()
+  err = child.close()
+  out = sub('!!!(.*)!!!',out,line)
+  processLine(out)
+  if err: raise RuntimeError, '%s failed w/ exit code %d' % (program, err)
+  return 
 
 # divName
 # create a name for a division
@@ -463,6 +543,8 @@ def beautifyLine(line):
   while (line != out):
 
 	  line = out
+	# out = replace(out,'---','<strike>',1)
+	  if (lstrip(line)[0] != ";"): out = sub('\-\-\-(.*?)\-\-\-','<strike>\\1</strike>',out)
 	  out = linkOrImage(out)
 	# out = replace(out,'**','<strong>',1)
 	  out = sub('\*\*(.*?)\*\*','<strong>\\1</strong>',out)
@@ -470,8 +552,6 @@ def beautifyLine(line):
 	  out = sub('\/\/(.*?)\/\/','<i>\\1</i>',out)
 	# out = replace(out,'+++','<code>',1)
 	  out = sub('\+\+\+(.*?)\+\+\+','<code>\\1</code>',out)
-	# out = replace(out,'---','<strike>',1)
-	  out = sub('\-\-\-(.*?)\-\-\-','<strike>\\1</strike>',out)
 	  out = sub('\(c\)','&copy;',out)
 	  out = sub('\(C\)','&copy;',out)
   return out
@@ -547,8 +627,9 @@ def processLine(linein):
 
       else: print # same depth
       if (div == 1 and lineLevel == 1): 
-	  print divName(linein)
-	  if (silentdiv == 0): print "<ol>"
+	  if (lineLevel != find(linein,"!") +1):
+		  print divName(linein)
+		  if (silentdiv == 0): print "<ol>"
 
       if (slides == 0):
           if (lineLevel == find(linein," ") +1 ) or \
@@ -570,6 +651,12 @@ def processLine(linein):
 			  print "</table>"
 			  handleTtable(linein,lineLevel)
             	  else: print handleTableRow(linein,lineLevel),
+          elif (lineLevel == find(linein,"!!!") +1 ):
+		  execProgram(linein)
+          elif (lineLevel == find(linein,"!!") +1 ):
+		  includeOutline(linein,lineLevel)
+          elif (lineLevel == find(linein,"!") +1 ):
+		  includeFile(linein,lineLevel)
   	  else:
             if (inBodyText == 1):
 	    	    print"</p>"
@@ -699,6 +786,8 @@ def createCSS():
   output += "}\n"
   output += "	/* outline level spacing */\n"
   output += "OL { \n"
+  output += "        margin-left: 1.0em;\n"
+  output += "        padding-left: 0;\n"
   output += "        padding-bottom: 8pt;\n"
   output += "}\n"
   output += "	/* global heading settings */\n"
@@ -829,7 +918,7 @@ def createCSS():
   output += "}\n"
   output += "	/* preformatted text */\n"
   output += "PRE { \n"
-  output += "        font-family: fixed;\n"
+  output += "        font-family: fixed,monospace;\n"
   output += "        font-size: 9pt;\n"
   output += "        font-weight: normal;\n"
   output += "        color: darkblue;\n"
@@ -906,9 +995,9 @@ def createCSS():
 def printHeader(linein):
   global styleSheet, inlineStyle
   print "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\" \"http://www.w3.org/TR/html4/strict.dtd\">"
-  print "<html><head><title>" + getTitleText(linein) + "</title>"
-  print"<!--  $Revision: 1.43 $ -->"
-  print"<!--  $Date: 2005/06/07 13:16:40 $ -->"
+  print "<html><head><title>" + getTitleText(linein) + "</title></head>"
+  print"<!--  $Revision: 1.52 $ -->"
+  print"<!--  $Date: 2008/10/11 22:04:09 $ -->"
   print"<!--  $Author: noel $ -->"
   try:
 	file = open(styleSheet,"r") 
