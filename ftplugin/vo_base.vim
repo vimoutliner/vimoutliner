@@ -631,11 +631,12 @@ exec 'amenu &VO.&Tools.otl2&html\.py\	(otl2html\.py\ thisfile\ -S\ html2otl_nnnn
 " otl2docbook
 exec 'amenu &VO.&Tools.otl2&docbook\.pl\	(otl2docbook\.pl\ thisfile\ >\ thisfile\.dbk) :!'.s:path2scripts.'/otl2docbook.pl % > %.dbk<CR>'
 " otl2table
-exec 'amenu &VO.&Tools.&otl2table\.py\	(otl2table\.py\ thisfile\ >\ thisfile\.txt) :!'.s:path2scripts.'/otl2table.py % > %.txt<CR>'
+exec 'amenu &VO.&Tools.otl2&table\.py\	(otl2table\.py\ thisfile\ >\ thisfile\.txt) :!'.s:path2scripts.'/otl2table.py % > %.txt<CR>'
 " otl2tags => FreeMind
-exec 'amenu &VO.&Tools.&otl2tags\.py\ =>\ FreeMind\	(otl2tags\.py\ \-c\ otl2tags_freemind\.conf\ thisfile\ >\ thisfile\.mm) :!'.s:path2scripts.'/otl2tags.py -c '.s:path2scripts.'/otl2tags_freemind.conf % > %.mm<CR>'
+exec 'amenu &VO.&Tools.otl2tags\.py\ =>\ &FreeMind\	(otl2tags\.py\ \-c\ otl2tags_freemind\.conf\ thisfile\ >\ thisfile\.mm) :!'.s:path2scripts.'/otl2tags.py -c '.s:path2scripts.'/otl2tags_freemind.conf % > %.mm<CR>'
 " otl2tags => Graphviz
-exec 'amenu &VO.&Tools.&otl2tags\.py\ =>\ Graphviz\	(otl2tags\.py\ \-c\ otl2tags_graphviz\.conf\ thisfile\ >\ thisfile\.gv) :!'.s:path2scripts.'/otl2tags.py -c '.s:path2scripts.'/otl2tags_graphviz.conf % > %.gv<CR>'
+exec 'amenu &VO.&Tools.otl2tags\.py\ =>\ &Graphviz\	(otl2tags\.py\ \-c\ otl2tags_graphviz\.conf\ thisfile\ >\ thisfile\.gv) :!'.s:path2scripts.'/otl2tags.py -c '.s:path2scripts.'/otl2tags_graphviz.conf % > %.gv<CR>'
+amenu &VO.&Tools.&myotl2thml\.sh\	(myotl2html\.sh\ thisfile) :!myotl2html.sh %<CR>
 amenu &VO.-Sep2- :
 amenu &VO.&Color\ Scheme :popup Edit.Color\ Scheme<cr>
 amenu &VO.-Sep3- :
