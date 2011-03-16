@@ -536,19 +536,15 @@ Menu~
 There is a simple menu included in Vim Outliner when running in GUI mode.
 Named 'VO', you can usually find it right next to the 'Help' menu. There are
 commands to change the fold level and select alternate color schemes. There is
-also entries for common tools.  Currently there are only two entries for
-running the otl2html.py script included with VO.
+also entries for common tools.
 
-The first otl2html.py tool item executes the script with default options. The
-only control a user has it to modify the nnnnnn.css file.
-
-The second tool item calls a shell script, 'myotl2html.sh'. This script should
+The last tool item calls a shell script, 'myotl2html.sh'. This script should
 be provided by the user and is not included in VO releases. A sample
 myotl2html.sh script might look like this:
-
-#!/bin/bash
-otl2html.py -S pjtstat.css $1 > $HOME/public_html/$1.html
-
+>
+    #!/bin/bash
+    otl2html.py -S pjtstat.css $1 > $HOME/public_html/$1.html
+<
 If you have several different types of reports you create regularly, you can
 create your own menu entries. Just add lines like these to your
 ~/.vimoutlinerrc file: >
