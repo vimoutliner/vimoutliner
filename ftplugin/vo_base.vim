@@ -624,6 +624,7 @@ amenu &VO.Expand\ Level\ &8 :set foldlevel=7<cr>
 amenu &VO.Expand\ Level\ &9 :set foldlevel=8<cr>
 amenu &VO.Expand\ Level\ &All :set foldlevel=99999<cr>
 amenu &VO.-Sep1- :
+"Tools sub-menu
 let s:path2scripts = expand('<sfile>:p:h:h').'/vimoutliner/scripts'
 " otl2html
 exec 'amenu &VO.&Tools.otl2&html\.py\	(otl2html\.py\ thisfile\ -S\ html2otl_nnnnnn\.css\ >\ thisfile\.html) :!'.s:path2scripts.'/otl2html.py -S html2otl_nnnnnn.css % > %.html<CR>'
