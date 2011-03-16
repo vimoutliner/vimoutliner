@@ -1,0 +1,23 @@
+INSTALLATION PROCEDURES FOR Node.pm
+	Version 0.2.0 released 5/13/2004
+
+Downloading
+	Download from
+		http://www.troubleshooters.com/projects/Node/Node.#.#.#.tgz
+Installing
+	The tarball extracts into a directory called Node
+	cd to the directory into which you want to place Node
+	Move any existing Node directory out of the way
+	tar xzvf Node.#.#.#.tgz
+Testing
+	cd into the Node directory
+	./hello.pl
+	troubleshoot as necessary
+Using
+	In any perl program using Node not in the Node directory...
+		Use following code at beginning
+			#!/usr/bin/perl -w -I/path/to/Node
+			use strict;
+			use Node;
+		If destination machine has unknown Node.pm directory...
+			See example_nodepath.pl
