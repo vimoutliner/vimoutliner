@@ -55,23 +55,6 @@ If your distro doesn't come with this file
 
 
 ==============================================================================
-Version                                                             *vo-version*
-
-
-Version 0.3.5
-Released
-
-Additions/changes:
-    - Moved all files inside $HOME/.vim.
-    - Added a cheat sheet to the documentation.
-    - Added smart-paste plugin.
-    - Added post-processor scripts.
-
-Bug fixes:
-    No bug fixes.
-
-
-==============================================================================
 Installing and Testing VimOutliner                                  *vo-install*
 
 
@@ -1277,4 +1260,34 @@ Not about outlines, but instead about how to use your brain.
 The whole purpose of outlines is to use your brain.
 New ways of using your brain produce new ways to use outlines.
 
+==============================================================================
+                                                                    *vo-history*
+Version                                                             *vo-version*
+
+
+Version 0.3.5
+Development
+	* Additions/Changes:~
+	- Moved all files inside $HOME/.vim.
+	- Added a cheat sheet to the documentation.
+	- Added smart-paste plugin.
+	- Added post-processor scripts.
+	- Added syntax support for _ilink_
+	* Bug fixes:~
+	- ,,S did not work. Fixed
+
+Version 0.3.4
+Released
+	* Additions/changes:~
+	- added ,,cp as an alias to ,,c%
+	- Color schemes have been added
+	- Checkboxes and hoisting default to 'on'
+	- Modified ,,cb and ,,c% (and ,,cp) to work only on headings
+	- Fixed the ,,cz command to make the correct call
+	- Added descriptions of VO objects to help (headings, text, tables, etc.)
+	* Bug fixes:~
+	- W18 errors have been fixed
+
+
  vim:set filetype=help textwidth=78:
+
