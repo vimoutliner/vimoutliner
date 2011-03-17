@@ -12,6 +12,9 @@ let g:vo_modules_load = "checkbox"
 " Uncomment the following line to enable hoisting.
 "let g:vo_modules_load .= ':hoist'
 
+" Uncomment the following line to enable smart_paste.
+"let g:vo_modules_load .= ':smart_paste'
+
 "User Preferences ***************************************************
 "let maplocalleader = ",,"		" this is prepended to VO key mappings
 
