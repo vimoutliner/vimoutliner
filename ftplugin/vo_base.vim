@@ -184,9 +184,12 @@ endfunction
 " Compare this heading and the next
 " Return 1: next is greater, 0 next is same, -1 next is less
 function! CompHead(line)
+	let nexthead = NextHead(a:line)
 	let l:thisline=getline(a:line)
-	let l:nextline=getline(NextHead(a:line))
-	if l:thisline <# l:nextline
+	let l:nextline=getline(nexthead)
+	if indent(a:line) != indent(nexthead)
+		return 0
+	elseif l:thisline <# l:nextline
 		return 1
 	elseif l:thisline ># l:nextline
 		return -1
@@ -194,6 +197,7 @@ function! CompHead(line)
 		return 0
 	endif
 endfunction
+
 "}}}3
 " Sort1Line(line) {{{3
 " Compare this heading and the next and swap if out of order
