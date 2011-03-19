@@ -1,4 +1,4 @@
-*vo_readme.txt*	For Vim version 7.1	Last change: 2011 March 1
+*vo_readme.txt*	For Vim version 7.1	Last change: 2011 March 19
 
                                                                 *vo* *vimoutliner*
 The VimOutliner  0.3.5 ~
@@ -1271,8 +1271,28 @@ Development
 	- Moved all files inside $HOME/.vim.
 	- Added a cheat sheet to the documentation.
 	- Added smart-paste plugin.
-	- Added post-processor scripts.
-	- Added syntax support for _ilink_
+	- Added and updated post-processor scripts:
+		· fs2otl
+		· Node.pm
+		· otl2aft.awk
+		· otl2docbook.pl
+		· otl2html.py
+		· otl2lyx.awk
+		· otl2ooimpress.py
+		· otl2table.py
+		· otl2tags.py
+		· otlgrep.py
+		· otlhead.sh
+		· otlsplit.py
+		· otltail.sh
+		· otl_handler
+		· outline_calendar
+		· outline_freemind
+		· vo_maketags.pl
+	- Added syntax support for _ilink_.
+	- Hoist plugin disabled by default.
+	- Layout of vo_readme.txt made more similar to Vim help.
+
 	* Bug fixes:~
 	- ,,S did not work. Fixed
 
@@ -1285,6 +1305,7 @@ Released
 	- Modified ,,cb and ,,c% (and ,,cp) to work only on headings
 	- Fixed the ,,cz command to make the correct call
 	- Added descriptions of VO objects to help (headings, text, tables, etc.)
+
 	* Bug fixes:~
 	- W18 errors have been fixed
 

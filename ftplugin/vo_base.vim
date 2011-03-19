@@ -1,6 +1,6 @@
 "#########################################################################
 "# ftplugin/vo_base.vim: VimOutliner functions, commands and settings
-"# version 0.3.0
+"# version 0.3.5
 "#   Copyright (C) 2001,2003 by Steve Litt (slitt@troubleshooters.com)
 "#   Copyright (C) 2004 by Noel Henson (noel@noels-lab.com)
 "#
