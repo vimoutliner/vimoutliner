@@ -564,9 +564,9 @@ imap <buffer> <localleader>t ~<esc>x:call InsertTime(0)<cr>a
 nmap <buffer> <localleader>T ^:call InsertTime(1)<cr>a <esc>
 
 " sort a list naturally
-map <buffer> <localleader>s :call SortChildren(0)<cr>
+map <silent> <buffer> <localleader>s :silent call SortChildren(0)<cr>
 " sort a list, but you supply the options
-map <buffer> <localleader>S :call SortChildren(1)<cr>
+map <silent> <buffer> <localleader>S :silent call SortChildren(1)<cr>
 
 " invoke the file explorer
 map <buffer> <localleader>f :e .<cr>
