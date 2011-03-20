@@ -1,4 +1,4 @@
-*vo_readme.txt*	For Vim version 7.1	Last change: 2011 March 19
+*vo_readme.txt*	For Vim version 7.1	Last change: 2011 March 20
 
                                                                 *vo* *vimoutliner*
 The VimOutliner  0.3.5 ~
@@ -1266,7 +1266,7 @@ Version                                                             *vo-version*
 
 
 Version 0.3.5
-Development
+Released 2011-03-20
 	* Additions/Changes:~
 	- Moved all files inside $HOME/.vim.
 	- Added a cheat sheet to the documentation.

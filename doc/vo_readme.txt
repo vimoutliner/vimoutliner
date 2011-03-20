@@ -1266,7 +1266,7 @@ Version                                                             *vo-version*
 
 
 Version 0.3.5
-Development
+Released 2011-03-20
 	* Additions/Changes:~
 	- Moved all files inside $HOME/.vim.
 	- Added a cheat sheet to the documentation.
