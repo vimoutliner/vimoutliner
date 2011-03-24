@@ -12,9 +12,23 @@ Automatic Method
 
 The automatic installation targets Unix-compatible platforms:
 
+From tar archive
+
     $ tar xzvf vimoutliner-0.3.x.tar.gz
     $ cd vimoutliner
     $ sh install.sh
+
+From zip archive 
+
+    $ unzip vimoutliner-0.3.x.zip
+    $ cd vimoutliner-0.3.x
+    $ sh install.sh 
+
+From vimball
+
+Open vimoutliner-0.3.5.vba with Vim and type the following command to install in your home vim folder:
+
+:so % 
 
 First you can decide whether to install the VimOutliner files or abort the
 process leaving everything unchanged.  Assuming you confirmed the
