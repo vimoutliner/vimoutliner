@@ -106,7 +106,8 @@ the vim help system.  Start vim and execute the following command:
     :helptags $HOME/.vim/doc
 
 At this point, VimOutliner should be functional.  Type ":help vo" to get
-started.
+started. To get a quick overview of all VimOutliner commands you can view the 
+cheatsheet with ":help vo_cheatsheet". 
 
 
 Color Schemes
