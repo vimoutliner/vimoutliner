@@ -151,11 +151,11 @@ echo installation complete
 cat <<EOT
 
 **********************************************************************
-* For help about Vim Outliner simply exececute "help vo" from within *
+* For help about Vim Outliner simply execute ":help vo" from within *
 * vim.                                                               *
 *                                                                    *
-* Additional scripts and plugins are available on the Vim Outliner   *
-* website: www.vimoutliner.org.                                      *
+* Additional scripts are available in the scripts folder, see        *
+* $HOME/.vim/vimoutliner/scripts                                     *
 **********************************************************************
 
 EOT
