@@ -78,5 +78,6 @@ TIME AND DATE~
 ,,D   normal   Pre-pend datestamp  (YYYY-MM-DD) to heading
 
 
+  vim:set filetype=help textwidth=78:
 
 
