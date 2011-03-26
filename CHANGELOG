@@ -7,6 +7,8 @@ Development
 	- Fixed typo and updated reference in install.sh.
 	- Several updates and additions to the README and doc/vo_readme.txt file.
 	- Fixed several typos and updated reference in the ftplugin/vo_base.vim file.
+    - Fixed typos and removed outdated references in the plugin/vo_hoist.otl and vo_hoist.vim files.
+    - Fixed types and removed outdated references in the plugin/vo_checkbox.otl file.
 
 Version 0.3.5
 Released 2011-03-20
