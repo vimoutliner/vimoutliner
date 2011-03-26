@@ -1,7 +1,7 @@
-*vo_readme.txt*	For Vim version 7.1	Last change: 2011 March 20
+*vo_readme.txt*	For Vim version 7.1	Last change: 2011 March 25
 
                                                                 *vo* *vimoutliner*
-The VimOutliner  0.3.5 ~
+The VimOutliner  0.3.6 ~
 
 VimOutliner is an outline processor designed with lighting fast authoring as
 the main feature, it also has many of the same features as Grandview, More,
@@ -28,7 +28,6 @@ and body text.
       Menu                                                         |vo-menu|
       Vim Outliner objects                                      |vo-objects|
       Post Processors                                   |vo-post-processors|
-  Cautions!!!                                                  |vo-cautions|
   Advanced                                                     |vo-advanced|
       Executable Lines                                 |vo-executable-lines|
   Plugins                                                       |vo-plugins|
@@ -70,11 +69,26 @@ Automatic Method~
 
 The automatic installation targets Unix-compatible platforms: >
 
+From tar archive
+
     $ tar xzvf vimoutliner-0.3.x.tar.gz
     $ cd vimoutliner
     $ sh install.sh
+
+From zip archive 
+
+    $ unzip vimoutliner-0.3.x.zip
+    $ cd vimoutliner-0.3.x
+    $ sh install.sh 
+
+From vimball
+
+Open vimoutliner-0.3.x.vba with Vim and type the following command to install in your home vim folder:
+
+:so % 
+
 <
-First you can decide whether to install the VimOutliner files or abort the
+The install.sh script will ask you whether to install the VimOutliner files or abort the
 process leaving everything unchanged.  Assuming you confirmed the
 installation, the script creates the necessary directory tree and copies the
 files which provide the core functionality and documentation.
@@ -109,7 +123,7 @@ solution and more complete future documentation.  www.lists.vimoutliner.org
 
 If you want to setup VimOutliner on a system running Microsoft Windows, the
 directory $HOME denotes the base folder of the vim installation.  If you're on
-Unix based system, $HOME is as usual.
+Unix based system, the location of $HOME is as usual.
 
 You need the following subtrees in your $HOME directory: >
 
@@ -150,7 +164,8 @@ the vim help system.  Start vim and execute the following command: >
     :helptags $HOME/.vim/doc
 <
 At this point, VimOutliner should be functional.  Type ":help vo" to get
-started.
+started. You can also type ":help vo_cheatsheet" to a get a quick overview of all
+the VimOutliner commands.
 
                                                                       *vo-color*
 Color Schemes~
@@ -444,6 +459,8 @@ Command list:
     CTRL-N        Return from tag (Synonym for CTRL-T)
     Q             Reformat (Synonym for gq)
 
+
+To get a quick overview of all VimOutliner commands type ":help vo_cheatsheet" in vim.
 
                                                                  *vo-activities*
 Basic VimOutliner activities~
@@ -739,53 +756,12 @@ When folded, the above would appear as:
 VimOutliner Post-Processors~
 
 There are already serveral post processors for Vim Outliner. Some are general
-purpose in nature and others perform specific conversions. Here is list of
-currently know programs:
+purpose in nature and others perform specific conversions. There are several of 
+the tested scripts now included in the $HOME/.vim/vimoutliner/scripts folder.
+See also the scripts section.                                   |vo-scripts|
 
-Node.pm		Steve Litt    www.troubleshooters.com/projects/Node
-
-                This program is general purpose in nature and can generate
-                many types of output. It can even output complete
-                keyboarder-friendly menu scripts (EDML
-                www.troubleshooters.com/projects/edml). See the website for
-                more details.
-
-otl2docbook.pl	Christian Warden     www.vimoutliner.org  Downloads
-
-		This perl script converts OTL files to DocBook.
-
-otl2html.py	Noel Henson	included with Vim Outliner
-                This python script outputs html pages, one page per OTL file.
-                It is useful for creating pretty reports and nicely formatted,
-                but simple, web pages. See the help (otl2thml.py --help) for
-                more detail.
-
-otl2ooimpress   Noel Henson          www.vimoutliner.org  Downloads
-
-                A very simple script to output Open Office Impress files.
-
-otl2pdb.pl	Gabriel Horner       www.vimoutliner.org  Downloads
-
-                A perl script to convert contact information in VO to Palm pdb
-                files.
-
-vo2html.py	Ricardo Cardenes     www.vimoutliner.org  Downloads
-
-                Converts an OTL file to a set of html 'slides'. It supports
-                used-defined templates.
-
-otl_handler	Mahlon E. Smith  www.martini.nu/misc/otl_hander.tgz
-
-                Not a converter really, but a mod_perl script that enables
-                Apache to show VO todo lists in a nicely-formatted way.
-                Folding of sections and CSS is supported.
-
-This list is likely to be out of date. Please check the Vim Outliner website
-for more.
-
-
-==============================================================================
-CAUTIONS!!!                                                        *vo-cautions*
+For overview of several of the scripts on the web see:
+        https://sites.google.com/site/vimoutlinerinfo/scripts-for-vimoutliner
 
 
 ==============================================================================
@@ -813,13 +789,12 @@ Plugins                                                             *vo-plugins*
 
 
 The VimOutliner distribution currently includes two plugins for easy handling
-of checkboxes and to enable hoisting (see below).
+of checkboxes, hoisting (see below) and smart paste. 
 
-If you want to check out other plugins or experimental stuff, take a look at
-VimOutliner's home page http://www.vimoutliner.org
+The checkboxes plugin is enables by default. The hoisting and smart paste plugin are disabled by default.
+To enable these look for the easy instructions for this in your $HOME/.vimoutlinerrc file.
 
-You can find more complete descriptions in your $HOME/.vimoutliner/doc folder,
-what follows here are the "just the facts".
+More information below and in the plugin files in the $HOME/.vim/vimoutliner/plugin folder.
 
                                                                    *vo-checkbox*
 Checkboxes~
@@ -1088,7 +1063,7 @@ of how complete the project is.
 Hoisting~
 
 NOTE: THIS PLUGIN IS NOT FINISHED AND MIGHT CAUSE DATA LOSS!!! USE IT AT YOUR
-OWN RISK.
+OWN RISK. This plugin is disabled by default.
 
 Hoisting is a way to focus on the offspring of the currently selected outline
 item. The subitems will be presented as top level items in the automatically
@@ -1096,7 +1071,7 @@ extracted hoist-file located in the same directory as the main outline file.
 You cannot hoist parts of an already hoisted file again.
 
 To enable this plugin uncomment the following line in
- ~/.vim/vimoutliner/vimoutlinerrc:
+ ~/.vimoutlinerrc:
 >
     "let g:vo_modules_load .= ':hoist'
 <
@@ -1123,11 +1098,15 @@ tag On this line, do
 Scripts                                                             *vo-scripts*
 
 
-The VimOutliner distribution currently includes two external scripts to
-support interoutline links and HTML export.
+The VimOutliner distribution currently includes several useful  external scripts to
+support interoutline links, HTML export and more. All scripts are included in your 
+$HOME/.vim/vimoutliner/scripts folder. For more information on these scripts see 
+usage section in the scripts. You can also find several of these scripts on this web site
+with links to their specific web site:
+       https://sites.google.com/site/vimoutlinerinfo/scripts-for-vimoutliner 
 
-If you want to check out other scripts or experimental stuff, take a look at
-VimOutliner's home page, http://www.vimoutliner.org
+
+Information on some of the scripts
 
 vo_maketags.pl                                                     *vo-maketags*
 
@@ -1182,13 +1161,14 @@ VimOutliner files for purposes of modification, upgrade and de-installation.
 Hence our naming convention.
 
 - What if my feature doesn't make it into the VimOutliner distribution?
-You can offer it Extra-Distro, either on your own website, or very possibly on
-the VimOutliner home page, www.vimoutliner.org.  VimOutliner ships with its
+You can offer it on your own website, or very possibly on
+to the forthcoming new VimOutliner home page  VimOutliner ships with its
 core features, but many additional functionalities, especially those that
 operate from Perl scripts (or bash or python) are available outside the
 distro. For instance, right now there's an Executable Line feature that turns
 VimOutliner into a true single tree information reservoir. The Executable Line
-feature is available extra-distro on the VimOutliner home page.
+feature is available extra-distro on the VimOutliner home page. See also the
+scripts included in the $HOME/.vim/vimoutliner/scripts folder.
 
 
 Anticipated improvements in later versions~
@@ -1226,8 +1206,14 @@ Toolbar in gvim
 
 Further information on outlines, outline processing and outliners~
 
-http://www.vimoutliner.org
+http://freshmeat.net/projects/vimoutliner
 Main distribution website
+
+https://github.com/vimoutliner/vimoutliner
+git repository
+
+http://www.troubleshooters.com/projects/alt-vimoutliner-litt/
+Preliminary main web site with links to other sites
 
 http://www.troubleshooters.com/tpromag/199911/199911.htm
 Outlining discussion, not product specific
