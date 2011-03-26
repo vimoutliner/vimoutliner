@@ -129,11 +129,10 @@ vim -c "helptags $HOME/.vim/doc" -c q
 #INSTALL THE ADD-ONS
 cat <<EOT
 Add-ons
-    There are optional Vim Outliner plugins to handle hoisting and
-    checkboxes and a script to convert a Vim Outliner .otl file
-    to an html file. If installed, they must be enabled in the 
-    .vimoutlinerrc file in your home directory. These files will be 
-    stored in $vodir/plugin and 
+    There are optional Vim Outliner plugins to handle checkboxes, hoisting and
+    smartpaste, and a script to convert a Vim Outliner .otl file
+    to an html file as well as many other external scripts. 
+    The plugins will be stored in $vodir/plugin and the scripts will be installed in 
     $vodir/scripts.
 
 EOT
@@ -151,8 +150,9 @@ echo installation complete
 cat <<EOT
 
 **********************************************************************
-* For help about Vim Outliner simply execute ":help vo" from within *
-* vim.                                                               *
+* For help with using VimOutliner simply execute ":help vo" within   *
+* vim. For quick overview of all commands execute:                   * 
+* ":help vo_cheatsheet"                                              *
 *                                                                    *
 * Additional scripts are available in the scripts folder, see        *
 * $HOME/.vim/vimoutliner/scripts                                     *
