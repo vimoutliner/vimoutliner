@@ -1,6 +1,6 @@
 "#########################################################################
 "# ftplugin/vo_base.vim: VimOutliner functions, commands and settings
-"# version 0.3.5
+"# version 0.3.6
 "#   Copyright (C) 2001,2003 by Steve Litt (slitt@troubleshooters.com)
 "#   Copyright (C) 2004 by Noel Henson (noel@noels-lab.com)
 "#
@@ -49,14 +49,14 @@
 "# Noel Henson, 11/24/2002
 "# End of version 0.2.0
 "# 
-"# All other history in the CHANGES file.
+"# All other history in the CHANGELOG file.
 "# END OF HISTORY
 "# 
 "#########################################################################
 
 
 " Load the plugin {{{1
-" Prevenet the plugin from being loaded twice
+" Prevent the plugin from being loaded twice
 "if exists("b:did_ftplugin")
 "  finish
 "endif
@@ -84,7 +84,7 @@ setlocal noexpandtab
 setlocal nosmarttab
 setlocal softtabstop=0 
 setlocal foldlevel=20
-setlocal foldcolumn=1		" turns on "+" at the begining of close folds
+setlocal foldcolumn=1		" turns on "+" at the beginning of close folds
 setlocal tabstop=4			" tabstop and shiftwidth must match
 setlocal shiftwidth=4		" values from 2 to 8 work well
 setlocal foldmethod=expr
@@ -169,7 +169,7 @@ function! PutHead(line)
 endfunction
 "}}}3
 " NextHead(line) {{{3
-" Return line of next heanding
+" Return line of next heading
 " Used for sorts and reordering of headings
 function! NextHead(line)
 	let l:fend = foldclosedend(a:line)
@@ -243,7 +243,7 @@ endfunction
 "}}}3
 " SortChildren(dir) {{{3
 " Sort the children of a parent 
-" dir: 0 = ascending, 1 = decending 
+" dir: 0 = ascending, 1 = descending 
 function! SortChildren(dir)
 	let l:oldcursor = line(".")
 	let l:fstart = FindParent(line("."))
@@ -543,7 +543,7 @@ endfunction
 endif
 "}}}2
 " This should be a setlocal but that doesn't work when switching to a new .otl file
-" within the same buffer. Using :e has demonstrates this.
+" within the same buffer. Using :e has demonstrated this.
 set foldtext=MyFoldText()
 
 setlocal fillchars=|, 
@@ -572,7 +572,7 @@ map <silent> <buffer> <localleader>S :silent call SortChildren(1)<cr>
 map <buffer> <localleader>f :e .<cr>
 imap <buffer> <localleader>f :e .<cr>
 
-" Insert a fence for segemented lists.
+" Insert a fence for segmented lists.
 " I also use this divider to create a <hr> when converting to html
 map <buffer> <localleader>- o----------------------------------------0
 imap <buffer> <localleader>- ----------------------------------------<cr>
