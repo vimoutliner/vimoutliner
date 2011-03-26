@@ -4,8 +4,9 @@ Version 0.3.6
 Development
 	* Additions/Changes:
 	- Minor updates to the README and INSTALL files.
-	- Fixed typo and updated reference in install.sh..
+	- Fixed typo and updated reference in install.sh.
 	- Several updates and additions to the README and doc/vo_readme.txt file.
+	- Fixed several typos and updated reference in the ftplugin/vo_base.vim file.
 
 Version 0.3.5
 Released 2011-03-20
