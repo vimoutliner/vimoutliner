@@ -70,7 +70,7 @@ endif
 let g:did_vo_hoist = 1
 " Functions {{{1
 " RemoveTabsLine(line,tabs) {{{2
-" remove specified number of tabs from the begining of line
+" remove specified number of tabs from the beginning of line
 function! RemoveTabsLine(line,tabs)
 	return substitute(getline(a:line),"^\\(\\t\\)\\{".a:tabs."}", "", "")
 endfunction
