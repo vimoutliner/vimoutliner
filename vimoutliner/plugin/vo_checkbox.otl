@@ -5,25 +5,14 @@ What is it?
 	: Outliner. It adds just three tags and six commands. 
 Installation
 	This should already be included in your Vim Outliner package
-	If not, get it
-		The newest, stable version is here: www.vimoutliner.org
-		Get the newest, possibly unstable vo_checkbox.vim
-			CVS server: :pserver:anonymous@red.noels-lab.com:2401/usr/local/cvsroot
-				(no password is required)
-			Web: http://red.noels-lab.com/cgi-bin/cvsweb.cgi/
-			VimOutliner mailing list
-	Put it where you put your other vim scrips
-		perhaps this is ~/.vimoutliner/experimental/plugins/
-		perhaps this is ~/.vimoutliner/
-		Perhaps this is something entirely different
-	Add this line to your ~/.vimoutlinerrc
-		so <pathtoscripts>/vo_checkbox.vim
+		The newest, stable version is included with this package in the plugin directory
+		The pluging is already enabled in your ~/.vimoutlinerrc
 The Checkbox Tags
 	[_]		an unchecked item or incomplete task
 	[X]		a checked item or complete task
 	%		a placeholder for percentage of completion
 The Checkbox Commands
-	: The default <localleader> for Vim Outliner is ,, so we will use this
+	: The default <localleader> for VimOutliner is ,, so we will use this
 	: leader in the command discussions.
 	,,cb	Create a check box
 		: This works for the current heading or selected range of lines
@@ -231,7 +220,7 @@ How do I use it?
 			: Mark Salad and Soda and recompute with ,,cz and you should
 			: see the ouline below.
 			:
-			: Try plaing around with zc and zo to see the effects of opening
+			: Try playng around with zc and zo to see the effects of opening
 			: and closing folds. Even if you place the cursor on 'Barbeque'
 			: and zo it, you still have a good understanding of how complete
 			: the project is.
