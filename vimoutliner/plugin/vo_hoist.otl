@@ -5,15 +5,9 @@ What is it?
 	: left-justified just as if they were the top level headings and had no 
 	: parent.
 Installation
-	Get the newest, possibly unstable vo_hoist.vim
-		CVS server: :pserver:anonymous@red.noels-lab.com:2401/usr/local/cvsroot
-			: no password is required
-		Web: http://red.noels-lab.com/cgi-bin/cvsweb.cgi/
-		VimOutliner mailing list
-	Put it where you put your other experimental vim scrips
-		perhaps this is ~/.vimoutliner/
-	Add this line to your ~/.vimoutlinerrc
-		so <pathtoscripts>/vo_hoist.vim
+	The hoist plugin is included in the VimOutliner plugin directory
+		This plugin is disabled by default
+		See information in the ~/.vimoutlinerrc on how to enable it
 	Optionally set the hoistParanoia variable
 		: If you are really paranoid about loosing your data during shakedown 
 		: of vo_hoist.vim, you can add this to your ~/.vimoutlinerrc file. It 
