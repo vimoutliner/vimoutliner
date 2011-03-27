@@ -441,19 +441,18 @@ map <buffer> <localleader>cB :call InsertCheckBox()<cr>
 map <buffer> <localleader>cd :call DeleteCheckbox()<cr>
 
 " switch the status of the box and adjust percentages
-"map <buffer> <localleader>cx :call SwitchBox()<cr>:call NewHMD(FindRootParent(line(".")))<cr>
-map <buffer> <localleader>cx :call SwitchBox()<cr>:call CalculateMyBranch(line("."))<cr>
-map <buffer> <localleader>c+ :call IncPercent(".")<cr>:call CalculateMyBranch(line("."))<cr>
-map <buffer> <localleader>c- :call DecPercent(".")<cr>:call CalculateMyBranch(line("."))<cr>
-map <buffer> <localleader>c1 :call SetPercent(".",10)<cr>:call CalculateMyBranch(line("."))<cr>
-map <buffer> <localleader>c2 :call SetPercent(".",20)<cr>:call CalculateMyBranch(line("."))<cr>
-map <buffer> <localleader>c3 :call SetPercent(".",30)<cr>:call CalculateMyBranch(line("."))<cr>
-map <buffer> <localleader>c4 :call SetPercent(".",40)<cr>:call CalculateMyBranch(line("."))<cr>
-map <buffer> <localleader>c5 :call SetPercent(".",50)<cr>:call CalculateMyBranch(line("."))<cr>
-map <buffer> <localleader>c6 :call SetPercent(".",60)<cr>:call CalculateMyBranch(line("."))<cr>
-map <buffer> <localleader>c7 :call SetPercent(".",70)<cr>:call CalculateMyBranch(line("."))<cr>
-map <buffer> <localleader>c8 :call SetPercent(".",80)<cr>:call CalculateMyBranch(line("."))<cr>
-map <buffer> <localleader>c9 :call SetPercent(".",90)<cr>:call CalculateMyBranch(line("."))<cr>
+map <buffer> <localleader>cx :call SwitchBox()<cr>:call NewHMD(FindRootParent(line(".")))<cr>
+map <buffer> <localleader>c+ :call IncPercent(".")<cr>:call NewHMD(FindRootParent(line(".")))<cr>
+map <buffer> <localleader>c- :call DecPercent(".")<cr>:call NewHMD(FindRootParent(line(".")))<cr>
+map <buffer> <localleader>c1 :call SetPercent(".",10)<cr>:call NewHMD(FindRootParent(line(".")))<cr>
+map <buffer> <localleader>c2 :call SetPercent(".",20)<cr>:call NewHMD(FindRootParent(line(".")))<cr>
+map <buffer> <localleader>c3 :call SetPercent(".",30)<cr>:call NewHMD(FindRootParent(line(".")))<cr>
+map <buffer> <localleader>c4 :call SetPercent(".",40)<cr>:call NewHMD(FindRootParent(line(".")))<cr>
+map <buffer> <localleader>c5 :call SetPercent(".",50)<cr>:call NewHMD(FindRootParent(line(".")))<cr>
+map <buffer> <localleader>c6 :call SetPercent(".",60)<cr>:call NewHMD(FindRootParent(line(".")))<cr>
+map <buffer> <localleader>c7 :call SetPercent(".",70)<cr>:call NewHMD(FindRootParent(line(".")))<cr>
+map <buffer> <localleader>c8 :call SetPercent(".",80)<cr>:call NewHMD(FindRootParent(line(".")))<cr>
+map <buffer> <localleader>c9 :call SetPercent(".",90)<cr>:call NewHMD(FindRootParent(line(".")))<cr>
 
 " calculate the proportion of work done on the subtree
 map <buffer> <localleader>cz :call NewHMD(FindRootParent(line(".")))<cr>
