@@ -140,7 +140,7 @@
 "The first draft of the work done in subtree.
 "
 "Revision 1.2  2003/07/08 17:58:56  matej
-"Pøidáno ,cx a ,ci zmìnìn na ,cb.
+"PÃ¸idÃ¡no ,cx a ,ci zmÃ¬nÃ¬n na ,cb.
 "
 "Revision 1.1  2003/07/08 17:39:12  matej
 "Initial revision
@@ -152,28 +152,6 @@
 "Added appropriate headers.
 "}}}1
 
-" Mappings {{{1
-" insert a chechbox
-map <buffer> <localleader>cb :call SafelyInsertCheckBox()<cr>
-map <buffer> <localleader>c% :call SafelyInsertCheckBoxPercent()<cr>
-map <buffer> <localleader>cp :call SafelyInsertCheckBoxPercentAlways()<cr>
-map <buffer> <localleader>cB :call InsertCheckBox()<cr>
-
-" delete a chechbox
-map <buffer> <localleader>cd :call DeleteCheckbox()<cr>
-
-" switch the status of the box
-map <buffer> <localleader>cx :call SwitchBox()<cr>:call NewHMD(FindRootParent(line(".")))<cr>
-
-" calculate the proportion of work done on the subtree
-map <buffer> <localleader>cz :call NewHMD(FindRootParent(line(".")))<cr>
-
-" Load guard for functions {{{1
-if exists('s:loaded')
-	finish
-endif
-let s:loaded = 1
-
 " InsertCheckBox() {{{1
 " Insert a checkbox at the beginning of a header without disturbing the
 " current folding.
@@ -181,6 +159,7 @@ function! InsertCheckBox()
 	let @x = "[_] "
 	normal! ^"xP
 endfunction
+"}}}1
 " Safely InsertCheckBox() {{{1
 " Insert a checkbox at the beginning of a header without disturbing the
 " current folding only if there is no checkbox already.
@@ -201,14 +180,14 @@ function! SafelyInsertCheckBoxPercent()
 	if match(getline("."),"^\t\t*\[<>:;|\]") != -1
 		return
 	endif
-        if match(getline("."), "[\[X_\]]") == -1
+       if match(getline("."), "[\[X_\]]") == -1
 		if Ind(line(".")+1) > Ind(line("."))
 			let @x = "[_] % "
 		else
 			let @x = "[_] "
 		endif
-           normal! ^"xP
-        endif
+          normal! ^"xP
+       endif
 endfunction
 "}}}1
 " Safely InsertCheckBoxPercentAlways() {{{1
@@ -219,38 +198,41 @@ function! SafelyInsertCheckBoxPercentAlways()
 	if match(getline("."),"^\t\t*\[<>:;|\]") != -1
 		return
 	endif
-        if match(getline("."), "[\[X_\]]") == -1
+       if match(getline("."), "[\[X_\]]") == -1
 		let @x = "[_] % "
-           normal! ^"xP
-        endif
+          normal! ^"xP
+       endif
 endfunction
 "}}}1
 " SwitchBox() {{{1
 " Switch the state of the checkbox on the current line.
 function! SwitchBox()
-   let questa = strridx(getline("."),"[_]")
-   let questb = strridx(getline("."),"[X]")
-   if (questa != -1) || (questb != -1)
+  let l:line = getline(".")
+  let questa = strridx(l:line,"[_]")
+  let questb = strridx(l:line,"[X]")
+  if (questa != -1) || (questb != -1)
 	   if (questa != -1) 
 	      substitute/\[_\]/\[X\]/
+	      call SetPercent(".",100)
 	   else
 	      substitute/\[X\]/\[_\]/
+	      call SetPercent(".",0)
 	   endif
-   endif
+  endif
 endfunction
 "}}}1
 " DeleteCheckbox() {{{1
 " Delete a checkbox if one exists
 function! DeleteCheckbox()
-   let questa = strridx(getline("."),"[_]")
-   let questb = strridx(getline("."),"[X]")
-   if (questa != -1) || (questb != -1)
+  let questa = strridx(getline("."),"[_]")
+  let questb = strridx(getline("."),"[X]")
+  if (questa != -1) || (questb != -1)
 	   if (questa != -1) 
 	      substitute/\(^\s*\)\[_\] \(.*\)/\1\2/
 	   else
 	      substitute/\(^\s*\)\[X\] \(.*\)/\1\2/
 	   endif
-   endif
+  endif
 endfunction
 "}}}1
 " Ind(line) {{{1
@@ -272,6 +254,58 @@ function! FindRootParent(line)
 	return l:i
 endf
 
+" LimitPercent(percent) {{{1
+" Limits percentage values to between 0 and 100
+function! LimitPercent(val)
+	if a:val > 100
+		return 100
+	elseif a:val < 0
+		return 0
+	else
+		return a:val
+	endif
+endf
+
+" GetPercent(line) {{{1
+" Get the percent complete from a line
+function! GetPercent(line)
+  let l:proportion = 0
+  let mbegin=match(getline(a:line), " [0-9]*%")
+  if mbegin
+          let mend=matchend(getline(a:line), " [0-9]*%")
+          let l:proportion=getline(a:line)[mbegin+1 : mend-1]
+          let l:proportion=str2nr(l:proportion)
+  endif
+  return l:proportion
+endf
+
+" SetPercent(line) {{{1
+" Set the percent complete for a line
+function! SetPercent(line,proportion)
+  let mbegin=match(getline(a:line), " [0-9]*%")
+  if mbegin
+  	call setline(a:line,substitute(getline(a:line)," [0-9]*%"," ".a:proportion."%",""))
+  endif
+endf
+
+" IncPercent(line) {{{1
+" Increments the percent doneness by 10%
+function! IncPercent(line)
+  if match(getline(a:line), " [0-9]*%")
+	   call SetPercent(a:line,LimitPercent(GetPercent(a:line)+10))
+  endif
+endf
+
+" DecPercent(line) {{{1
+" Decrements the percent doneness by 10%
+function! DecPercent(line)
+  if match(getline(a:line), " [0-9]*%")
+	   let l:percent = GetPercent(a:line)
+          call setline(a:line,substitute(getline(a:line),"\\[X\\]","[_]",""))
+	   call SetPercent(a:line,LimitPercent(l:percent-10))
+  endif
+endf
+
 " NewHMD(line) {{{1
 " (How Many Done) 
 " Calculates proportion of already done work in the subtree
@@ -279,7 +313,7 @@ function! NewHMD(line)
 	let l:done = 0
 	let l:count = 0
 	let l:i = 1
-	while Ind(a:line) < Ind(a:line+l:i)
+	while Ind(a:line) < Ind(a:line+l:i)	" I have children
 		if (Ind(a:line)+1) == (Ind(a:line+l:i))
 			let l:childdoneness = NewHMD(a:line+l:i)
 			if l:childdoneness >= 0
@@ -289,34 +323,73 @@ function! NewHMD(line)
 		endif
 		let l:i = l:i+1
 	endwhile
-   let l:proportion=0
-   if l:count>0
-     let l:proportion = ((l:done * 100)/l:count)/100
-   else
-      if match(getline(a:line),"\\[X\\]") != -1
+  let l:proportion=0
+  let mbegin=match(getline(a:line), " [0-9]*%")
+  if mbegin
+          let mend=matchend(getline(a:line), " [0-9]*%")
+          let l:proportion=getline(a:line)[mbegin+1 : mend-1]
+          let l:proportion=str2nr(l:proportion)
+  endif
+  if l:count>0
+    let l:proportion = ((l:done * 100)/l:count)/100
+  elseif match(getline(a:line),"\\[X\\]") != -1
 	      let l:proportion = 100
-      else 
-	      let l:proportion = 0
-      endif
-   endif
-   call setline(a:line,substitute(getline(a:line)," [0-9]*%"," ".l:proportion."%",""))
-   if l:proportion == 100
-      call setline(a:line,substitute(getline(a:line),"\\[.\\]","[X]",""))
-      return 100
-   elseif l:proportion == 0 && l:count == 0
-      if match(getline(a:line),"\\[X\\]") != -1
+  elseif match(getline(a:line),"\\[-\\]") != -1
+	      let l:proportion = 100
+"   elseif l:proportion == 100
+"	   let l:proportion = 0
+"	endif
+  endif
+  let l:questa = strridx(getline(a:line),"[-]")
+  if l:questa == -1
+     call setline(a:line,substitute(getline(a:line)," [0-9]*%"," ".l:proportion."%",""))
+  endif
+  if l:questa != -1
+     return 100
+  elseif l:proportion == 100
+     call setline(a:line,substitute(getline(a:line),"\\[_\\]","[X]",""))
+     return 100
+  elseif l:proportion == 0 && l:count == 0
+     if match(getline(a:line),"\\[X\\]") != -1
 	      return 100
-      elseif match(getline(a:line),"\\[_\\]") != -1
+     elseif match(getline(a:line),"\\[_\\]") != -1
 	      return 0
-      else
+     else
 	      return -1
-      endif
-   else
-      call setline(a:line,substitute(getline(a:line),"\\[.\\]","[_]",""))
-      return l:proportion
-   endif
+     endif
+  else
+     call setline(a:line,substitute(getline(a:line),"\\[X\\]","[_]",""))
+     return l:proportion
+  endif
 endf
 
+" mappings {{{1
+" insert a chechbox
+map <buffer> <localleader>cb :call SafelyInsertCheckBox()<cr>
+map <buffer> <localleader>c% :call SafelyInsertCheckBoxPercent()<cr>
+map <buffer> <localleader>cp :call SafelyInsertCheckBoxPercentAlways()<cr>
+map <buffer> <localleader>cB :call InsertCheckBox()<cr>
 
-"Modeline {{{1
+" delete a chechbox
+map <buffer> <localleader>cd :call DeleteCheckbox()<cr>
+
+" switch the status of the box and adjust percentages
+map <buffer> <localleader>cx :call SwitchBox()<cr>:call NewHMD(FindRootParent(line(".")))<cr>
+map <buffer> <localleader>c+ :call IncPercent(".")<cr>:call NewHMD(FindRootParent(line(".")))<cr>
+map <buffer> <localleader>c- :call DecPercent(".")<cr>:call NewHMD(FindRootParent(line(".")))<cr>
+map <buffer> <localleader>c1 :call SetPercent(".",10)<cr>:call NewHMD(FindRootParent(line(".")))<cr>
+map <buffer> <localleader>c2 :call SetPercent(".",20)<cr>:call NewHMD(FindRootParent(line(".")))<cr>
+map <buffer> <localleader>c3 :call SetPercent(".",30)<cr>:call NewHMD(FindRootParent(line(".")))<cr>
+map <buffer> <localleader>c4 :call SetPercent(".",40)<cr>:call NewHMD(FindRootParent(line(".")))<cr>
+map <buffer> <localleader>c5 :call SetPercent(".",50)<cr>:call NewHMD(FindRootParent(line(".")))<cr>
+map <buffer> <localleader>c6 :call SetPercent(".",60)<cr>:call NewHMD(FindRootParent(line(".")))<cr>
+map <buffer> <localleader>c7 :call SetPercent(".",70)<cr>:call NewHMD(FindRootParent(line(".")))<cr>
+map <buffer> <localleader>c8 :call SetPercent(".",80)<cr>:call NewHMD(FindRootParent(line(".")))<cr>
+map <buffer> <localleader>c9 :call SetPercent(".",90)<cr>:call NewHMD(FindRootParent(line(".")))<cr>
+
+" calculate the proportion of work done on the subtree
+map <buffer> <localleader>cz :call NewHMD(FindRootParent(line(".")))<cr>
+
+"}}}1
+
 " vim600: set foldlevel=0 foldmethod=marker:
