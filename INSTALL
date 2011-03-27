@@ -26,7 +26,7 @@ From zip archive
 
 From vimball
 
-Open vimoutliner-0.3.5.vba with Vim and type the following command to install in your home vim folder:
+Open vimoutliner-0.3.x.vba with Vim and type the following command to install in your home vim folder:
 
 :so % 
 
@@ -200,7 +200,7 @@ Note:
 
 Debian Installation
 
-Debian does include Vim Outliner as a package. However some Debian version
+Debian does include Vim Outliner as a package. However some Debian versions
 require this line to be added to your .vimrc file:
 
     syntax on
