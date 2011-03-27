@@ -2,14 +2,18 @@ CHANGELOG
 
 Version 0.3.6
 Development
-	* Additions/Changes:
-	- Added updated comments and information to the user in the INSTALL file.
-	- Fixed typo and updated reference in install.sh. 
-    - Added comments and information to the user in install.sh to align with the new version.
-	- Several updates and additions to the README and doc/vo_readme.txt file.
-	- Fixed several typos and updated reference in the ftplugin/vo_base.vim file.
-    - Fixed typos and removed outdated references in the plugin/vo_hoist.otl and vo_hoist.vim files.
-    - Fixed types and removed outdated references in the plugin/vo_checkbox.otl file.
+    * Additions/Changes:
+    - Added updated comments and information to the user in the INSTALL file.
+    - Added comments and information to the user in install.sh to align with
+    the new version.
+    - Several updates and additions to the README and doc/vo_readme.txt file.
+    file.
+    * Bug fixes:
+    - Fixed typo and updated reference in install.sh.
+    - Fixed several typos and updated reference in the ftplugin/vo_base.vim
+    - Fixed typos and removed outdated references in the vo_hoist.otl and
+    vo_hoist.vim files.
+    - Fixed typos and removed outdated references in the vo_checkbox.otl file.
 
 Version 0.3.5
 Released 2011-03-20
