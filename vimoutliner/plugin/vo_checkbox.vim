@@ -315,51 +315,57 @@ function! NewHMD(line)
 	let l:i = 1
 	while Ind(a:line) < Ind(a:line+l:i)	" I have children
 		if (Ind(a:line)+1) == (Ind(a:line+l:i))
-			let l:childdoneness = NewHMD(a:line+l:i)
+"			let l:childdoneness = NewHMD(a:line+l:i)
+			let l:childstat = NewHMD(a:line+l:i)
+			let l:childdoneness = l:childstat[0] * l:childstat[1]
 			if l:childdoneness >= 0
-				let l:done = l:done + l:childdoneness
-				let l:count = l:count+1
+				let l:done += l:childdoneness
+				let l:count += l:childstat[1]
 			endif
 		endif
-		let l:i = l:i+1
+		let l:i += 1
 	endwhile
   let l:proportion=0
   let mbegin=match(getline(a:line), " [0-9]*%")
-  if mbegin
+  if mbegin != -1
           let mend=matchend(getline(a:line), " [0-9]*%")
           let l:proportion=getline(a:line)[mbegin+1 : mend-1]
           let l:proportion=str2nr(l:proportion)
   endif
+  let l:weight=1
+  let mbegin=match(getline(a:line), "%[0-9]\\+ ")
+  if mbegin != -1
+	   let mend=matchend(getline(a:line), "%[0-9]\\+ ")
+	   let l:weight=getline(a:line)[mbegin+1 : mend-1]
+	   let l:weight=str2nr(l:weight)
+  endif
   if l:count>0
-    let l:proportion = ((l:done * 100)/l:count)/100
+    let l:proportion = ((l:done*100)/l:count)/100
   elseif match(getline(a:line),"\\[X\\]") != -1
 	      let l:proportion = 100
   elseif match(getline(a:line),"\\[-\\]") != -1
 	      let l:proportion = 100
-"   elseif l:proportion == 100
-"	   let l:proportion = 0
-"	endif
   endif
   let l:questa = strridx(getline(a:line),"[-]")
   if l:questa == -1
      call setline(a:line,substitute(getline(a:line)," [0-9]*%"," ".l:proportion."%",""))
   endif
   if l:questa != -1
-     return 100
+     return [100,l:weight]
   elseif l:proportion == 100
      call setline(a:line,substitute(getline(a:line),"\\[_\\]","[X]",""))
-     return 100
+     return [100,l:weight]
   elseif l:proportion == 0 && l:count == 0
      if match(getline(a:line),"\\[X\\]") != -1
-	      return 100
+	      return [100,l:weight]
      elseif match(getline(a:line),"\\[_\\]") != -1
-	      return 0
+	      return [0,l:weight]
      else
-	      return -1
+	      return [-1,l:weight]
      endif
   else
      call setline(a:line,substitute(getline(a:line),"\\[X\\]","[_]",""))
-     return l:proportion
+     return [l:proportion,l:weight]
   endif
 endf
 
