@@ -7,7 +7,7 @@
 " This variable holds name of all VO modules you want to load. Do NOT use ru
 " directly in this file, because you will get into many strange surprises. If
 " you do not want to load any VO modules leave it blank (default).
-let g:vo_modules_load = "checkbox"
+let g:vo_modules_load = "checkbox:tags"
 
 " Uncomment the following line to enable hoisting.
 "let g:vo_modules_load .= ':hoist'
