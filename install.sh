@@ -131,7 +131,7 @@ cat <<EOT
 Add-ons
     There are optional Vim Outliner plugins to handle checkboxes, hoisting and
     smartpaste. There is also a script to convert a Vim Outliner .otl file
-    to an html file as well as many other external scripts. 
+    to a html file, as well as many other external scripts included. 
     The plugins will be stored in $vodir/plugin and the scripts will be installed in 
     $vodir/scripts.
 
