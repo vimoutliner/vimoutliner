@@ -49,6 +49,8 @@ endif
 
 " Functions {{{1
 
+let s:checkboxpat = '\%(\[[^[\]]\+\]\s\+\%(\d*%\d*\s\+\)\?\)\?'
+
 " Don't re-load functions.
 if exists('s:loaded')
 	finish
@@ -60,14 +62,13 @@ let s:loaded = 1
 function! s:get_link(linenr)
 	" Check if it's a valid link.
 	let line = getline(a:linenr)
-	if line =~? '^\t*_tag_\w\+\s*$'
+	if line =~? '^\t*'.s:checkboxpat.'_tag_\w\+\s*$'
 		" Don't remember where this bit came from, please let me know if you do.
-		" The following pattern is very magic.
-		let [_,file,row,col,_,_,_,_,_,_] = matchlist(getline(a:linenr + 1), '\v^\s*([^:]+)%(:(\d+))?%(:(\d+))?$')
+		let [_,file,row,col;m0] = matchlist(getline(a:linenr + 1), '^\t*'.s:checkboxpat.'\([^:]\+\)\%(:\(\d\+\)\)\?\%(:\(\d\+\)\)\?$')
 		" Expand '%'.
-	elseif line =~? '^\t*_ilink_\(.\{-}:\s\)\?\s*\S.*$'
+	elseif line =~? '^\t*'.s:checkboxpat.'_ilink_\(.\{-}:\s\)\?\s*\S.*$'
 		" The following pattern is very magic.
-		let [_,file,row,col,_,_,_,_,_,_] = matchlist(line, '\v^\s*_ilink_%(.{-}:\s)?\s*([^:]+)%(:(\d+))?%(:(\d+))?$')
+		let [_,file,row,col;m0] = matchlist(line, '^\t*'.s:checkboxpat.'_ilink_\%(.\{-}:\s\)\?\s*\([^:]\+\)\%(:\(\d\+\)\)\?\%(:\(\d\+\)\)\?$')
 		" Expand '%'.
 	else
 		return ['',0,0,0]
@@ -89,7 +90,7 @@ function! s:follow_link()
 	" Get link data.
 	let [file, row, col, is_inner_link] = s:get_link(line('.'))
 	if file == ''
-		echom 'Vimoutliner: "'.substitute(getline('.'), '^\s*', '', '').'" doesn''t not look like an inter-outline link.'
+		echom 'Vimoutliner: "'.substitute(getline('.'), '^\t*'.s:checkboxpat, '', '').'" doesn''t not look like an inter-outline link.'
 		return
 	endif
 
@@ -203,8 +204,8 @@ function! s:create_link()
 	let line = getline('.')
 	" Check if the there's is some content in the current line and a current
 	" link doesn't exists.
-	if line =~# '^\s*_link_\%([^:]\{-}:\s\)\?\s*\S\+.*$'
-		echom 'Vimoutliner: Looks like "'.substitute(line,'^\s*\(\S.*$\)','\1','').'" is already a link.'
+	if line =~# '^\t*'.s:checkboxpat.'_ilink_\%([^:]\{-}:\s\)\?\s*\S\+.*$'
+		echom 'Vimoutliner: Looks like "'.substitute(line,'^\t*'.s:checkboxpat.'\(\S.*$\)','\1','').'" is already a link.'
 		return
 	endif
 	call inputsave()
@@ -214,15 +215,16 @@ function! s:create_link()
 		" User canceled.
 		return ''
 	endif
-	let path = substitute(path, '^\s*\(\S.\{-}\)\s*$', '\1', '')
+	let path = matchstr(path, '^\t*'.s:checkboxpat.'\zs\S.\{-}\ze\s*$')
 	"if path !~ '\.otl$'
 		"" Add extension.
 		"let path = path.'.otl'
 	"endif
 	let tag = '_ilink_'
-	let [_,indent,label,_,_,_,_,_,_,_] = matchlist(line, '^\(\s*\)\%(_ilink_\)\?\s*\(\S.\{-1,}\S\)\?\s*\%(:\s\)\?\s*$')
-	if indent =~ ''
-		let indent = substitute(getline(line('.')-1), '^\(\t\)\+\S.*$','\1', '')
+	let [_,indent,checkbox,label;m0] = matchlist(line, '^\(\t*\)\('.s:checkboxpat.'\)\%(_ilink_\)\?\s*\(\S\%(.\{-1,}\S\)\?\)\?\s*\%(:\s\)\?\s*$')
+	echom indent.'-'.checkbox.'-'.label
+	if indent == ''
+		let indent = matchstr(getline(line('.')-1), '^\(\t*\)')
 	endif
 	if label !~ '^\s*$'
 		let label .= ': '
@@ -230,7 +232,7 @@ function! s:create_link()
 		let label = ''
 	endif
 
-	call setline(line('.'), indent.tag.' '.label.path)
+	call setline(line('.'), indent.checkbox.tag.' '.label.path)
 	echo ''
 endfunction
 " Autocommands {{{1
