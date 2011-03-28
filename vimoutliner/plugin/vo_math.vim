@@ -1,6 +1,3 @@
-if &filetype != 'vo_base'
-	finish
-endif
 " global line pointer
 let b:lnum = 0
 
