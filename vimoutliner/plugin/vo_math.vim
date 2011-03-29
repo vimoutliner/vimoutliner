@@ -32,7 +32,7 @@ function! GetVariable(line)
 	let mstart = match(a:line,'\w\+=\s\{-\}')
 	if mstart != -1
 		let mend = matchend(a:line,'\w\+=\s\{-\}')
-		return a:line[mstart : mend-2] 
+		return a:line[mstart : mend-2]
 	endif
 endfunction
 
@@ -48,7 +48,7 @@ function! GetFormula(line)
 	let mstart = match(a:line,'{.*}')
 	if mstart != -1
 		let mend = matchend(a:line,'{.*}')
-		return a:line[mstart+1 : mend-2] 
+		return a:line[mstart+1 : mend-2]
 	endif
 endfunction
 
@@ -82,7 +82,7 @@ function! EvalFormula(line)
 	return eval(a:line)
 endfunction
 
-" execute a formula and, if sucessful, return a line containing the 
+" execute a formula and, if sucessful, return a line containing the
 " computed result
 function! HandleFormula(line)
 	return ReplaceValue(a:line,EvalFormula(GetFormula(a:line)))
@@ -97,13 +97,13 @@ function! ReplaceVars(formula,dict)
 	return formula
 endfunction
 
-" execute a formula and, if sucessful, replace the line with a line 
+" execute a formula and, if sucessful, replace the line with a line
 " containing the computed result
 function! HandleLineFormula(lnum)
 	let line = getline(a:lnum)
 	let newline = HandleFormula(line)
 	if type(newline) == type("")
-	       call setline(a:lnum,newline)
+		call setline(a:lnum,newline)
 	endif
 endfunction
 
@@ -132,7 +132,7 @@ function! Compute(lnum)
 	let myLine = b:lnum
 	let myIndent = indent(myLine)
 	let b:lnum += 1
-	while (b:lnum <= line("$")) && (myIndent < indent(b:lnum)) 
+	while (b:lnum <= line("$")) && (myIndent < indent(b:lnum))
 		let child = Compute(b:lnum)
 		if child[0] == ""
 			let child[0] = "SUM"
