@@ -52,7 +52,7 @@
 "quite easy to use.
 "
 "Revision 1.1  2003/08/14 21:05:05  noel
-"First publicly available, experiment verison
+"First publicly available, experiment version
 "
 "}}}2
 
@@ -129,7 +129,7 @@ function! FindParent(line)
 endfunction
 "}}}2
 " FindLastChild(line) {{{2
-" Return the line number of the last decendent of parent line
+" Return the line number of the last descendent of parent line
 function! FindLastChild(line)
 	let l:parentindent = Ind(a:line)
 	let l:searchline = a:line+1
@@ -160,7 +160,7 @@ function! Hoist(line)
 	exe l:firstline.",".l:lastline."w! ".l:filename
 	call AddHoistFilename(l:parent)
 	silent write
-	" log what we did incase we need to recover manually
+	" log what we did in case we need to recover manually
 	let l:doit = l:parent."write! >> .vo_hoist.".bufname(bufnr("%")).".log"
 	exe l:doit
 	let l:parentbuffer = bufnr("%")
