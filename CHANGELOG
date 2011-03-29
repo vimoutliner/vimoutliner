@@ -6,7 +6,8 @@ Development
     - Added updated comments and information to the user in the INSTALL file.
     - Added comments and information to the user in install.sh to align with
     the new version.
-    - Several updates and additions to the README and doc/vo_readme.txt file.
+    - Added new light version of README and moved the more extensive file to README.detailed
+    - Several updates and additions to the README, README.detailed and doc/vo_readme.txt file.
     file.
     * Bug fixes:
     - Fixed typo and updated reference in install.sh.
