@@ -447,7 +447,7 @@ noremap <silent><buffer> <localleader>cB :call InsertCheckBox()<cr>
 noremap <silent><buffer> <localleader>cd :call DeleteCheckbox()<cr>
 
 " switch the status of the box and adjust percentages
-if exists('g:vo_checkbox_fast_calc') && g:vo_checkbox_fast_calc == 1
+if !exists('g:vo_checkbox_fast_calc') || g:vo_checkbox_fast_calc == 1
 	" Use new and faster method
 	noremap <silent><buffer> <localleader>cx :call SwitchBox()       <bar>call CalculateMyBranch(line("."))<cr>
 	noremap <silent><buffer> <localleader>c+ :call IncPercent(".")   <bar>call CalculateMyBranch(line("."))<cr>
