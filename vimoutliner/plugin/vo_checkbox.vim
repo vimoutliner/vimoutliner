@@ -324,9 +324,11 @@ endf
 " Returns (proportion,weight) proportion could be a flag of -1
 function! ComputePW(line,count,done)
    let l:proportion=0
+	 let l:haspercent = 0
    " get the percent
    let mbegin=match(getline(a:line), " [0-9]*%")
    if mbegin != -1
+		 let l:haspercent = 1
            let mend=matchend(getline(a:line), " [0-9]*%")
            let l:proportion=str2nr(getline(a:line)[mbegin+1 : mend-1])
    endif
@@ -350,6 +352,10 @@ function! ComputePW(line,count,done)
    if l:questa == -1
       call setline(a:line,substitute(getline(a:line)," [0-9]*%"," ".l:proportion."%",""))
    endif
+	 " Limit proportion to 0 or 100 if there is not a percentage sign
+	 if !haspercent
+		 let l:proportion = l:proportion == 100 ? l:proportion : 0
+	 endif
    " update the completion
    if l:questa != -1
       return [100,l:weight]
