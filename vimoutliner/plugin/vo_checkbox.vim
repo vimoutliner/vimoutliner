@@ -353,7 +353,7 @@ function! ComputePW(line,count,done)
       call setline(a:line,substitute(getline(a:line)," [0-9]*%"," ".l:proportion."%",""))
    endif
 	 " Limit proportion to 0 or 100 if there is not a percentage sign
-	 if !haspercent && exists('g:vo_checkbox_fast_calc') && g:vo_checkbox_fast_calc == 1
+	 if !haspercent && (!exists('g:vo_checkbox_fast_calc') || g:vo_checkbox_fast_calc == 1)
 		 let l:proportion = l:proportion == 100 ? l:proportion : 0
 	 endif
    " update the completion
