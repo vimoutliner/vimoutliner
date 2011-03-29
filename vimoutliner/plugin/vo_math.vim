@@ -1,3 +1,8 @@
+" Require +float and +eval
+if !has('float') || !has('eval')
+	finish
+endif
+
 " global line pointer
 let b:lnum = 0
 
