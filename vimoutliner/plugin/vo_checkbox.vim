@@ -353,7 +353,7 @@ function! ComputePW(line,count,done)
       call setline(a:line,substitute(getline(a:line)," [0-9]*%"," ".l:proportion."%",""))
    endif
 	 " Limit proportion to 0 or 100 if there is not a percentage sign
-	 if !haspercent
+	 if !haspercent && exists('g:vo_checkbox_fast_calc') && g:vo_checkbox_fast_calc == 1
 		 let l:proportion = l:proportion == 100 ? l:proportion : 0
 	 endif
    " update the completion
@@ -447,18 +447,35 @@ noremap <silent><buffer> <localleader>cB :call InsertCheckBox()<cr>
 noremap <silent><buffer> <localleader>cd :call DeleteCheckbox()<cr>
 
 " switch the status of the box and adjust percentages
-noremap <silent><buffer> <localleader>cx :call SwitchBox()<bar>call NewHMD(FindRootParent(line(".")))<cr>
-noremap <silent><buffer> <localleader>c+ :call IncPercent(".")<bar>call NewHMD(FindRootParent(line(".")))<cr>
-noremap <silent><buffer> <localleader>c- :call DecPercent(".")<bar>call NewHMD(FindRootParent(line(".")))<cr>
-noremap <silent><buffer> <localleader>c1 :call SetPercent(".",10)<bar>call NewHMD(FindRootParent(line(".")))<cr>
-noremap <silent><buffer> <localleader>c2 :call SetPercent(".",20)<bar>call NewHMD(FindRootParent(line(".")))<cr>
-noremap <silent><buffer> <localleader>c3 :call SetPercent(".",30)<bar>call NewHMD(FindRootParent(line(".")))<cr>
-noremap <silent><buffer> <localleader>c4 :call SetPercent(".",40)<bar>call NewHMD(FindRootParent(line(".")))<cr>
-noremap <silent><buffer> <localleader>c5 :call SetPercent(".",50)<bar>call NewHMD(FindRootParent(line(".")))<cr>
-noremap <silent><buffer> <localleader>c6 :call SetPercent(".",60)<bar>call NewHMD(FindRootParent(line(".")))<cr>
-noremap <silent><buffer> <localleader>c7 :call SetPercent(".",70)<bar>call NewHMD(FindRootParent(line(".")))<cr>
-noremap <silent><buffer> <localleader>c8 :call SetPercent(".",80)<bar>call NewHMD(FindRootParent(line(".")))<cr>
-noremap <silent><buffer> <localleader>c9 :call SetPercent(".",90)<bar>call NewHMD(FindRootParent(line(".")))<cr>
+if exists('g:vo_checkbox_fast_calc') && g:vo_checkbox_fast_calc == 1
+	" Use new and faster method
+	noremap <silent><buffer> <localleader>cx :call SwitchBox()       <bar>call CalculateMyBranch(line("."))<cr>
+	noremap <silent><buffer> <localleader>c+ :call IncPercent(".")   <bar>call CalculateMyBranch(line("."))<cr>
+	noremap <silent><buffer> <localleader>c- :call DecPercent(".")   <bar>call CalculateMyBranch(line("."))<cr>
+	noremap <silent><buffer> <localleader>c1 :call SetPercent(".",10)<bar>call CalculateMyBranch(line('.'))<cr>
+	noremap <silent><buffer> <localleader>c2 :call SetPercent(".",20)<bar>call CalculateMyBranch(line('.'))<cr>
+	noremap <silent><buffer> <localleader>c3 :call SetPercent(".",30)<bar>call CalculateMyBranch(line('.'))<cr>
+	noremap <silent><buffer> <localleader>c4 :call SetPercent(".",40)<bar>call CalculateMyBranch(line('.'))<cr>
+	noremap <silent><buffer> <localleader>c5 :call SetPercent(".",50)<bar>call CalculateMyBranch(line('.'))<cr>
+	noremap <silent><buffer> <localleader>c6 :call SetPercent(".",60)<bar>call CalculateMyBranch(line('.'))<cr>
+	noremap <silent><buffer> <localleader>c7 :call SetPercent(".",70)<bar>call CalculateMyBranch(line('.'))<cr>
+	noremap <silent><buffer> <localleader>c8 :call SetPercent(".",80)<bar>call CalculateMyBranch(line('.'))<cr>
+	noremap <silent><buffer> <localleader>c9 :call SetPercent(".",90)<bar>call CalculateMyBranch(line('.'))<cr>
+else
+	" Use the old method
+	noremap <silent><buffer> <localleader>cx :call SwitchBox()       <bar>call NewHMD(FindRootParent(line(".")))<cr>
+	noremap <silent><buffer> <localleader>c+ :call IncPercent(".")   <bar>call NewHMD(FindRootParent(line(".")))<cr>
+	noremap <silent><buffer> <localleader>c- :call DecPercent(".")   <bar>call NewHMD(FindRootParent(line(".")))<cr>
+	noremap <silent><buffer> <localleader>c1 :call SetPercent(".",10)<bar>call NewHMD(FindRootParent(line(".")))<cr>
+	noremap <silent><buffer> <localleader>c2 :call SetPercent(".",20)<bar>call NewHMD(FindRootParent(line(".")))<cr>
+	noremap <silent><buffer> <localleader>c3 :call SetPercent(".",30)<bar>call NewHMD(FindRootParent(line(".")))<cr>
+	noremap <silent><buffer> <localleader>c4 :call SetPercent(".",40)<bar>call NewHMD(FindRootParent(line(".")))<cr>
+	noremap <silent><buffer> <localleader>c5 :call SetPercent(".",50)<bar>call NewHMD(FindRootParent(line(".")))<cr>
+	noremap <silent><buffer> <localleader>c6 :call SetPercent(".",60)<bar>call NewHMD(FindRootParent(line(".")))<cr>
+	noremap <silent><buffer> <localleader>c7 :call SetPercent(".",70)<bar>call NewHMD(FindRootParent(line(".")))<cr>
+	noremap <silent><buffer> <localleader>c8 :call SetPercent(".",80)<bar>call NewHMD(FindRootParent(line(".")))<cr>
+	noremap <silent><buffer> <localleader>c9 :call SetPercent(".",90)<bar>call NewHMD(FindRootParent(line(".")))<cr>
+endif
 
 " calculate the proportion of work done on the subtree
 noremap <silent><buffer> <localleader>cz :call NewHMD(FindRootParent(line(".")))<cr>
