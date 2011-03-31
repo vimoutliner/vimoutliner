@@ -16,7 +16,6 @@ and body text.
       Automatic method                                     |vo-auto-install|
       Updating                                                 |vo-updating|
       Manual method                                      |vo-manual-install|
-      Color schemes                                               |vo-color|
       Testing                                                   |vo-testing|
       Debian                                                     |vo-debian|
   Using VimOutliner on other file types                     |vo-other-files|
@@ -61,7 +60,6 @@ Installing and Testing VimOutliner                                  *vo-install*
     Automatic Method                |vo-auto-install|
     Updating                        |vo-updating|
     Manual Method                   |vo-manual-install|
-    Color Schemes                   |vo-colors|
     Testing                         |vo-testing|
 
 
@@ -151,48 +149,6 @@ the vim help system.  Start vim and execute the following command: >
 <
 At this point, VimOutliner should be functional.  Type ":help vo" to get
 started.
-
-                                                                      *vo-color*
-Color Schemes~
-
-Color schemes specify the colors Vim Outliner uses when displaying an outline.
-Colors are specified by object and level.  These objects currently include:
-headings, body text, pre- formatted body text, tables and others. See
-|vo-objects| for more information.
-
-Color scheme files are located in the system-wide vim colors directory and/or
-your $HOME/.vim/colors directory. You can select from any of the provided
-schemes. Vim Outliner internally includes a scheme the matches vo_light.vim.
-
-To override the default color scheme you can edit these lines in your
-$HOME/.vim/vimoutline/vimoutlinerrc file:
->
-    "Custom Colors **********************************
-    " Uncomment this next line to force using VO on
-    " a light background
-    " colorscheme vo_light
-    " Uncomment this next line to force using VO on
-    " a dark background
-    " colorscheme vo_dark
-<
-To create your own scheme follow these simple steps:
-
-1. Go to your $HOME/.vim/colors directory.  If you don't have one, create it.
-
-2. Make a copy of one of the included schemes to use as a starting point. You
-   should be able to find them in places like: $HOME/.vim/colors and
-   /usr/share/vim/vim63/colors. Put the copy in your own colors directory
-   ($HOME/.vim/colors)
-
-3. Edit the scheme file to change whatever colors you wish.
-
-4. Select the scheme in your $HOME/.vim/vimoutline/vimoutlinerrc file.  The
-   line should look something like this:
->
-       colorscheme noel
-<
-That's all there is to it.
-
                                                                     *vo-testing*
 Testing Base Functionality~
 
@@ -206,10 +162,9 @@ Verify the following:
 - Different indent levels are different colors
 - Lines starting with a colon and space word-wrap
 
-  Lines starting with colons are body text. They should word wrap and
-  should be a special color (typically green, but it can vary). Verify
-  that paragraphs of body text can be reformatted with the Vim gq
-  commands.
+  Lines starting with colons are body text. They should word wrap and should
+  be a special color. Verify that paragraphs of body text can be reformatted
+  with the Vim gq commands.
 
 Verify Interoutline Linking:
 
