@@ -1,7 +1,9 @@
 "#########################################################################
-"# syntax/vo_base.vim: VimOutliner syntax highlighting
+"# syntax/vo_base.vim: VimOutliner syntax highlighting 
 "# version 0.3.0
 "#   Copyright (C) 2001,2003 by Steve Litt (slitt@troubleshooters.com)
+"# 
+"# [MODIFIED version 0.2: see below]
 "#
 "#   This program is free software; you can redistribute it and/or modify
 "#   it under the terms of the GNU General Public License as published by
@@ -19,6 +21,106 @@
 "#
 "# Steve Litt, slitt@troubleshooters.com, http://www.troubleshooters.com
 "#########################################################################
+
+"[MODIFIED BY]:
+"Bill Powell, http://www.billpowellisalive.com
+"Linked colors to normal groups. Different schemes will need tweaking.
+"Occasionally certain groups will be rendered invisible. ;)
+
+"2007 Jan 23, 21:23 Tue - 0.3.0, Modified version 0.1
+	" Linked syntax groups to standard Vim color groups, intsead of to
+	" particular colors. Now each colorscheme can work its own magic on
+	" a VO file.
+"2007 Apr 30,  9:36 Mon - 0.3.0, Modified version 0.2
+	" Changed a few linked groups to reduce chances of groups being invisible.
+	" No longer use Ignore group for anything.
+	" Still a little redundancy; different groups might linked to same color group.
+		" E.g., PT1 and UT1. But some color schemes (e.g. astronout) will differentiate between 
+		" Special and Debug. Others will use the same colors for, say, Identifier and Debug. 
+		" It just depends.
+	" To tweak these groups, try :h syntax and go to group-name.
+	" This shows the color groups, highlighted in your current colorscheme.
+
+"Colors linked {{{1
+
+	hi link OL1 Statement 
+	hi link OL2 Identifier
+	hi link OL3 Constant
+	hi link OL4 PreProc   
+	hi link OL5 Statement 
+	hi link OL6 Identifier
+	hi link OL7 Constant
+	hi link OL8 PreProc   
+	hi link OL9 Statement
+
+	"colors for tags
+	"hi link outlTags Tag
+	hi link outlTags Todo
+
+	"color for body text
+	hi link BT1 Comment
+	hi link BT2 Comment
+	hi link BT3 Comment
+	hi link BT4 Comment
+	hi link BT5 Comment
+	hi link BT6 Comment
+	hi link BT7 Comment
+	hi link BT8 Comment
+	hi link BT9 Comment
+
+	"color for pre-formatted text
+	hi link PT1 Special
+	hi link PT2 Special
+	hi link PT3 Special
+	hi link PT4 Special
+	hi link PT5 Special
+	hi link PT6 Special
+	hi link PT7 Special
+	hi link PT8 Special
+	hi link PT9 Special
+
+	"color for tables 
+	hi link TA1 Type
+	hi link TA2 Type
+	hi link TA3 Type
+	hi link TA4 Type
+	hi link TA5 Type
+	hi link TA6 Type
+	hi link TA7 Type
+	hi link TA8 Type
+	hi link TA9 Type
+
+	"color for user text (wrapping)
+	hi link UT1 Debug
+	hi link UT2 Debug
+	hi link UT3 Debug
+	hi link UT4 Debug
+	hi link UT5 Debug
+	hi link UT6 Debug
+	hi link UT7 Debug
+	hi link UT8 Debug
+	hi link UT9 Debug
+
+	"color for user text (non-wrapping)
+	hi link UB1 Underlined
+	hi link UB2 Underlined
+	hi link UB3 Underlined
+	hi link UB4 Underlined
+	hi link UB5 Underlined
+	hi link UB6 Underlined
+	hi link UB7 Underlined
+	hi link UB8 Underlined
+	hi link UB9 Underlined
+
+	"colors for folded sections
+	"hi link Folded Special
+	"hi link FoldColumn Type
+
+	"colors for experimental spelling error highlighting
+	"this only works for spellfix.vim with will be cease to exist soon
+	hi link spellErr Error
+	hi link BadWord Todo
+
 
 " HISTORY {{{1
 "#########################################################################
@@ -55,169 +157,168 @@
 " colors for outline levels 1-9
 " Light background {{{2
 " added this next conditional at Dillon's recommendation
-if &background == "light"
-	hi OL1 guifg=black	ctermfg=black
-	hi OL2 guifg=red	ctermfg=red
-	hi OL3 guifg=blue	ctermfg=blue
-	hi OL4 guifg=darkviolet	ctermfg=magenta
-	hi OL5 guifg=black	ctermfg=black
-	hi OL6 guifg=red	ctermfg=red
-	hi OL7 guifg=blue	ctermfg=blue
-	hi OL8 guifg=darkviolet	ctermfg=magenta
-	hi OL9 guifg=black	ctermfg=black
+"if &background == "light"
+	"hi OL1 guifg=black	ctermfg=black
+	"hi OL2 guifg=red	ctermfg=red
+	"hi OL3 guifg=blue	ctermfg=blue
+	"hi OL4 guifg=darkviolet	ctermfg=magenta
+	"hi OL5 guifg=black	ctermfg=black
+	"hi OL6 guifg=red	ctermfg=red
+	"hi OL7 guifg=blue	ctermfg=blue
+	"hi OL8 guifg=darkviolet	ctermfg=magenta
+	"hi OL9 guifg=black	ctermfg=black
 
 	" colors for tags
-	hi outlTags guifg=darkred	ctermfg=darkred
+	"hi outlTags guifg=darkred	ctermfg=darkred
 
 	" color for body text
-	hi BT1 guifg=darkgreen	ctermfg=green
-	hi BT2 guifg=darkgreen	ctermfg=green
-	hi BT3 guifg=darkgreen	ctermfg=green
-	hi BT4 guifg=darkgreen	ctermfg=green
-	hi BT5 guifg=darkgreen	ctermfg=green
-	hi BT6 guifg=darkgreen	ctermfg=green
-	hi BT7 guifg=darkgreen	ctermfg=green
-	hi BT8 guifg=darkgreen	ctermfg=green
-	hi BT9 guifg=darkgreen	ctermfg=green
+	"hi BT1 guifg=darkgreen	ctermfg=green
+	"hi BT2 guifg=darkgreen	ctermfg=green
+	"hi BT3 guifg=darkgreen	ctermfg=green
+	"hi BT4 guifg=darkgreen	ctermfg=green
+	"hi BT5 guifg=darkgreen	ctermfg=green
+	"hi BT6 guifg=darkgreen	ctermfg=green
+	"hi BT7 guifg=darkgreen	ctermfg=green
+	"hi BT8 guifg=darkgreen	ctermfg=green
+	"hi BT9 guifg=darkgreen	ctermfg=green
 
 	" color for pre-formatted text
-	hi PT1 guifg=darkblue	ctermfg=cyan
-	hi PT2 guifg=darkblue	ctermfg=cyan
-	hi PT3 guifg=darkblue	ctermfg=cyan
-	hi PT4 guifg=darkblue	ctermfg=cyan
-	hi PT5 guifg=darkblue	ctermfg=cyan
-	hi PT6 guifg=darkblue	ctermfg=cyan
-	hi PT7 guifg=darkblue	ctermfg=cyan
-	hi PT8 guifg=darkblue	ctermfg=cyan
-	hi PT9 guifg=darkblue	ctermfg=cyan
+	"hi PT1 guifg=darkblue	ctermfg=cyan
+	"hi PT2 guifg=darkblue	ctermfg=cyan
+	"hi PT3 guifg=darkblue	ctermfg=cyan
+	"hi PT4 guifg=darkblue	ctermfg=cyan
+	"hi PT5 guifg=darkblue	ctermfg=cyan
+	"hi PT6 guifg=darkblue	ctermfg=cyan
+	"hi PT7 guifg=darkblue	ctermfg=cyan
+	"hi PT8 guifg=darkblue	ctermfg=cyan
+	"hi PT9 guifg=darkblue	ctermfg=cyan
 
 	" color for tables 
-	hi TA1 guifg=darkviolet	ctermfg=cyan
-	hi TA2 guifg=darkviolet	ctermfg=cyan
-	hi TA3 guifg=darkviolet	ctermfg=cyan
-	hi TA4 guifg=darkviolet	ctermfg=cyan
-	hi TA5 guifg=darkviolet	ctermfg=cyan
-	hi TA6 guifg=darkviolet	ctermfg=cyan
-	hi TA7 guifg=darkviolet	ctermfg=cyan
-	hi TA8 guifg=darkviolet	ctermfg=cyan
-	hi TA9 guifg=darkviolet	ctermfg=cyan
+	"hi TA1 guifg=darkviolet	ctermfg=cyan
+	"hi TA2 guifg=darkviolet	ctermfg=cyan
+	"hi TA3 guifg=darkviolet	ctermfg=cyan
+	"hi TA4 guifg=darkviolet	ctermfg=cyan
+	"hi TA5 guifg=darkviolet	ctermfg=cyan
+	"hi TA6 guifg=darkviolet	ctermfg=cyan
+	"hi TA7 guifg=darkviolet	ctermfg=cyan
+	"hi TA8 guifg=darkviolet	ctermfg=cyan
+	"hi TA9 guifg=darkviolet	ctermfg=cyan
 
 	" color for user text (wrapping)
-	hi UT1 guifg=darkred	ctermfg=cyan
-	hi UT2 guifg=darkred	ctermfg=cyan
-	hi UT3 guifg=darkred	ctermfg=cyan
-	hi UT4 guifg=darkred	ctermfg=cyan
-	hi UT5 guifg=darkred	ctermfg=cyan
-	hi UT6 guifg=darkred	ctermfg=cyan
-	hi UT7 guifg=darkred	ctermfg=cyan
-	hi UT8 guifg=darkred	ctermfg=cyan
-	hi UT9 guifg=darkred	ctermfg=cyan
+	"hi UT1 guifg=darkred	ctermfg=cyan
+	"hi UT2 guifg=darkred	ctermfg=cyan
+	"hi UT3 guifg=darkred	ctermfg=cyan
+	"hi UT4 guifg=darkred	ctermfg=cyan
+	"hi UT5 guifg=darkred	ctermfg=cyan
+	"hi UT6 guifg=darkred	ctermfg=cyan
+	"hi UT7 guifg=darkred	ctermfg=cyan
+	"hi UT8 guifg=darkred	ctermfg=cyan
+	"hi UT9 guifg=darkred	ctermfg=cyan
 
 	" color for user text (non-wrapping)
-	hi UB1 guifg=darkgray	ctermfg=cyan
-	hi UB2 guifg=darkgray	ctermfg=cyan
-	hi UB3 guifg=darkgray	ctermfg=cyan
-	hi UB4 guifg=darkgray	ctermfg=cyan
-	hi UB5 guifg=darkgray	ctermfg=cyan
-	hi UB6 guifg=darkgray	ctermfg=cyan
-	hi UB7 guifg=darkgray	ctermfg=cyan
-	hi UB8 guifg=darkgray	ctermfg=cyan
-	hi UB9 guifg=darkgray	ctermfg=cyan
+	"hi UB1 guifg=darkgray	ctermfg=cyan
+	"hi UB2 guifg=darkgray	ctermfg=cyan
+	"hi UB3 guifg=darkgray	ctermfg=cyan
+	"hi UB4 guifg=darkgray	ctermfg=cyan
+	"hi UB5 guifg=darkgray	ctermfg=cyan
+	"hi UB6 guifg=darkgray	ctermfg=cyan
+	"hi UB7 guifg=darkgray	ctermfg=cyan
+	"hi UB8 guifg=darkgray	ctermfg=cyan
+	"hi UB9 guifg=darkgray	ctermfg=cyan
 
 	" colors for folded sections
-	hi Folded guifg=darkcyan guibg=bg	ctermfg=cyan ctermbg=white
-	hi FoldColumn guifg=darkcyan guibg=bg	ctermfg=cyan ctermbg=white
+	"hi Folded guifg=darkcyan guibg=bg	ctermfg=cyan ctermbg=white
+	"hi FoldColumn guifg=darkcyan guibg=bg	ctermfg=cyan ctermbg=white
 
 	" colors for experimental spelling error highlighting
 	" this only works for spellfix.vim with will be cease to exist soon
-	hi spellErr gui=underline guifg=darkred cterm=underline ctermfg=darkred
-	hi BadWord gui=underline guifg=darkred cterm=underline ctermfg=darkred
+	"hi spellErr gui=underline guifg=darkred cterm=underline ctermfg=darkred
+	"hi BadWord gui=underline guifg=darkred cterm=underline ctermfg=darkred
 " Dark background {{{2
-else 
-	hi OL1 guifg=white	ctermfg=white
-	hi OL2 guifg=red	ctermfg=red
-	hi OL3 guifg=lightblue	ctermfg=lightblue
-	hi OL4 guifg=darkviolet	ctermfg=magenta
-	hi OL5 guifg=white	ctermfg=white
-	hi OL6 guifg=red	ctermfg=red
-	hi OL7 guifg=lightblue	ctermfg=lightblue
-	hi OL8 guifg=darkviolet	ctermfg=magenta
-	hi OL9 guifg=white	ctermfg=white
+"else 
+	"hi OL1 guifg=white	ctermfg=white
+	"hi OL2 guifg=red	ctermfg=red
+	"hi OL3 guifg=lightblue	ctermfg=lightblue
+	"hi OL4 guifg=darkviolet	ctermfg=magenta
+	"hi OL5 guifg=white	ctermfg=white
+	"hi OL6 guifg=red	ctermfg=red
+	"hi OL7 guifg=lightblue	ctermfg=lightblue
+	"hi OL8 guifg=darkviolet	ctermfg=magenta
+	"hi OL9 guifg=white	ctermfg=white
 
 	" colors for tags
-	hi outlTags guifg=darkred	ctermfg=darkred
+	"hi outlTags guifg=darkred	ctermfg=darkred
 
 	" color for body text
-	hi BT1 guifg=darkgreen	ctermfg=green
-	hi BT2 guifg=darkgreen	ctermfg=green
-	hi BT3 guifg=darkgreen	ctermfg=green
-	hi BT4 guifg=darkgreen	ctermfg=green
-	hi BT5 guifg=darkgreen	ctermfg=green
-	hi BT6 guifg=darkgreen	ctermfg=green
-	hi BT7 guifg=darkgreen	ctermfg=green
-	hi BT8 guifg=darkgreen	ctermfg=green
-	hi BT9 guifg=darkgreen	ctermfg=green
+	"hi BT1 guifg=darkgreen	ctermfg=green
+	"hi BT2 guifg=darkgreen	ctermfg=green
+	"hi BT3 guifg=darkgreen	ctermfg=green
+	"hi BT4 guifg=darkgreen	ctermfg=green
+	"hi BT5 guifg=darkgreen	ctermfg=green
+	"hi BT6 guifg=darkgreen	ctermfg=green
+	"hi BT7 guifg=darkgreen	ctermfg=green
+	"hi BT8 guifg=darkgreen	ctermfg=green
+	"hi BT9 guifg=darkgreen	ctermfg=green
 
 	" color for pre-formatted text
-	hi PT1 guifg=darkblue	ctermfg=cyan
-	hi PT2 guifg=darkblue	ctermfg=cyan
-	hi PT3 guifg=darkblue	ctermfg=cyan
-	hi PT4 guifg=darkblue	ctermfg=cyan
-	hi PT5 guifg=darkblue	ctermfg=cyan
-	hi PT6 guifg=darkblue	ctermfg=cyan
-	hi PT7 guifg=darkblue	ctermfg=cyan
-	hi PT8 guifg=darkblue	ctermfg=cyan
-	hi PT9 guifg=darkblue	ctermfg=cyan
+	"hi PT1 guifg=darkblue	ctermfg=cyan
+	"hi PT2 guifg=darkblue	ctermfg=cyan
+	"hi PT3 guifg=darkblue	ctermfg=cyan
+	"hi PT4 guifg=darkblue	ctermfg=cyan
+	"hi PT5 guifg=darkblue	ctermfg=cyan
+	"hi PT6 guifg=darkblue	ctermfg=cyan
+	"hi PT7 guifg=darkblue	ctermfg=cyan
+	"hi PT8 guifg=darkblue	ctermfg=cyan
+	"hi PT9 guifg=darkblue	ctermfg=cyan
 
 	" color for tables 
-	hi TA1 guifg=darkviolet	ctermfg=cyan
-	hi TA2 guifg=darkviolet	ctermfg=cyan
-	hi TA3 guifg=darkviolet	ctermfg=cyan
-	hi TA4 guifg=darkviolet	ctermfg=cyan
-	hi TA5 guifg=darkviolet	ctermfg=cyan
-	hi TA6 guifg=darkviolet	ctermfg=cyan
-	hi TA7 guifg=darkviolet	ctermfg=cyan
-	hi TA8 guifg=darkviolet	ctermfg=cyan
-	hi TA9 guifg=darkviolet	ctermfg=cyan
+	"hi TA1 guifg=darkviolet	ctermfg=cyan
+	"hi TA2 guifg=darkviolet	ctermfg=cyan
+	"hi TA3 guifg=darkviolet	ctermfg=cyan
+	"hi TA4 guifg=darkviolet	ctermfg=cyan
+	"hi TA5 guifg=darkviolet	ctermfg=cyan
+	"hi TA6 guifg=darkviolet	ctermfg=cyan
+	"hi TA7 guifg=darkviolet	ctermfg=cyan
+	"hi TA8 guifg=darkviolet	ctermfg=cyan
+	"hi TA9 guifg=darkviolet	ctermfg=cyan
 
 	" color for user text (wrapping)
-	hi UT1 guifg=darkred	ctermfg=cyan
-	hi UT2 guifg=darkred	ctermfg=cyan
-	hi UT3 guifg=darkred	ctermfg=cyan
-	hi UT4 guifg=darkred	ctermfg=cyan
-	hi UT5 guifg=darkred	ctermfg=cyan
-	hi UT6 guifg=darkred	ctermfg=cyan
-	hi UT7 guifg=darkred	ctermfg=cyan
-	hi UT8 guifg=darkred	ctermfg=cyan
-	hi UT9 guifg=darkred	ctermfg=cyan
+	"hi UT1 guifg=darkred	ctermfg=cyan
+	"hi UT2 guifg=darkred	ctermfg=cyan
+	"hi UT3 guifg=darkred	ctermfg=cyan
+	"hi UT4 guifg=darkred	ctermfg=cyan
+	"hi UT5 guifg=darkred	ctermfg=cyan
+	"hi UT6 guifg=darkred	ctermfg=cyan
+	"hi UT7 guifg=darkred	ctermfg=cyan
+	"hi UT8 guifg=darkred	ctermfg=cyan
+	"hi UT9 guifg=darkred	ctermfg=cyan
 
 	" color for user text (non-wrapping)
-	hi UB1 guifg=darkgray	ctermfg=cyan
-	hi UB2 guifg=darkgray	ctermfg=cyan
-	hi UB3 guifg=darkgray	ctermfg=cyan
-	hi UB4 guifg=darkgray	ctermfg=cyan
-	hi UB5 guifg=darkgray	ctermfg=cyan
-	hi UB6 guifg=darkgray	ctermfg=cyan
-	hi UB7 guifg=darkgray	ctermfg=cyan
-	hi UB8 guifg=darkgray	ctermfg=cyan
-	hi UB9 guifg=darkgray	ctermfg=cyan
+	"hi UB1 guifg=darkgray	ctermfg=cyan
+	"hi UB2 guifg=darkgray	ctermfg=cyan
+	"hi UB3 guifg=darkgray	ctermfg=cyan
+	"hi UB4 guifg=darkgray	ctermfg=cyan
+	"hi UB5 guifg=darkgray	ctermfg=cyan
+	"hi UB6 guifg=darkgray	ctermfg=cyan
+	"hi UB7 guifg=darkgray	ctermfg=cyan
+	"hi UB8 guifg=darkgray	ctermfg=cyan
+	"hi UB9 guifg=darkgray	ctermfg=cyan
 
 	" colors for folded sections
-	hi Folded guifg=darkcyan guibg=bg	ctermfg=cyan ctermbg=black
-	hi FoldColumn guifg=darkcyan guibg=bg	ctermfg=cyan ctermbg=black
+	"hi Folded guifg=darkcyan guibg=bg	ctermfg=cyan ctermbg=black
+	"hi FoldColumn guifg=darkcyan guibg=bg	ctermfg=cyan ctermbg=black
 
 	" colors for experimental spelling error highlighting
 	" this only works for spellfix.vim with will be cease to exist soon
-	hi spellErr gui=underline guifg=yellow	cterm=underline ctermfg=yellow
-	hi BadWord gui=underline guifg=yellow	cterm=underline ctermfg=yellow
-endif
+	"hi spellErr gui=underline guifg=yellow	cterm=underline ctermfg=yellow
+	"hi BadWord gui=underline guifg=yellow	cterm=underline ctermfg=yellow
+"endif
 
 " Syntax {{{1
 syn clear
 syn sync fromstart
 
 syn match outlTags '_tag_\w*' contained
-syn match outlTags '_ilink_\s*\(.\{-}:\s\)\?.*' contained
 
 " Noel's style of body text {{{2
 syntax region BT1 start=+^ \S+ skip=+^ \S+ end=+^\S+me=e-1 end=+^\(\t\)\{1}\S+me=e-2 contains=spellErr,SpellErrors,BadWord contained
