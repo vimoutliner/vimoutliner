@@ -58,10 +58,13 @@
 
 " Load the plugin {{{1
 if exists("g:did_vo_hoist")
-	finish
+	"finish
 endif
 if !exists("g:hoistParanoia")
 	let g:hoistParanoia=0
+endif
+if !exists('hlevel')
+	let hlevel = 20
 endif
 let g:did_vo_hoist = 1
 " mappings {{{1
@@ -72,8 +75,72 @@ map <silent> <buffer> <localleader>hD :call DeHoistAll()<cr>
 " syntax {{{1
 " Hoisted {{{2
 syntax match Invis +^\~.*$+
-hi Invis guifg=bg ctermfg=bg
+"hi Invis guifg=bg ctermfg=bg
+hi Invis guifg=bg
 "}}}2
+"}}}1
+" MyFoldText() {{{1
+" Create string used for folded text blocks
+function! MyFoldText()
+	let l:MySpaces = MakeSpaces(&sw)
+	let l:line = getline(v:foldstart)
+	let l:bodyTextFlag=0
+	if l:line =~'^\~'
+		let l:line = repeat(' ',60).'Hoist'.repeat(' ', winwidth(0)-63)
+	elseif l:line =~ "^\t* \\S" || l:line =~ "^\t*\:"
+		let l:bodyTextFlag=1
+		let l:MySpaces = MakeSpaces(&sw * (v:foldlevel-1))
+		let l:line = l:MySpaces."[TEXT]"
+	elseif l:line =~ "^\t*\;"
+		let l:bodyTextFlag=1
+		let l:MySpaces = MakeSpaces(&sw * (v:foldlevel-1))
+		let l:line = l:MySpaces."[TEXT BLOCK]"
+	elseif l:line =~ "^\t*\> "
+		let l:bodyTextFlag=1
+		let l:MySpaces = MakeSpaces(&sw * (v:foldlevel-1))
+		let l:line = l:MySpaces."[USER]"
+	elseif l:line =~ "^\t*\>"
+		let l:ls = stridx(l:line,">")
+		let l:le = stridx(l:line," ")
+		if l:le == -1
+			let l:l = strpart(l:line, l:ls+1)
+		else
+			let l:l = strpart(l:line, l:ls+1, l:le-l:ls-1)
+		endif
+		let l:bodyTextFlag=1
+		let l:MySpaces = MakeSpaces(&sw * (v:foldlevel-1))
+		let l:line = l:MySpaces."[USER ".l:l."]"
+	elseif l:line =~ "^\t*\< "
+		let l:bodyTextFlag=1
+		let l:MySpaces = MakeSpaces(&sw * (v:foldlevel-1))
+		let l:line = l:MySpaces."[USER BLOCK]"
+	elseif l:line =~ "^\t*\<"
+		let l:ls = stridx(l:line,"<")
+		let l:le = stridx(l:line," ")
+		if l:le == -1
+			let l:l = strpart(l:line, l:ls+1)
+		else
+			let l:l = strpart(l:line, l:ls+1, l:le-l:ls-1)
+		endif
+		let l:bodyTextFlag=1
+		let l:MySpaces = MakeSpaces(&sw * (v:foldlevel-1))
+		let l:line = l:MySpaces."[USER BLOCK ".l:l."]"
+	elseif l:line =~ "^\t*\|"
+		let l:bodyTextFlag=1
+		let l:MySpaces = MakeSpaces(&sw * (v:foldlevel-1))
+		let l:line = l:MySpaces."[TABLE]"
+	endif
+	let l:sub = substitute(l:line,'\t',l:MySpaces,'g')
+	let l:len = strlen(l:sub)
+	let l:sub = l:sub . " " . MakeDashes(58 - l:len) 
+	let l:sub = l:sub . " (" . ((v:foldend + l:bodyTextFlag)- v:foldstart)
+	if ((v:foldend + l:bodyTextFlag)- v:foldstart) == 1
+		let l:sub = l:sub . " line)" 
+	else
+		let l:sub = l:sub . " lines)" 
+	endif
+	return l:sub.repeat(' ', winwidth(0)-len(l:sub))
+endfunction
 "}}}1
 " New Fold Function (will be put into vo_base later {{{1
 function! MyHoistableFoldLevel(line)
@@ -81,13 +148,14 @@ function! MyHoistableFoldLevel(line)
 	let l:nextindent = Ind(a:line+1)
 
 	if HoistFold(a:line)
-		if (a:line == 1)
-			return g:hlevel
-		elseif (HoistFold(a:line-1) == 0)
-			return ">".0
-		else
-			return g:hlevel
-		endif
+		"if (a:line == 1)
+		"	return g:hlevel
+		"elseif (HoistFold(a:line-1) == 0)
+		"	return ">".0
+		"else
+		"	return g:hlevel
+		"endif
+		return g:hlevel
 
 	elseif BodyText(a:line)
 		if (BodyText(a:line-1) == 0)
@@ -189,6 +257,16 @@ function! FindParent(line)
 	endif
 endfunction
 "}}}2
+" HoistFold() {{{2
+" Return a flag indicating that there is a valid hoist
+function! HoistFold(line)
+	if getline(a:line) =~ '^\~'
+		return 1
+	else
+		return 0
+	endif
+endfunction
+"}}}2
 " Hoisted() {{{2
 " Return a flag indicating that there is a valid hoist
 function! Hoisted()
@@ -241,6 +319,7 @@ endfunction
 function! HoistTagBefore(line,indent)
 	let l:doit = "silent 1,".(a:line-1)."s/^/\\~".a:indent." /"
 	exe l:doit
+	"call setline(1, map(getline(1,a:line-1), '"~".a:indent.v:val'))
 endfunction
 "}}}2
 " HoistDeTagBefore(line) {{{2
@@ -269,14 +348,25 @@ function! Hoist(line)
 	if l:parent == 0
 		return
 	endif
-	call cursor(l:parent,1)
+	"call cursor(l:parent,1)
 	let l:firstline = l:parent+1
 	let l:childindent = Ind(l:firstline)
 	let l:lastline = FindLastChild(l:parent)
+	set foldlevel=20
 	call HoistTagBefore(l:firstline,l:childindent)
 	call HoistTagAfter(l:lastline+1)
 	call RemoveTabs(l:firstline,l:lastline,l:childindent)
 	call cursor(l:firstline,1)
+	set foldlevel=19
+	augroup VO_HOIST
+		au!
+		au CursorMoved,CursorMovedI <buffer>
+					\ if getline('.') =~ '^\~\d '  |
+					\   exec 'normal! j'           |
+					\ elseif getline('.') =~ '^\~' |
+					\   exec 'normal! k'           |
+					\ endif
+	augroup END
 endfunction
 " MakeTabs(n) {{{2
 " return a string of n tabs
@@ -295,6 +385,10 @@ endfunction
 " Write the offspring of a parent to a new file, open it and remove the 
 " leading tabs.
 function! DeHoist()
+	augroup VO_HOIST
+		au!
+		augroup! VO_HOIST
+	augroup END
 	if !Hoisted()
 		return
 	endif
