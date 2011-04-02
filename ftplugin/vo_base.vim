@@ -603,8 +603,8 @@ map <buffer>   <localleader>4           :set foldlevel=3<CR>
 map <buffer>   <localleader>3           :set foldlevel=2<CR>
 map <buffer>   <localleader>2           :set foldlevel=1<CR>
 map <buffer>   <localleader>1           :set foldlevel=0<CR>
-map <buffer>   <localleader>,,          :source $HOME/.vimoutliner/outliner.vim<CR>
-map! <buffer>  <localleader>w           <Esc>:w<CR>a
+map <buffer>   <localleader>,,          :source $HOME/.vimoutlinerrc<CR>
+map <buffer>  <localleader>w           <Esc>:w!<CR>a
 nmap <buffer>   <localleader>e		:call Spawn()<cr>
 " Steve's additional mappings end here
 
