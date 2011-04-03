@@ -306,7 +306,7 @@ if !exists("autocommand_vo_loaded")
 	let autocommand_vo_loaded = 1
 	au BufNewFile,BufRead *.otl                     setf outliner
 "	au CursorHold *.otl                             syn sync fromstart
-	set updatetime=500
+"	set updatetime=500
 endif
 
 " The End
