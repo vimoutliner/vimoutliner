@@ -74,9 +74,10 @@ map <silent> <buffer> <localleader>hD :call DeHoistAll()<cr>
 "}}}1
 " syntax {{{1
 " Hoisted {{{2
-syntax match Invis +^\~.*$+
-"hi Invis guifg=bg ctermfg=bg
-hi Invis guifg=bg
+"syntax match Invis +^\~\zs.*$+ containedin=ALL conceal cchar=~
+""hi Invis guifg=bg ctermfg=bg
+""hi Invis guifg=bg
+"hi link Invis Conceal
 "}}}2
 "}}}1
 " MyFoldText() {{{1
@@ -86,7 +87,7 @@ function! MyFoldText()
 	let l:line = getline(v:foldstart)
 	let l:bodyTextFlag=0
 	if l:line =~'^\~'
-		let l:line = repeat(' ',60).'Hoist'.repeat(' ', winwidth(0)-63)
+		let l:line = '~'.repeat(' ', winwidth(0)-1)
 	elseif l:line =~ "^\t* \\S" || l:line =~ "^\t*\:"
 		let l:bodyTextFlag=1
 		let l:MySpaces = MakeSpaces(&sw * (v:foldlevel-1))
@@ -132,12 +133,13 @@ function! MyFoldText()
 	endif
 	let l:sub = substitute(l:line,'\t',l:MySpaces,'g')
 	let l:len = strlen(l:sub)
-	let l:sub = l:sub . " " . MakeDashes(58 - l:len) 
-	let l:sub = l:sub . " (" . ((v:foldend + l:bodyTextFlag)- v:foldstart)
-	if ((v:foldend + l:bodyTextFlag)- v:foldstart) == 1
-		let l:sub = l:sub . " line)" 
+	let l:sub = l:sub . " " . MakeDashes(58 - l:len)
+	let frange = (v:foldend + l:bodyTextFlag)- v:foldstart
+	let l:sub = l:sub . " (" . frange
+	if frange == 1
+		let l:sub = l:sub . " line)"
 	else
-		let l:sub = l:sub . " lines)" 
+		let l:sub = l:sub . " lines)"
 	endif
 	return l:sub.repeat(' ', winwidth(0)-len(l:sub))
 endfunction
@@ -270,7 +272,7 @@ endfunction
 " Hoisted() {{{2
 " Return a flag indicating that there is a valid hoist
 function! Hoisted()
-	if strpart(getline(1),0,1) == "~"
+	if getline(1) =~ '^\~'
 		return 1
 	else
 		return 0
@@ -291,7 +293,8 @@ endfunction
 " Return line number of the nearest (last line) top hoist tag
 function! FindBottomHoist(line)
 	let l:line = a:line
-	while (match(getline(l:line),"^\\~") == -1) && (l:line > 0)
+	let l:lastline = line('$')
+	while getline(l:line) !~ "^\\~" && (l:line > 0) && l:line <= l:lastline
 		let l:line += 1
 	endwhile
 	return l:line
@@ -330,18 +333,56 @@ endfunction
 "}}}2
 " HoistTagAfter(line) {{{2
 function! HoistTagAfter(line)
+	if a:line > line('$')
+		return
+	endif
 	let l:doit = "silent ".a:line.",$s/^/\\~/"
 	exe l:doit
 endfunction
 "}}}2
 " HoistDeTagAfter(line) {{{2
 function! HoistDeTagAfter(line)
+	if a:line > line('$')
+		return
+	endif
 	let l:doit = "silent ".a:line.",$s/^\\~//"
 	exe l:doit
 endfunction
 "}}}2
+" HoistWrite(file) {{{2
+" Write the clean file if hoisted
+function! HoistWrite(file,...) range
+	"let lines = getline(1,line('$'))
+	let saved = 0
+	mkview
+	call DeHoistAll()
+	if v:cmdbang
+		let bang = '!'
+	else
+		let bang = ''
+	endif
+	try
+		if a:0
+			echom a:firstline.','.a:lastline."w".bang.fnameescape(v:cmdarg).' '.a:file
+			exe a:firstline.','.a:lastline."w".bang.fnameescape(v:cmdarg).' '.a:file
+		else
+			exe "w".bang.fnameescape(v:cmdarg).' '.a:file
+		endif
+		let saved = 1
+	catch
+		echohl ErrorMsg
+		echom substitute(v:exception,'^Vim(.\{-}):','','')
+		echohl None
+	endtry
+	"call setline(1,lines)
+	silent earlier
+	silent loadview
+	if saved
+		silent setlocal nomodified
+	endif
+endfunction "HoistWrite
 " Hoist(line) {{{2
-" Write the offspring of a parent to a new file, open it and remove the 
+" Write the offspring of a parent to a new file, open it and remove the
 " leading tabs.
 function! Hoist(line)
 	let l:parent = FindParent(a:line)
@@ -352,22 +393,58 @@ function! Hoist(line)
 	let l:firstline = l:parent+1
 	let l:childindent = Ind(l:firstline)
 	let l:lastline = FindLastChild(l:parent)
-	set foldlevel=20
+	setlocal foldlevel=20
 	call HoistTagBefore(l:firstline,l:childindent)
 	call HoistTagAfter(l:lastline+1)
 	call RemoveTabs(l:firstline,l:lastline,l:childindent)
 	call cursor(l:firstline,1)
-	set foldlevel=19
+	setlocal foldlevel=19
 	augroup VO_HOIST
 		au!
 		au CursorMoved,CursorMovedI <buffer>
-					\ if getline('.') =~ '^\~\d '  |
-					\   exec 'normal! j'           |
+					\ if getline('.') =~ '^\~\d* ' |
+					\   call HoistKeepCursor(1)    |
 					\ elseif getline('.') =~ '^\~' |
-					\   exec 'normal! k'           |
+					\   call HoistKeepCursor(0)    |
 					\ endif
+		"au BufWriteCmd <buffer> call HoistWrite(fnameescape(expand("<amatch>")))
+		"au FileWriteCmd <buffer> '[,']call HoistWrite(fnameescape(expand("<amatch>")), 1)
 	augroup END
+	if exists('+conceallevel')
+		syntax match Invis +^\~.*$+ conceal cchar=~
+		hi link Invis Conceal
+		setlocal conceallevel=2
+	else
+		syntax match Invis +^\~.*$+ containedin=ALL
+		let i = 1
+		while synIDtrans(i) != 0
+			if synIDattr(i, 'name') == 'Normal'
+				if synIDattr(i, 'bg') >= 0
+					" bg is set
+					hi Invis guifg=bg ctermfg=bg
+				else
+					hi Invis guifg=NONE ctermfg=NONE
+				endif
+				break
+			endif
+			let i += 1
+		endwhile
+	endif
 endfunction
+" }}}2
+" HoistKeepCursor(top) {{{2
+" Keep cursor out of non-hoisted area.
+function! HoistKeepCursor( top )
+	if a:top
+		while getline('.') =~ '^\~\d* '
+			normal! j
+		endwhile
+	else
+		while getline('.') =~ '^\~'
+			normal! k
+		endwhile
+	endif
+endfunction "HoistKeepCursor }}}2
 " MakeTabs(n) {{{2
 " return a string of n tabs
 function! MakeTabs(n)
@@ -382,30 +459,33 @@ endfunction
 "}}}2
 "}}}2
 " DeHoist() {{{2
-" Write the offspring of a parent to a new file, open it and remove the 
+" Write the offspring of a parent to a new file, open it and remove the
 " leading tabs.
 function! DeHoist()
-	augroup VO_HOIST
-		au!
-		augroup! VO_HOIST
-	augroup END
 	if !Hoisted()
 		return
 	endif
 	let l:line = line(".")
 	let l:top = FindTopHoist(l:line)
 	let l:bottom = FindBottomHoist(l:line)
+	echom 1
 	let l:indent = GetHoistedIndent(l:top)
 	let l:tabs = MakeTabs(l:indent)
 	let l:doit = "silent ".(l:top+1).",".(l:bottom-1)."s/^/".l:tabs."/"
 	exe l:doit
 	call HoistDeTagBefore(l:top)
 	call HoistDeTagAfter(l:bottom)
+	if !Hoisted()
+		augroup VO_HOIST
+			au!
+			augroup! VO_HOIST
+			augroup END
+		endif
 	call cursor(l:line,l:indent)
 endfunction
 "}}}2
 " DeHoistAll() {{{2
-" Write the offspring of a parent to a new file, open it and remove the 
+" Write the offspring of a parent to a new file, open it and remove the
 " leading tabs.
 function! DeHoistAll()
 	while Hoisted()
