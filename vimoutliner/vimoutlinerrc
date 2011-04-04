@@ -12,6 +12,9 @@ let g:vo_modules_load = "checkbox:tags"
 " Uncomment the following line to enable the math plugin.
 let g:vo_modules_load .= ':math'
 
+" Uncomment the following line to enable new hoisting.
+let g:vo_modules_load .= ':newhoist'
+
 " Uncomment the following line to enable hoisting.
 "let g:vo_modules_load .= ':hoist'
 
