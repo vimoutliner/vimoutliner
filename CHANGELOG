@@ -16,6 +16,7 @@ Development
     vo_hoist.vim files.
     - Fixed typos and removed outdated references in the vo_checkbox.otl file.
     - Fixed two mappings for sourcing rc file and writing file in ftplugin/vo_base.vim. 
+    - Fixed typos in colors/vo_base.vim
 
 Version 0.3.5
 Released 2011-03-20
