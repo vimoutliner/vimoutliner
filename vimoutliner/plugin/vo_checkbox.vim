@@ -154,19 +154,19 @@
 
 " Mappings {{{1
 " insert a chechbox
-map <buffer> <localleader>cb :call SafelyInsertCheckBox()<cr>
-map <buffer> <localleader>c% :call SafelyInsertCheckBoxPercent()<cr>
-map <buffer> <localleader>cp :call SafelyInsertCheckBoxPercentAlways()<cr>
-map <buffer> <localleader>cB :call InsertCheckBox()<cr>
+map <silent><buffer> <localleader>cb :call SafelyInsertCheckBox()<cr>
+map <silent><buffer> <localleader>c% :call SafelyInsertCheckBoxPercent()<cr>
+map <silent><buffer> <localleader>cp :call SafelyInsertCheckBoxPercentAlways()<cr>
+map <silent><buffer> <localleader>cB :call InsertCheckBox()<cr>
 
 " delete a chechbox
-map <buffer> <localleader>cd :call DeleteCheckbox()<cr>
+map <silent><buffer> <localleader>cd :call DeleteCheckbox()<cr>
 
 " switch the status of the box
-map <buffer> <localleader>cx :call SwitchBox()<cr>:call NewHMD(FindRootParent(line(".")))<cr>
+map <silent><buffer> <localleader>cx :call SwitchBox()<cr>:call NewHMD(FindRootParent(line(".")))<cr>
 
 " calculate the proportion of work done on the subtree
-map <buffer> <localleader>cz :call NewHMD(FindRootParent(line(".")))<cr>
+map <silent><buffer> <localleader>cz :call NewHMD(FindRootParent(line(".")))<cr>
 
 " Load guard for functions {{{1
 if exists('s:loaded')

@@ -553,15 +553,15 @@ endif " if !exists("loaded_vimoutliner_functions")
 
 " Vim Outliner Key Mappings {{{1
 " insert the date
-nmap <buffer> <localleader>d $:call InsertSpaceDate()<cr>
-imap <buffer> <localleader>d ~<esc>x:call InsertDate(0)<cr>a
-nmap <buffer> <localleader>D ^:call InsertDate(1)<cr>a <esc>
+nmap <silent><buffer> <localleader>d $:call InsertSpaceDate()<cr>
+imap <silent><buffer> <localleader>d ~<esc>x:call InsertDate(0)<cr>a
+nmap <silent><buffer> <localleader>D ^:call InsertDate(1)<cr>a <esc>
 
 
 " insert the time
-nmap <buffer> <localleader>t $:call InsertSpaceTime()<cr>
-imap <buffer> <localleader>t ~<esc>x:call InsertTime(0)<cr>a
-nmap <buffer> <localleader>T ^:call InsertTime(1)<cr>a <esc>
+nmap <silent><buffer> <localleader>t $:call InsertSpaceTime()<cr>
+imap <silent><buffer> <localleader>t ~<esc>x:call InsertTime(0)<cr>a
+nmap <silent><buffer> <localleader>T ^:call InsertTime(1)<cr>a <esc>
 
 " sort a list naturally
 map <silent> <buffer> <localleader>s :silent call SortChildren(0)<cr>
@@ -569,50 +569,50 @@ map <silent> <buffer> <localleader>s :silent call SortChildren(0)<cr>
 map <silent> <buffer> <localleader>S :silent call SortChildren(1)<cr>
 
 " invoke the file explorer
-map <buffer> <localleader>f :e .<cr>
-imap <buffer> <localleader>f :e .<cr>
+map <silent><buffer> <localleader>f :e .<cr>
+imap <silent><buffer> <localleader>f :e .<cr>
 
 " Insert a fence for segmented lists.
 " I also use this divider to create a <hr> when converting to html
-map <buffer> <localleader>- o----------------------------------------0
-imap <buffer> <localleader>- ----------------------------------------<cr>
+map <silent><buffer> <localleader>- o----------------------------------------0
+imap <silent><buffer> <localleader>- ----------------------------------------<cr>
 
 " switch document between the two types of bodytext styles
 if use_space_colon == 1
   "   First, convert document to the marker style
-  map <localleader>b :%s/\(^\t*\) :/\1/e<cr>:%s/\(^\t*\) /\1 : /e<cr>:let @/=""<cr>
+  map <silent><buffer><localleader>b :%s/\(^\t*\) :/\1/e<cr>:%s/\(^\t*\) /\1 : /e<cr>:let @/=""<cr>
   "   Now, convert document to the space style
-  map <localleader>B :%s/\(^\t*\) :/\1/e<cr>:let @/=""<cr>
+  map <silent><buffer><localleader>B :%s/\(^\t*\) :/\1/e<cr>:let @/=""<cr>
 else
   "   First, convert document to the marker style
-  map <localleader>b :%s/\(^\t*\):/\1/e<cr>:%s/\(^\t*\) /\1: /e<cr>:let @/=""<cr>
+  map <silent><buffer><localleader>b :%s/\(^\t*\):/\1/e<cr>:%s/\(^\t*\) /\1: /e<cr>:let @/=""<cr>
   "   Now, convert document to the space style
-  map <localleader>B :%s/\(^\t*\):/\1/e<cr>:let @/=""<cr>
+  map <silent><buffer><localleader>B :%s/\(^\t*\):/\1/e<cr>:let @/=""<cr>
 endif
 
 " Steve's additional mappings start here
-map <buffer>   <C-K>         <C-]>
-map <buffer>   <C-N>         <C-T>
-map <buffer>   <localleader>0           :set foldlevel=99999<CR>
-map <buffer>   <localleader>9           :set foldlevel=8<CR>
-map <buffer>   <localleader>8           :set foldlevel=7<CR>
-map <buffer>   <localleader>7           :set foldlevel=6<CR>
-map <buffer>   <localleader>6           :set foldlevel=5<CR>
-map <buffer>   <localleader>5           :set foldlevel=4<CR>
-map <buffer>   <localleader>4           :set foldlevel=3<CR>
-map <buffer>   <localleader>3           :set foldlevel=2<CR>
-map <buffer>   <localleader>2           :set foldlevel=1<CR>
-map <buffer>   <localleader>1           :set foldlevel=0<CR>
-map <buffer>   <localleader>,,          :source $HOME/.vimoutlinerrc<CR>
-map <buffer>  <localleader>w           <Esc>:w!<CR>a
-nmap <buffer>   <localleader>e		:call Spawn()<cr>
+map <silent><buffer>   <C-K>         <C-]>
+map <silent><buffer>   <C-N>         <C-T>
+map <silent><buffer>   <localleader>0           :set foldlevel=99999<CR>
+map <silent><buffer>   <localleader>9           :set foldlevel=8<CR>
+map <silent><buffer>   <localleader>8           :set foldlevel=7<CR>
+map <silent><buffer>   <localleader>7           :set foldlevel=6<CR>
+map <silent><buffer>   <localleader>6           :set foldlevel=5<CR>
+map <silent><buffer>   <localleader>5           :set foldlevel=4<CR>
+map <silent><buffer>   <localleader>4           :set foldlevel=3<CR>
+map <silent><buffer>   <localleader>3           :set foldlevel=2<CR>
+map <silent><buffer>   <localleader>2           :set foldlevel=1<CR>
+map <silent><buffer>   <localleader>1           :set foldlevel=0<CR>
+map <silent><buffer>   <localleader>,,          :runtime vimoutliner/vimoutlinerrc<CR>
+map! <silent><buffer>  <localleader>w           <Esc>:w<CR>a
+nmap <silent><buffer>  <localleader>e           :call Spawn()<cr>
 " Steve's additional mappings end here
 
 " Placeholders for already assigned but non-functional commands
-map <buffer> <localleader>h :echo "VimOutliner reserved command: ,,h"<cr>
-imap <buffer> <localleader>h :echo "VimOutliner reserved command: ,,h"<cr>
-map <buffer> <localleader>H :echo "VimOutliner reserved command: ,,H"<cr>
-imap <buffer> <localleader>H :echo "VimOutliner reserved command: ,,H"<cr>
+map <silent><buffer> <localleader>h :echo "VimOutliner reserved command: ,,h"<cr>
+imap <silent><buffer> <localleader>h :echo "VimOutliner reserved command: ,,h"<cr>
+map <silent><buffer> <localleader>H :echo "VimOutliner reserved command: ,,H"<cr>
+imap <silent><buffer> <localleader>H :echo "VimOutliner reserved command: ,,H"<cr>
 
 " End of Vim Outliner Key Mappings }}}1
 " Menu Entries {{{1
