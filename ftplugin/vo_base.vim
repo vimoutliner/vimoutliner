@@ -670,12 +670,13 @@ setlocal tags^=$HOME/.vim/vimoutliner/vo_tags.tag
 " Added an indication of current syntax as per Dillon Jones' request
 let b:current_syntax = "outliner"
 
-" Personal configuration options files as per Matej Cepl
-" Don't add $HOME to rtp
-for rc in split(globpath('$HOME,$HOME/.vimoutliner','.vimoutlinerrc'), "\n") + split(globpath('$HOME,$HOME/.vimouliner', 'vimoutlinerrc'), "\n")
-	exec "source " . rc
-endfor
-ru! vimoutlinerrc vimoutliner/vimoutlinerrc
+" Load rc file, only the first found.
+let rcs = split(globpath('$HOME,$HOME/.vimoutliner','.vimoutlinerrc'), "\n") + split(globpath('$HOME,$HOME/.vimouliner', 'vimoutlinerrc'), "\n")
+if len(rcs) > 0
+	exec 'source '.rcs[0]
+else
+	runtime vimoutliner/vimoutlinerrc
+endif
 " More sophisticated version of the modules loading; thanks to Preben 'Peppe'
 " Guldberg for telling me how to split string and make semi-lists with vim.
 " - Matej Cepl

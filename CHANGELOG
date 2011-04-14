@@ -10,6 +10,7 @@ Development
     - Several updates and additions to the README, README.detailed and doc/vo_readme.txt file.
     file.
     * Bug fixes:
+		- Source only the first vimoutlinerrc found.
 		- Do not echo mappings.
     - Fixed typo and updated reference in install.sh.
     - Fixed several typos and updated reference in the ftplugin/vo_base.vim
