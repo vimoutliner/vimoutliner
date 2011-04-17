@@ -151,6 +151,57 @@
 "Revision 1.2  2003/07/07 14:14:02  noel
 "Added appropriate headers.
 "}}}1
+" mappings {{{1
+" insert a chechbox
+noremap <silent><buffer> <localleader>cb :call SafelyInsertCheckBox()<cr>
+noremap <silent><buffer> <localleader>c% :call SafelyInsertCheckBoxPercent()<cr>
+noremap <silent><buffer> <localleader>cp :call SafelyInsertCheckBoxPercentAlways()<cr>
+noremap <silent><buffer> <localleader>cB :call InsertCheckBox()<cr>
+
+" delete a chechbox
+noremap <silent><buffer> <localleader>cd :call DeleteCheckbox()<cr>
+
+" switch the status of the box and adjust percentages
+if !exists('g:vo_checkbox_fast_calc') || g:vo_checkbox_fast_calc == 1
+	" Use new and faster method
+	noremap <silent><buffer> <localleader>cx :call SwitchBox()       <bar>call CalculateMyBranch(line("."))<cr>
+	noremap <silent><buffer> <localleader>c+ :call IncPercent(".")   <bar>call CalculateMyBranch(line("."))<cr>
+	noremap <silent><buffer> <localleader>c- :call DecPercent(".")   <bar>call CalculateMyBranch(line("."))<cr>
+	noremap <silent><buffer> <localleader>c1 :call SetPercent(".",10)<bar>call CalculateMyBranch(line('.'))<cr>
+	noremap <silent><buffer> <localleader>c2 :call SetPercent(".",20)<bar>call CalculateMyBranch(line('.'))<cr>
+	noremap <silent><buffer> <localleader>c3 :call SetPercent(".",30)<bar>call CalculateMyBranch(line('.'))<cr>
+	noremap <silent><buffer> <localleader>c4 :call SetPercent(".",40)<bar>call CalculateMyBranch(line('.'))<cr>
+	noremap <silent><buffer> <localleader>c5 :call SetPercent(".",50)<bar>call CalculateMyBranch(line('.'))<cr>
+	noremap <silent><buffer> <localleader>c6 :call SetPercent(".",60)<bar>call CalculateMyBranch(line('.'))<cr>
+	noremap <silent><buffer> <localleader>c7 :call SetPercent(".",70)<bar>call CalculateMyBranch(line('.'))<cr>
+	noremap <silent><buffer> <localleader>c8 :call SetPercent(".",80)<bar>call CalculateMyBranch(line('.'))<cr>
+	noremap <silent><buffer> <localleader>c9 :call SetPercent(".",90)<bar>call CalculateMyBranch(line('.'))<cr>
+else
+	" Use the old method
+	noremap <silent><buffer> <localleader>cx :call SwitchBox()       <bar>call NewHMD(FindRootParent(line(".")))<cr>
+	noremap <silent><buffer> <localleader>c+ :call IncPercent(".")   <bar>call NewHMD(FindRootParent(line(".")))<cr>
+	noremap <silent><buffer> <localleader>c- :call DecPercent(".")   <bar>call NewHMD(FindRootParent(line(".")))<cr>
+	noremap <silent><buffer> <localleader>c1 :call SetPercent(".",10)<bar>call NewHMD(FindRootParent(line(".")))<cr>
+	noremap <silent><buffer> <localleader>c2 :call SetPercent(".",20)<bar>call NewHMD(FindRootParent(line(".")))<cr>
+	noremap <silent><buffer> <localleader>c3 :call SetPercent(".",30)<bar>call NewHMD(FindRootParent(line(".")))<cr>
+	noremap <silent><buffer> <localleader>c4 :call SetPercent(".",40)<bar>call NewHMD(FindRootParent(line(".")))<cr>
+	noremap <silent><buffer> <localleader>c5 :call SetPercent(".",50)<bar>call NewHMD(FindRootParent(line(".")))<cr>
+	noremap <silent><buffer> <localleader>c6 :call SetPercent(".",60)<bar>call NewHMD(FindRootParent(line(".")))<cr>
+	noremap <silent><buffer> <localleader>c7 :call SetPercent(".",70)<bar>call NewHMD(FindRootParent(line(".")))<cr>
+	noremap <silent><buffer> <localleader>c8 :call SetPercent(".",80)<bar>call NewHMD(FindRootParent(line(".")))<cr>
+	noremap <silent><buffer> <localleader>c9 :call SetPercent(".",90)<bar>call NewHMD(FindRootParent(line(".")))<cr>
+endif
+
+" calculate the proportion of work done on the subtree
+noremap <silent><buffer> <localleader>cz :call NewHMD(FindRootParent(line(".")))<cr>
+
+"}}}1
+" Load guard for functions {{{1
+if exists('s:loaded')
+	finish
+endif
+let s:loaded = 1
+
 " InsertCheckBox() {{{1
 " Insert a checkbox at the beginning of a header without disturbing the
 " current folding.
@@ -436,50 +487,5 @@ function! NewHMD(line)
 	return ComputePW(a:line,l:count,l:done) " returns with (proportion,weight)
 endf
 
-" mappings {{{1
-" insert a chechbox
-noremap <silent><buffer> <localleader>cb :call SafelyInsertCheckBox()<cr>
-noremap <silent><buffer> <localleader>c% :call SafelyInsertCheckBoxPercent()<cr>
-noremap <silent><buffer> <localleader>cp :call SafelyInsertCheckBoxPercentAlways()<cr>
-noremap <silent><buffer> <localleader>cB :call InsertCheckBox()<cr>
-
-" delete a chechbox
-noremap <silent><buffer> <localleader>cd :call DeleteCheckbox()<cr>
-
-" switch the status of the box and adjust percentages
-if !exists('g:vo_checkbox_fast_calc') || g:vo_checkbox_fast_calc == 1
-	" Use new and faster method
-	noremap <silent><buffer> <localleader>cx :call SwitchBox()       <bar>call CalculateMyBranch(line("."))<cr>
-	noremap <silent><buffer> <localleader>c+ :call IncPercent(".")   <bar>call CalculateMyBranch(line("."))<cr>
-	noremap <silent><buffer> <localleader>c- :call DecPercent(".")   <bar>call CalculateMyBranch(line("."))<cr>
-	noremap <silent><buffer> <localleader>c1 :call SetPercent(".",10)<bar>call CalculateMyBranch(line('.'))<cr>
-	noremap <silent><buffer> <localleader>c2 :call SetPercent(".",20)<bar>call CalculateMyBranch(line('.'))<cr>
-	noremap <silent><buffer> <localleader>c3 :call SetPercent(".",30)<bar>call CalculateMyBranch(line('.'))<cr>
-	noremap <silent><buffer> <localleader>c4 :call SetPercent(".",40)<bar>call CalculateMyBranch(line('.'))<cr>
-	noremap <silent><buffer> <localleader>c5 :call SetPercent(".",50)<bar>call CalculateMyBranch(line('.'))<cr>
-	noremap <silent><buffer> <localleader>c6 :call SetPercent(".",60)<bar>call CalculateMyBranch(line('.'))<cr>
-	noremap <silent><buffer> <localleader>c7 :call SetPercent(".",70)<bar>call CalculateMyBranch(line('.'))<cr>
-	noremap <silent><buffer> <localleader>c8 :call SetPercent(".",80)<bar>call CalculateMyBranch(line('.'))<cr>
-	noremap <silent><buffer> <localleader>c9 :call SetPercent(".",90)<bar>call CalculateMyBranch(line('.'))<cr>
-else
-	" Use the old method
-	noremap <silent><buffer> <localleader>cx :call SwitchBox()       <bar>call NewHMD(FindRootParent(line(".")))<cr>
-	noremap <silent><buffer> <localleader>c+ :call IncPercent(".")   <bar>call NewHMD(FindRootParent(line(".")))<cr>
-	noremap <silent><buffer> <localleader>c- :call DecPercent(".")   <bar>call NewHMD(FindRootParent(line(".")))<cr>
-	noremap <silent><buffer> <localleader>c1 :call SetPercent(".",10)<bar>call NewHMD(FindRootParent(line(".")))<cr>
-	noremap <silent><buffer> <localleader>c2 :call SetPercent(".",20)<bar>call NewHMD(FindRootParent(line(".")))<cr>
-	noremap <silent><buffer> <localleader>c3 :call SetPercent(".",30)<bar>call NewHMD(FindRootParent(line(".")))<cr>
-	noremap <silent><buffer> <localleader>c4 :call SetPercent(".",40)<bar>call NewHMD(FindRootParent(line(".")))<cr>
-	noremap <silent><buffer> <localleader>c5 :call SetPercent(".",50)<bar>call NewHMD(FindRootParent(line(".")))<cr>
-	noremap <silent><buffer> <localleader>c6 :call SetPercent(".",60)<bar>call NewHMD(FindRootParent(line(".")))<cr>
-	noremap <silent><buffer> <localleader>c7 :call SetPercent(".",70)<bar>call NewHMD(FindRootParent(line(".")))<cr>
-	noremap <silent><buffer> <localleader>c8 :call SetPercent(".",80)<bar>call NewHMD(FindRootParent(line(".")))<cr>
-	noremap <silent><buffer> <localleader>c9 :call SetPercent(".",90)<bar>call NewHMD(FindRootParent(line(".")))<cr>
-endif
-
-" calculate the proportion of work done on the subtree
-noremap <silent><buffer> <localleader>cz :call NewHMD(FindRootParent(line(".")))<cr>
-
-"}}}1
 
 " vim600: set foldlevel=0 foldmethod=marker:
