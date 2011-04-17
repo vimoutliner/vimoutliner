@@ -1,5 +1,17 @@
 CHANGELOG
 
+Version 0.3.7
+Development
+	* Additions/Changes:
+	- Added new hoisting plugin.
+	- Added new tags plugin.
+	- Add weighted checkboxes.
+	- Now checkboxes calculations will ignore dash ([-]) marked items.
+	- Added new math plugin.
+	* Bug fixes:
+	- Stop setting global options.
+	- Fixed checkboxes calculation to make it faster and more consistent.
+
 Version 0.3.6
 Development
 	* Additions/Changes:
