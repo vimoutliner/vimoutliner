@@ -200,6 +200,11 @@ endfunction
 " Create an interoutline link with the current keyword under the cursor.
 function! s:create_link()
 	let line = getline('.')
+	" Create link on a header only
+	if line =~ '\m^\t\+[^ :;<>|]'
+		echom 'Vimoutliner: Links have to be on a header.'
+		return
+	endif
 	" Check if the there's is some content in the current line and a current
 	" link doesn't exists.
 	if line =~# '\m^\t*'.s:checkboxpat.'_ilink_\%([^:]\{-}:\s\)\?\s*\S\+.*$'
