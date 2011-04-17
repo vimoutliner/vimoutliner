@@ -67,8 +67,8 @@ let b:current_syntax = "outliner"
 
 let maplocalleader = ",,"		" this is prepended to VO key mappings
 
-setlocal ignorecase			" searches ignore case
-setlocal smartcase			" searches use smart case
+"setlocal ignorecase			" searches ignore case
+"setlocal smartcase			" searches use smart case
 
 let use_space_colon=0
 
@@ -76,17 +76,17 @@ let use_space_colon=0
 
 " VimOutliner Standard Settings {{{1
 setlocal autoindent	
-setlocal backspace=2
+"setlocal backspace=2
 setlocal wrapmargin=5
-setlocal wrap!
+setlocal wrap
 setlocal tw=78
 setlocal noexpandtab
-setlocal nosmarttab
-setlocal softtabstop=0 
-setlocal foldlevel=20
-setlocal foldcolumn=1		" turns on "+" at the beginning of close folds
 setlocal tabstop=4			" tabstop and shiftwidth must match
 setlocal shiftwidth=4		" values from 2 to 8 work well
+"setlocal nosmarttab
+"setlocal softtabstop=0 
+setlocal foldlevel=20
+setlocal foldcolumn=1		" turns on "+" at the beginning of close folds
 setlocal foldmethod=expr
 setlocal foldexpr=MyFoldLevel(v:lnum)
 setlocal indentexpr=
@@ -347,7 +347,7 @@ function MyFoldText()
 	else
 		let l:sub = l:sub . " lines)" 
 	endif
-	return l:sub
+	return l:sub.repeat(' ', winwidth(0)-len(l:sub))
 endfunction
 "}}}2
 " InsertDate() {{{2
@@ -546,7 +546,7 @@ endif
 " within the same buffer. Using :e has demonstrated this.
 set foldtext=MyFoldText()
 
-setlocal fillchars=|, 
+"setlocal fillchars=|, 
 
 endif " if !exists("loaded_vimoutliner_functions")
 " End Vim Outliner Functions
@@ -660,7 +660,7 @@ if !exists("autocommand_vo_loaded")
 	let autocommand_vo_loaded = 1
 	au BufNewFile,BufRead *.otl                     setf vo_base
 "	au CursorHold *.otl                             syn sync fromstart
-	set updatetime=500
+	"set updatetime=500
 endif
 "}}}1
 
