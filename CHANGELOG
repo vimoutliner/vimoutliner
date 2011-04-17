@@ -1487,4 +1487,4 @@ date: 2003-10-17 02:21:28 +0000;  author: noel;  state: Exp;
 Official version 0.3.1
 =============================================================================
  
-" vim600: set noet ts=4 sw=4 sts=4 tw=78:
+" vim600: set noet ts=8 sw=8 sts=8 tw=78:
