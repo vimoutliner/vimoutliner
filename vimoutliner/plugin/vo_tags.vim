@@ -62,14 +62,12 @@ let s:loaded = 1
 function! s:get_link(linenr)
 	" Check if it's a valid link.
 	let line = getline(a:linenr)
-	if line =~? '^\t*'.s:checkboxpat.'_tag_\w\+\s*$'
+	if line =~? '\m^\t*'.s:checkboxpat.'_tag_\w\+\s*$'
 		" Don't remember where this bit came from, please let me know if you do.
-		let [_,file,row,col;m0] = matchlist(getline(a:linenr + 1), '^\t*'.s:checkboxpat.'\([^:]\+\)\%(:\(\d\+\)\)\?\%(:\(\d\+\)\)\?$')
-		" Expand '%'.
-	elseif line =~? '^\t*'.s:checkboxpat.'_ilink_\(.\{-}:\s\)\?\s*\S.*$'
-		" The following pattern is very magic.
-		let [_,file,row,col;m0] = matchlist(line, '^\t*'.s:checkboxpat.'_ilink_\%(.\{-}:\s\)\?\s*\([^:]\+\)\%(:\(\d\+\)\)\?\%(:\(\d\+\)\)\?$')
-		" Expand '%'.
+		let [_,file,row,col;m0] = matchlist(getline(a:linenr + 1), '\m^\t*'.s:checkboxpat.'\([^:]\+\)\%(:\(\d\+\)\)\?\%(:\(\d\+\)\)\?$')
+	elseif line =~? '\m^\t*'.s:checkboxpat.'_ilink_\(.\{-}:\s\)\?\s*\S.*$'
+		let pat = '\m^\t*'.s:checkboxpat.'_ilink_\%([^:\\/]\{-}:\s\)\?\s*\(.\+\)\%(:\(\d\+\)\)\?\%(:\(\d\+\)\)\?$'
+		let [_,file,row,col;m0] = matchlist(line, pat)
 	else
 		return ['',0,0,0]
 	endif
@@ -90,7 +88,7 @@ function! s:follow_link()
 	" Get link data.
 	let [file, row, col, is_inner_link] = s:get_link(line('.'))
 	if file == ''
-		echom 'Vimoutliner: "'.substitute(getline('.'), '^\t*'.s:checkboxpat, '', '').'" doesn''t not look like an inter-outline link.'
+		echom 'Vimoutliner: "'.substitute(getline('.'), '\m^\t*'.s:checkboxpat, '', '').'" doesn''t not look like an inter-outline link.'
 		return
 	endif
 
@@ -140,7 +138,7 @@ function! s:follow_link()
 	try
 		call s:update_jump_list()
 		if !is_inner_link
-			exec "buffer ".bufnr(substitute(file, '^'.getcwd().'/','',''), 1)
+			exec "buffer ".bufnr(substitute(file, '\m^'.getcwd().'/','',''), 1)
 		endif
 		if row > 0
 			call setpos('.',[0,row,col,0])
@@ -149,7 +147,7 @@ function! s:follow_link()
 	catch
 		" Prevent reporting that the error ocurred inside this function.
 		echoh ErrorMsg
-		echom substitute(v:exception,'^Vim(.\{-}):','','')
+		echom substitute(v:exception,'\m^Vim(.\{-}):','','')
 		echoh None
 	endtry
 	return ''
@@ -167,9 +165,9 @@ function! s:get_absolute_path(baseDir, fileName)
 		let absFileName = baseDir . a:fileName
 	endif
 
-	let absFileName = substitute(absFileName, '/\./', '/', 'g')
+	let absFileName = substitute(absFileName, '\m/\./', '/', 'g')
 	while absFileName =~ '/\.\./'
-		absFileName = substitute(absFileName, '/[^/]*\.\./', '', '')
+		absFileName = substitute(absFileName, '\m/[^/]*\.\./', '', '')
 	endwhile
 	return absFileName
 endfunction
@@ -204,7 +202,7 @@ function! s:create_link()
 	let line = getline('.')
 	" Check if the there's is some content in the current line and a current
 	" link doesn't exists.
-	if line =~# '^\t*'.s:checkboxpat.'_ilink_\%([^:]\{-}:\s\)\?\s*\S\+.*$'
+	if line =~# '\m^\t*'.s:checkboxpat.'_ilink_\%([^:]\{-}:\s\)\?\s*\S\+.*$'
 		echom 'Vimoutliner: Looks like "'.substitute(line,'^\t*'.s:checkboxpat.'\(\S.*$\)','\1','').'" is already a link.'
 		return
 	endif
@@ -215,21 +213,21 @@ function! s:create_link()
 		" User canceled.
 		return ''
 	endif
-	let path = matchstr(path, '^\t*'.s:checkboxpat.'\zs\S.\{-}\ze\s*$')
+	let path = matchstr(path, '\m^\t*'.s:checkboxpat.'\zs\S.\{-}\ze\s*$')
 	"if path !~ '\.otl$'
 		"" Add extension.
 		"let path = path.'.otl'
 	"endif
 	let tag = '_ilink_'
-	let [_,indent,checkbox,label;m0] = matchlist(line, '^\(\t*\)\('.s:checkboxpat.'\)\%(_ilink_\)\?\s*\(\S\%(.\{-1,}\S\)\?\)\?\s*\%(:\s\)\?\s*$')
-	echom indent.'-'.checkbox.'-'.label
+	let [_,indent,checkbox,label;m0] = matchlist(line, '\m^\(\t*\)\('.s:checkboxpat.'\)\%(_ilink_\)\?\s*\(\S\%(.\{-1,}\S\)\?\)\?\s*\%(:\s\)\?\s*$')
+	"echom indent.'-'.checkbox.'-'.label
 	if indent == ''
-		let indent = matchstr(getline(line('.')-1), '^\(\t*\)')
+		let indent = matchstr(getline(line('.')-1), '\m^\(\t*\)')
 	endif
-	if label !~ '^\s*$'
-		let label .= ': '
+	if label !~ ':\s*$'
+		let label = substitute(label, '\m\s*$', ': ', '')
 	else
-		let label = ''
+		let label = substitute(label, '\m:\s*$', ': ', '')
 	endif
 
 	call setline(line('.'), indent.checkbox.tag.' '.label.path)
