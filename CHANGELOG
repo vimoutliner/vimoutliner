@@ -3,25 +3,27 @@ CHANGELOG
 Version 0.3.6
 Development
 	* Additions/Changes:
-	- Added updated comments and information to the user in the INSTALL file.
-	- Added comments and information to the user in install.sh to align with
-	  the new version.
-	- Added new light version of README and moved the more extensive file to
-	  README.detailed
+	- Added updated comments and information to the user in the INSTALL
+	  file.
+	- Added comments and information to the user in install.sh to align
+	  with the new version.
+	- Added new light version of README and moved the more extensive file
+	  to README.detailed
 	- Several updates and additions to the README, README.detailed and
 	  doc/vo_readme.txt file.
 	* Bug fixes:
 	- Source only the first vimoutlinerrc found.
 	- Do not echo mappings.
 	- Fixed typo and updated reference in install.sh.
-	- Fixed several typos and updated reference in the ftplugin/vo_base.vim
+	- Fixed several typos and updated reference in the
+	  ftplugin/vo_base.vim
 	- Fixed typos and removed outdated references in the vo_hoist.otl and
 	  vo_hoist.vim files.
-	- Fixed typos and removed outdated references in the vo_checkbox.otl file.
+	- Fixed typos and removed outdated references in the vo_checkbox.otl
+	  file.
 	- Fixed two mappings for sourcing rc file and writing file in
 	  ftplugin/vo_base.vim. 
 	- Fixed typos in colors/vo_base.vim
-
 Version 0.3.5
 Released 2011-03-20
 	* Additions/Changes:
@@ -60,7 +62,8 @@ Released
 	- Checkboxes and hoisting default to 'on'
 	- Modified ,,cb and ,,c% (and ,,cp) to work only on headings
 	- Fixed the ,,cz command to make the correct call
-	- Added descriptions of VO objects to help (headings, text, tables, etc.)
+	- Added descriptions of VO objects to help (headings, text, tables,
+	  etc.)
 	* Bug fixes:
 	- W18 errors have been fixed
 
