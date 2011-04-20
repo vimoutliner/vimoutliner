@@ -677,18 +677,13 @@ if len(rcs) > 0
 else
 	runtime vimoutliner/vimoutlinerrc
 endif
-" More sophisticated version of the modules loading; thanks to Preben 'Peppe'
-" Guldberg for telling me how to split string and make semi-lists with vim.
-" - Matej Cepl
-let s:tmp = g:vo_modules_load . ':'
-let s:idx = stridx(s:tmp, ':')
-
-while (s:idx != -1)
-    let s:part = strpart(s:tmp, 0, s:idx)
-    let s:tmp = strpart(s:tmp, s:idx + 1)
-    let s:idx = stridx(s:tmp, ':')
-    exec "runtime! vimoutliner/plugin/vo_" . s:part . ".vim"
-endwhile
+" Load modules
+if exists('g:vo_modules_load')
+	for vo_module in split(g:vo_modules_load, '\s*:\s*')
+		exec "runtime vimoutliner/plugin/vo_" . vo_module . ".vim"
+	endfor
+unlet! vo_module
+endif
 
 " The End
 " vim600: set foldmethod=marker foldlevel=0:
