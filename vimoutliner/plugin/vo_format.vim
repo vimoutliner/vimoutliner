@@ -16,16 +16,39 @@
 " Documentation{{{1
 "
 " This script inserts bullets, dashes, and arrows in front of lines, including
-" text lines. To insert markers for several lines, select the lines with V
+" VO body text. To insert markers for several lines, select the lines with V
 " and execute the mapping. Indents will be kept as they are.
-" You can also use the colon function to make text lines from headers.
+" You can also use the MakeText function to make body text from headers or
+" lists.
 " 
 " There are also functions for 
-" 1) Aligning text in a paragraph to a 1 level header
+" 1) Aligning text in a paragraph to a level 1 header
 " 2) Insert checkboxes for all headings in a paragraph
-" 3) Indent text in a paragraph to the right
-" 4) Indent text in a paragraph to the left
+" 3) Indent text in a paragraph/branch to the right
+" 4) Indent text in a paragraph/branch to the left
 "
+"}}}1
+" Mappings {{{1
+
+""" Command mappings
+"
+" Insert bullets on selected text
+map <buffer><localleader><F1> :call InsertBullet()<cr> 
+" Insert dashes on selected text
+map <buffer><localleader><F2> :call InsertDash()<cr>
+" Insert arrows on selected text
+map <buffer><localleader><F3> :call InsertArrow()<cr>
+" Insert colons before selected text
+map <buffer><localleader><F4> :call InsertColon()<cr>
+" Align text in a paragraph and indent 1 level
+map <buffer><localleader><F5> V}k:le<cr>V}>
+" Insert checkboxes for text lines in a paragraph
+map <buffer><localleader><F6> V}k,,cb
+" Indent text in a paragraph 1 level to the right and keep indentation
+map <buffer><localleader><F7> :call VOindentright()<cr>
+" Indent text in a paragraph 1 level to the level and keep indentation
+map <buffer><localleader><F8> :call VOindentleft()<cr>
+
 "}}}1
 " InsertBullet() {{{1
 " Insert bullets on selected text.
@@ -119,28 +142,6 @@ function! VOindentleft()
 endfunction
 
 "}}}1  
-" Mappings {{{1
-
-""" Command mappings
-"
-" Insert bullets on selected text
-map <buffer><localleader><F1> :call InsertBullet()<cr> 
-" Insert dashes on selected text
-map <buffer><localleader><F2> :call InsertDash()<cr>
-" Insert arrows on selected text
-map <buffer><localleader><F3> :call InsertArrow()<cr>
-" Insert colons before selected text
-map <buffer><localleader><F4> :call InsertColon()<cr>
-" Align text in a paragraph and indent 1 level
-map <buffer><localleader><F5> V}k:le<cr>V}>
-" Insert checkboxes for text lines in a paragraph
-map <buffer><localleader><F6> V}k,,cb
-" Indent text in a paragraph 1 level to the right and keep indentation
-map <buffer><localleader><F7> :call VOindentright()<cr>
-" Indent text in a paragraph 1 level to the level and keep indentation
-map <buffer><localleader><F8> :call VOindentleft()<cr>
-
-"}}}1
 " The End
 " vim600: set foldmethod=marker foldlevel=0:
 
