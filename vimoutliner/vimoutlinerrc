@@ -21,6 +21,9 @@ let g:vo_modules_load .= ':newhoist'
 " Uncomment the following line to enable smart_paste.
 "let g:vo_modules_load .= ':smart_paste'
 
+" Uncomment the following line to enable clocking.
+"let g:vo_modules_load .= ':clock'
+
 "User Preferences ***************************************************
 "let maplocalleader = ",,"		" this is prepended to VO key mappings
 
