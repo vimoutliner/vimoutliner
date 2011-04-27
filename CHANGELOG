@@ -8,6 +8,9 @@ Development
 	- Add weighted checkboxes.
 	- Now checkboxes calculations will ignore dash ([-]) marked items.
 	- Added new math plugin.
+	- Merged new clock plugin.
+	- Added new format plugin.
+	- Added updated smart_paste plugin.
 	* Bug fixes:
 	- Stop setting global options.
 	- Fixed checkboxes calculation to make it faster and more consistent.
