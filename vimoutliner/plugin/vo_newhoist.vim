@@ -150,13 +150,13 @@ function! MyHoistableFoldLevel(line)
 	let l:nextindent = Ind(a:line+1)
 
 	if HoistFold(a:line)
-		"if (a:line == 1)
+	  " if (a:line == 1)
 		"	return g:hlevel
-		"elseif (HoistFold(a:line-1) == 0)
+		" elseif (HoistFold(a:line-1) == 0)
 		"	return ">".0
-		"else
+		" else
 		"	return g:hlevel
-		"endif
+		" endif
 		return g:hlevel
 
 	elseif BodyText(a:line)
@@ -390,13 +390,14 @@ function! Hoist(line)
 		return
 	endif
 	"call cursor(l:parent,1)
-	let l:firstline = l:parent+1
+	"let l:firstline = l:parent+1
+	let l:firstline = l:parent
 	let l:childindent = Ind(l:firstline)
 	let l:lastline = FindLastChild(l:parent)
 	setlocal foldlevel=20
 	call HoistTagBefore(l:firstline,l:childindent)
 	call HoistTagAfter(l:lastline+1)
-	call RemoveTabs(l:firstline,l:lastline,l:childindent)
+"	call RemoveTabs(l:firstline,l:lastline,l:childindent)
 	call cursor(l:firstline,1)
 	setlocal foldlevel=19
 	augroup VO_HOIST
@@ -470,9 +471,9 @@ function! DeHoist()
 	let l:bottom = FindBottomHoist(l:line)
 	echom 1
 	let l:indent = GetHoistedIndent(l:top)
-	let l:tabs = MakeTabs(l:indent)
-	let l:doit = "silent ".(l:top+1).",".(l:bottom-1)."s/^/".l:tabs."/"
-	exe l:doit
+"	let l:tabs = MakeTabs(l:indent)
+"	let l:doit = "silent ".(l:top+1).",".(l:bottom-1)."s/^/".l:tabs."/"
+"	exe l:doit
 	call HoistDeTagBefore(l:top)
 	call HoistDeTagAfter(l:bottom)
 	if !Hoisted()
