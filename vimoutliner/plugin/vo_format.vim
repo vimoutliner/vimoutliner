@@ -1,11 +1,13 @@
-" This script inserts bullets, dash, and arrow in from of lines, including
-" text lines. To insert markers for several lines, choose the linues with V
+" This script inserts bullets, dashes, and arrows in front of lines, including
+" text lines. To insert markers for several lines, select the lines with V
 " and execute the mapping. Indents will be kept as they are.
 " You can also use the colon function to make text lines from headers.
 " 
-" There are also mappings for 1) Aligning text in a paragraph to a 1 level header, 2)
-" Insert checkboxes for all headings in a paragraph, 3) Indent text in a
-" paragraph to the right, 4) Indent text in a paragraph to the left.
+" There are also functions for 
+" 1) Aligning text in a paragraph to a 1 level header
+" 2) Insert checkboxes for all headings in a paragraph
+" 3) Indent text in a paragraph to the right
+" 4) Indent text in a paragraph to the left
 "
 
 
