@@ -10,6 +10,7 @@ Development
 	- Added new math plugin.
 	- Merged new clock plugin.
 	- Added new format plugin.
+	- Added new gtd plugin.
 	- Added updated smart_paste plugin.
 	* Bug fixes:
 	- Stop setting global options.
