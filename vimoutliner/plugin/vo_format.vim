@@ -1,5 +1,5 @@
 "######################################################################
-"# VimOutliner Format
+"# VimOutliner Format plugin
 "# Copyright (C) 2011 by Jostein Berntsen 
 "# The file is currently an experimental part of Vim Outliner.
 "#
@@ -28,6 +28,14 @@
 " 4) Indent text in a paragraph/branch to the left
 "
 "}}}1
+" Load guard for functions {{{1
+if exists("g:loaded_vo_format") || &cp
+  finish
+endif
+let g:loaded_vo_format= 1
+let s:keepcpo           = &cpo
+set cpo&vim
+
 " Mappings {{{1
 
 """ Command mappings
@@ -39,7 +47,7 @@ map <buffer><localleader><F2> :call InsertDash()<cr>
 " Insert arrows on selected text
 map <buffer><localleader><F3> :call InsertArrow()<cr>
 " Insert colons before selected text
-map <buffer><localleader><F4> :call InsertColon()<cr>
+map <buffer><localleader><F4> :call MakeText()<cr>
 " Align text in a paragraph and indent 1 level
 map <buffer><localleader><F5> V}k:le<cr>V}>
 " Insert checkboxes for text lines in a paragraph
