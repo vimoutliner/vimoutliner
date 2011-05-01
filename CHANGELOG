@@ -11,8 +11,6 @@ Development
 	  to README.detailed
 	- Several updates and additions to the README, README.detailed and
 	  doc/vo_readme.txt file.
-	- Updated the vo_smart_paste.vim plugin with new function, and updated
-	  mapping.
 	* Bug fixes:
 	- Source only the first vimoutlinerrc found.
 	- Do not echo mappings.
