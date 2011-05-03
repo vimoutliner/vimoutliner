@@ -52,8 +52,6 @@ gzip and vimball archives are available here:
 
 https://github.com/vimoutliner/vimoutliner/downloads
 
-(Downloads can also be done from Freshmeat:
-
 
 To install from the gzip archive follow these steps:
 
@@ -72,6 +70,10 @@ If you want to install it in other folder use the following command:
 NOTE: If you install from a vimball archive you need to set the executable
 permissions for the scripts in ~/vim/vimoutliner/script (like chmod +x
 <script> in Linux/Mac OS X).
+
+Download of all packages can also be done from the Freshmeat site:
+
+ http://freshmeat.net/projects/vimoutliner       
 
 
 For more detailed installation instructions see the INSTALL file in
