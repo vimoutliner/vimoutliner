@@ -1,6 +1,6 @@
 "#########################################################################
 "# syntax/vo_base.vim: VimOutliner syntax highlighting
-"# version 0.3.0
+"# version 0.3.6
 "#   Copyright (C) 2001,2003 by Steve Litt (slitt@troubleshooters.com)
 "#
 "#   This program is free software; you can redistribute it and/or modify
