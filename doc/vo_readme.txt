@@ -1248,8 +1248,35 @@ New ways of using your brain produce new ways to use outlines.
 
 ==============================================================================
                                                                     *vo-history*
-Version                                                             *vo-version*
+Change Log                                                          *vo-version*
 
+Version 0.3.6
+Released 2011-05-08
+	* Additions/Changes:~
+	- Added updated comments and information to the user in the INSTALL
+	  file.
+	- Added comments and information to the user in install.sh to align
+	  with the new version.
+	- Added new light version of README and moved the more extensive file
+	  to README.detailed
+	- Several updates and additions to the README, README.detailed and
+	  doc/vo_readme.txt file.
+
+	* Bug fixes:~
+	- Source only the first vimoutlinerrc found.
+	- Do not echo mappings.
+	- Fixed typo and updated reference in install.sh.
+	- Fixed several typos and updated reference in the
+	  ftplugin/vo_base.vim
+	- Fixed typos and removed outdated references in the vo_hoist.otl and
+	  vo_hoist.vim files.
+	- Fixed typos and removed outdated references in the vo_checkbox.otl
+	  file.
+	- Fixed two mappings for sourcing rc file and writing file in
+	  ftplugin/vo_base.vim. 
+	- Fixed typos in colors/vo_base.vim
+	- Fixed errors when g:vo_modules_load is not defined, also updated the
+	  plugin loading process to use lists.
 
 Version 0.3.5
 Released 2011-03-20
