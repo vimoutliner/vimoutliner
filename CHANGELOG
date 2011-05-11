@@ -12,6 +12,7 @@ Development
 	- Added new format plugin.
 	- Added new gtd plugin.
 	- Added updated smart_paste plugin.
+	- Added otl2latex script with files.
 	* Bug fixes:
 	- Stop setting global options.
 	- Fixed checkboxes calculation to make it faster and more consistent.
