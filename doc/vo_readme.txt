@@ -1,7 +1,7 @@
 *vo_readme.txt*	For Vim version 7.1	Last change: 2011 March 25
 
                                                                 *vo* *vimoutliner*
-The VimOutliner  0.3.6 ~
+VimOutliner  0.3.6 ~
 
 VimOutliner is an outline processor designed with lighting fast authoring as
 the main feature, it also has many of the same features as Grandview, More,
