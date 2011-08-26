@@ -59,20 +59,20 @@ columns = []
 # output: simple command usage is printed on the console
  
 def showUsage():
-   print
-   print "Usage:"
-   print "otl2table.py [options] inputfile > outputfile"
-   print "Options"
-   print "    -n              Don't include trailing columns."
-   print "    -t type        Specify field separator type."
-   print "                   Types:"
-   print "                      tab - separate fields with tabs (default)"
-   print "                      csv - separate fields with ,"
-   print "                      qcsv - separate fields with \",\""
-   print "                      bullets - uses HTML tags <ul> and <li>"
-   print "    -v              Print version (RCS) information."
-   print "output is on STDOUT"
-   print
+   print()
+   print("Usage:")
+   print("otl2table.py [options] inputfile > outputfile")
+   print("Options")
+   print("    -n              Don't include trailing columns.")
+   print("    -t type        Specify field separator type.")
+   print("                   Types:")
+   print("                      tab - separate fields with tabs (default)")
+   print("                      csv - separate fields with ,")
+   print("                      qcsv - separate fields with \",\"")
+   print("                      bullets - uses HTML tags <ul> and <li>")
+   print("    -v              Print version (RCS) information.")
+   print("output is on STDOUT")
+   print()
 
 # version
 # print the RCS version information
@@ -80,13 +80,13 @@ def showUsage():
 # output: RSC version information is printed on the console
  
 def showVersion():
-   print
-   print "RCS"
-   print " $Revision: 1.2 $"
-   print " $Date: 2005/09/25 14:24:28 $"
-   print " $Author: noel $"
-   print " $Source: /home/noel/active/otl2table/RCS/otl2table.py,v $"
-   print
+   print()
+   print("RCS")
+   print(" $Revision: 1.2 $")
+   print(" $Date: 2005/09/25 14:24:28 $")
+   print(" $Author: noel $")
+   print(" $Source: /home/noel/active/otl2table/RCS/otl2table.py,v $")
+   print()
 
 # getArgs
 # Check for input arguments and set the necessary switches
@@ -119,7 +119,7 @@ def getArgs():
 	  formatMode = sys.argv[i+1]		# get the type
 	  i = i + 1				# increment the pointer
 	elif (sys.argv[i][0] == "-"):
-	  print "Error!  Unknown option.  Aborting"
+	  print("Error!  Unknown option.  Aborting")
 	  sys.exit()
 	else: 					# get the input file name
           inputfile = sys.argv[i]
@@ -163,20 +163,20 @@ def closeLevels():
 	   colcount = 10
   if formatMode == "tab":
 	  for i in range(1,colcount+1):
-		  print columns[i] + "\t",
-	  print
+		  print(columns[i] + "\t", end=' ')
+	  print()
   elif formatMode == "csv":
 	  output = ""
 	  for i in range(1,colcount):
 		  output = output + columns[i] + ","
 	  output = output + columns[colcount]
-	  print output
+	  print(output)
   elif formatMode == "qcsv":
 	  output = "\""
 	  for i in range(1,colcount):
 		  output = output + columns[i] + "\",\""
 	  output = output + columns[colcount] + "\""
-	  print output
+	  print(output)
   for i in range(level+1,10):
 	  columns[i] = ""
 
