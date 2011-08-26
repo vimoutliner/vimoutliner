@@ -372,7 +372,7 @@ endfunction
 " InsertTime() {{{2
 " Insert the time.
 function InsertTime(ba)
-	let @x = strftime("%T")
+	let @x = strftime("%H:%M:%S")
 	if a:ba == "0"
 		normal! "xp
 	else
@@ -384,7 +384,7 @@ endfunction
 " Insert a space, then the time.
 function InsertSpaceTime()
 	let @x = " "
-	let @x = @x . strftime("%T")
+	let @x = @x . strftime("%H:%M:%S")
 	normal! "xp
 endfunction
 "}}}2
