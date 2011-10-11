@@ -33,6 +33,7 @@ and body text.
   Plugins                                                       |vo-plugins|
       Checkboxes                                               |vo-checkbox|
       Hoisting                                                 |vo-hoisting|
+      Clock                                                       |vo-clock|
   Scripts                                                       |vo-scripts|
       vo_maketags.pl                                           |vo-maketags|
       otl2html.py                                                 |otl2html|
@@ -791,8 +792,9 @@ Plugins                                                             *vo-plugins*
 The VimOutliner distribution currently includes two plugins for easy handling
 of checkboxes, hoisting (see below) and smart paste. 
 
-The checkboxes plugin is enables by default. The hoisting and smart paste plugin are disabled by default.
-To enable these look for the easy instructions for this in your $HOME/.vimoutlinerrc file.
+The checkboxes plugin is enables by default. The hoisting smart paste and
+clocking plugin are disabled by default. To enable these look for the easy
+instructions for this in your $HOME/.vimoutlinerrc file.
 
 More information below and in the plugin files in the $HOME/.vim/vimoutliner/plugin folder.
 
@@ -1092,6 +1094,72 @@ Open the main file in VimOutliner Search for the line containing the __hoist
 tag On this line, do
 
     ,,H    Manual de-hoisting
+
+                                                                      *vo-clock*
+Clock~
+
+The clock plugin is a little imitation of a nice feture from emacs orgmode.
+The clockpugin allows to track times and summarize them up in the parent
+heading.
+
+To enable this plugin uncomment the following line in ~/.vimoutlinerrc:
+>
+    "let g:vo_modules_load .= ':clock'
+<
+To start clocking you need to write a heading containing times in square
+brackets like shown below. After the closing bracket -> indicates the place
+where the calcualted time is written. The arrow can be followed by a char to
+indicate to unit in which the time is displayed. Use 's' for seconds, 'm' for
+minutes, 'h' for hours and 'd' for days. If no unit is given hours are used.
+>
+    Year 2011 -> d
+        January ->
+            Monday, 3th [08:30:00 -- 17:45:00] -> m
+            Tuesday, 3th [08:50:25 -- 18:00:02] -> s
+<
+
+To summarize the times up within the outline headings ending with -> {char}
+use
+
+    ,,cu    Clock update with the cursor somewhere in the hierarchy.
+
+After that the outline should look like this:
+>
+    Year 2011 -> 0.77 d
+        January -> 18.41 h
+            Monday, 3th [08:30:00 -- 17:45:00] -> 555.00 m
+            Tuesday, 3th [08:50:25 -- 18:00:02] -> 32977 s
+<
+Every time the times are changed or the units where changed use ,,cu to update
+all times within the hierarchy.
+
+Mappings for fast clocking:
+
+    ,,cs    Clock start. Date and current time as start and endtime are
+            written at cursor position. Works in normal mode and insert mode.
+>
+    Year 2011 -> 0.77 d
+        January -> 18.41 h
+            Monday, 3th [08:30:00 -- 17:45:00] -> 555.00 m
+            Tuesday, 3th [08:50:25 -- 18:00:02] -> 32977 s
+            2011-10-11 [01:32:11 -- 01:32:11] ->
+>
+To set a new endtime, place the cursor at the desired line and use following
+mapping:
+
+    ,,cS    Clock stop. Set the endtime to current time. This works also in
+            normal mode and insert mode.
+
+>
+    Year 2011 -> 0.77 d
+        January -> 18.41 h
+            Monday, 3th [08:30:00 -- 17:45:00] -> 555.00 m
+            Tuesday, 3th [08:50:25 -- 18:00:02] -> 32977 s
+            2011-10-11 [01:32:11 -- 01:42:19] -> 0.17 h
+>
+At the moment there are no userdefined timeformats supported. And it's not
+possible to clock times over the midnight like [22:25:00 -- 01:00:00], but
+it's usable for the most important cases.
 
 
 ==============================================================================
