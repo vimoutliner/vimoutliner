@@ -94,7 +94,8 @@ installation, the script creates the necessary directory tree and copies the
 files which provide the core functionality and documentation.
 
 With the second question you decide whether you want to install some brand new
-add-ons, currently implementing hoisting and checkboxes.
+add-ons, currently implementing checkboxes(enabled) as well as smartpaste and
+hoisting(disabled).
 
                                                                    *vo-updating*
 Updating~
