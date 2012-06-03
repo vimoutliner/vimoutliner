@@ -1,3 +1,5 @@
+Tntroduction
+
 VimOutliner is an outline processor with many of the same features
 as Grandview, More, Thinktank, Ecco, etc. Features include tree
 expand/collapse, tree promotion/demotion, level sensitive colors,
@@ -27,7 +29,7 @@ VimOutliner has been reported to help with the following tasks:
     - 'Plot device' for writing novels
     - Inventory control
     - Hierarchical database
-    - Web site managment
+    - Web site management
 
 * Characteristics
 
@@ -50,9 +52,6 @@ version number from the package you have downloaded):
 
 $ unzip vimoutliner-0.3.x.zip $ cd vimoutliner-0.3.x $ sh install.sh
 
-gzip and vimball archives are available here:
-
-https://github.com/vimoutliner/vimoutliner/downloads
 
 2. Gzip archive
 
@@ -77,6 +76,12 @@ permissions for the scripts in ~/vim/vimoutliner/script (like chmod +x
 <script> in Linux/Mac OS X).
 
 
+Downloads
+
+gzip and vimball archives are available here:
+
+https://github.com/vimoutliner/vimoutliner/downloads
+
 Download of all packages can also be done from the Freshmeat site:
 
  http://freshmeat.net/projects/vimoutliner
@@ -85,6 +90,8 @@ For more detailed installation instructions see the INSTALL file in
 this directory.
 
 
+
+ vim:set filetype=help textwidth=78:
 
 
 
