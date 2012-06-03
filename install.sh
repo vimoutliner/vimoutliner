@@ -8,22 +8,22 @@ OS=`uname`
 
 #BACKUP FILE NAMES
 bext=`date +_%T_%F.old`
-if [ $OS == Linux ] ; then 
+if [ $OS = Linux ] ; then 
        backupargs="-bS $bext"
-elif [ $OS == FreeBSD ] ; then
+elif [ $OS = FreeBSD ] ; then
        backupargs="-bB $bext"
 else backupargs="";
 fi
 
 
 #SOME FUNCTIONS
-function sure? {
-	read -p" (y/N)? " 
+sure () {
+	read REPLY
 	echo
 	test $REPLY = "y" || test $REPLY = "Y"
 }
 
-function make_dir {
+make_dir () {
 	  test -d $1 || {
 		  echo "    creating: $1"
 		  mkdir $1
@@ -31,16 +31,16 @@ function make_dir {
   	}
 }
 
-function copyfile {
+copyfile () {
 	echo "    installing: $2/$1"
 	install $backupargs $1 $2/$1
 }
 
-function copydir {
+copydir () {
 	files=`ls $1`
 	for i in $files; do 
 		echo "    installing: $2/$i"
-		if [[ -d $1/$i ]]; then
+		if [ -d $1/$i ]; then
 			mkdir -p $2/$i
 			copydir $1/$i $2/$i
 		else
@@ -58,8 +58,8 @@ Vim Outliner Installation
     recovery of any of the old files.
 
 EOT
-echo -n "Would you like to continue "
-sure? || exit
+echo -n "Would you like to continue (y/N) ? "
+sure || exit
 
 
 #CREATE NECESSARY DIRECTORIES
@@ -112,15 +112,15 @@ if [ $modified -eq 0 ] ; then echo "    not modified"; fi
 
 #COPY FILES AND BACKUP ANY EXISTING FILES
 echo "installing files and making backups if necessary (*$bext)"
-copyfile syntax/vo_base.vim $vimdir
-copyfile ftplugin/vo_base.vim $vimdir
-copyfile ftdetect/vo_base.vim $vimdir
-copyfile doc/vo_readme.txt $vimdir
-copyfile doc/vo_cheatsheet.txt $vimdir
-copyfile colors/vo_dark.vim $vimdir
-copyfile colors/vo_light.vim $vimdir
+copyfile syntax/votl.vim $vimdir
+copyfile ftplugin/votl.vim $vimdir
+copyfile ftdetect/votl.vim $vimdir
+copyfile doc/votl_readme.txt $vimdir
+copyfile doc/votl_cheatsheet.txt $vimdir
+copyfile colors/votl_dark.vim $vimdir
+copyfile colors/votl_light.vim $vimdir
 copyfile vimoutliner/vimoutlinerrc $vimdir
-copyfile vimoutliner/scripts/vo_maketags.pl $vimdir
+copyfile vimoutliner/scripts/votl_maketags.pl $vimdir
 
 #INCORPORATE DOCS
 echo installing documentation
@@ -137,22 +137,22 @@ Add-ons
 
 EOT
 
-echo -n "Would you like to install these "
-if sure?; then
+echo -n "Would you like to install these (y/N) "
+if sure; then
 	echo installing add-ons
 	copydir vimoutliner/plugin $vodir/plugin
 	copydir vimoutliner/scripts $vodir/scripts
 fi
 
 #ALL DONE
-echo installation complete
+echo Installation complete
 
 cat <<EOT
 
 **********************************************************************
 * For help with using VimOutliner simply execute ":help vo" within   *
 * vim. For a quick overview of all commands execute:                 * 
-* ":help vo_cheatsheet"                                              *
+* ":help votl_cheatsheet"                                              *
 *                                                                    *
 * Additional scripts are available in the scripts folder, see        *
 * $HOME/.vim/vimoutliner/scripts                                     *

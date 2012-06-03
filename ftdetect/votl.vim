@@ -1,6 +1,6 @@
 "# #######################################################################
 "# filetype.vim: filetype loader
-"#   version 0.3.6
+"#   version 0.3.7
 "#   Copyright (C) 2001,2003 by Steve Litt (slitt@troubleshooters.com)
 "#
 "#   This program is free software; you can redistribute it and/or modify
@@ -75,7 +75,7 @@
 "Initial revision
 "
 augroup filetypedetect
-  au! BufRead,BufNewFile *.otl		setfiletype vo_base
+  au! BufRead,BufNewFile *.otl		setfiletype votl
   au! BufRead,BufNewFile *.oln		setfiletype xoutliner
 augroup END
 

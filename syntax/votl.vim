@@ -1,6 +1,6 @@
 "#########################################################################
 "# syntax/vo_base.vim: VimOutliner syntax highlighting
-"# version 0.3.6
+"# version 0.3.7
 "#   Copyright (C) 2001,2003 by Steve Litt (slitt@troubleshooters.com)
 "#
 "#   This program is free software; you can redistribute it and/or modify
@@ -306,7 +306,7 @@ if !exists("autocommand_vo_loaded")
 	let autocommand_vo_loaded = 1
 	au BufNewFile,BufRead *.otl                     setf outliner
 "	au CursorHold *.otl                             syn sync fromstart
-	set updatetime=500
+"	set updatetime=500
 endif
 
 " The End

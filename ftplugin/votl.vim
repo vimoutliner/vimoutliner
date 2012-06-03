@@ -1,6 +1,6 @@
 "#########################################################################
 "# ftplugin/vo_base.vim: VimOutliner functions, commands and settings
-"# version 0.3.6
+"# version 0.3.7
 "#   Copyright (C) 2001,2003 by Steve Litt (slitt@troubleshooters.com)
 "#   Copyright (C) 2004 by Noel Henson (noel@noels-lab.com)
 "#
@@ -67,8 +67,8 @@ let b:current_syntax = "outliner"
 
 let maplocalleader = ",,"		" this is prepended to VO key mappings
 
-setlocal ignorecase			" searches ignore case
-setlocal smartcase			" searches use smart case
+"setlocal ignorecase			" searches ignore case
+"setlocal smartcase			" searches use smart case
 
 let use_space_colon=0
 
@@ -76,17 +76,17 @@ let use_space_colon=0
 
 " VimOutliner Standard Settings {{{1
 setlocal autoindent	
-setlocal backspace=2
+"setlocal backspace=2
 setlocal wrapmargin=5
-setlocal wrap!
+setlocal wrap
 setlocal tw=78
 setlocal noexpandtab
-setlocal nosmarttab
-setlocal softtabstop=0 
-setlocal foldlevel=20
-setlocal foldcolumn=1		" turns on "+" at the beginning of close folds
 setlocal tabstop=4			" tabstop and shiftwidth must match
 setlocal shiftwidth=4		" values from 2 to 8 work well
+"setlocal nosmarttab
+"setlocal softtabstop=0 
+setlocal foldlevel=20
+setlocal foldcolumn=1		" turns on "+" at the beginning of close folds
 setlocal foldmethod=expr
 setlocal foldexpr=MyFoldLevel(v:lnum)
 setlocal indentexpr=
@@ -347,7 +347,7 @@ function MyFoldText()
 	else
 		let l:sub = l:sub . " lines)" 
 	endif
-	return l:sub
+	return l:sub.repeat(' ', winwidth(0)-len(l:sub))
 endfunction
 "}}}2
 " InsertDate() {{{2
@@ -372,7 +372,7 @@ endfunction
 " InsertTime() {{{2
 " Insert the time.
 function InsertTime(ba)
-	let @x = strftime("%T")
+    let @x = strftime("%H:%M:%S")
 	if a:ba == "0"
 		normal! "xp
 	else
@@ -384,7 +384,7 @@ endfunction
 " Insert a space, then the time.
 function InsertSpaceTime()
 	let @x = " "
-	let @x = @x . strftime("%T")
+    let @x = @x . strftime("%H:%M:%S")
 	normal! "xp
 endfunction
 "}}}2
@@ -546,7 +546,7 @@ endif
 " within the same buffer. Using :e has demonstrated this.
 set foldtext=MyFoldText()
 
-setlocal fillchars=|, 
+"setlocal fillchars=|, 
 
 endif " if !exists("loaded_vimoutliner_functions")
 " End Vim Outliner Functions
@@ -658,9 +658,9 @@ amenu &Help.&Vim\ Outliner.&Hoisting :he vo-hoisting<cr>
 " Auto-commands {{{1
 if !exists("autocommand_vo_loaded")
 	let autocommand_vo_loaded = 1
-	au BufNewFile,BufRead *.otl                     setf vo_base
+	au BufNewFile,BufRead *.otl                     setf votl
 "	au CursorHold *.otl                             syn sync fromstart
-	set updatetime=500
+	"set updatetime=500
 endif
 "}}}1
 

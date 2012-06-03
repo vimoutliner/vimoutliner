@@ -3,11 +3,14 @@
 " section of an outline. It will adjust the indents and not paste into the
 " middle of a branch.
 " Added 2011-03-01(JB): This script will now also copy an outline correctly by
-" using yy, and cut an outline by using \\d
+" using \\y, copy to the register with \\r, cut an outline by using \\d, and
+" paste from the register using \\b. 
 " http://www.lists.vimoutliner.org/pipermail/vimoutliner/2008-October/002366.html
 
 map <buffer>p :call VOput()<cr>
-map <buffer>yy :call VOcop()<cr>
+map <buffer>\\b :call VOputreg()<cr>
+map <buffer>\\y :call VOcop()<cr>
+map <buffer>\\r :call VOreg()<cr>
 map <buffer>\\d :call VOcut()<cr>
 map <buffer>P ]P
 
@@ -42,6 +45,21 @@ function! VOcop()
 	endif
 endfunction
 
+function! VOreg()
+	let thisLine = line(".")
+	if (foldclosed(thisLine) == -1) && IsParent(thisLine)
+		normal! zc
+		let fold_cursor = getpos(".")
+        normal! V"+y
+		let get_cursor = getpos(".")
+	    call setpos('.',fold_cursor)
+	    normal! zo
+	    call setpos('.',get_cursor)
+	else
+       normal! V"+y
+	endif
+endfunction
+
 function! VOcut()
 	let thisLine = line(".")
 	if (foldclosed(thisLine) == -1) && IsParent(thisLine)
@@ -71,4 +89,29 @@ function! VOput()
 		normal! ]p
 	endif
 endfunction
+
+ 
+function! VOputreg()
+	let thisLine = line(".")
+	if (foldclosed(thisLine) == -1) && IsParent(thisLine)
+		normal! zc
+		let fold_cursor = getpos(".")
+		normal! "+]p
+		let put_cursor = getpos(".")
+		call setpos('.',fold_cursor)
+		normal! zo
+		call setpos('.',put_cursor)
+	else
+		normal! "+]p
+	endif
+endfunction
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
 

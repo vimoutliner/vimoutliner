@@ -1,0 +1,23 @@
+otl2latex
+
+Translate a Vim Outliner file to a LaTeX document.
+
+Author: Serge Rey <sjsrey@gmail.com>
+Version 0.1 (2007-01-21)
+
+REQUIREMENTS
+    The Vim Outliner http://bike-nomad.com/vim/vimoutliner.html 
+    beamer http://latex-beamer.sourceforge.net/
+    Python http://www.python.org
+
+
+INSTRUCTIONS
+The user's guide is in otl2latex.pdf
+
+To reproduce it:
+    python otl2latex.py -p otl2latex.otl otl2latex.tex
+    pdflatex otl2latex
+
+DEVELOPMENT
+    otl2latex development is hosted at:
+    http://http://code.google.com/p/otl2latex/
