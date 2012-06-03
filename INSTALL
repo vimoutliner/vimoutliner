@@ -61,14 +61,14 @@ You can also copy the files from the unpacked distribution tarball into their
 destination folders by yourself. The following steps are a description of what
 has to go where and assume some knowledge of your vim setup.
 
-If you encounter problems, please contact the mailinglist for an immediate
+If you encounter problems, please contact the mailing list for an immediate
 solution and more complete future documentation.  www.lists.vimoutliner.org
 
 If you want to setup VimOutliner on a system running Microsoft Windows, the
 directory $HOME denotes the base folder of the vim installation.  If you're on
 Unix based system, $HOME is as usual.
 
-You need the following subtrees in your $HOME directory:
+You need the following sub trees in your $HOME directory:
 
     $HOME/.vim/
         doc/
@@ -113,14 +113,14 @@ cheatsheet with ":help vo_cheatsheet".
 
 Color Schemes
 
-Color schemes specify the colors Vim Outliner uses when displaying an outline.
+Color schemes specify the colors VimOutliner uses when displaying an outline.
 Colors are specified by object and level.  These objects currently include:
-headings, body text, pre- formatted body text, tables and others. See
+headings, body text, pre-formatted body text, tables and others. See
 |vo-objects| for more information.
 
 Color scheme files are located in the system-wide vim colors directory and/or
 your $HOME/.vim/colors directory. You can select from any of the provided
-schemes. Vim Outliner internally includes a scheme the matches vo_light.vim.
+schemes. VimOutliner internally includes a scheme the matches vo_light.vim.
 
 To override the default color scheme you can edit these lines in your
 $HOME/.vim/vimoutline/vimoutlinerrc file:
@@ -169,9 +169,9 @@ Verify the following:
   that paragraphs of body text can be reformatted with the Vim gq
   commands.
 
-Verify Interoutline Linking:
+Verify Inter outline Linking:
 
-Interoutline linking currently requires a working perl installation to
+Inter outline linking currently requires a working perl installation to
 generate the necessary tag file. We are looking into porting this to vim's own
 scripting language.
 
