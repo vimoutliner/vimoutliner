@@ -13,6 +13,7 @@ Development
 	- Added new gtd plugin.
 	- Added updated smart_paste plugin.
 	- Added otl2latex script with files.
+	- New file type naming convention: vo_base to votl
 	* Bug fixes:
 	- Stop setting global options.
 	- Fixed checkboxes calculation to make it faster and more consistent.
