@@ -793,9 +793,9 @@ Plugins                                                             *votl-plugin
 The VimOutliner distribution currently includes two plugins for easy handling
 of checkboxes, hoisting (see below) and smart paste. 
 
-The checkboxes plugin is enables by default. The hoisting smart paste and
-clocking plugin are disabled by default. To enable these look for the easy
-instructions for this in your $HOME/.vimoutlinerrc file.
+The checkboxes plugin is enabled by default. The hoisting smart paste
+and clocking plugin are disabled by default. To enable these plugins
+look for the easy instructions for this in your $HOME/.vimoutlinerrc file.
 
 More information below and in the plugin files in the $HOME/.vim/vimoutliner/plugin folder.
 
