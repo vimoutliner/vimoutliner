@@ -43,8 +43,10 @@ file in this directory.
 
 Installation details
 
-To install from the zip file in this page do the following (exchange
-"x" with version number from the package you have downloaded):
+1. Zip file
+
+To install from the zip file do the following (exchange "x" with
+version number from the package you have downloaded):
 
 $ unzip vimoutliner-0.3.x.zip $ cd vimoutliner-0.3.x $ sh install.sh
 
@@ -52,10 +54,13 @@ gzip and vimball archives are available here:
 
 https://github.com/vimoutliner/vimoutliner/downloads
 
+2. Gzip archive
 
 To install from the gzip archive follow these steps:
 
 $ tar -xzvf vimoutliner-0.3.x.tgz $ cd vimoutliner-0.3.x $ sh install.sh
+
+3. Vimball
 
 Installing from the vimball archive does not require of external
 utilities, just open vimoutliner-0.3.x.vba with Vim and type the following
@@ -63,7 +68,7 @@ command to install in your home vim folder:
 
 :so %
 
-If you want to install it in other folder use the following command:
+If you want to install the package in another folder use the following command:
 
 :UseVimball path/to/folder
 
@@ -71,10 +76,10 @@ NOTE: If you install from a vimball archive you need to set the executable
 permissions for the scripts in ~/vim/vimoutliner/script (like chmod +x
 <script> in Linux/Mac OS X).
 
+
 Download of all packages can also be done from the Freshmeat site:
 
- http://freshmeat.net/projects/vimoutliner       
-
+ http://freshmeat.net/projects/vimoutliner
 
 For more detailed installation instructions see the INSTALL file in
 this directory.
