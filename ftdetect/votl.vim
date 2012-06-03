@@ -75,7 +75,7 @@
 "Initial revision
 "
 augroup filetypedetect
-  au! BufRead,BufNewFile *.otl		setfiletype vo_base
+  au! BufRead,BufNewFile *.otl		setfiletype votl
   au! BufRead,BufNewFile *.oln		setfiletype xoutliner
 augroup END
 
