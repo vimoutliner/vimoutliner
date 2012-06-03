@@ -2,7 +2,9 @@
 
 VIMOUTLINER CHEAT SHEET~
 
-This overview has Vimoutliner specific commands for the available operations. Remember that all Vim commands can be performed in Vimoutliner files. This is especially useful for copy, paste, moving around and similar commands.
+This overview has Vimoutliner specific commands for the available operations.
+Remember that all Vim commands can be performed in Vimoutliner files. This is
+especially useful for copy, paste, moving around and similar commands.
 
 For more extensive descriptions of command uses in Vimoutliner do ':h vo-command'. |vo-command|
 

@@ -112,15 +112,15 @@ if [ $modified -eq 0 ] ; then echo "    not modified"; fi
 
 #COPY FILES AND BACKUP ANY EXISTING FILES
 echo "installing files and making backups if necessary (*$bext)"
-copyfile syntax/vo_base.vim $vimdir
-copyfile ftplugin/vo_base.vim $vimdir
-copyfile ftdetect/vo_base.vim $vimdir
-copyfile doc/vo_readme.txt $vimdir
-copyfile doc/vo_cheatsheet.txt $vimdir
-copyfile colors/vo_dark.vim $vimdir
-copyfile colors/vo_light.vim $vimdir
+copyfile syntax/votl.vim $vimdir
+copyfile ftplugin/votl.vim $vimdir
+copyfile ftdetect/votl.vim $vimdir
+copyfile doc/votl_readme.txt $vimdir
+copyfile doc/votl_cheatsheet.txt $vimdir
+copyfile colors/votl_dark.vim $vimdir
+copyfile colors/votl_light.vim $vimdir
 copyfile vimoutliner/vimoutlinerrc $vimdir
-copyfile vimoutliner/scripts/vo_maketags.pl $vimdir
+copyfile vimoutliner/scripts/votl_maketags.pl $vimdir
 
 #INCORPORATE DOCS
 echo installing documentation
@@ -152,7 +152,7 @@ cat <<EOT
 **********************************************************************
 * For help with using VimOutliner simply execute ":help vo" within   *
 * vim. For a quick overview of all commands execute:                 * 
-* ":help vo_cheatsheet"                                              *
+* ":help votl_cheatsheet"                                              *
 *                                                                    *
 * Additional scripts are available in the scripts folder, see        *
 * $HOME/.vim/vimoutliner/scripts                                     *
