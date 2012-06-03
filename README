@@ -1,4 +1,7 @@
-Tntroduction
+
+VimOutliner README file~
+
+Tntroduction~
 
 VimOutliner is an outline processor with many of the same features
 as Grandview, More, Thinktank, Ecco, etc. Features include tree
@@ -18,7 +21,7 @@ all the most important VimOutliner commands you can type ":h vo_cheatsheet"
 when you have opened an otl file.
 
 
-* Usage
+* Usage~
 
 VimOutliner has been reported to help with the following tasks:
 
@@ -31,7 +34,7 @@ VimOutliner has been reported to help with the following tasks:
     - Hierarchical database
     - Web site management
 
-* Characteristics
+* Characteristics~
 
     - Fast and effective
     - Fully integrated with Vim
@@ -43,23 +46,22 @@ For more information on the use of VimOutliner see the README.detailed
 file in this directory.
 
 
-Installation details
+Installation details~
 
-1. Zip file
+1. Zip file~
 
 To install from the zip file do the following (exchange "x" with
 version number from the package you have downloaded):
 
 $ unzip vimoutliner-0.3.x.zip $ cd vimoutliner-0.3.x $ sh install.sh
 
-
-2. Gzip archive
+2. Gzip archive~
 
 To install from the gzip archive follow these steps:
 
 $ tar -xzvf vimoutliner-0.3.x.tgz $ cd vimoutliner-0.3.x $ sh install.sh
 
-3. Vimball
+3. Vimball~
 
 Installing from the vimball archive does not require of external
 utilities, just open vimoutliner-0.3.x.vba with Vim and type the following
@@ -75,8 +77,7 @@ NOTE: If you install from a vimball archive you need to set the executable
 permissions for the scripts in ~/vim/vimoutliner/script (like chmod +x
 <script> in Linux/Mac OS X).
 
-
-Downloads
+Downloads~
 
 gzip and vimball archives are available here:
 
@@ -91,7 +92,7 @@ this directory.
 
 
 
- vim:set filetype=help textwidth=78:
+  vim:set filetype=help textwidth=78:
 
 
 
