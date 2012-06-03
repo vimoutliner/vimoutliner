@@ -1,6 +1,10 @@
-outputdir=/tmp
-#fname=$1
-fname=test.otl
-python outline_freemind.py $fname > $outputdir/test.mm
-python freemind_outline.py $outputdir/test.mm > $outputdir/return.otl
-diff $fname $outputdir/return.otl
+#!/bin/sh
+
+tmp=/tmp
+dirname=`dirname $0`
+fname=$dirname/test.otl
+[ -n "$1" ] && fname=$1
+
+$dirname/freemind.py -m $fname > $tmp/test.mm
+$dirname/freemind.py -o $tmp/test.mm > $tmp/return.otl
+diff -Nur $fname $tmp/return.otl
