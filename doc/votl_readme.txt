@@ -266,7 +266,7 @@ require this line to be added to your .vimrc file: >
 >
 
 ==============================================================================
-Using VimOutliner On Other File Types                           *votl-other-files*
+Using VimOutliner On Other File Types~                           *votl-other-files*
 
 How to use VimOutliner on non .otl files~
 
@@ -303,7 +303,7 @@ You should get:
 
 
 ==============================================================================
-Troubleshooting                                             *votl-troubleshooting*
+Troubleshooting~                                             *votl-troubleshooting*
 
 
 Q: I can't switch between colon based and space based body text.
@@ -335,7 +335,7 @@ A: Open vim like this:
 
 
 ==============================================================================
-VimOutliner Philosophy                                           *votl-philosophy*
+VimOutliner Philosophy~                                           *votl-philosophy*
 
 
 Authoring Speed~
@@ -387,7 +387,7 @@ The Vim Plugin philosophy yields several benefits:
 
 
 ==============================================================================
-Running VimOutliner                                                 *votl-running*
+Running VimOutliner~                                                 *votl-running*
 
 
 Vim Knowledge~
@@ -1319,7 +1319,7 @@ New ways of using your brain produce new ways to use outlines.
                                                                     *votl-history*
 Change Log                                                          *votl-version*
 
-Version 0.3.6
+Version 0.3.6~
 Released 2011-05-08
 	* Additions/Changes:~
 	- Added updated comments and information to the user in the INSTALL
@@ -1347,7 +1347,7 @@ Released 2011-05-08
 	- Fixed errors when g:votl_modules_load is not defined, also updated the
 	  plugin loading process to use lists.
 
-Version 0.3.5
+Version 0.3.5~
 Released 2011-03-20
 	* Additions/Changes:~
 	- Moved all files inside $HOME/.vim.
@@ -1378,7 +1378,7 @@ Released 2011-03-20
 	* Bug fixes:~
 	- ,,S did not work. Fixed
 
-Version 0.3.4
+Version 0.3.4~
 Released
 	* Additions/changes:~
 	- added ,,cp as an alias to ,,c%
