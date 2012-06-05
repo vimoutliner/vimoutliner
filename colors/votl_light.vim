@@ -76,6 +76,5 @@ hi Folded guifg=darkcyan guibg=bg	ctermfg=cyan ctermbg=white
 hi FoldColumn guifg=darkcyan guibg=bg	ctermfg=cyan ctermbg=white
 
 " colors for experimental spelling error highlighting
-" this only works for spellfix.vim with will be cease to exist soon
 hi spellErr gui=underline guifg=darkred cterm=underline ctermfg=darkred
 hi BadWord gui=underline guifg=darkred cterm=underline ctermfg=darkred
