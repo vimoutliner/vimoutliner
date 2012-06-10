@@ -16,7 +16,6 @@ and body text.
       Automatic method                                       |votl-auto-install|
       Updating                                                   |votl-updating|
       Manual method                                        |votl-manual-install|
-      Color schemes                                                 |votl-color|
       Testing                                                     |votl-testing|
       Debian                                                       |votl-debian|
   Using VimOutliner on other file types                       |votl-other-files|
@@ -61,7 +60,6 @@ Installing and Testing VimOutliner                                *votl-install*
     Automatic Method                |votl-auto-install|
     Updating                        |votl-updating|
     Manual Method                   |votl-manual-install|
-    Color Schemes                   |votl-colors|
     Testing                         |votl-testing|
 
 
@@ -168,47 +166,6 @@ the vim help system.  Start vim and execute the following command: >
 At this point, VimOutliner should be functional.  Type ":help vo" to get
 started. You can also type ":help votl_cheatsheet" to a get a quick overview
 of all the VimOutliner commands.
-
-                                                                      *votl-color*
-Color Schemes~
-
-Color schemes specify the colors Vim Outliner uses when displaying an outline.
-Colors are specified by object and level.  These objects currently include:
-headings, body text, pre- formatted body text, tables and others. See
-|votl-objects| for more information.
-
-Color scheme files are located in the system-wide vim colors directory and/or
-your $HOME/.vim/colors directory. You can select from any of the provided
-schemes. Vim Outliner internally includes a scheme the matches votl_light.vim.
-
-To override the default color scheme you can edit these lines in your
-$HOME/.vim/vimoutline/vimoutlinerrc file:
->
-    "Custom Colors **********************************
-    " Uncomment this next line to force using VO on
-    " a light background
-    " colorscheme votl_light
-    " Uncomment this next line to force using VO on
-    " a dark background
-    " colorscheme votl_dark
-<
-To create your own scheme follow these simple steps:
-
-1. Go to your $HOME/.vim/colors directory.  If you don't have one, create it.
-
-2. Make a copy of one of the included schemes to use as a starting point. You
-   should be able to find them in places like: $HOME/.vim/colors and
-   /usr/share/vim/vim63/colors. Put the copy in your own colors directory
-   ($HOME/.vim/colors)
-
-3. Edit the scheme file to change whatever colors you wish.
-
-4. Select the scheme in your $HOME/.vim/vimoutline/vimoutlinerrc file.  The
-   line should look something like this:
->
-       colorscheme noel
-<
-That's all there is to it.
 
                                                                     *votl-testing*
 Testing Base Functionality~

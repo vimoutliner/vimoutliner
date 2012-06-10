@@ -70,7 +70,6 @@ make_dir $vimdir/syntax
 make_dir $vimdir/ftplugin
 make_dir $vimdir/ftdetect
 make_dir $vimdir/doc
-make_dir $vimdir/colors
 make_dir $vodir
 make_dir $vodir/plugin
 make_dir $vodir/scripts
@@ -117,8 +116,6 @@ copyfile ftplugin/votl.vim $vimdir
 copyfile ftdetect/votl.vim $vimdir
 copyfile doc/votl_readme.txt $vimdir
 copyfile doc/votl_cheatsheet.txt $vimdir
-copyfile colors/votl_dark.vim $vimdir
-copyfile colors/votl_light.vim $vimdir
 copyfile vimoutliner/vimoutlinerrc $vimdir
 copyfile vimoutliner/scripts/votl_maketags.pl $vimdir
 

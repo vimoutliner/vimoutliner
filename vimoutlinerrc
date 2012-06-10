@@ -39,12 +39,3 @@ setlocal nowrap
 "Hoisting ***********************************************************
 "Uncomment and set to 1 to debug hoisting
 "let g:hoistParanoia=0
-
-"Custom Colors ******************************************************
-" Uncomment this next line to force using VO on a light background
-" colorscheme vo_light 
-" Uncomment this next line to force using VO on a dark background
-" colorscheme vo_dark 
-" Or create your own color scheme. You can find sample files in Vim's 
-" colors directory. There may even be a colors directory in your own
-" $HOME/.vim directory.
