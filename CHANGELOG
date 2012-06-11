@@ -14,6 +14,7 @@ Development
 	- Added updated smart_paste plugin.
 	- Added otl2latex script with files.
 	- New file type naming convention: vo_base to votl
+	- Color fixes and updates
 	* Bug fixes:
 	- Stop setting global options.
 	- Fixed checkboxes calculation to make it faster and more consistent.
