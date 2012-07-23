@@ -1,7 +1,6 @@
 #!/bin/bash
 
 homedir=$HOME
-#homedir=./test
 vimdir=$homedir/.vim
 vodir=$vimdir/vimoutliner
 OS=`uname`
@@ -49,7 +48,7 @@ copydir () {
 	done
 }
 
-#START THE INSTALL
+#START THE INSTALLATION
 cat <<EOT
 Vim Outliner Installation
     This script is safe for installing Vim Outliner and for upgrading an
@@ -75,7 +74,7 @@ make_dir $vodir/plugin
 make_dir $vodir/scripts
 if [ $created -eq 0 ]; then echo "    none created"; fi
 
-#TWEAK .vimrc
+#TWEAK $HOME/.vimrc
 modified=0
 echo checking/creating/modifying $homedir/.vimrc
 test -f $homedir/.vimrc || { echo "    creating $homedir/.vimrc"
@@ -95,7 +94,7 @@ else
 	echo "    modifying $homedir/.vimrc"
 fi
 
-#TWEAK .vim/filetype.vim
+#TWEAK $HOME/.vim/filetype.vim
 modified=0
 echo checking/creating/modifying $homedir/.vim/filetype.vim
 test -f $homedir/.vim/filetype.vim || \
@@ -119,7 +118,7 @@ copyfile doc/votl_cheatsheet.txt $vimdir
 copyfile vimoutliner/vimoutlinerrc $vimdir
 copyfile vimoutliner/scripts/votl_maketags.pl $vimdir
 
-#INCORPORATE DOCS
+#INCORPORATE HELP DOCUMENTATION
 echo installing documentation
 vim -c "helptags $HOME/.vim/doc" -c q
 
