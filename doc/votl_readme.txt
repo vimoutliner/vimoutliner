@@ -1232,7 +1232,8 @@ Toolbar in gvim
 
 Further information on outlines, outline processing and outliners~
 
-http://freshmeat.net/projects/vimoutliner
+
+http://freecode.com/projects/vimoutliner
 Main distribution website
 
 https://github.com/vimoutliner/vimoutliner
