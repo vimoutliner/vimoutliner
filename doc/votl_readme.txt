@@ -213,6 +213,11 @@ Note:
     CTRL-K is a VimOutliner synonym for CTRL-]
     CTRL-N is a VimOutliner synonym for CTRL-T
 
+This might also be achieved more efficiently by using the UTL plugin for
+linking to other files and text. Check out the plugin at:
+
+http://www.vim.org/scripts/script.php?script_id=293
+
                                                                      *votl-debian*
 Debian Installation~
 
