@@ -1038,7 +1038,7 @@ You cannot hoist parts of an already hoisted file again.
 To enable this plugin uncomment the following line in
  ~/.vimoutlinerrc:
 >
-    "let g:votl_modules_load .= ':hoist'
+    "let g:vo_modules_load .= ':hoist'
 <
 Once it is enabled, you hoist the subtopics of the currently selected
 item with

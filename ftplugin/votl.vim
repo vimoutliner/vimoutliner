@@ -292,6 +292,20 @@ endfunction
 " MyFoldText() {{{2
 " Create string used for folded text blocks
 function MyFoldText()
+    if exists('g:vo_fold_length') && g:vo_fold_length == "max"
+        let l:foldlength = winwidth(0) - 1 - &numberwidth - &foldcolumn
+    elseif exists('g:vo_fold_length')
+        let l:foldlength = g:vo_fold_length
+    else
+        let l:foldlength = 58
+    endif
+    " I have this as an option, if the user wants to set "…" as the padding
+    " string, or some other string, like "(more)"
+    if exists('g:vo_trim_string')
+        let l:trimstr = g:vo_trim_string
+    else
+        let l:trimstr = "..."
+    endif
 	let l:MySpaces = MakeSpaces(&sw)
 	let l:line = getline(v:foldstart)
 	let l:bodyTextFlag=0
@@ -339,15 +353,30 @@ function MyFoldText()
 		let l:line = l:MySpaces."[TABLE]"
 	endif
 	let l:sub = substitute(l:line,'\t',l:MySpaces,'g')
-	let l:len = strlen(l:sub)
-	let l:sub = l:sub . " " . MakeDashes(58 - l:len) 
-	let l:sub = l:sub . " (" . ((v:foldend + l:bodyTextFlag)- v:foldstart)
+    let l:sublen = strdisplaywidth(l:sub)
+	let l:end = " (" . ((v:foldend + l:bodyTextFlag)- v:foldstart)
 	if ((v:foldend + l:bodyTextFlag)- v:foldstart) == 1
-		let l:sub = l:sub . " line)" 
+		let l:end = l:end . " line)" 
 	else
-		let l:sub = l:sub . " lines)" 
+		let l:end = l:end . " lines)" 
 	endif
-	return l:sub.repeat(' ', winwidth(0)-len(l:sub))
+    let l:endlen = strdisplaywidth(l:end)
+
+    " Multiple cases:
+    " (1) Full padding with ellipse (...) or user defined string,
+    " (2) No point in padding, pad would just obscure the end of text,
+    " (3) Don't pad and use dashes to fill up the space.
+    if l:endlen + l:sublen > l:foldlength
+        let l:sub = strpart(l:sub, 0, l:foldlength - l:endlen - strdisplaywidth(l:trimstr))
+        let l:sub = l:sub . l:trimstr
+        let l:sublen = strdisplaywidth(l:sub)
+        let l:sub = l:sub . l:end
+    elseif l:endlen + l:sublen == l:foldlength
+        let l:sub = l:sub . l:end
+    else
+        let l:sub = l:sub . " " . MakeDashes(l:foldlength - l:endlen - l:sublen - 1) . l:end
+    endif
+	return l:sub.repeat(' ', winwidth(0)-strdisplaywidth(l:sub))
 endfunction
 "}}}2
 " InsertDate() {{{2
