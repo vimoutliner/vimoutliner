@@ -437,7 +437,6 @@ others could benefit from it.
         ,,S   normal   Sort sub-tree under cursor descending
         ,,t   normal   Append timestamp (HH:MM:SS) to heading
         ,,T   normal   Pre-pend timestamp (HH:MM:SS) to heading
-        ,,T   normal   Pre-pend timestamp (HH:MM:SS) to heading
         ,,t   insert   Insert timestamp (HH:MM:SS) at cursor
         ,,d   normal   Append datestamp  (YYYY-MM-DD) to heading
         ,,d   insert   Insert datestamp  (YYYY-MM-DD) at cursor
