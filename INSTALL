@@ -111,20 +111,22 @@ cheatsheet with ":help vo_cheatsheet".
 
 Testing Base Functionality
 
-Open a new outline with the following:
-
-    rm $HOME/vo_test.otl
-    gvim $HOME/vo_test.otl or vim $HOME/vo_test.otl
-
-Verify the following:
+Create a text file and save it as a .otl file like vo_test.otl. Enter
+some text and verify the following:
 - Tabs indent the text
 - Different indent levels are different colors
 - Lines starting with a colon and space word-wrap
 
-  Lines starting with colons are body text. They should word wrap and
-  should be a special color (typically green, but it can vary). Verify
-  that paragraphs of body text can be reformatted with the Vim gq
-  commands.
+Lines starting with colons are body text. They should word wrap and
+should be a special color (typically green, but it can vary). Verify
+that paragraphs of body text can be reformatted with the Vim gq
+commands.
+
+You can test the different VimOutliner commands by looking at the examples
+in the cheatsheet. "help vo_cheatsheet".
+
+
+Extra information
 
 Verify Inter outline Linking:
 
