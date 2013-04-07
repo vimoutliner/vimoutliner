@@ -1,7 +1,7 @@
 CHANGELOG
 
 Version 0.3.7
-Development
+Development 2013-04-07
 	* Additions/Changes:
 	- Added new hoisting plugin.
 	- Added new tags plugin.
@@ -19,6 +19,9 @@ Development
 	- Stop setting global options.
 	- Fixed checkboxes calculation to make it faster and more consistent.
 	- Strtime fix in vo_base.vim
+	- Updates and corrections to readme, INSTALL and cheatsheet files.
+	- Corrections to install.sh
+	- Replaced len() so it works with multibyte chars
 
 Version 0.3.6
 Released 2011-05-09
