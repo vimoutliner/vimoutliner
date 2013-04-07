@@ -148,10 +148,10 @@ cat <<EOT
 **********************************************************************
 * For help with using VimOutliner simply execute ":help vo" within   *
 * vim. For a quick overview of all commands execute:                 * 
-* ":help votl_cheatsheet"                                              *
+* ":help votl_cheatsheet"                                            *
 *                                                                    *
-* Additional scripts are available in the scripts folder, see        *
-* $HOME/.vim/vimoutliner/scripts                                     *
+* Additional useful scripts are available in the scripts folder,     *
+* see $HOME/.vim/vimoutliner/scripts                                 *
 **********************************************************************
 
 EOT
