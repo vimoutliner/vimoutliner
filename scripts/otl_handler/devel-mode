@@ -1,5 +1,0 @@
-PerlModule Apache2::Reload
-PerlInitHandler Apache2::Reload
-PerlSetVar ReloadAll Off
-PerlSetVar ReloadModules "Apache::OTL"
-PerlSetVar ReloadConstantRedefineWarnings Off
