@@ -1,0 +1,26 @@
+INTENT OF THE LITT PERL DEVELOPMENT TOOL LICENSE
+
+The intent of the Litt Perl Development Tool License (LPDTL) is to provide
+programmers with a development tool that is copylefted free software without
+requiring applications built from this tool to be free software.
+
+I (Steve Litt) have tried to craft the LPDTL to prevent "cute and
+innovative" ways of taking this tool private. For instance, a person might
+try to make the LPDTL licensed code dependent on subroutines in proprietary
+subroutines. This is why the LPDTL has a clause stating that all
+*development* features must reside in the LPDTL code, or in GPL code, but
+not non-GPL-compatible code.
+
+Although the LPDTL allows its use with software of almost any license, it
+specifically forbids use with licenses doing any of the following:
+
+1. Restricting reverse engineering
+
+2. Restricting discussion about the software
+
+3. Code that includes software patents
+
+I feel that restrictions on reverse engineering and discussion, and software
+patents, are so destructive to society, that I have included language
+preventing use of LPDTL licensed code with any software incorporating any of
+these three atrocities.

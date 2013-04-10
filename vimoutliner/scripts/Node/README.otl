@@ -1,0 +1,177 @@
+MANUAL FOR THE Node.pm Tool
+	Version 0.2.0 released 5/13/2004
+License
+	Litt Perl Development Tools License, version 1
+		See COPYING file
+		This license is the GNU GPL with an exception
+			See COPYING.GPL
+	NO WARRANTY!!!!! See COPYING.GPL
+Purpose
+	Handling hierarchies in Perl
+	Implements a tree of nodes
+	Each node has a name, a type, a value, and optionally attributes
+	Each node can have zero, one or many attributes
+	Each attribute has a name and a value
+	Especially made to handle tab indented outlines in memory
+Learning Node.pm
+	Learn from the example programs: Study them in this order:
+		example_hello.pl
+		example_parse.pl
+		example_otl2markup.pl
+		example_attribs.pl
+		example_bylevel.pl
+		example_delete.pl
+		example_insert.pl
+		example_nodepath.pl
+	That's the only way to learn this tool
+	Do each example program in order
+		Run
+		Read
+		Study
+	Example programs
+		example_hello.pl
+			Proof of concept
+			7 lines of perl
+			Instantiate and read from a Node object
+		example_parse.pl
+			Parse a tab indented outline file into a Node tree
+			Use a Walker object to walk the tree and print the Nodes
+			Create a Callback object and callback routine
+		example_otl2markup.pl
+			Use return callback to create end tags
+		example_attribs.pl
+			Set and get Node attributes
+			Observer "_lineno" attribute,
+				which was set by the Parser object
+		example_bylevel.pl
+			Read the Node tree recursively and output by level
+			Use the Callbacks object to store information
+			Use multiple callbacks to simplify a complex algorithm
+			Observe that the performance is still quite good
+		example_delete.pl
+			Delete nodes during a callback
+			Observe that the Walker object takes the deletion in stride
+			Observe that the Walker object does not "lose its place"
+		example_insert.pl
+			Insert nodes
+			Build a Node tree without an outline or Parser object
+			Create child nodes using an array
+			Create child nodes from a callback routine
+			Use a return callback to count occurrences within in its subtree
+			Access and use a Node's name, type and value
+			Move nodes within the tree
+		example_nodepath.pl
+			Load a Node.pm file in a different directory
+			Load a Node.pm file at runtime from an entry in a config file
+			Use an environment variable to change the name of the config file
+File manifest
+	Documentation
+		INSTALL
+		README.otl
+	Licensing
+		COPYING
+		COPYING.GPL
+		COPYING.LPDTL.1.0
+		LPDTL_discuss.txt
+	Node.pm file
+
+		Node.pm
+	Example Programs
+		example_hello.pl
+		example_parse.pl
+		example_otl2markup.pl
+		example_attribs.pl
+		example_bylevel.pl
+		example_delete.pl
+		example_insert.pl
+		example_nodepath.pl
+	Sample node path config file (for example_nodepath.pl)
+		myapp.cfg
+	Sample outline (used for example_delete.pl)
+		deletetest.otl
+Objects
+	Node.pm implements three object types:
+		Node
+		OutlineParser
+		Walker
+	Node
+		A single element in the hierarchy
+		All nodes connected
+			Parent pointer
+				(the pointer is a Perl reference, of course)
+			First child pointer
+			Last child pointer
+			Previous sibling pointer
+			Last sibling pointer
+		Each node has:
+			A name
+				hasName()  
+				getName()  
+				setName()  
+			A type
+				hasType()  
+				getType()  
+				setType()  
+			A value
+				hasValue() 
+				getValue() 
+				setValue() 
+			Zero, one or many attributes
+				Each attribute has a name and a value
+				Single attribute methods:
+					hasAttribute()
+					getAttribute()
+					setAttribute()
+					removeAttribute()
+				Attribute array methods:
+					hasAttributes()
+					getAttributes()
+					setAttributes()
+		Node methods enable all hierarchy operations
+			Node insertion
+				insertFirstChild()
+				insertLastChild()
+				insertSiblingBeforeYou()
+				insertSiblingAfterYou()
+			Node deletion
+				deleteSelf()
+			Low level node traversal
+				hasFirstChild()  
+				getFirstChild()  
+				hasLastChild()   
+				getLastChild()   
+				hasPrevSibling() 
+				getPrevSibling() 
+				hasNextSibling() 
+				getNextSibling() 
+				hasParent()      
+				getParent()      
+	OutlineParser
+		Object to convert a tab indented outline to a tree of Node objects
+		Outline must be well formed...
+			Each line indented zero or one tab to the right of its parent
+		You can set and access properties of the parse
+			hasCommentChar()
+			getCommentChar()
+			setCommentChar()
+			fromStdin()
+			fromFile()
+			zapBlanks()
+			dontZapBlanks()
+		After setting parse properties, you perform the parse
+			my parser = OutlinerParser->new();
+			parser->setCommentChar('#');
+			parser->fromFile();
+			my $topNode = parser->parse("myoutline.txt");
+	Walker
+		Object to traverse entire Node hierarchy
+		Performs actions via callback routines
+			my $walker = Walker->new($topNode, $entryCallbackRef, $returnCallbackRef);
+			Entry callback occurs when node is first accessed
+			Return callback occurs when node is re-accessed after going through children
+			Callbacks should be object methods, not freestanding
+			Callbacks must take 3 arguments:
+				$self: The object containing the callback
+				[\&Callbacks::cbPrintNodeInfo, $callbacks]);
+Installation
+	See INSTALL file

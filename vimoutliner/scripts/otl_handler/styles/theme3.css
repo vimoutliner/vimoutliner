@@ -1,0 +1,109 @@
+
+body
+{
+    background-color: #acadc3;
+    font: 12px Verdana, sans-serif;
+    color: #000;
+    text-align: center;
+}
+
+a, a:visited
+{
+    text-decoration: none;
+    color: blue;
+}
+
+.header
+{
+    margin-top: 40px;
+    font-size: 2em;
+    font-weight: bold;
+}
+
+.header:after  { content: " ----|" }
+.header:before { content: "|---- " }
+
+.last_mod { font-size: .85em; }
+.percent { font-weight: bold; }
+
+.sort
+{
+    margin-bottom: 30px;
+    font-size: .85em;
+}
+
+.outline
+{
+    cursor: pointer;
+    float: left;
+    padding: 20px;
+    border: 1px solid #8082a9;
+    margin-left: 10px;
+    background-color: #ccc;
+}
+
+.outline:hover
+{
+    border: 1px solid #000;
+}
+
+.outline ul, #content ul
+{
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+}
+
+.outline ul li ul li { display: none; }
+
+#content ul li ul { padding-left: 20px; }
+
+#content ul li
+{
+    font-weight: bold;
+    font-size: 1.5em;
+    text-align: center;
+    color: #3a3d85;
+}
+
+#content ul li ul li
+{
+    font-weight: normal;
+    text-align: left;
+    font-size: 10px;
+    color: #000;
+}
+
+#content .done { color: #777; }
+.comment { font-style: italic; }
+
+#content ul li .percent { color: #ff7e00; }
+#content ul li ul li .percent { color: #000; }
+
+#content .comment
+{
+    font-style: italic;
+    border-left: 1px solid #999;
+    padding-left: 5px;
+    margin-bottom: 3px;
+}
+
+#content .comment_pre
+{  
+    font-style: normal;
+    font-family: courier;
+    white-space: pre;
+}
+
+#content
+{
+    position: absolute;
+    left: 15%;
+    width: 60%;
+    height: 80%;
+    cursor: pointer;
+    background-color: #fff;
+    border: 2px solid #3a3d85;
+    padding: 10px;
+}
+

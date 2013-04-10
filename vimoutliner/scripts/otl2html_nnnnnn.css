@@ -1,0 +1,246 @@
+	/* copyright notice and filename */
+body { 
+        font-family: helvetica,arial,sans-serif;
+        font-size: 10pt;
+}
+	/* title at the top of the page */
+H1 { 
+        font-family: helvetica,arial,sans-serif;
+        font-size: 14pt;
+        font-weight: bold;
+        text-align: center;
+        color: black;
+	background-color: #ddddee;
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+H2 { 
+        font-family: helvetica,arial,sans-serif;
+        font-size: 12pt;
+        font-weight: bold;
+        text-align: left;
+        color: black;
+}
+H3 { 
+        font-family: helvetica,arial,sans-serif;
+        font-size: 12pt;
+        text-align: left;
+        color: black;
+}
+H4 { 
+        font-family: helvetica,arial,sans-serif;
+        font-size: 12pt;
+        text-align: left;
+        color: black;
+}
+H5 { 
+        font-family: helvetica,arial,sans-serif;
+        font-size: 10pt;
+        text-align: left;
+        color: black;
+}
+	/* outline level spacing */
+OL { 
+        margin-left: 1.0em;
+        padding-left: 0;
+        padding-bottom: 8pt;
+}
+	/* global heading settings */
+LI { 
+        font-family: helvetica,arial,sans-serif;
+        color: black;
+        font-weight: normal;
+        list-style: lower-alpha;
+	padding-top: 4px;
+}
+	/* level 1 heading overrides */
+LI.L1 { 
+        font-size: 12pt;
+        font-weight: bold;
+        list-style: none;
+}
+	/* level 2 heading overrides */
+LI.L2 { 
+        font-size: 10pt;
+        font-weight: bold;
+        list-style: none;
+}
+	/* level 3 heading overrides */
+LI.L3 { 
+        font-size: 10pt;
+        list-style: none;
+}
+	/* level 4 heading overrides */
+LI.L4 { 
+        font-size: 10pt;
+        list-style: none;
+}
+	/* level 5 heading overrides */
+LI.L5 { 
+        font-size: 10pt;
+        list-style: none;
+}
+	/* level 6 heading overrides */
+LI.L6 { 
+        font-size: 10pt;
+        list-style: none;
+}
+	/* level 7 heading overrides */
+LI.L7 { 
+        font-size: 10pt;
+        list-style: none;
+}
+	/* level 1 bullet heading overrides */
+LI.LB1 { 
+        font-size: 12pt;
+        font-weight: bold;
+        list-style: disc;
+}
+	/* level 2 bullet heading overrides */
+LI.LB2 { 
+        font-size: 10pt;
+        font-weight: bold;
+        list-style: disc;
+}
+	/* level 3 bullet heading overrides */
+LI.LB3 { 
+        font-size: 10pt;
+        list-style: disc;
+}
+	/* level 4 bullet heading overrides */
+LI.LB4 { 
+        font-size: 10pt;
+        list-style: disc;
+}
+	/* level 5 bullet heading overrides */
+LI.LB5 { 
+        font-size: 10pt;
+        list-style: disc;
+}
+	/* level 6 bullet heading overrides */
+LI.LB6 { 
+        font-size: 10pt;
+        list-style: disc;
+}
+	/* level 7 bullet heading overrides */
+LI.LB7 { 
+        font-size: 10pt;
+        list-style: disc;
+}
+	/* level 1 numeric heading overrides */
+LI.LN1 { 
+        font-size: 12pt;
+        font-weight: bold;
+        list-style: decimal;
+}
+	/* level 2 numeric heading overrides */
+LI.LN2 { 
+        font-size: 10pt;
+        font-weight: bold;
+        list-style: decimal;
+}
+	/* level 3 numeric heading overrides */
+LI.LN3 { 
+        font-size: 10pt;
+        list-style: decimal;
+}
+	/* level 4 numeric heading overrides */
+LI.LN4 { 
+        font-size: 10pt;
+        list-style: decimal;
+}
+	/* level 5 numeric heading overrides */
+LI.LN5 { 
+        font-size: 10pt;
+        list-style: decimal;
+}
+	/* level 6 numeric heading overrides */
+LI.LN6 { 
+        font-size: 10pt;
+        list-style: decimal;
+}
+	/* level 7 numeric heading overrides */
+LI.LN7 { 
+        font-size: 10pt;
+        list-style: decimal;
+}
+       	/* body text */
+P {
+        font-family: helvetica,arial,sans-serif;
+        font-size: 9pt;
+        font-weight: normal;
+        color: darkgreen;
+}
+	/* preformatted text */
+PRE { 
+        font-family: fixed,monospace;
+        font-size: 9pt;
+        font-weight: normal;
+        color: darkblue;
+}
+
+TABLE {
+	margin-top: 1em;
+        font-family: helvetica,arial,sans-serif;
+        font-size: 12pt;
+        font-weight: normal;
+	border-collapse: collapse;
+}
+
+TH {
+	border: 1px solid black;
+	padding: 0.5em;
+	background-color: #eeddee;
+}
+
+TD {
+	border: 1px solid black;
+	padding: 0.5em;
+	background-color: #ddeeee;
+}
+
+CODE {
+	background-color: yellow;
+}
+
+TABLE.TAB1 {
+	margin-top: 1em;
+        font-family: helvetica,arial,sans-serif;
+        font-size: 12pt;
+        font-weight: normal;
+	border-collapse: collapse;
+}
+TABLE.TAB2 {
+	margin-top: 1em;
+        font-family: helvetica,arial,sans-serif;
+        font-size: 11pt;
+        font-weight: normal;
+	border-collapse: collapse;
+}
+TABLE.TAB3 {
+	margin-top: 1em;
+        font-family: helvetica,arial,sans-serif;
+        font-size: 10pt;
+        font-weight: normal;
+	border-collapse: collapse;
+}
+TABLE.TAB4 {
+	margin-top: 1em;
+        font-family: helvetica,arial,sans-serif;
+        font-size: 10pt;
+        font-weight: normal;
+	border-collapse: collapse;
+}
+TABLE.TAB5 {
+	margin-top: 1em;
+        font-family: helvetica,arial,sans-serif;
+        font-size: 10pt;
+        font-weight: normal;
+	border-collapse: collapse;
+}
+TABLE.TAB6 {
+	margin-top: 1em;
+        font-family: helvetica,arial,sans-serif;
+        font-size: 10pt;
+        font-weight: normal;
+	border-collapse: collapse;
