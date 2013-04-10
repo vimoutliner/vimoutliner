@@ -1,4 +1,4 @@
-*votl_readme.txt*	For Vim version 7.1	Last change: 2011 March 25
+*votl_readme.txt*	For Vim version 7.2	Last change: 2013-04-10
 
                                                                 *vo* *vimoutliner*
 VimOutliner  0.3.7 ~
