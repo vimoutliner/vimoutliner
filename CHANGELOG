@@ -1,7 +1,7 @@
 CHANGELOG
 
 Version 0.3.7
-Development 2013-04-07
+Development 2013-04-10
 	* Additions/Changes:
 	- Added new hoisting plugin.
 	- Added new tags plugin.
@@ -15,6 +15,7 @@ Development 2013-04-07
 	- Added otl2latex script with files.
 	- New file type naming convention: vo_base to votl
 	- Color fixes and updates
+	- Updated vimoutlinerrc with more options for new plugins.
 	* Bug fixes:
 	- Stop setting global options.
 	- Fixed checkboxes calculation to make it faster and more consistent.
