@@ -8,8 +8,8 @@
 " directly in this file, because you will get into many strange surprises. If
 " you do not want to load any VO modules leave it blank (default).
 
-" This setting loads the checkboxes plugin with tags as default.
-let g:vo_modules_load = "checkbox:tags"
+" This setting loads the checkboxes, tags and smart_paste plugins as default.
+let g:vo_modules_load = "checkbox:tags:smart_paste"
 
 " Uncomment the following line to enable the math plugin.
 "let g:vo_modules_load .= ':math'
@@ -17,14 +17,8 @@ let g:vo_modules_load = "checkbox:tags"
 " Uncomment the following line to enable new hoisting.
 let g:vo_modules_load .= ':newhoist'
 
-" Uncomment the following line to enable hoisting.
-"let g:vo_modules_load .= ':hoist'
-
 " Uncomment the following line to enable the format plugin.
 "let g:vo_modules_load .= ':format'
-
-" Uncomment the following line to enable smart_paste.
-"let g:vo_modules_load .= ':smart_paste'
 
 " Uncomment the following line to enable clocking.
 "let g:vo_modules_load .= ':clock'
