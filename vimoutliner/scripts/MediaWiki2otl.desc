@@ -1,0 +1,37 @@
+This email has the attachment.
+
+Hello Vim Outliners,
+
+I want to migrate some word processor documents to otl.  If you know of a formatter to convert "MediaWiki to otl" or "odt to otl" or "doc to otl" please let me know.  I did not find one.
+
+I am attempting to write ex script to convert MediaWiki to otl.  This would be useful because LibreOffice Writer can export to MediaWiki format, and then the script would convert it to otl.
+
+The heading format in MediaWiki is simple; one equal sign for each level in the heading hierarchy e.g.:
+
+= head1 =
+body text
+== head2 ==
+body text
+=== head3 ===
+body text
+
+The above MediaWiki text should convert to otl like this:
+
+head1
+:body text
+head2
+:body text
+head3
+:body text
+
+The attached MediaWiki2otl script converts MediaWiki to otl except for one thing.  I can not figure out how to indent the body text lines (indent lines that start with “:”). Here is the pseudo code:
+
+if current line has “=”
+set count to number of “=”
+else  
+insert count “\t”
+
+Can this be done in ex script? i.e. Is there an ex command that can set a variable (or register) and an ex command to read that variable in the following lines?
+
+Thank you,
+wolfv
