@@ -17,6 +17,7 @@ Development 2013-04-10
 	- Color fixes and updates.
 	- Updated vimoutlinerrc with more options for new plugins.
 	- Moved previous hoist plugin to prev directory,
+	- Made new TODO list
 	* Bug fixes:
 	- Stop setting global options.
 	- Fixed checkboxes calculation to make it faster and more consistent.
