@@ -1,4 +1,4 @@
-" File:        plugin/vo_tags.vim
+" File:        plugin/votl_tags.vim
 " Version:     1.0
 " Modified:    2011-02-28
 " Description: This plugin provides inter-outline links for vimoutliner.
@@ -10,7 +10,7 @@
 " ============================================================================
 
 if v:version < 700
-	echom 'VimOutliner: vo_links.vim requires Vim 7.0 or later.'
+	echom 'VimOutliner: votl_tags.vim requires Vim 7.0 or later.'
 	finish
 endif
 

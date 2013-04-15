@@ -15,7 +15,7 @@
 "######################################################################
 
 " Detailed Revision Log {{{1
-"vo_gtd.vim
+"votl_gtd.vim
 "Internal RCS
 "$Revision: $"
 "$Date: $

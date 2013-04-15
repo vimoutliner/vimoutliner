@@ -31,7 +31,7 @@
 "       be calculated -  [2010-05-03 08:00:00 -- 2010-05-23 26:30:45] or 
 "       a shorter dateformat - this seems to need a more complex
 "       datehandling
-" TODO: write a helppage for the vimoutliner that describes the vo_clock
+" TODO: write a helppage for the vimoutliner that describes the votd_clock
 " TODO: allow the user to select his own dateformat
 "}}}1
 " ClockStart(space) {{{1

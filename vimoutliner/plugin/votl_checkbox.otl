@@ -1,4 +1,4 @@
-Checkboxes: vo_checkbox
+Checkboxes: votl_checkbox
 What is it?
 	: Checkboxes is a plugin for project, task and list managment. It add an
 	: understanding of check boxes and percentage of task completion to Vim

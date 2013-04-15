@@ -29,10 +29,10 @@
 "
 "}}}1
 " Load guard for functions {{{1
-if exists("g:loaded_vo_format") || &cp
+if exists("g:loaded_votl_format") || &cp
   finish
 endif
-let g:loaded_vo_format= 1
+let g:loaded_votl_format= 1
 let s:keepcpo           = &cpo
 set cpo&vim
 
