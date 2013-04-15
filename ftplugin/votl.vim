@@ -709,7 +709,7 @@ endif
 " Load modules
 if exists('g:vo_modules_load')
 	for vo_module in split(g:vo_modules_load, '\s*:\s*')
-		exec "runtime vimoutliner/plugin/vo_" . vo_module . ".vim"
+		exec "runtime vimoutliner/plugin/votl_" . vo_module . ".vim"
 	endfor
 unlet! vo_module
 endif
