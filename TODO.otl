@@ -1,0 +1,25 @@
+TODO LIST
+	Updated: 20130416
+		:This is just a preliminary roadmap, use the issue list at
+		:https://github.com/vimoutliner/vimoutliner/issues for suggesting new
+		:features and register issues or bugs
+
+Work planned for next version:
+	Cleanup code in plugins to more efficient vim script 
+	Make plug mappings for all commands
+	Remove included RCS,logs etc.
+	Decide on common script language, and write scripts in new language
+
+Maybe/probably:
+	Include a list of vim plugins that are useful with VimOutliner
+	Templates
+	More sort functionality
+	Wiki plugin and documentation
+	Documentation on how to convert VO files to mindmap programs, grapviz and Lyx
+	More colorschemes
+	vimoutliner-tutor
+	Documentation on how to use VO for writing
+
+
+
+
