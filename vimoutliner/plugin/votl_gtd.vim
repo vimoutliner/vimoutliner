@@ -14,14 +14,6 @@
 "# GNU General Public License for more details.
 "######################################################################
 
-" Detailed Revision Log {{{1
-"votl_gtd.vim
-"Internal RCS
-"$Revision: $"
-"$Date: $
-"$Log: $
-"}}}1
-
 " InsertElem() {{{1
 " Insert a elem without disturbing the current folding.
 function! InsertElem(elem)

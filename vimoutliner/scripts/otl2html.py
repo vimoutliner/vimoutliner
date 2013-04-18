@@ -5,11 +5,6 @@
 # Copyright 2001 Noel Henson All rights reserved
 #
 # ALPHA VERSION!!!
-# $Revision: 1.52 $
-# $Date: 2008/10/11 22:04:09 $
-# $Author: noel $
-# $Source: /home/noel/active/otl2html/RCS/otl2html.py,v $
-# $Locker:  $
 
 ###########################################################################
 # Basic function
@@ -59,7 +54,7 @@ inlineStyle = 0
 # print the simplest form of help
 # input: none
 # output: simple command usage is printed on the console
- 
+
 def showUsage():
    print
    print "Usage:"
@@ -78,7 +73,6 @@ def showUsage():
    print "    -C copyright    Override the internal copyright notice with the"
    print "                    one supplied in the quoted string following this"
    print "                    flag. Single or double quotes can be used."
-   print "    -v              Print version (RCS) information."
    print "    -H              Show the file syntax help."
    print "output is on STDOUT"
    print "  Note: if neither -s or -S are specified, otl2html.py will default to -s. It"
@@ -159,19 +153,6 @@ def showSyntax():
    print "	Menu and will not be shown."
    print
 
-# version
-# print the RCS version information
-# input: none
-# output: RSC version information is printed on the console
- 
-def showVersion():
-   print
-   print "RCS"
-   print " $Revision: 1.52 $"
-   print " $Date: 2008/10/11 22:04:09 $"
-   print " $Author: noel $"
-   print
-
 # getArgs
 # Check for input arguments and set the necessary switches
 # input: none
@@ -179,7 +160,7 @@ def showVersion():
 
 def getArgs():
   global inputfile, debug, formatMode, slides, hideComments, copyright, styleSheet, inlineStyle, div, showTitle
-  if (len(sys.argv) == 1): 
+  if (len(sys.argv) == 1):
     showUsage()
     sys.exit()()
   else:
@@ -218,9 +199,6 @@ def getArgs():
         elif (sys.argv[i] == "-H"):
 	  showSyntax()
 	  sys.exit()
-        elif (sys.argv[i] == "-v"):
-	  showVersion()
-	  sys.exit()
 	elif (sys.argv[i][0] == "-"):
 	  print "Error!  Unknown option.  Aborting"
 	  sys.exit()
@@ -249,7 +227,7 @@ def getLineTextLevel(linein):
   n = count(linein,"\t",0,x)			# count the tabs
   n = n + count(linein," ",0,x)			# count the spaces
   return(n+1)					# return the count + 1 (for level)
-    
+
 # colonStrip(line)
 # stip a leading ':', if it exists
 # input: line
@@ -378,7 +356,7 @@ def handleTableColumns(linein,lineLevel):
   for i in range(1,len(coldata)-1):
 		out += getColumnAlignment(coldata[i])
 		out += lstrip(rstrip(coldata[i]))+'</td>'
-  return out 
+  return out
 
 # handleTableHeaders
 # return the souce for a row's headers
@@ -394,7 +372,7 @@ def handleTableHeaders(linein,lineLevel):
 		out += lstrip(rstrip(coldata[i]))+'</td>'
   out = replace(out,'<td','<th')
   out = replace(out,'</td','</th')
-  return out 
+  return out
 
 # handleTableRow
 # print a table row
@@ -403,7 +381,7 @@ def handleTableHeaders(linein,lineLevel):
 
 def handleTableRow(linein,lineLevel):
   out = "<tr>"
-  if (lineLevel == find(linein,"|| ") +1 ): 
+  if (lineLevel == find(linein,"|| ") +1 ):
          out += handleTableHeaders(linein,lineLevel)
   else:  out += handleTableColumns(linein,lineLevel)
   out += "</tr>"
@@ -418,10 +396,10 @@ def handleTable(linein,lineLevel):
   global inBodyText
   if (inBodyText == 1): print "</p>"
   if (inBodyText == 2): print "</pre>"
-  if (inBodyText != 3): 
+  if (inBodyText != 3):
 	  print "<table class=\"TAB" + str(lineLevel) + "\">"
 	  inBodyText = 3
-  print handleTableRow(linein,lineLevel), 
+  print handleTableRow(linein,lineLevel),
 
 # linkOrImage
 # if there is a link to an image or another page, process it
@@ -496,7 +474,7 @@ def execProgram(line):
   out = sub('!!!(.*)!!!',out,line)
   processLine(out)
   if err: raise RuntimeError, '%s failed w/ exit code %d' % (program, err)
-  return 
+  return
 
 # divName
 # create a name for a division
@@ -536,7 +514,7 @@ def stripTitleText(line):
 def beautifyLine(line):
   if (lstrip(rstrip(line)) == "----------------------------------------"):
         return "<br><hr><br>"
-  
+
   out = line
   line = ""
 
@@ -620,32 +598,32 @@ def processLine(linein):
 	  inBodyText = 0
   	print "</ol>"
   	level = level - 1
-	if (div == 1 and level == 1): 
+	if (div == 1 and level == 1):
 		if (silentdiv == 0): print'</ol>'
 		else: slientdiv = 0
 		print'</div>'
 
       else: print # same depth
-      if (div == 1 and lineLevel == 1): 
+      if (div == 1 and lineLevel == 1):
 	  if (lineLevel != find(linein,"!") +1):
 		  print divName(linein)
 		  if (silentdiv == 0): print "<ol>"
 
       if (slides == 0):
           if (lineLevel == find(linein," ") +1 ) or \
-	  (lineLevel == find(linein,":") +1 ): 
+	  (lineLevel == find(linein,":") +1 ):
 		  if (inBodyText != 1): handleBodyText(linein,lineLevel)
 		  elif (colonStrip(rstrip(lstrip(linein))) == ""):
 			  print "</p>"
 			  handleBodyText(linein,lineLevel)
             	  else: print colonStrip(rstrip(lstrip(linein))),
-          elif (lineLevel == find(linein,";") +1 ): 
+          elif (lineLevel == find(linein,";") +1 ):
 		  if (inBodyText != 2): handlePreformattedText(linein,lineLevel)
 		  elif (semicolonStrip(rstrip(lstrip(linein))) == ""):
 			  print "</pre>"
 			  handlePreformattedText(linein,lineLevel)
             	  else: print semicolonStrip(rstrip(lstrip(linein))),
-          elif (lineLevel == find(linein,"|") +1 ): 
+          elif (lineLevel == find(linein,"|") +1 ):
 		  if (inBodyText != 3): handleTable(linein,lineLevel)
 		  elif (pipeStrip(rstrip(lstrip(linein))) == ""):
 			  print "</table>"
@@ -670,10 +648,10 @@ def processLine(linein):
 	    if (silentdiv == 0):
 		    print "<li",
 		    if (styleSheet != ""):
-		      if (lineLevel == find(linein,"- ") +1 ): 
+		      if (lineLevel == find(linein,"- ") +1 ):
 			print " class=\"LB" + str(lineLevel) + "\"",
 			print ">" + lstrip(rstrip(dashStrip(lstrip(linein)))),
-		      elif (lineLevel == find(linein,"+ ") +1 ): 
+		      elif (lineLevel == find(linein,"+ ") +1 ):
 			print " class=\"LN" + str(lineLevel) + "\"",
 			print ">" + lstrip(rstrip(plusStrip(lstrip(linein)))),
 		      else:
@@ -692,7 +670,7 @@ def processLine(linein):
 	      print "</address>\n"
           else:
 	    if (lineLevel == find(linein," ") +1 ) or \
-	    (lineLevel == find(linein,":") +1 ): 
+	    (lineLevel == find(linein,":") +1 ):
 		    if (inBodyText == 0):
 		        handleBodyText(linein,lineLevel)
 	      	    else: print rstrip(lstrip(linein)),
@@ -704,7 +682,7 @@ def processLine(linein):
 	      if (styleSheet != ""):
                 print " class=\"LI.L" + str(lineLevel) + "\"",
               print ">" + rstrip(lstrip(linein)),
-      
+
 # flatten
 # Flatten a subsection of an outline.  The index passed is the outline section
 # title.  All sublevels that are only one level deeper are indcluded in the current
@@ -996,11 +974,8 @@ def printHeader(linein):
   global styleSheet, inlineStyle
   print "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\" \"http://www.w3.org/TR/html4/strict.dtd\">"
   print "<html><head><title>" + getTitleText(linein) + "</title></head>"
-  print"<!--  $Revision: 1.52 $ -->"
-  print"<!--  $Date: 2008/10/11 22:04:09 $ -->"
-  print"<!--  $Author: noel $ -->"
   try:
-	file = open(styleSheet,"r") 
+	file = open(styleSheet,"r")
   except IOError, e:
 	createCSS()
 	file = open(styleSheet,"r")
@@ -1063,9 +1038,9 @@ def main():
     printHeader(flatoutline[0])
     for i in range (0,len(flatoutline)):
       processLine(flatoutline[i])
-    
+
   printFooter()
   file.close()
 
 main()
-    
+

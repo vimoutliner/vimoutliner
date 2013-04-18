@@ -25,11 +25,6 @@
 #
 #############################################################################
 # ALPHA VERSION!!!
-# $Revision: 1.3 $
-# $Date: 2003/12/01 20:22:18 $
-# $Author: noel $
-# $Source: /home/noel/apps/otl2ooimpress/RCS/otl2ooimpress.py,v $
-# $Locker:  $
 
 ###########################################################################
 # Basic function
@@ -67,28 +62,13 @@ debug = 0
 # print the simplest form of help
 # input: none
 # output: simple command usage is printed on the console
- 
+
 def showUsage():
    print
    print "Usage:"
    print "otl2ooimpress.py [options] inputfile > outputfile"
-   print "Options"
-   print "    -v              Print version (RCS) information."
+   print ""
    print "output is on STDOUT"
-   print
-
-# version
-# print the RCS version information
-# input: none
-# output: RSC version information is printed on the console
- 
-def showVersion():
-   print
-   print "RCS"
-   print " $Revision: 1.3 $"
-   print " $Date: 2003/12/01 20:22:18 $"
-   print " $Author: noel $"
-   print " $Source: /home/noel/apps/otl2ooimpress/RCS/otl2ooimpress.py,v $"
    print
 
 # getArgs
@@ -98,7 +78,7 @@ def showVersion():
 
 def getArgs():
   global inputfile, debug
-  if (len(sys.argv) == 1): 
+  if (len(sys.argv) == 1):
     showUsage()
     sys.exit()()
   else:
@@ -113,9 +93,6 @@ def getArgs():
 	  sys.exit()
         elif (sys.argv[i] == "-h"):
 	  showUsage()
-	  sys.exit()
-        elif (sys.argv[i] == "-v"):
-	  showVersion()
 	  sys.exit()
 	elif (sys.argv[i][0] == "-"):
 	  print "Error!  Unknown option.  Aborting"
@@ -145,7 +122,7 @@ def getLineTextLevel(linein):
   n = count(linein,"\t",0,x)			# count the tabs
   n = n + count(linein," ",0,x)			# count the spaces
   return(n+1)					# return the count + 1 (for level)
-    
+
 # colonStrip(line)
 # stip a leading ':', if it exists
 # input: line
@@ -164,11 +141,11 @@ def colonStrip(line):
 
 def processLine(linein):
   global inPage, pageNumber
-  if (lstrip(linein) == ""): 
-	print 
+  if (lstrip(linein) == ""):
+	print
   	return
   if (getLineLevel(linein) == 1):
-	  if (inPage==1): 
+	  if (inPage==1):
 		  print '</draw:text-box></draw:page>'
 		  inPage = 0
 	  pageNumber += 1
@@ -176,22 +153,22 @@ def processLine(linein):
 	  outstring += 'page'
 	  outstring += str(pageNumber)
 	  outstring += '" draw:style-name="dp1" draw:id="1" draw:master-page-name="Default" presentation:presentation-page-layout-name="AL1T0">'
-	  print outstring 
+	  print outstring
 	  outstring  = '<draw:text-box presentation:style-name="pr1" draw:layer="layout" svg:width="23.911cm" svg:height="3.508cm" svg:x="2.057cm" svg:y="1.0cm" presentation:class="title">'
-	  print outstring 
+	  print outstring
 	  outstring = '<text:p text:style-name="P1">'
 	  outstring += lstrip(linein)
 	  outstring += "</text:p></draw:text-box>"
-	  print outstring 
+	  print outstring
 	  outstring = '<draw:text-box presentation:style-name="pr1" draw:layer="layout" svg:width="23.911cm" svg:height="3.508cm" svg:x="2.057cm" svg:y="5.38cm" presentation:class="subtitle">'
-	  print outstring 
+	  print outstring
 	  inPage = 1
   else:
 	  outstring = '<text:p text:style-name="P1">'
 	  outstring += lstrip(linein)
 	  outstring += '</text:p>'
-	  print outstring 
-      
+	  print outstring
+
 # flatten
 # Flatten a subsection of an outline.  The index passed is the outline section
 # title.  All sublevels that are only one level deeper are indcluded in the current
@@ -260,4 +237,4 @@ def main():
   file.close()
 
 main()
-    
+

@@ -3,23 +3,17 @@
 # grep an outline for a regex and return the branch with all the leaves.
 #
 # Copyright 2005 Noel Henson All rights reserved
-#
-# $Revision: 1.4 $
-# $Date: 2006/02/19 18:10:46 $
-# $Author: noel $
-# $Source: /home/noel/active/otlgrep/RCS/otlgrep.py,v $
-# $Locker:  $
 
 ###########################################################################
 # Basic function
 #
 #	This program searches an outline file for a branch that contains
-#	a line matching the regex argument. The parent headings (branches) 
+#	a line matching the regex argument. The parent headings (branches)
 #	and the children (sub-branches and leaves) of the matching headings
 #	are returned.
 #
 #	Examples
-#	
+#
 #	Using this outline:
 #
 #	Pets
@@ -83,7 +77,7 @@ from re import *
 debug = 0
 ignorecase = 0
 pattern = ""
-inputfiles = [] 
+inputfiles = []
 
 ###########################################################################
 # function definitions# usage
@@ -92,40 +86,29 @@ inputfiles = []
 # input: string
 # output: string printed to standard out
 
+
 def dprint(*vals):
-	global debug
-	if debug != 0: print vals
+    global debug
+    if debug != 0:
+        print vals
+
 
 # usage
 # print the simplest form of help
 # input: none
 # output: simple command usage is printed on the console
- 
 def showUsage():
-   print
-   print "Usage:"
-   print "otlgrep.py [options] pattern [file...] "
-   print "Options"
-   print "    -i            Ignore case"
-   print "    --version     Print version (RCS) information."
-   print "    --help        Show help."
-   print "[file...] is zero or more files to search. Wildcards are supported."
-   print "          if no file is specified, input is expected on stdin."
-   print "output is on STDOUT"
-   print
+    print
+    print "Usage:"
+    print "otlgrep.py [options] pattern [file...] "
+    print "Options"
+    print "    -i            Ignore case"
+    print "    --help        Show help."
+    print "[file...] is zero or more files to search. Wildcards are supported."
+    print "          if no file is specified, input is expected on stdin."
+    print "output is on STDOUT"
+    print
 
-# version
-# print the RCS version information
-# input: none
-# output: RSC version information is printed on the console
- 
-def showVersion():
-   print
-   print "RCS"
-   print " $Revision: 1.4 $"
-   print " $Date: 2006/02/19 18:10:46 $"
-   print " $Author: noel $"
-   print
 
 # getArgs
 # Check for input arguments and set the necessary switches
@@ -134,7 +117,7 @@ def showVersion():
 
 def getArgs():
   global debug, pattern, inputfiles, ignorecase
-  if (len(sys.argv) == 1): 
+  if (len(sys.argv) == 1):
     showUsage()
     sys.exit()()
   else:
@@ -148,9 +131,6 @@ def getArgs():
         elif (sys.argv[i] == "--help"):
 	  showUsage()
 	  sys.exit()
-        elif (sys.argv[i] == "--version"):
-	  showVersion()
-	  sys.exit()
 	elif (sys.argv[i][0] == "-"):
 	  print "Error!  Unknown option.  Aborting"
 	  sys.exit()
@@ -158,22 +138,22 @@ def getArgs():
 	  if (pattern == ""): pattern = sys.argv[i]
 	  else: inputfiles.append(sys.argv[i])
 
+
 # getLineLevel
 # get the level of the current line (count the number of tabs)
 # input: linein - a single line that may or may not have tabs at the beginning
 # output: returns a number 1 is the lowest
-
 def getLineLevel(linein):
-  strstart = lstrip(linein)			# find the start of text in line
-  x = find(linein,strstart)			# find the text index in the line
-  n = count(linein,"\t",0,x)			# count the tabs
-  return(n)					# return the count + 1 (for level)
+    strstart = lstrip(linein)			# find the start of text in line
+    x = find(linein, strstart)			# find the text index in the line
+    n = count(linein, "\t", 0, x)		# count the tabs
+    return(n)					# return the count + 1 (for level)
+
 
 # processFile
 # split an outline file
 # input: file - the filehandle of the file we are splitting
 # output: output files
-
 def processFile(file):
 
   global debug, pattern, ignorecase
@@ -208,7 +188,7 @@ def processFile(file):
 	  else:
 		  line = file.readline()
 
-	
+
 # main
 # split an outline
 # input: args and input file
@@ -218,11 +198,11 @@ def main():
   global inputfiles, debug
   getArgs()
   if (len(inputfiles) == 0):
-		  processFile(sys.stdin)  
+		  processFile(sys.stdin)
   else:
 	  for i in range(len(inputfiles)):
 		  file = open(inputfiles[i],"r")
-		  processFile(file)  
+		  processFile(file)
 		  file.close()
 
 main()

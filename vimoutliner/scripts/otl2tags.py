@@ -5,83 +5,12 @@
 # many, many others should be easily supportables.
 #
 # Copyright (c) 2005-2010 Noel Henson All rights reserved
-#
-# $Revision: 1.15 $
-# $Date: 2010/02/12 05:31:17 $
-# $Author: noel $
-# $Source: /home/noel/active/otl2tags/RCS/otl2tags.py,v $
-# $Locker:  $
 
 ###########################################################################
 # Basic function
 #
 #	This program accepts text outline files in Vim Outliners .otl format
 #	and converts them to a tags-based equivalent
-
-###########################################################################
-# Change Log
-#
-#	$Log: otl2tags.py,v $
-#	Revision 1.15  2010/02/12 05:31:17  noel
-#	Added test for empty  escapes setting.
-#
-#	Revision 1.14  2010/01/31 06:37:41  noel
-#	Added character escapes.
-#	Added single-URL embedding.
-#	TODO:
-#	Add image handling
-#	Add multiple URLs per line (if not using url-attr)
-#
-#	Revision 1.13  2010/01/28 07:20:02  noel
-#	Started adding support for embedded objects like links and images.
-#
-#	Revision 1.12  2010/01/27 20:10:10  noel
-#	Removed a debug print.
-#
-#	Revision 1.11  2010/01/26 21:04:45  noel
-#	Fixed a few bugs concering blocks.
-#	Added support for the other objects including tables.
-#
-#	Revision 1.10  2010/01/26 07:07:37  noel
-#	Major restructuring and refactoring.
-#	Not quite ready yet; only a few objects implemented.
-#
-#	Revision 1.9  2010/01/23 23:17:59  noel
-#	Minor edits before major refactoring.
-#
-#	Revision 1.8  2009/02/25 20:19:11  noel
-#	Added error message prints to stderr.
-#	Added more debug info.
-#
-#	Revision 1.7  2008/09/07 14:36:57  noel
-#	Fixed a bug that caused either exports to GraphViz to work and FreeMind
-#	to fail and vice-versa. Had to do with pushing the initial node number i
-#	the parent stack.
-#	To this end and new flag was added: first-is-node. When 'true' the program
-#	properly indents the file to show the first line of the file is the 0th
-#	node even if it shares the same indent level as the rest of the top-most
-#	nodes.
-#
-#	Revision 1.6  2008/09/05 21:46:33  noel
-#	Added an initial parent line number pop for the title line to
-#	fix a bug in generating graphviz files.
-#
-#	Revision 1.5  2008/09/05 18:50:48  noel
-#	Fixed recursion.
-#	Modified the config file to support nexted and unnested nodes.
-#
-#	Revision 1.4  2008/09/04 20:08:28  noel
-#	Minor bug fixes and added two more variables for replacement.
-#
-#	Revision 1.3  2005/10/18 16:01:15  noel
-#	First completely working version.
-#
-#	Revision 1.2  2005/10/18 10:32:28  noel
-#	Works except for leaving levels and some other minutia.
-#
-#	Revision 1.1  2005/10/04 13:08:21  noel
-#	Initial revision
-#
 
 ###########################################################################
 # include whatever mdules we need
@@ -112,14 +41,14 @@ escapeDict = {}		# dictionary of character escape codes
 
 def dprint(*vals):
 	global debug
-	if debug != 0: 
+	if debug != 0:
 		print >> sys.stderr, vals
 
 # usage
 # print the simplest form of help
 # input: none
 # output: simple command usage is printed on the console
- 
+
 def showUsage():
 	 print
 	 print "Usage:"
@@ -128,22 +57,7 @@ def showUsage():
 	 print "    -c             config-file"
 	 print "    -d             debug"
 	 print "    --help         show help"
-	 print "    -v             Print version (RCS) information."
 	 print "output filenames are based on the input file name and the config file"
-	 print
-
-# version
-# print the RCS version information
-# input: none
-# output: RSC version information is printed on the console
- 
-def showVersion():
-	 print
-	 print "RCS"
-	 print " $Revision: 1.15 $"
-	 print " $Date: 2010/02/12 05:31:17 $"
-	 print " $Author: noel $"
-	 print " $Source: /home/noel/active/otl2tags/RCS/otl2tags.py,v $"
 	 print
 
 # getArgs
@@ -153,7 +67,7 @@ def showVersion():
 
 def getArgs():
 	global inputfile, debug, noTrailing, formatMode, config
-	if (len(sys.argv) == 1): 
+	if (len(sys.argv) == 1):
 	  showUsage()
 	  sys.exit()()
 	else:
@@ -172,9 +86,6 @@ def getArgs():
 	         sys.exit()
 	      elif (sys.argv[i] == "-h"):
 	         showUsage()
-	         sys.exit()
-	      elif (sys.argv[i] == "-v"):
-	         showVersion()
 	         sys.exit()
 	      elif (sys.argv[i][0] == "-"):
 	         print "Error!  Unknown option.  Aborting"
@@ -198,7 +109,7 @@ def printConfig():
 	    if (x !="name") and (x !="__name__"):
 	      print >> sys.stderr, x,":", config.get(list[i],x)
   print >> sys.stderr, "----------------------------------------------------"
-  print >> sys.stderr  
+  print >> sys.stderr
 
 ###########################################################################
 # low-level outline processing functions
@@ -294,7 +205,7 @@ def getBlock(linenum,marker):
 	while line[0] == marker:
 		lines.append(stripMarker(line,marker))
 		linenum = linenum + 1
-		if linenum == linecount: break	
+		if linenum == linecount: break
 		line = outline[linenum][0]
 	return lines
 
@@ -311,7 +222,7 @@ def getUnstrippedBlock(linenum,marker):
 	while line[0] == marker:
 		lines.append(line)
 		linenum = linenum + 1
-		if linenum == linecount: break	
+		if linenum == linecount: break
 		line = outline[linenum][0]
 	return lines
 
@@ -347,8 +258,8 @@ def getURL(line):
 	tags = []
 	for tag in line.split("]"):
 		tags.append(tag.split("["))
-	
-	for tag in tags: 
+
+	for tag in tags:
 		if len(tag) > 1 and search(" ",tag[1]):
 			link = tag[1]
 
@@ -729,7 +640,7 @@ def main():
 
 	# read the input file
 	readFile(inputfile)
-	
+
 	# get the title
 	v["%t"] = strip(outline[0][0])
 
@@ -746,7 +657,7 @@ def main():
 
 	# handle embeded objects
 	# parsing and constructing links, images and other embedded objects
-	for i in range(len(output)):	
+	for i in range(len(output)):
 		output[i]=handleURL(output[i])
 
 	# output the final data
