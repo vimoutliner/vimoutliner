@@ -3,12 +3,6 @@
 # split an outline into several files.
 #
 # Copyright 2005 Noel Henson All rights reserved
-#
-# $Revision: 1.9 $
-# $Date: 2006/02/19 14:39:06 $
-# $Author: noel $
-# $Source: /home/noel/active/otlsplit/RCS/otlsplit.py,v $
-# $Locker:  $
 
 ###########################################################################
 # Basic function
@@ -61,7 +55,7 @@ def dprint(*vals):
 # print the simplest form of help
 # input: none
 # output: simple command usage is printed on the console
- 
+
 def showUsage():
    print
    print "Usage:"
@@ -70,22 +64,8 @@ def showUsage():
    print "    -l level  The number of levels to split down to. The default is 1"
    print "    -D dir    Specifiy a target directory for the output files"
    print "    -t        Include a title line (the parerent heading) in split files"
-   print "    -v        Print version (RCS) information."
    print "    -h        Show help."
    print "output is on STDOUT"
-   print
-
-# version
-# print the RCS version information
-# input: none
-# output: RSC version information is printed on the console
- 
-def showVersion():
-   print
-   print "RCS"
-   print " $Revision: 1.9 $"
-   print " $Date: 2006/02/19 14:39:06 $"
-   print " $Author: noel $"
    print
 
 # getArgs
@@ -95,7 +75,7 @@ def showVersion():
 
 def getArgs():
   global debug, level, inputfile, title, subdir
-  if (len(sys.argv) == 1): 
+  if (len(sys.argv) == 1):
     showUsage()
     sys.exit()()
   else:
@@ -117,9 +97,6 @@ def getArgs():
 	  sys.exit()
         elif (sys.argv[i] == "-h"):
 	  showUsage()
-	  sys.exit()
-        elif (sys.argv[i] == "-v"):
-	  showVersion()
 	  sys.exit()
 	elif (sys.argv[i][0] == "-"):
 	  print "Error!  Unknown option.  Aborting"
@@ -146,7 +123,7 @@ def getLineLevel(linein):
 def convertSensitiveChars(line):
   line = lstrip(rstrip(line))
   line = sub('\W','_',line)
-  return(line)			
+  return(line)
 
 # makeFileName
 # make a file name from the string array provided
@@ -162,7 +139,7 @@ def makeFileName(nameParts):
 	  filename = filename + lstrip(rstrip(convertSensitiveChars(nameParts[i]))) + "-"
   filename = filename[:-1]+ ".otl"
   if subdir != "": filename = subdir + "/" + filename
-  return(lower(filename))			
+  return(lower(filename))
 
 # processFile
 # split an outline file
@@ -186,13 +163,13 @@ def processFile(file):
   while (line !=""):
 	  linelevel = getLineLevel(line)
 	  if (linelevel < level):
-		if outOpen == 1: 
+		if outOpen == 1:
 			ofile.close()
 			outOpen = 0
 	  	nameparts[linelevel] = line
 		dprint(level,linelevel,line)
 	  else:
-		  if outOpen == 0: 
+		  if outOpen == 0:
 			  ofile = open(makeFileName(nameparts),"w")
 			  outOpen = 1
 			  if title == 1:
@@ -200,7 +177,7 @@ def processFile(file):
 				  ofile.write(nameparts[level-1])
 		  ofile.write(line[level:])
 	  line = file.readline()
-	
+
 # main
 # split an outline
 # input: args and input file
@@ -210,7 +187,7 @@ def main():
   global inputfile, debug
   getArgs()
   file = open(inputfile,"r")
-  processFile(file)  
+  processFile(file)
   file.close()
 
 main()
