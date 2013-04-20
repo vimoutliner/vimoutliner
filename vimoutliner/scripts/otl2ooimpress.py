@@ -64,12 +64,12 @@ debug = 0
 # output: simple command usage is printed on the console
 
 def showUsage():
-   print
-   print "Usage:"
-   print "otl2ooimpress.py [options] inputfile > outputfile"
-   print ""
-   print "output is on STDOUT"
-   print
+  print
+  print "Usage:"
+  print "otl2ooimpress.py [options] inputfile > outputfile"
+  print ""
+  print "output is on STDOUT"
+  print
 
 # getArgs
 # Check for input arguments and set the necessary switches
@@ -86,18 +86,18 @@ def getArgs():
       if (i != 0):
         if   (sys.argv[i] == "-d"): debug = 1	# test for debug flag
         elif (sys.argv[i] == "-?"):		# test for help flag
-	  showUsage()				# show the help
-	  sys.exit()				# exit
+          showUsage()                           # show the help
+          sys.exit()                            # exit
         elif (sys.argv[i] == "--help"):
-	  showUsage()
-	  sys.exit()
+          showUsage()
+          sys.exit()
         elif (sys.argv[i] == "-h"):
-	  showUsage()
-	  sys.exit()
-	elif (sys.argv[i][0] == "-"):
-	  print "Error!  Unknown option.  Aborting"
-	  sys.exit()
-	else: 					# get the input file name
+          showUsage()
+          sys.exit()
+        elif (sys.argv[i][0] == "-"):
+          print "Error!  Unknown option.  Aborting"
+          sys.exit()
+        else:                                   # get the input file name
           inputfile = sys.argv[i]
 
 # getLineLevel
@@ -129,8 +129,8 @@ def getLineTextLevel(linein):
 # output: returns a string with a stipped ':'
 
 def colonStrip(line):
-	if (line[0] == ":"): return lstrip(line[1:])
-        else: return line
+  if (line[0] == ":"): return lstrip(line[1:])
+  else: return line
 
 # processLine
 # process a single line
@@ -142,32 +142,32 @@ def colonStrip(line):
 def processLine(linein):
   global inPage, pageNumber
   if (lstrip(linein) == ""):
-	print
-  	return
+    print
+    return
   if (getLineLevel(linein) == 1):
-	  if (inPage==1):
-		  print '</draw:text-box></draw:page>'
-		  inPage = 0
-	  pageNumber += 1
-	  outstring = '<draw:page draw:name="'
-	  outstring += 'page'
-	  outstring += str(pageNumber)
-	  outstring += '" draw:style-name="dp1" draw:id="1" draw:master-page-name="Default" presentation:presentation-page-layout-name="AL1T0">'
-	  print outstring
-	  outstring  = '<draw:text-box presentation:style-name="pr1" draw:layer="layout" svg:width="23.911cm" svg:height="3.508cm" svg:x="2.057cm" svg:y="1.0cm" presentation:class="title">'
-	  print outstring
-	  outstring = '<text:p text:style-name="P1">'
-	  outstring += lstrip(linein)
-	  outstring += "</text:p></draw:text-box>"
-	  print outstring
-	  outstring = '<draw:text-box presentation:style-name="pr1" draw:layer="layout" svg:width="23.911cm" svg:height="3.508cm" svg:x="2.057cm" svg:y="5.38cm" presentation:class="subtitle">'
-	  print outstring
-	  inPage = 1
+    if (inPage==1):
+      print '</draw:text-box></draw:page>'
+      inPage = 0
+    pageNumber += 1
+    outstring = '<draw:page draw:name="'
+    outstring += 'page'
+    outstring += str(pageNumber)
+    outstring += '" draw:style-name="dp1" draw:id="1" draw:master-page-name="Default" presentation:presentation-page-layout-name="AL1T0">'
+    print outstring
+    outstring  = '<draw:text-box presentation:style-name="pr1" draw:layer="layout" svg:width="23.911cm" svg:height="3.508cm" svg:x="2.057cm" svg:y="1.0cm" presentation:class="title">'
+    print outstring
+    outstring = '<text:p text:style-name="P1">'
+    outstring += lstrip(linein)
+    outstring += "</text:p></draw:text-box>"
+    print outstring
+    outstring = '<draw:text-box presentation:style-name="pr1" draw:layer="layout" svg:width="23.911cm" svg:height="3.508cm" svg:x="2.057cm" svg:y="5.38cm" presentation:class="subtitle">'
+    print outstring
+    inPage = 1
   else:
-	  outstring = '<text:p text:style-name="P1">'
-	  outstring += lstrip(linein)
-	  outstring += '</text:p>'
-	  print outstring
+    outstring = '<text:p text:style-name="P1">'
+    outstring += lstrip(linein)
+    outstring += '</text:p>'
+    print outstring
 
 # flatten
 # Flatten a subsection of an outline.  The index passed is the outline section

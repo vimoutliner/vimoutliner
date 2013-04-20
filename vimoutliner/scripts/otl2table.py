@@ -54,19 +54,19 @@ columns = []
 # output: simple command usage is printed on the console
 
 def showUsage():
-   print
-   print "Usage:"
-   print "otl2table.py [options] inputfile > outputfile"
-   print "Options"
-   print "    -n              Don't include trailing columns."
-   print "    -t type        Specify field separator type."
-   print "                   Types:"
-   print "                      tab - separate fields with tabs (default)"
-   print "                      csv - separate fields with ,"
-   print "                      qcsv - separate fields with \",\""
-   print "                      bullets - uses HTML tags <ul> and <li>"
-   print "output is on STDOUT"
-   print
+  print
+  print "Usage:"
+  print "otl2table.py [options] inputfile > outputfile"
+  print "Options"
+  print "    -n              Don't include trailing columns."
+  print "    -t type        Specify field separator type."
+  print "                   Types:"
+  print "                      tab - separate fields with tabs (default)"
+  print "                      csv - separate fields with ,"
+  print "                      qcsv - separate fields with \",\""
+  print "                      bullets - uses HTML tags <ul> and <li>"
+  print "output is on STDOUT"
+  print
 
 # getArgs
 # Check for input arguments and set the necessary switches
@@ -84,21 +84,21 @@ def getArgs():
         if   (sys.argv[i] == "-d"): debug = 1		# test for debug flag
         if   (sys.argv[i] == "-n"): noTrailing = 1	# test for noTrailing flag
         elif (sys.argv[i] == "-?"):			# test for help flag
-	  showUsage()					# show the help
-	  sys.exit()					# exit
+          showUsage()                                   # show the help
+          sys.exit()                                    # exit
         elif (sys.argv[i] == "--help"):
-	  showUsage()
-	  sys.exit()
+          showUsage()
+          sys.exit()
         elif (sys.argv[i] == "-h"):
-	  showUsage()
-	  sys.exit()
-        elif (sys.argv[i] == "-t"):		# test for the type flag
-	  formatMode = sys.argv[i+1]		# get the type
-	  i = i + 1				# increment the pointer
-	elif (sys.argv[i][0] == "-"):
-	  print "Error!  Unknown option.  Aborting"
-	  sys.exit()
-	else: 					# get the input file name
+          showUsage()
+          sys.exit()
+        elif (sys.argv[i] == "-t"):             # test for the type flag
+          formatMode = sys.argv[i+1]            # get the type
+          i = i + 1                             # increment the pointer
+        elif (sys.argv[i][0] == "-"):
+          print "Error!  Unknown option.  Aborting"
+          sys.exit()
+        else:                                   # get the input file name
           inputfile = sys.argv[i]
 
 # getLineLevel
@@ -135,27 +135,27 @@ def getLineTextLevel(linein):
 def closeLevels():
   global level,columns,noTrailing,formatMode
   if noTrailing == 1 :
-	  colcount = level
+    colcount = level
   else:
-	   colcount = 10
+     colcount = 10
   if formatMode == "tab":
-	  for i in range(1,colcount+1):
-		  print columns[i] + "\t",
-	  print
+    for i in range(1,colcount+1):
+      print columns[i] + "\t",
+    print
   elif formatMode == "csv":
-	  output = ""
-	  for i in range(1,colcount):
-		  output = output + columns[i] + ","
-	  output = output + columns[colcount]
-	  print output
+    output = ""
+    for i in range(1,colcount):
+      output = output + columns[i] + ","
+    output = output + columns[colcount]
+    print output
   elif formatMode == "qcsv":
-	  output = "\""
-	  for i in range(1,colcount):
-		  output = output + columns[i] + "\",\""
-	  output = output + columns[colcount] + "\""
-	  print output
+    output = "\""
+    for i in range(1,colcount):
+      output = output + columns[i] + "\",\""
+    output = output + columns[colcount] + "\""
+    print output
   for i in range(level+1,10):
-	  columns[i] = ""
+    columns[i] = ""
 
 
 # processLine
@@ -171,15 +171,15 @@ def processLine(linein):
   if (lstrip(linein) == ""): return
   lineLevel = getLineLevel(linein)
   if (lineLevel > level):
-	  columns[lineLevel] = lstrip(rstrip(linein))
-	  level = lineLevel
+    columns[lineLevel] = lstrip(rstrip(linein))
+    level = lineLevel
   elif (lineLevel == level):
-	  closeLevels()
-	  columns[lineLevel] = lstrip(rstrip(linein))
+    closeLevels()
+    columns[lineLevel] = lstrip(rstrip(linein))
   else:
-	  closeLevels()
-	  level = lineLevel
-	  columns[lineLevel] = lstrip(rstrip(linein))
+    closeLevels()
+    level = lineLevel
+    columns[lineLevel] = lstrip(rstrip(linein))
 
 
 def main():
@@ -187,7 +187,7 @@ def main():
   getArgs()
   file = open(inputfile,"r")
   for i in range(11):
-	  columns.append("")
+    columns.append("")
   linein = lstrip(rstrip(file.readline()))
   while linein != "":
     processLine(linein)

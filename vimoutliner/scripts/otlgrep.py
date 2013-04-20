@@ -88,9 +88,9 @@ inputfiles = []
 
 
 def dprint(*vals):
-    global debug
-    if debug != 0:
-        print vals
+  global debug
+  if debug != 0:
+    print vals
 
 
 # usage
@@ -98,16 +98,16 @@ def dprint(*vals):
 # input: none
 # output: simple command usage is printed on the console
 def showUsage():
-    print
-    print "Usage:"
-    print "otlgrep.py [options] pattern [file...] "
-    print "Options"
-    print "    -i            Ignore case"
-    print "    --help        Show help."
-    print "[file...] is zero or more files to search. Wildcards are supported."
-    print "          if no file is specified, input is expected on stdin."
-    print "output is on STDOUT"
-    print
+  print
+  print "Usage:"
+  print "otlgrep.py [options] pattern [file...] "
+  print "Options"
+  print "    -i            Ignore case"
+  print "    --help        Show help."
+  print "[file...] is zero or more files to search. Wildcards are supported."
+  print "          if no file is specified, input is expected on stdin."
+  print "output is on STDOUT"
+  print
 
 
 # getArgs
@@ -126,17 +126,17 @@ def getArgs():
         if   (sys.argv[i] == "-d"): debug = 1	# test for debug flag
         elif (sys.argv[i] == "-i"): ignorecase = 1	# test for debug flag
         elif (sys.argv[i] == "-?"):		# test for help flag
-	  showUsage()				# show the help
-	  sys.exit()				# exit
+          showUsage()                           # show the help
+          sys.exit()                            # exit
         elif (sys.argv[i] == "--help"):
-	  showUsage()
-	  sys.exit()
-	elif (sys.argv[i][0] == "-"):
-	  print "Error!  Unknown option.  Aborting"
-	  sys.exit()
-	else: 					# get the input file name
-	  if (pattern == ""): pattern = sys.argv[i]
-	  else: inputfiles.append(sys.argv[i])
+          showUsage()
+          sys.exit()
+        elif (sys.argv[i][0] == "-"):
+          print "Error!  Unknown option.  Aborting"
+          sys.exit()
+        else:                                   # get the input file name
+          if (pattern == ""): pattern = sys.argv[i]
+          else: inputfiles.append(sys.argv[i])
 
 
 # getLineLevel
@@ -161,32 +161,32 @@ def processFile(file):
   parents = []
   parentprinted = []
   for i in range(10):
-	  parents.append("")
-	  parentprinted.append(0)
+    parents.append("")
+    parentprinted.append(0)
 
   matchlevel = 0
-  line = file.readline()			# read the outline title
-  						# and discard it
-  line = file.readline()			# read the first parent heading
+  line = file.readline()      # read the outline title
+                              # and discard it
+  line = file.readline()      # read the first parent heading
   while (line !=""):
-	  level = getLineLevel(line)
-	  parents[level] = line
-	  parentprinted[level] = 0
-	  if (ignorecase == 1): linesearch = search(pattern,lstrip(rstrip(line)),I)
-	  else: linesearch = search(pattern,lstrip(rstrip(line)))
-	  if (linesearch != None):
-		  matchlevel = level
-		  for i in range(level):	# print my ancestors
-			  if (parentprinted[i] == 0):
-				  print parents[i][:-1]
-				  parentprinted[i] = 1
-		  print parents[level][:-1]	# print myself
-		  line = file.readline()
-		  while (line != "") and (getLineLevel(line) > matchlevel):
-			  print line[:-1]
-			  line = file.readline()
-	  else:
-		  line = file.readline()
+    level = getLineLevel(line)
+    parents[level] = line
+    parentprinted[level] = 0
+    if (ignorecase == 1): linesearch = search(pattern,lstrip(rstrip(line)),I)
+    else: linesearch = search(pattern,lstrip(rstrip(line)))
+    if (linesearch != None):
+      matchlevel = level
+      for i in range(level):  # print my ancestors
+        if (parentprinted[i] == 0):
+          print parents[i][:-1]
+          parentprinted[i] = 1
+      print parents[level][:-1] # print myself
+      line = file.readline()
+      while (line != "") and (getLineLevel(line) > matchlevel):
+        print line[:-1]
+        line = file.readline()
+    else:
+      line = file.readline()
 
 
 # main
@@ -198,11 +198,11 @@ def main():
   global inputfiles, debug
   getArgs()
   if (len(inputfiles) == 0):
-		  processFile(sys.stdin)
+      processFile(sys.stdin)
   else:
-	  for i in range(len(inputfiles)):
-		  file = open(inputfiles[i],"r")
-		  processFile(file)
-		  file.close()
+    for i in range(len(inputfiles)):
+      file = open(inputfiles[i],"r")
+      processFile(file)
+      file.close()
 
 main()

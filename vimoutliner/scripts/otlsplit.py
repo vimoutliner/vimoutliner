@@ -48,8 +48,8 @@ inputfile = ""
 # output: string printed to standard out
 
 def dprint(*vals):
-	global debug
-	if debug != 0: print vals
+  global debug
+  if debug != 0: print vals
 
 # usage
 # print the simplest form of help
@@ -83,25 +83,25 @@ def getArgs():
       if (i != 0):
         if   (sys.argv[i] == "-d"): debug = 1	# test for debug flag
         elif (sys.argv[i] == "-?"):		# test for help flag
-	  showUsage()				# show the help
-	  sys.exit()				# exit
-        elif (sys.argv[i] == "-l"):		# test for the level flag
-	  level = int(sys.argv[i+1])		# get the level
-	  i = i + 1				# increment the pointer
-        elif (sys.argv[i] == "-D"):		# test for the subdir flag
-	  subdir = sys.argv[i+1]		# get the subdir
-	  i = i + 1				# increment the pointer
-  	elif   (sys.argv[i] == "-t"): title = 1	# test for title flag
+          showUsage()                           # show the help
+          sys.exit()                            # exit
+        elif (sys.argv[i] == "-l"):             # test for the level flag
+          level = int(sys.argv[i+1])            # get the level
+          i = i + 1                             # increment the pointer
+        elif (sys.argv[i] == "-D"):             # test for the subdir flag
+          subdir = sys.argv[i+1]                # get the subdir
+          i = i + 1                             # increment the pointer
+        elif   (sys.argv[i] == "-t"): title = 1 # test for title flag
         elif (sys.argv[i] == "--help"):
-	  showUsage()
-	  sys.exit()
+          showUsage()
+          sys.exit()
         elif (sys.argv[i] == "-h"):
-	  showUsage()
-	  sys.exit()
-	elif (sys.argv[i][0] == "-"):
-	  print "Error!  Unknown option.  Aborting"
-	  sys.exit()
-	else: 					# get the input file name
+          showUsage()
+          sys.exit()
+        elif (sys.argv[i][0] == "-"):
+          print "Error!  Unknown option.  Aborting"
+          sys.exit()
+        else:                                   # get the input file name
           inputfile = sys.argv[i]
 
 # getLineLevel
@@ -136,7 +136,7 @@ def makeFileName(nameParts):
 
   filename = ""
   for i in range(level):
-	  filename = filename + lstrip(rstrip(convertSensitiveChars(nameParts[i]))) + "-"
+    filename = filename + lstrip(rstrip(convertSensitiveChars(nameParts[i]))) + "-"
   filename = filename[:-1]+ ".otl"
   if subdir != "": filename = subdir + "/" + filename
   return(lower(filename))
@@ -152,31 +152,31 @@ def processFile(file):
 
   nameparts = []
   for i in range(10):
-	  nameparts.append("")
+    nameparts.append("")
 
   outOpen = 0
 
   line = file.readline()			# read the outline title
-  						# and discard it
+                              # and discard it
   line = file.readline()			# read the first parent heading
   dprint(level)
   while (line !=""):
-	  linelevel = getLineLevel(line)
-	  if (linelevel < level):
-		if outOpen == 1:
-			ofile.close()
-			outOpen = 0
-	  	nameparts[linelevel] = line
-		dprint(level,linelevel,line)
-	  else:
-		  if outOpen == 0:
-			  ofile = open(makeFileName(nameparts),"w")
-			  outOpen = 1
-			  if title == 1:
-				  dprint("title:",title)
-				  ofile.write(nameparts[level-1])
-		  ofile.write(line[level:])
-	  line = file.readline()
+    linelevel = getLineLevel(line)
+    if (linelevel < level):
+      if outOpen == 1:
+        ofile.close()
+        outOpen = 0
+        nameparts[linelevel] = line
+      dprint(level,linelevel,line)
+    else:
+      if outOpen == 0:
+        ofile = open(makeFileName(nameparts),"w")
+        outOpen = 1
+        if title == 1:
+          dprint("title:",title)
+          ofile.write(nameparts[level-1])
+      ofile.write(line[level:])
+    line = file.readline()
 
 # main
 # split an outline

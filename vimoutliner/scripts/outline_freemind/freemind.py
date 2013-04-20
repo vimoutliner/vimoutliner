@@ -104,7 +104,7 @@ def otl2mm(*arg, **kwarg):
     # otl file for easier debugging
     #for lineno, line in enumerate(open(fname)):
     # enumerate starts at 0 I want to start at 1
-	# FIXME freemind.py|107| W806 local variable 'lineno' is assigned to but never used
+    # FIXME freemind.py|107| W806 local variable 'lineno' is assigned to but never used
     lineno = 0
 
     mapnode = et.Element('map')
@@ -147,7 +147,7 @@ def otl2mm(*arg, **kwarg):
         elif level > oldlevel:
             # about to go down in the hierarchy so add this line
             # as a parent to the stack
-			# FIXME freemind.py|149| W802 undefined name 'node'
+            # FIXME freemind.py|149| W802 undefined name 'node'
             parents.append(node)
         elif level < oldlevel:
             # about to go up in the hierarchy so remove parents from the stack

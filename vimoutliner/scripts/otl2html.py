@@ -56,102 +56,102 @@ inlineStyle = 0
 # output: simple command usage is printed on the console
 
 def showUsage():
-   print
-   print "Usage:"
-   print "otl2html.py [options] inputfile > outputfile"
-   print "Options"
-   print "    -p              Presentation: slide show output for use with HtmlSlides."
-   print "    -D              First-level is divisions (<div> </div>) for making"
-   print "                    pretty web pages."
-   print "    -s sheet        Use the specified style sheet with a link. This is the"
-   print "                    default."
-   print "    -S sheet        Include the specified style sheet in-line the output. For"
-   print "                    encapsulated style."
-   print "    -T              The first line is not the title. Treat it as outline data"
-   print "    -c              comments (line with [ as the first non-whitespace"
-   print "                    character. Ending with ] is optional."
-   print "    -C copyright    Override the internal copyright notice with the"
-   print "                    one supplied in the quoted string following this"
-   print "                    flag. Single or double quotes can be used."
-   print "    -H              Show the file syntax help."
-   print "output is on STDOUT"
-   print "  Note: if neither -s or -S are specified, otl2html.py will default to -s. It"
-   print "      will try to use the css file 'nnnnnn.css' if it exists. If it does not"
-   print "      exist, it will be created automatically."
-   print
+  print
+  print "Usage:"
+  print "otl2html.py [options] inputfile > outputfile"
+  print "Options"
+  print "    -p              Presentation: slide show output for use with HtmlSlides."
+  print "    -D              First-level is divisions (<div> </div>) for making"
+  print "                    pretty web pages."
+  print "    -s sheet        Use the specified style sheet with a link. This is the"
+  print "                    default."
+  print "    -S sheet        Include the specified style sheet in-line the output. For"
+  print "                    encapsulated style."
+  print "    -T              The first line is not the title. Treat it as outline data"
+  print "    -c              comments (line with [ as the first non-whitespace"
+  print "                    character. Ending with ] is optional."
+  print "    -C copyright    Override the internal copyright notice with the"
+  print "                    one supplied in the quoted string following this"
+  print "                    flag. Single or double quotes can be used."
+  print "    -H              Show the file syntax help."
+  print "output is on STDOUT"
+  print "  Note: if neither -s or -S are specified, otl2html.py will default to -s. It"
+  print "      will try to use the css file 'nnnnnn.css' if it exists. If it does not"
+  print "      exist, it will be created automatically."
+  print
 
 def showSyntax():
-   print
-   print "Syntax"
-   print "Syntax is Vim Outliner's normal syntax. The following are supported:"
-   print
-   print "   Text"
-   print "	:	Body text marker. This text will wrap in the output."
-   print "	;	Preformmated text. This text will will not wrap."
-   print
-   print "   Tables"
-   print "	||	Table header line."
-   print "	|	Table and table columns. Example:"
-   print "			|| Name | Age | Animal |"
-   print "			| Kirby | 9 | Dog |"
-   print "			| Sparky | 1 | Bird |"
-   print "			| Sophia | 8 | Cat |"
-   print "			This will cause an item to be left-justified."
-   print "				| whatever  |"
-   print "			This will cause an item to be right-justified."
-   print "				|  whatever |"
-   print "			This will cause an item to be centered."
-   print "				|  whatever  |"
-   print "			This will cause an item to be default aligned."
-   print "				| whatever |"
-   print
-   print "   Character Styles"
-   print "	**	Bold. Example: **Bold Text**"
-   print "	//	Italic. Example: //Italic Text//"
-   print "	+++	Highlight. Example: +++Highlight Text+++"
-   print "	---	Strikeout. Example: ---Strikeout Text---"
-   print " 	Insane	---+++//**Wow! This is insane!**//+++---"
-   print "		Just remember to keep it all on one line."
-   print "   Horizontal Rule"
-   print "	----------------------------------------  (40 dashes)."
-   print "   Copyright"
-   print "	(c) or (C)	Converts to a standard copyright symbol."
-   print
-   print "   Including Images (for web pages)"
-   print "	[imagename]	Examples:"
-   print "			[logo.gif] [photo.jpg] [car.png]"
-   print "			[http://i.a.cnn.net/cnn/.element/img/1.1/logo/logl.gif]"
-   print "			or from a database:"
-   print "			[http://www.lab.com/php/image.php?id=4]"
-   print
-   print "   Including links (for web pages)"
-   print "	[link text-or-image]	Examples:"
-   print "			[about.html About] [http://www.cnn.com CNN]"
-   print "			or with an image:"
-   print "			[http://www.ted.com [http://www.ted.com/logo.png]]"
-   print "			Links starting with a '+' will be opened in a new"
-   print "			window. Eg. [+about.html About]"
-   print
-   print "   Including external files"
-   print "	!filename!	Examples:"
-   print "			!file.txt!"
-   print
-   print "   Including external outlines (first line is parent)"
-   print "	!!filename!!	Examples:"
-   print "			!!menu.otl!!"
-   print
-   print "   Including output from executing external programs"
-   print "	!!!program args!!!	Examples:"
-   print "			!!!date +%Y%m%d!!!"
-   print
-   print "   Note:"
-   print "	When using -D, the top-level headings become divisions (<div>)"
-   print "	and will be created using a class of the heading name. Spaces"
-   print "	are not allowed. If a top-level heading begins with '_', it"
-   print "	will not be shown but the division name will be the same as"
-   print "	without the '_'. Example: _Menu will have a division name of"
-   print "	Menu and will not be shown."
-   print
+  print
+  print "Syntax"
+  print "Syntax is Vim Outliner's normal syntax. The following are supported:"
+  print
+  print "   Text"
+  print "	:	Body text marker. This text will wrap in the output."
+  print "	;	Preformmated text. This text will will not wrap."
+  print
+  print "   Tables"
+  print "	||	Table header line."
+  print "	|	Table and table columns. Example:"
+  print "			|| Name | Age | Animal |"
+  print "			| Kirby | 9 | Dog |"
+  print "			| Sparky | 1 | Bird |"
+  print "			| Sophia | 8 | Cat |"
+  print "			This will cause an item to be left-justified."
+  print "				| whatever  |"
+  print "			This will cause an item to be right-justified."
+  print "				|  whatever |"
+  print "			This will cause an item to be centered."
+  print "				|  whatever  |"
+  print "			This will cause an item to be default aligned."
+  print "				| whatever |"
+  print
+  print "   Character Styles"
+  print "	**	Bold. Example: **Bold Text**"
+  print "	//	Italic. Example: //Italic Text//"
+  print "	+++	Highlight. Example: +++Highlight Text+++"
+  print "	---	Strikeout. Example: ---Strikeout Text---"
+  print " 	Insane	---+++//**Wow! This is insane!**//+++---"
+  print "		Just remember to keep it all on one line."
+  print "   Horizontal Rule"
+  print "	----------------------------------------  (40 dashes)."
+  print "   Copyright"
+  print "	(c) or (C)	Converts to a standard copyright symbol."
+  print
+  print "   Including Images (for web pages)"
+  print "	[imagename]	Examples:"
+  print "			[logo.gif] [photo.jpg] [car.png]"
+  print "			[http://i.a.cnn.net/cnn/.element/img/1.1/logo/logl.gif]"
+  print "			or from a database:"
+  print "			[http://www.lab.com/php/image.php?id=4]"
+  print
+  print "   Including links (for web pages)"
+  print "	[link text-or-image]	Examples:"
+  print "			[about.html About] [http://www.cnn.com CNN]"
+  print "			or with an image:"
+  print "			[http://www.ted.com [http://www.ted.com/logo.png]]"
+  print "			Links starting with a '+' will be opened in a new"
+  print "			window. Eg. [+about.html About]"
+  print
+  print "   Including external files"
+  print "	!filename!	Examples:"
+  print "			!file.txt!"
+  print
+  print "   Including external outlines (first line is parent)"
+  print "	!!filename!!	Examples:"
+  print "			!!menu.otl!!"
+  print
+  print "   Including output from executing external programs"
+  print "	!!!program args!!!	Examples:"
+  print "			!!!date +%Y%m%d!!!"
+  print
+  print "   Note:"
+  print "	When using -D, the top-level headings become divisions (<div>)"
+  print "	and will be created using a class of the heading name. Spaces"
+  print "	are not allowed. If a top-level heading begins with '_', it"
+  print "	will not be shown but the division name will be the same as"
+  print "	without the '_'. Example: _Menu will have a division name of"
+  print "	Menu and will not be shown."
+  print
 
 # getArgs
 # Check for input arguments and set the necessary switches
@@ -168,41 +168,41 @@ def getArgs():
       if (i != 0):
         if   (sys.argv[i] == "-d"): debug = 1	# test for debug flag
         elif (sys.argv[i] == "-?"):		# test for help flag
-	  showUsage()				# show the help
-	  sys.exit()				# exit
-        elif (sys.argv[i] == "-p"):		# test for the slides flag
-	  slides = 1				# set the slides flag
-        elif (sys.argv[i] == "-D"):		# test for the divisions flag
-	  div = 1				# set the divisions flag
-        elif (sys.argv[i] == "-T"):		# test for the no-title flag
-	  showTitle = 0				# clear the show-title flag
-        elif (sys.argv[i] == "-c"):		# test for the comments flag
-	  hideComments = 1			# set the comments flag
-        elif (sys.argv[i] == "-C"):		# test for the copyright flag
-	  copyright = sys.argv[i+1]		# get the copyright
-	  i = i + 1				# increment the pointer
-        elif (sys.argv[i] == "-s"):		# test for the style sheet flag
-	  styleSheet = sys.argv[i+1]		# get the style sheet name
-	  formatMode = "indent"			# set the format
-	  i = i + 1				# increment the pointer
-        elif (sys.argv[i] == "-S"):		# test for the style sheet flag
-	  styleSheet = sys.argv[i+1]		# get the style sheet name
-	  formatMode = "indent"			# set the format
-	  inlineStyle = 1
-	  i = i + 1				# increment the pointer
+          showUsage()                           # show the help
+          sys.exit()                            # exit
+        elif (sys.argv[i] == "-p"):             # test for the slides flag
+          slides = 1                            # set the slides flag
+        elif (sys.argv[i] == "-D"):             # test for the divisions flag
+          div = 1                               # set the divisions flag
+        elif (sys.argv[i] == "-T"):             # test for the no-title flag
+          showTitle = 0                         # clear the show-title flag
+        elif (sys.argv[i] == "-c"):             # test for the comments flag
+          hideComments = 1                      # set the comments flag
+        elif (sys.argv[i] == "-C"):             # test for the copyright flag
+          copyright = sys.argv[i+1]             # get the copyright
+          i = i + 1                             # increment the pointer
+        elif (sys.argv[i] == "-s"):             # test for the style sheet flag
+          styleSheet = sys.argv[i+1]            # get the style sheet name
+          formatMode = "indent"                 # set the format
+          i = i + 1                             # increment the pointer
+        elif (sys.argv[i] == "-S"):             # test for the style sheet flag
+          styleSheet = sys.argv[i+1]            # get the style sheet name
+          formatMode = "indent"                 # set the format
+          inlineStyle = 1
+          i = i + 1                             # increment the pointer
         elif (sys.argv[i] == "--help"):
-	  showUsage()
-	  sys.exit()
+          showUsage()
+          sys.exit()
         elif (sys.argv[i] == "-h"):
-	  showUsage()
-	  sys.exit()
+          showUsage()
+          sys.exit()
         elif (sys.argv[i] == "-H"):
-	  showSyntax()
-	  sys.exit()
-	elif (sys.argv[i][0] == "-"):
-	  print "Error!  Unknown option.  Aborting"
-	  sys.exit()
-	else: 					# get the input file name
+          showSyntax()
+          sys.exit()
+        elif (sys.argv[i][0] == "-"):
+          print "Error!  Unknown option.  Aborting"
+          sys.exit()
+        else:                                   # get the input file name
           inputfile = sys.argv[i]
 
 # getLineLevel
@@ -234,8 +234,8 @@ def getLineTextLevel(linein):
 # output: returns a string with a stipped ':'
 
 def colonStrip(line):
-	if (line[0] == ":"): return lstrip(line[1:])
-        else: return line
+  if (line[0] == ":"): return lstrip(line[1:])
+  else: return line
 
 # semicolonStrip(line)
 # stip a leading ';', if it exists
@@ -243,8 +243,8 @@ def colonStrip(line):
 # output: returns a string with a stipped ';'
 
 def semicolonStrip(line):
-	if (line[0] == ";"): return line[1:]
-        else: return line
+  if (line[0] == ";"): return line[1:]
+  else: return line
 
 # dashStrip(line)
 # stip a leading '-', if it exists
@@ -252,8 +252,8 @@ def semicolonStrip(line):
 # output: returns a string with a stipped '-'
 
 def dashStrip(line):
-	if (line[0] == "-"): return line[1:]
-        else: return line
+  if (line[0] == "-"): return line[1:]
+  else: return line
 
 # pipeStrip(line)
 # stip a leading '|', if it exists
@@ -261,8 +261,8 @@ def dashStrip(line):
 # output: returns a string with a stipped '|'
 
 def pipeStrip(line):
-	if (line[0] == "|"): return line[1:]
-        else: return line
+  if (line[0] == "|"): return line[1:]
+  else: return line
 
 # plusStrip(line)
 # stip a leading '+', if it exists
@@ -270,8 +270,8 @@ def pipeStrip(line):
 # output: returns a string with a stipped '+'
 
 def plusStrip(line):
-	if (line[0] == "+"): return line[1:]
-        else: return line
+  if (line[0] == "+"): return line[1:]
+  else: return line
 
 # handleBodyText
 # print body text lines with a class indicating level, if style sheets
@@ -339,10 +339,10 @@ def isAlignCenter(coldata):
 # output: <td align="left"> or <td align="right"> or <td align="center"> or <td>
 
 def getColumnAlignment(coldata):
-	if isAlignCenter(coldata): return '<td align="center">'
-	if isAlignRight(coldata): return '<td align="right">'
-	if isAlignLeft(coldata): return '<td align="left">'
-	return '<td>'
+  if isAlignCenter(coldata): return '<td align="center">'
+  if isAlignRight(coldata): return '<td align="right">'
+  if isAlignLeft(coldata): return '<td align="left">'
+  return '<td>'
 
 # handleTableColumns
 # return the souce for a row's columns
@@ -354,8 +354,8 @@ def handleTableColumns(linein,lineLevel):
   coldata = lstrip(rstrip(linein))
   coldata = coldata.split("|")
   for i in range(1,len(coldata)-1):
-		out += getColumnAlignment(coldata[i])
-		out += lstrip(rstrip(coldata[i]))+'</td>'
+    out += getColumnAlignment(coldata[i])
+    out += lstrip(rstrip(coldata[i]))+'</td>'
   return out
 
 # handleTableHeaders
@@ -368,8 +368,8 @@ def handleTableHeaders(linein,lineLevel):
   coldata = lstrip(rstrip(linein))
   coldata = coldata.split("|")
   for i in range(2,len(coldata)-1):
-		out += getColumnAlignment(coldata[i])
-		out += lstrip(rstrip(coldata[i]))+'</td>'
+    out += getColumnAlignment(coldata[i])
+    out += lstrip(rstrip(coldata[i]))+'</td>'
   out = replace(out,'<td','<th')
   out = replace(out,'</td','</th')
   return out
@@ -397,8 +397,8 @@ def handleTable(linein,lineLevel):
   if (inBodyText == 1): print "</p>"
   if (inBodyText == 2): print "</pre>"
   if (inBodyText != 3):
-	  print "<table class=\"TAB" + str(lineLevel) + "\">"
-	  inBodyText = 3
+    print "<table class=\"TAB" + str(lineLevel) + "\">"
+    inBodyText = 3
   print handleTableRow(linein,lineLevel),
 
 # linkOrImage
@@ -481,13 +481,13 @@ def execProgram(line):
 # input: line
 # output: division name
 def divName(line):
-	global silentdiv
-	line = lstrip(rstrip(line))
-	if (line[0] == '_'):
-		silentdiv = 1
-		line = line[1:]
-	line = replace(line, ' ', '_')
-	return'<div class="' + line + '">'
+  global silentdiv
+  line = lstrip(rstrip(line))
+  if (line[0] == '_'):
+    silentdiv = 1
+    line = line[1:]
+  line = replace(line, ' ', '_')
+  return'<div class="' + line + '">'
 
 # getTitleText(line)
 # extract some meaningful text to make the document title from the line
@@ -520,18 +520,18 @@ def beautifyLine(line):
 
   while (line != out):
 
-	  line = out
-	# out = replace(out,'---','<strike>',1)
-	  if (lstrip(line)[0] != ";"): out = sub('\-\-\-(.*?)\-\-\-','<strike>\\1</strike>',out)
-	  out = linkOrImage(out)
-	# out = replace(out,'**','<strong>',1)
-	  out = sub('\*\*(.*?)\*\*','<strong>\\1</strong>',out)
-	# out = replace(out,'//','<i>',1)
-	  out = sub('\/\/(.*?)\/\/','<i>\\1</i>',out)
-	# out = replace(out,'+++','<code>',1)
-	  out = sub('\+\+\+(.*?)\+\+\+','<code>\\1</code>',out)
-	  out = sub('\(c\)','&copy;',out)
-	  out = sub('\(C\)','&copy;',out)
+    line = out
+  # out = replace(out,'---','<strike>',1)
+    if (lstrip(line)[0] != ";"): out = sub('\-\-\-(.*?)\-\-\-','<strike>\\1</strike>',out)
+    out = linkOrImage(out)
+  # out = replace(out,'**','<strong>',1)
+    out = sub('\*\*(.*?)\*\*','<strong>\\1</strong>',out)
+  # out = replace(out,'//','<i>',1)
+    out = sub('\/\/(.*?)\/\/','<i>\\1</i>',out)
+  # out = replace(out,'+++','<code>',1)
+    out = sub('\+\+\+(.*?)\+\+\+','<code>\\1</code>',out)
+    out = sub('\(c\)','&copy;',out)
+    out = sub('\(C\)','&copy;',out)
   return out
 
 # closeLevels
@@ -568,120 +568,120 @@ def processLine(linein):
   lineLevel = getLineLevel(linein)
   if ((hideComments == 0) or (lineLevel != (find(linein,"[")+1))):
 
-      if (lineLevel > level): # increasing depth
-       while (lineLevel > level):
-    	if (formatMode == "indent" or formatMode == "simple"):
-          if (inBodyText == 1):
-	    print"</p>"
-	    inBodyText = 0
-          elif (inBodyText == 2):
-  	    print"</pre>"
-  	    inBodyText = 0
-          elif (inBodyText == 3):
-  	    print"</table>"
-  	    inBodyText = 0
-          if not (div == 1 and lineLevel == 1): print "<ol>"
-    	else:
-    	  sys.exit("Error! Unknown formatMode type")
-    	level = level + 1
-
-      elif (lineLevel < level): # decreasing depth
-       while (lineLevel < level):
+    if (lineLevel > level): # increasing depth
+     while (lineLevel > level):
+      if (formatMode == "indent" or formatMode == "simple"):
         if (inBodyText == 1):
-	  print"</p>"
-	  inBodyText = 0
+          print"</p>"
+          inBodyText = 0
         elif (inBodyText == 2):
-	  print"</pre>"
-	  inBodyText = 0
+          print"</pre>"
+          inBodyText = 0
         elif (inBodyText == 3):
-	  print"</table>"
-	  inBodyText = 0
-  	print "</ol>"
-  	level = level - 1
-	if (div == 1 and level == 1):
-		if (silentdiv == 0): print'</ol>'
-		else: slientdiv = 0
-		print'</div>'
-
-      else: print # same depth
-      if (div == 1 and lineLevel == 1):
-	  if (lineLevel != find(linein,"!") +1):
-		  print divName(linein)
-		  if (silentdiv == 0): print "<ol>"
-
-      if (slides == 0):
-          if (lineLevel == find(linein," ") +1 ) or \
-	  (lineLevel == find(linein,":") +1 ):
-		  if (inBodyText != 1): handleBodyText(linein,lineLevel)
-		  elif (colonStrip(rstrip(lstrip(linein))) == ""):
-			  print "</p>"
-			  handleBodyText(linein,lineLevel)
-            	  else: print colonStrip(rstrip(lstrip(linein))),
-          elif (lineLevel == find(linein,";") +1 ):
-		  if (inBodyText != 2): handlePreformattedText(linein,lineLevel)
-		  elif (semicolonStrip(rstrip(lstrip(linein))) == ""):
-			  print "</pre>"
-			  handlePreformattedText(linein,lineLevel)
-            	  else: print semicolonStrip(rstrip(lstrip(linein))),
-          elif (lineLevel == find(linein,"|") +1 ):
-		  if (inBodyText != 3): handleTable(linein,lineLevel)
-		  elif (pipeStrip(rstrip(lstrip(linein))) == ""):
-			  print "</table>"
-			  handleTtable(linein,lineLevel)
-            	  else: print handleTableRow(linein,lineLevel),
-          elif (lineLevel == find(linein,"!!!") +1 ):
-		  execProgram(linein)
-          elif (lineLevel == find(linein,"!!") +1 ):
-		  includeOutline(linein,lineLevel)
-          elif (lineLevel == find(linein,"!") +1 ):
-		  includeFile(linein,lineLevel)
-  	  else:
-            if (inBodyText == 1):
-	    	    print"</p>"
-		    inBodyText = 0
-            elif (inBodyText == 2):
-	    	    print"</pre>"
-		    inBodyText = 0
-            elif (inBodyText == 3):
-	    	    print"</table>"
-		    inBodyText = 0
-	    if (silentdiv == 0):
-		    print "<li",
-		    if (styleSheet != ""):
-		      if (lineLevel == find(linein,"- ") +1 ):
-			print " class=\"LB" + str(lineLevel) + "\"",
-			print ">" + lstrip(rstrip(dashStrip(lstrip(linein)))),
-		      elif (lineLevel == find(linein,"+ ") +1 ):
-			print " class=\"LN" + str(lineLevel) + "\"",
-			print ">" + lstrip(rstrip(plusStrip(lstrip(linein)))),
-		      else:
-			print " class=\"L" + str(lineLevel) + "\"",
-			print ">" + rstrip(lstrip(linein)),
-	    else: silentdiv = 0
+          print"</table>"
+          inBodyText = 0
+        if not (div == 1 and lineLevel == 1): print "<ol>"
       else:
-          if (lineLevel == 1):
-            if (linein[0] == " "):
-	      if (inBodyText == 0):
-		handleBodyText(linein,lineLevel)
-	      else: print rstrip(lstrip(linein)),
+        sys.exit("Error! Unknown formatMode type")
+      level = level + 1
+
+    elif (lineLevel < level): # decreasing depth
+     while (lineLevel < level):
+      if (inBodyText == 1):
+        print"</p>"
+        inBodyText = 0
+      elif (inBodyText == 2):
+        print"</pre>"
+        inBodyText = 0
+      elif (inBodyText == 3):
+        print"</table>"
+        inBodyText = 0
+      print "</ol>"
+      level = level - 1
+      if (div == 1 and level == 1):
+        if (silentdiv == 0): print'</ol>'
+        else: slientdiv = 0
+        print'</div>'
+
+    else: print # same depth
+    if (div == 1 and lineLevel == 1):
+      if (lineLevel != find(linein,"!") +1):
+        print divName(linein)
+        if (silentdiv == 0): print "<ol>"
+
+    if (slides == 0):
+      if (lineLevel == find(linein," ") +1 ) or \
+      (lineLevel == find(linein,":") +1 ):
+        if (inBodyText != 1): handleBodyText(linein,lineLevel)
+        elif (colonStrip(rstrip(lstrip(linein))) == ""):
+          print "</p>"
+          handleBodyText(linein,lineLevel)
+        else: print colonStrip(rstrip(lstrip(linein))),
+      elif (lineLevel == find(linein,";") +1 ):
+        if (inBodyText != 2): handlePreformattedText(linein,lineLevel)
+        elif (semicolonStrip(rstrip(lstrip(linein))) == ""):
+          print "</pre>"
+          handlePreformattedText(linein,lineLevel)
+        else: print semicolonStrip(rstrip(lstrip(linein))),
+      elif (lineLevel == find(linein,"|") +1 ):
+        if (inBodyText != 3): handleTable(linein,lineLevel)
+        elif (pipeStrip(rstrip(lstrip(linein))) == ""):
+          print "</table>"
+          handleTtable(linein,lineLevel)
+        else: print handleTableRow(linein,lineLevel),
+      elif (lineLevel == find(linein,"!!!") +1 ):
+        execProgram(linein)
+      elif (lineLevel == find(linein,"!!") +1 ):
+        includeOutline(linein,lineLevel)
+      elif (lineLevel == find(linein,"!") +1 ):
+        includeFile(linein,lineLevel)
+      else:
+        if (inBodyText == 1):
+          print"</p>"
+          inBodyText = 0
+        elif (inBodyText == 2):
+          print"</pre>"
+          inBodyText = 0
+        elif (inBodyText == 3):
+          print"</table>"
+          inBodyText = 0
+        if (silentdiv == 0):
+          print "<li",
+          if (styleSheet != ""):
+            if (lineLevel == find(linein,"- ") +1 ):
+              print " class=\"LB" + str(lineLevel) + "\"",
+              print ">" + lstrip(rstrip(dashStrip(lstrip(linein)))),
+            elif (lineLevel == find(linein,"+ ") +1 ):
+              print " class=\"LN" + str(lineLevel) + "\"",
+              print ">" + lstrip(rstrip(plusStrip(lstrip(linein)))),
             else:
-              print "<address>"
-	      print rstrip(lstrip(linein)),
-	      print "</address>\n"
-          else:
-	    if (lineLevel == find(linein," ") +1 ) or \
-	    (lineLevel == find(linein,":") +1 ):
-		    if (inBodyText == 0):
-		        handleBodyText(linein,lineLevel)
-	      	    else: print rstrip(lstrip(linein)),
-            else:
-              if (inBodyText == 1):
-	    	    print"</p>"
-		    inBodyText = 0
-              print "<li",
-	      if (styleSheet != ""):
-                print " class=\"LI.L" + str(lineLevel) + "\"",
+              print " class=\"L" + str(lineLevel) + "\"",
               print ">" + rstrip(lstrip(linein)),
+        else: silentdiv = 0
+    else:
+      if (lineLevel == 1):
+        if (linein[0] == " "):
+          if (inBodyText == 0):
+            handleBodyText(linein,lineLevel)
+          else: print rstrip(lstrip(linein)),
+        else:
+          print "<address>"
+          print rstrip(lstrip(linein)),
+          print "</address>\n"
+      else:
+        if (lineLevel == find(linein," ") +1 ) or \
+        (lineLevel == find(linein,":") +1 ):
+          if (inBodyText == 0):
+              handleBodyText(linein,lineLevel)
+          else: print rstrip(lstrip(linein)),
+        else:
+          if (inBodyText == 1):
+            print"</p>"
+            inBodyText = 0
+          print "<li",
+          if (styleSheet != ""):
+            print " class=\"LI.L" + str(lineLevel) + "\"",
+          print ">" + rstrip(lstrip(linein)),
 
 # flatten
 # Flatten a subsection of an outline.  The index passed is the outline section
@@ -975,10 +975,10 @@ def printHeader(linein):
   print "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\" \"http://www.w3.org/TR/html4/strict.dtd\">"
   print "<html><head><title>" + getTitleText(linein) + "</title></head>"
   try:
-	file = open(styleSheet,"r")
+    file = open(styleSheet,"r")
   except IOError, e:
-	createCSS()
-	file = open(styleSheet,"r")
+    createCSS()
+    file = open(styleSheet,"r")
   if (styleSheet != "" and inlineStyle == 0):
     print "<link href=\"" + styleSheet + "\" rel=\"stylesheet\" type=\"text/css\">"
   if (styleSheet != "" and inlineStyle == 1):
@@ -1001,12 +1001,12 @@ def printFooter():
   global slides, div
   print "</div>"
   if (slides == 0 and div == 0):
-          print "<div class=\"Footer\">"
-	  print "<hr>"
-	  print copyright
-	  print "<br>"
-	  print inputfile + "&nbsp&nbsp " + strftime("%Y/%m/%d %H:%M",localtime(time()))
-          print "</div>"
+    print "<div class=\"Footer\">"
+    print "<hr>"
+    print copyright
+    print "<br>"
+    print inputfile + "&nbsp&nbsp " + strftime("%Y/%m/%d %H:%M",localtime(time()))
+    print "</div>"
   print "</body></html>"
 
 def main():

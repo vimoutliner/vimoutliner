@@ -66,7 +66,7 @@ class Manager:
         self.preambleLines=preamble
         self.documentLines=self.lines[preambleEnd:]
 
-                
+
 
 
 
@@ -104,7 +104,7 @@ class Beamer(Manager):
 
 
 % If you wish to uncover everything in a step-wise fashion, uncomment
-% the following command: 
+% the following command:
 \\beamerdefaultoverlayspecification{<+->}
 \\begin{document}
 \\begin{frame}
@@ -141,7 +141,7 @@ class Beamer(Manager):
         else:
             panic()
         return stuff,mu
-        
+
     def parse(self):
         Manager.parse(self)
         #print self.content
@@ -178,7 +178,7 @@ class Beamer(Manager):
         blockOpen=0
         frameCount=0
         blockCount=0
-        
+
         for line in self.documentLines:
             if line.level==0:
                 for i in range(0,self.bulletLevel):
@@ -212,7 +212,6 @@ class Beamer(Manager):
                                 body.append(i)
                     else:
                         mu=line.content.lstrip("|")
-                        
                 else:
                     for i in range(0,self.bulletLevel):
                         self.bulletLevel -= 1
@@ -271,10 +270,6 @@ class Beamer(Manager):
         self.markup+="\n\\end{document}\n"
         print self.markup
 
-    
-    
-
-
 # Process command line arguments
 args = sys.argv
 nargs=len(args)
@@ -318,9 +313,3 @@ else:
     content=fin.readlines()
     fin.close()
     dispatch[docType](content,outputFileName)
-
-
-
-
-
-
