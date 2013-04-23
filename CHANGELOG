@@ -19,6 +19,7 @@ Development 2013-04-10
 	- Moved previous hoist plugin to prev directory,
 	- Made new TODO list
 	- Uploaded MediaWiki2otl script. 
+	- Updated documentation.
 	* Bug fixes:
 	- Stop setting global options.
 	- Fixed checkboxes calculation to make it faster and more consistent.
