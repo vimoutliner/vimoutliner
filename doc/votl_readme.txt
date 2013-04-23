@@ -48,7 +48,6 @@ VimOutliner Copyright (C) 2001, 2003 by Steve Litt
 Licensed under the GNU General Public License (GPL), version 2
 Absolutely no warranty, see COPYING file for details.
 
-If your distro doesn't come with this file
     HTML: http://www.gnu.org/copyleft/gpl.html
     Text: http://www.gnu.org/copyleft/gpl.txt
 
@@ -337,15 +336,10 @@ the ol script, which many saw as clumsy. Given that all VimOutliner features
 are produced by the Vim engine, it makes perfect sense to admit that
 VimOutliner is an add-on to Vim.
 
-Therefore VimOutliner now prides itself in being a Vim plugin.  With the
+Therefore VimOutliner now prides itself in being a Vim plugin. With the
 VimOutliner package installed, the Vim editor yields the VimOutliner feature
 set for files whose extensions are listed as votl types in
 $HOME/.vim/ftplugin/votl.vim.
-
-The Vim Plugin philosophy yields several benefits:
-- Less reliance on Perl, bash and environment vars
-- (upcoming) Portability between Linux, Windows and Mac
-- (upcoming) Installation via Vim script
 
 
 ==============================================================================
@@ -363,7 +357,7 @@ Run Vim or GVim and follow the instruction on :help |tutor|
 
 VimOutliner is a set of Vim scripts and configurations. Its features all come
 from the Vim editor's engine. If you do not know Vim, you'll need to learn the
-Vim basics before using VimOutliner.  Start by taking the Vim tutorial. The
+Vim basics before using VimOutliner. Start by taking the Vim tutorial. The
 tutorial should take about 2 hours.
 
 VimOutliner is so fast, that if you often use outlining, you'll make up that
@@ -724,9 +718,6 @@ purpose in nature and others perform specific conversions. There are several of
 the tested scripts now included in the $HOME/.vim/vimoutliner/scripts folder.
 See also the scripts section.                                   |votl-scripts|
 
-For overview of several of the scripts on the web see:
-        https://sites.google.com/site/vimoutlinerinfo/scripts-for-vimoutliner
-
 
 ==============================================================================
 Advanced VimOutliner                                               *votl-advanced*
@@ -747,16 +738,19 @@ Executable lines offer the huge benefit of a single-source knowledge tree,
 where all your knowledge, no matter what its format, exists within a single
 tree of outlines connected with inter-outline links and executable lines.
 
+A more efficient and feature rich way to achieve this might be to use the UTL 
+plugin for vim. See the scripts section at http://www.vim.org
+
 
 ==============================================================================
 Plugins                                                             *votl-plugins*
 
 
-The VimOutliner distribution currently includes two plugins for easy handling
-of checkboxes, hoisting (see below) and smart paste. 
+The VimOutliner distribution currently includes plugins for easy handling
+of checkboxes, hoisting (see below), smart paste, clocking, math and format. 
 
-The checkboxes plugin is enabled by default. The hoisting smart paste
-and clocking plugin are disabled by default. To enable these plugins
+The checkboxes tags and smart paste plugins are enabled by default. The hoisting,,
+clocking, math and format plugins are disabled by default. To enable these plugins
 look for the easy instructions for this in your $HOME/.vimoutlinerrc file.
 
 More information below and in the plugin files in the $HOME/.vim/vimoutliner/plugin folder.
@@ -1237,6 +1231,8 @@ Toolbar in gvim
 
 Further information on outlines, outline processing and outliners~
 
+http://www.vim.org/scripts/script.php?script_id=3515
+vim.org script site
 
 http://freecode.com/projects/vimoutliner
 Main distribution website

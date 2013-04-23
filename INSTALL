@@ -125,41 +125,9 @@ commands.
 You can test the different VimOutliner commands by looking at the examples
 in the cheatsheet. "help vo_cheatsheet".
 
-
-Extra information
-
-Verify Inter outline Linking:
-
-Inter outline linking currently requires a working perl installation to
-generate the necessary tag file. We are looking into porting this to vim's own
-scripting language.
-
-Place the following two lines in $HOME/vo_test.otl:
-
-    _tag_newfile
-        $HOME/vo_newfile.otl
-
-Note that in the preceding, the 2nd line should be indented from the first.
-
-To create VimOutliner's tag file $HOME/.vim/vimoutliner/vo_tags.tag, run
-vo_maketags.pl, which resides in $HOME/.vimoutliner/scripts/: $
-$HOME/.vim/vimoutliner/scripts/vo_maketags.pl $HOME/vo_test.otl
-
-Try the following:
-- In $HOME/vo_test.otl
-- Cursor to the _tag_newfile marker
-- Press CTRL-K
-    You should be brought to $HOME/vo_newfile.otl
-- Press CTRL-N
-    You should be brought back to $HOME/vo_test.otl
-Note:
-    CTRL-K is a VimOutliner synonym for CTRL-]
-    CTRL-N is a VimOutliner synonym for CTRL-T
-
-
 Debian Installation
 
-Debian does include Vim Outliner as a package. However some Debian versions
+Debian does include VimOutliner as a package. However some Debian versions
 require this line to be added to your .vimrc file:
 
     syntax on
