@@ -118,7 +118,8 @@ destination folders by yourself. The following steps are a description of what
 has to go where and assume some knowledge of your vim setup.
 
 If you encounter problems, please contact the mailinglist for an immediate
-solution and more complete future documentation.  www.lists.vimoutliner.org
+solution and more complete future documentation. 
+https://groups.google.com/forum/#!forum/vimoutliner
 
 If you want to setup VimOutliner on a system running Microsoft Windows, the
 directory $HOME denotes the base folder of the vim installation.  If you're on
@@ -1164,11 +1165,11 @@ VimOutliner is licensed under the GNU General Public License.
 
 - How do I contribute to VimOutliner
 Step 1 is to subscribe to our mailing list. Join up at
-http://www.lists.vimoutliner.org/. Lurk for a few days or so to get the feel,
-then submit your idea/suggestion. A lively discussion will ensue, after which
-your idea, probably in some modified form, will be considered. The more of the
-actual work you have done, the more likely your feature will go in the
-distribution in a timely manner.
+https://groups.google.com/forum/#!forum/vimoutliner. 
+Lurk for a few days or so to get the feel, then submit your idea/suggestion. 
+A lively discussion will ensue, after which your idea, probably in some modified
+form, will be considered. The more of the actual work you have done, the more 
+likely your feature will go in the distribution in a timely manner.
 
 
 - What's with the VimOutliner file names?
