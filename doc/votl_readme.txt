@@ -1021,9 +1021,6 @@ of how complete the project is.
                                                                    *votl-hoisting*
 Hoisting~
 
-NOTE: THIS PLUGIN IS NOT FINISHED AND MIGHT CAUSE DATA LOSS!!! USE IT AT YOUR
-OWN RISK. This plugin is disabled by default.
-
 Hoisting is a way to focus on the offspring of the currently selected outline
 item. The subitems will be presented as top level items in the automatically
 extracted hoist-file located in the same directory as the main outline file.
@@ -1032,7 +1029,7 @@ You cannot hoist parts of an already hoisted file again.
 To enable this plugin uncomment the following line in
  ~/.vimoutlinerrc:
 >
-    "let g:vo_modules_load .= ':hoist'
+    "let g:vo_modules_load .= ':newhoist'
 <
 Once it is enabled, you hoist the subtopics of the currently selected
 item with
