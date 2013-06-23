@@ -69,13 +69,13 @@ debug = 0
 # output: simple command usage is printed on the console
  
 def showUsage():
-   print
-   print "Usage:"
-   print "otl2ooimpress.py [options] inputfile > outputfile"
-   print "Options"
-   print "    -v              Print version (RCS) information."
-   print "output is on STDOUT"
-   print
+   print()
+   print("Usage:")
+   print("otl2ooimpress.py [options] inputfile > outputfile")
+   print("Options")
+   print("    -v              Print version (RCS) information.")
+   print("output is on STDOUT")
+   print()
 
 # version
 # print the RCS version information
@@ -83,13 +83,13 @@ def showUsage():
 # output: RSC version information is printed on the console
  
 def showVersion():
-   print
-   print "RCS"
-   print " $Revision: 1.3 $"
-   print " $Date: 2003/12/01 20:22:18 $"
-   print " $Author: noel $"
-   print " $Source: /home/noel/apps/otl2ooimpress/RCS/otl2ooimpress.py,v $"
-   print
+   print()
+   print("RCS")
+   print(" $Revision: 1.3 $")
+   print(" $Date: 2003/12/01 20:22:18 $")
+   print(" $Author: noel $")
+   print(" $Source: /home/noel/apps/otl2ooimpress/RCS/otl2ooimpress.py,v $")
+   print()
 
 # getArgs
 # Check for input arguments and set the necessary switches
@@ -118,7 +118,7 @@ def getArgs():
 	  showVersion()
 	  sys.exit()
 	elif (sys.argv[i][0] == "-"):
-	  print "Error!  Unknown option.  Aborting"
+	  print("Error!  Unknown option.  Aborting")
 	  sys.exit()
 	else: 					# get the input file name
           inputfile = sys.argv[i]
@@ -165,32 +165,32 @@ def colonStrip(line):
 def processLine(linein):
   global inPage, pageNumber
   if (lstrip(linein) == ""): 
-	print 
+	print() 
   	return
   if (getLineLevel(linein) == 1):
 	  if (inPage==1): 
-		  print '</draw:text-box></draw:page>'
+		  print('</draw:text-box></draw:page>')
 		  inPage = 0
 	  pageNumber += 1
 	  outstring = '<draw:page draw:name="'
 	  outstring += 'page'
 	  outstring += str(pageNumber)
 	  outstring += '" draw:style-name="dp1" draw:id="1" draw:master-page-name="Default" presentation:presentation-page-layout-name="AL1T0">'
-	  print outstring 
+	  print(outstring) 
 	  outstring  = '<draw:text-box presentation:style-name="pr1" draw:layer="layout" svg:width="23.911cm" svg:height="3.508cm" svg:x="2.057cm" svg:y="1.0cm" presentation:class="title">'
-	  print outstring 
+	  print(outstring) 
 	  outstring = '<text:p text:style-name="P1">'
 	  outstring += lstrip(linein)
 	  outstring += "</text:p></draw:text-box>"
-	  print outstring 
+	  print(outstring) 
 	  outstring = '<draw:text-box presentation:style-name="pr1" draw:layer="layout" svg:width="23.911cm" svg:height="3.508cm" svg:x="2.057cm" svg:y="5.38cm" presentation:class="subtitle">'
-	  print outstring 
+	  print(outstring) 
 	  inPage = 1
   else:
 	  outstring = '<text:p text:style-name="P1">'
 	  outstring += lstrip(linein)
 	  outstring += '</text:p>'
-	  print outstring 
+	  print(outstring) 
       
 # flatten
 # Flatten a subsection of an outline.  The index passed is the outline section
@@ -229,15 +229,15 @@ def flatten(idx):
   return
 
 def printHeader(linein):
-  print'<?xml version="1.0" encoding="UTF-8"?>'
-  print'<!DOCTYPE office:document-content PUBLIC "-//OpenOffice.org//DTD OfficeDocument 1.0//EN" "office.dtd">'
-  print'<office:document-content xmlns:office="http://openoffice.org/2000/office" xmlns:style="http://openoffice.org/2000/style" xmlns:text="http://openoffice.org/2000/text" xmlns:table="http://openoffice.org/2000/table" xmlns:draw="http://openoffice.org/2000/drawing" xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:number="http://openoffice.org/2000/datastyle" xmlns:presentation="http://openoffice.org/2000/presentation" xmlns:svg="http://www.w3.org/2000/svg" xmlns:chart="http://openoffice.org/2000/chart" xmlns:dr3d="http://openoffice.org/2000/dr3d" xmlns:math="http://www.w3.org/1998/Math/MathML" xmlns:form="http://openoffice.org/2000/form" xmlns:script="http://openoffice.org/2000/script" office:class="presentation" office:version="1.0">'
-  print'<office:script/>'
-  print'<office:body>'
+  print('<?xml version="1.0" encoding="UTF-8"?>')
+  print('<!DOCTYPE office:document-content PUBLIC "-//OpenOffice.org//DTD OfficeDocument 1.0//EN" "office.dtd">')
+  print('<office:document-content xmlns:office="http://openoffice.org/2000/office" xmlns:style="http://openoffice.org/2000/style" xmlns:text="http://openoffice.org/2000/text" xmlns:table="http://openoffice.org/2000/table" xmlns:draw="http://openoffice.org/2000/drawing" xmlns:fo="http://www.w3.org/1999/XSL/Format" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:number="http://openoffice.org/2000/datastyle" xmlns:presentation="http://openoffice.org/2000/presentation" xmlns:svg="http://www.w3.org/2000/svg" xmlns:chart="http://openoffice.org/2000/chart" xmlns:dr3d="http://openoffice.org/2000/dr3d" xmlns:math="http://www.w3.org/1998/Math/MathML" xmlns:form="http://openoffice.org/2000/form" xmlns:script="http://openoffice.org/2000/script" office:class="presentation" office:version="1.0">')
+  print('<office:script/>')
+  print('<office:body>')
 
 def printFooter():
-  print '</draw:text-box></draw:page>'
-  print'</office:body>'
+  print('</draw:text-box></draw:page>')
+  print('</office:body>')
 
 def main():
   getArgs()

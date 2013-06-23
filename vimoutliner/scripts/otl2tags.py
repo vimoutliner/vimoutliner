@@ -88,7 +88,7 @@
 
 import sys
 from string import *
-from ConfigParser import *
+from configparser import *
 from re import *
 
 ###########################################################################
@@ -113,7 +113,7 @@ escapeDict = {}		# dictionary of character escape codes
 def dprint(*vals):
 	global debug
 	if debug != 0: 
-		print >> sys.stderr, vals
+		print(vals, file=sys.stderr)
 
 # usage
 # print the simplest form of help
@@ -121,16 +121,16 @@ def dprint(*vals):
 # output: simple command usage is printed on the console
  
 def showUsage():
-	 print
-	 print "Usage:"
-	 print "otl2table.py [options] inputfile"
-	 print "Options"
-	 print "    -c             config-file"
-	 print "    -d             debug"
-	 print "    --help         show help"
-	 print "    -v             Print version (RCS) information."
-	 print "output filenames are based on the input file name and the config file"
-	 print
+	 print()
+	 print("Usage:")
+	 print("otl2table.py [options] inputfile")
+	 print("Options")
+	 print("    -c             config-file")
+	 print("    -d             debug")
+	 print("    --help         show help")
+	 print("    -v             Print version (RCS) information.")
+	 print("output filenames are based on the input file name and the config file")
+	 print()
 
 # version
 # print the RCS version information
@@ -138,13 +138,13 @@ def showUsage():
 # output: RSC version information is printed on the console
  
 def showVersion():
-	 print
-	 print "RCS"
-	 print " $Revision: 1.15 $"
-	 print " $Date: 2010/02/12 05:31:17 $"
-	 print " $Author: noel $"
-	 print " $Source: /home/noel/active/otl2tags/RCS/otl2tags.py,v $"
-	 print
+	 print()
+	 print("RCS")
+	 print(" $Revision: 1.15 $")
+	 print(" $Date: 2010/02/12 05:31:17 $")
+	 print(" $Author: noel $")
+	 print(" $Source: /home/noel/active/otl2tags/RCS/otl2tags.py,v $")
+	 print()
 
 # getArgs
 # Check for input arguments and set the necessary switches
@@ -177,7 +177,7 @@ def getArgs():
 	         showVersion()
 	         sys.exit()
 	      elif (sys.argv[i][0] == "-"):
-	         print "Error!  Unknown option.  Aborting"
+	         print("Error!  Unknown option.  Aborting")
 	         sys.exit()
 	      else: 					       # get the input file name
 	        inputfile = sys.argv[i]
@@ -189,16 +189,16 @@ def getArgs():
 
 def printConfig():
   global config
-  print >> sys.stderr, "Config ---------------------------------------------"
+  print("Config ---------------------------------------------", file=sys.stderr)
   list = config.sections()
   for i in range(len(list)):
-	  print >> sys.stderr
-	  print >> sys.stderr, list[i]
+	  print(file=sys.stderr)
+	  print(list[i], file=sys.stderr)
 	  for x in config.options(list[i]):
 	    if (x !="name") and (x !="__name__"):
-	      print >> sys.stderr, x,":", config.get(list[i],x)
-  print >> sys.stderr, "----------------------------------------------------"
-  print >> sys.stderr  
+	      print(x,":", config.get(list[i],x), file=sys.stderr)
+  print("----------------------------------------------------", file=sys.stderr)
+  print(file=sys.stderr)  
 
 ###########################################################################
 # low-level outline processing functions
@@ -268,7 +268,7 @@ def getChildren(linenum):
 def subTags(section,type):
 	global config, v, parents
 
-	varlist = v.keys()
+	varlist = list(v.keys())
 	pattern = config.get(section,type)
 	if len(parents) > 0:
 		v["%p"] = str(parents[len(parents)-1])
@@ -674,8 +674,8 @@ def handleObject(linenum,enum):
 	elif obj == 'userpreftext': handleUserPrefText(linenum,enum)
 	elif obj == 'table': handleTable(linenum,enum)
 	else:
-		print
-		print "Error: unknown line type @ ",linenum
+		print()
+		print("Error: unknown line type @ ",linenum)
 		sys.exit(1)
 
 # handleObjects
@@ -751,6 +751,6 @@ def main():
 
 	# output the final data
 	for line in output:
-		if line.strip()!="": print line.strip()
+		if line.strip()!="": print(line.strip())
 
 main()

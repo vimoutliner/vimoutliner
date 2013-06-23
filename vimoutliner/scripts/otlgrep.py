@@ -94,7 +94,7 @@ inputfiles = []
 
 def dprint(*vals):
 	global debug
-	if debug != 0: print vals
+	if debug != 0: print(vals)
 
 # usage
 # print the simplest form of help
@@ -102,17 +102,17 @@ def dprint(*vals):
 # output: simple command usage is printed on the console
  
 def showUsage():
-   print
-   print "Usage:"
-   print "otlgrep.py [options] pattern [file...] "
-   print "Options"
-   print "    -i            Ignore case"
-   print "    --version     Print version (RCS) information."
-   print "    --help        Show help."
-   print "[file...] is zero or more files to search. Wildcards are supported."
-   print "          if no file is specified, input is expected on stdin."
-   print "output is on STDOUT"
-   print
+   print()
+   print("Usage:")
+   print("otlgrep.py [options] pattern [file...] ")
+   print("Options")
+   print("    -i            Ignore case")
+   print("    --version     Print version (RCS) information.")
+   print("    --help        Show help.")
+   print("[file...] is zero or more files to search. Wildcards are supported.")
+   print("          if no file is specified, input is expected on stdin.")
+   print("output is on STDOUT")
+   print()
 
 # version
 # print the RCS version information
@@ -120,12 +120,12 @@ def showUsage():
 # output: RSC version information is printed on the console
  
 def showVersion():
-   print
-   print "RCS"
-   print " $Revision: 1.4 $"
-   print " $Date: 2006/02/19 18:10:46 $"
-   print " $Author: noel $"
-   print
+   print()
+   print("RCS")
+   print(" $Revision: 1.4 $")
+   print(" $Date: 2006/02/19 18:10:46 $")
+   print(" $Author: noel $")
+   print()
 
 # getArgs
 # Check for input arguments and set the necessary switches
@@ -152,7 +152,7 @@ def getArgs():
 	  showVersion()
 	  sys.exit()
 	elif (sys.argv[i][0] == "-"):
-	  print "Error!  Unknown option.  Aborting"
+	  print("Error!  Unknown option.  Aborting")
 	  sys.exit()
 	else: 					# get the input file name
 	  if (pattern == ""): pattern = sys.argv[i]
@@ -198,12 +198,12 @@ def processFile(file):
 		  matchlevel = level
 		  for i in range(level):	# print my ancestors
 			  if (parentprinted[i] == 0):
-				  print parents[i][:-1]
+				  print(parents[i][:-1])
 				  parentprinted[i] = 1
-		  print parents[level][:-1]	# print myself
+		  print(parents[level][:-1])	# print myself
 		  line = file.readline()
 		  while (line != "") and (getLineLevel(line) > matchlevel):
-			  print line[:-1]
+			  print(line[:-1])
 			  line = file.readline()
 	  else:
 		  line = file.readline()

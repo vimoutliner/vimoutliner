@@ -55,7 +55,7 @@ inputfile = ""
 
 def dprint(*vals):
 	global debug
-	if debug != 0: print vals
+	if debug != 0: print(vals)
 
 # usage
 # print the simplest form of help
@@ -63,17 +63,17 @@ def dprint(*vals):
 # output: simple command usage is printed on the console
  
 def showUsage():
-   print
-   print "Usage:"
-   print "otlsplit.py [options] inputfile"
-   print "Options"
-   print "    -l level  The number of levels to split down to. The default is 1"
-   print "    -D dir    Specifiy a target directory for the output files"
-   print "    -t        Include a title line (the parerent heading) in split files"
-   print "    -v        Print version (RCS) information."
-   print "    -h        Show help."
-   print "output is on STDOUT"
-   print
+   print()
+   print("Usage:")
+   print("otlsplit.py [options] inputfile")
+   print("Options")
+   print("    -l level  The number of levels to split down to. The default is 1")
+   print("    -D dir    Specifiy a target directory for the output files")
+   print("    -t        Include a title line (the parerent heading) in split files")
+   print("    -v        Print version (RCS) information.")
+   print("    -h        Show help.")
+   print("output is on STDOUT")
+   print()
 
 # version
 # print the RCS version information
@@ -81,12 +81,12 @@ def showUsage():
 # output: RSC version information is printed on the console
  
 def showVersion():
-   print
-   print "RCS"
-   print " $Revision: 1.9 $"
-   print " $Date: 2006/02/19 14:39:06 $"
-   print " $Author: noel $"
-   print
+   print()
+   print("RCS")
+   print(" $Revision: 1.9 $")
+   print(" $Date: 2006/02/19 14:39:06 $")
+   print(" $Author: noel $")
+   print()
 
 # getArgs
 # Check for input arguments and set the necessary switches
@@ -122,7 +122,7 @@ def getArgs():
 	  showVersion()
 	  sys.exit()
 	elif (sys.argv[i][0] == "-"):
-	  print "Error!  Unknown option.  Aborting"
+	  print("Error!  Unknown option.  Aborting")
 	  sys.exit()
 	else: 					# get the input file name
           inputfile = sys.argv[i]
