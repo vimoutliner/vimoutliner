@@ -162,7 +162,7 @@ def showSyntax():
 # input: none
 # output: possible console output for help, switch variables may be set
 def getArgs():
-    global inputfile, debug, formatMode, slides, hideComments, copyright, \
+    global inputFile, debug, formatMode, slides, hideComments, copyright, \
         styleSheet, inlineStyle, div, showTitle
     if (len(sys.argv) == 1):
         showUsage()
@@ -208,7 +208,7 @@ def getArgs():
                     print "Error!  Unknown option.  Aborting"
                     sys.exit()
                 else:                           # get the input file name
-                    inputfile = sys.argv[i]
+                    inputFile = sys.argv[i]
 
 
 # getLineLevel
@@ -442,8 +442,8 @@ def linkOrImage(line):
     line = re.sub('\[(\S+?)\]', '<img src="\\1" alt="\\1">', line)
     line = re.sub('\[(\S+)\s(.*?)\]', '<a href="\\1">\\2</a>', line)
     line = re.sub('(<a href=")\+(.*)"\>', '\\1\\2" target=_new>', line)
-    line = re.replace(line, '<img src="X" alt="X">', '[X]')
-    line = re.replace(line, '<img src="_" alt="_">', '[_]')
+    line = line.replace('<img src="X" alt="X">', '[X]')
+    line = line.replace('<img src="_" alt="_">', '[_]')
     return line
 
 
