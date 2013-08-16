@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python2
 '''Converts a freemind xml .mm file to an outline file compatable with vim 
 outliner.
 
