@@ -1,4 +1,4 @@
-#!/usr/bin/python2
+#!/usr/bin/python
 # otl2ooimpress.py
 # needs otl2ooimpress.sh to work in an automated way
 #############################################################################

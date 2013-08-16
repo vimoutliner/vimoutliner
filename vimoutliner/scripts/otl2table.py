@@ -1,4 +1,4 @@
-#!/usr/bin/python2
+#!/usr/bin/python
 # otl2table.py
 # convert a tab-formatted outline from VIM to tab-delimited table
 #
