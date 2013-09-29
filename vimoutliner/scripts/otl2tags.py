@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python2
 # otl2tags.py
 # Convert an OTL file to any tags-based file using config user-
 # definable configuration files. HTML, OPML, XML, LATEX and

@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python2
 '''Read in an otl file and generate an xml mind map viewable in freemind
 
 Make sure that you check that round trip on your file works.
