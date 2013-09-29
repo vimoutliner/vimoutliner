@@ -1,0 +1,329 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html><head><title>OTL2HTML.PY</title>
+<!--  $Revision: 1.40 $ -->
+<!--  $Date: 2005/03/01 00:34:46 $ -->
+<!--  $Author: noel $ -->
+<style type="text/css">
+/* copyright notice and filename */
+body {
+        font-family: helvetica,arial,sans-serif;
+        font-size: 10pt;
+}
+	/* title at the top of the page */
+H1 {
+        font-family: helvetica,arial,sans-serif;
+        font-size: 14pt;
+        font-weight: bold;
+        text-align: center;
+        color: black;
+	background-color: #ddddee;
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+H2 {
+        font-family: helvetica,arial,sans-serif;
+        font-size: 12pt;
+        font-weight: bold;
+        text-align: left;
+        color: black;
+}
+H3 {
+        font-family: helvetica,arial,sans-serif;
+        font-size: 12pt;
+        text-align: left;
+        color: black;
+}
+H4 {
+        font-family: helvetica,arial,sans-serif;
+        font-size: 12pt;
+        text-align: left;
+        color: black;
+}
+H5 {
+        font-family: helvetica,arial,sans-serif;
+        font-size: 10pt;
+        text-align: left;
+        color: black;
+}
+	/* outline level spacing */
+OL {
+        padding-bottom: 8pt;
+}
+	/* global heading settings */
+LI {
+        font-family: helvetica,arial,sans-serif;
+        color: black;
+        font-weight: normal;
+        list-style: lower-alpha;
+	padding-top: 4px;
+}
+	/* level 1 heading overrides */
+LI.L1 {
+        font-size: 12pt;
+        font-weight: bold;
+        list-style: none;
+}
+	/* level 2 heading overrides */
+LI.L2 {
+        font-size: 10pt;
+        font-weight: bold;
+        list-style: none;
+}
+	/* level 3 heading overrides */
+LI.L3 {
+        font-size: 10pt;
+        list-style: none;
+}
+	/* level 4 heading overrides */
+LI.L4 {
+        font-size: 10pt;
+        list-style: none;
+}
+	/* level 5 heading overrides */
+LI.L5 {
+        font-size: 10pt;
+        list-style: none;
+}
+	/* level 6 heading overrides */
+LI.L6 {
+        font-size: 10pt;
+        list-style: none;
+}
+	/* level 7 heading overrides */
+LI.L7 {
+        font-size: 10pt;
+        list-style: none;
+}
+	/* level 1 bullet heading overrides */
+LI.LB1 {
+        font-size: 12pt;
+        font-weight: bold;
+        list-style: disc;
+}
+	/* level 2 bullet heading overrides */
+LI.LB2 {
+        font-size: 10pt;
+        font-weight: bold;
+        list-style: disc;
+}
+	/* level 3 bullet heading overrides */
+LI.LB3 {
+        font-size: 10pt;
+        list-style: disc;
+}
+	/* level 4 bullet heading overrides */
+LI.LB4 {
+        font-size: 10pt;
+        list-style: disc;
+}
+	/* level 5 bullet heading overrides */
+LI.LB5 {
+        font-size: 10pt;
+        list-style: disc;
+}
+	/* level 6 bullet heading overrides */
+LI.LB6 {
+        font-size: 10pt;
+        list-style: disc;
+}
+	/* level 7 bullet heading overrides */
+LI.LB7 {
+        font-size: 10pt;
+        list-style: disc;
+}
+	/* level 1 numeric heading overrides */
+LI.LN1 {
+        font-size: 12pt;
+        font-weight: bold;
+        list-style: decimal;
+}
+	/* level 2 numeric heading overrides */
+LI.LN2 {
+        font-size: 10pt;
+        font-weight: bold;
+        list-style: decimal;
+}
+	/* level 3 numeric heading overrides */
+LI.LN3 {
+        font-size: 10pt;
+        list-style: decimal;
+}
+	/* level 4 numeric heading overrides */
+LI.LN4 {
+        font-size: 10pt;
+        list-style: decimal;
+}
+	/* level 5 numeric heading overrides */
+LI.LN5 {
+        font-size: 10pt;
+        list-style: decimal;
+}
+	/* level 6 numeric heading overrides */
+LI.LN6 {
+        font-size: 10pt;
+        list-style: decimal;
+}
+	/* level 7 numeric heading overrides */
+LI.LN7 {
+        font-size: 10pt;
+        list-style: decimal;
+}
+       	/* body text */
+P {
+        font-family: helvetica,arial,sans-serif;
+        font-size: 9pt;
+        font-weight: normal;
+        color: darkgreen;
+}
+	/* preformatted text */
+PRE {
+        font-family: fixed;
+        font-size: 9pt;
+        font-weight: normal;
+        color: darkblue;
+}
+
+TABLE {
+	margin-top: 1em;
+        font-family: helvetica,arial,sans-serif;
+        font-size: 12pt;
+        font-weight: normal;
+	border-collapse: collapse;
+}
+
+TH {
+	border: 1px solid black;
+	padding: 0.5em;
+	background-color: #eeddee;
+}
+
+TD {
+	border: 1px solid black;
+	padding: 0.5em;
+	background-color: #ddeeee;
+}
+
+CODE {
+	background-color: yellow;
+}
+
+TABLE.TAB1 {
+	margin-top: 1em;
+        font-family: helvetica,arial,sans-serif;
+        font-size: 12pt;
+        font-weight: normal;
+	border-collapse: collapse;
+}
+TABLE.TAB2 {
+	margin-top: 1em;
+        font-family: helvetica,arial,sans-serif;
+        font-size: 11pt;
+        font-weight: normal;
+	border-collapse: collapse;
+}
+TABLE.TAB3 {
+	margin-top: 1em;
+        font-family: helvetica,arial,sans-serif;
+        font-size: 10pt;
+        font-weight: normal;
+	border-collapse: collapse;
+}
+TABLE.TAB4 {
+	margin-top: 1em;
+        font-family: helvetica,arial,sans-serif;
+        font-size: 10pt;
+        font-weight: normal;
+	border-collapse: collapse;
+}
+TABLE.TAB5 {
+	margin-top: 1em;
+        font-family: helvetica,arial,sans-serif;
+        font-size: 10pt;
+        font-weight: normal;
+	border-collapse: collapse;
+}
+TABLE.TAB6 {
+	margin-top: 1em;
+        font-family: helvetica,arial,sans-serif;
+        font-size: 10pt;
+        font-weight: normal;
+	border-collapse: collapse;
+}
+</style></head>
+<body>
+<div class="DocTitle">
+<h1>OTL2HTML.PY</h1>
+</div>
+<div class="MainPage">
+<ol>
+<li  class="L1" >What is OTL2HTML.PY? <ol>
+<p  class="P2" >It is a small program that converts Vim Outliner's OTL files
+into nicely formatted HTML files. It has two main output methods. One is
+for pretty, stand-alone web pages; useful for reports and instances
+where a 'Word' document might suffice. The other is for created HTML
+pages that might be used for web pages or for complete web sites. For
+easy customization it supports the use of both in-line and external CSS
+files. </p>
+</ol>
+<li  class="L1" >Usage <ol>
+<li  class="L2" >otl2html.py &#91;options] inputfile > outputfile
+<li  class="L2" >Command Line Option <ol>
+<pre  class="PRE3" > -s    sheet        Use the specified style sheet with a link.
+ -S    sheet        Include the specified style sheet in-line.
+ -T                 The first line is not the title.
+ -D                 First level is divisions for pretty web pages.
+ -c                 Hide comments.
+ -C   "copyright"   Use the specified copyright.
+ -v                 Show the version.
+ -H                 Show the syntax help. </pre>
+</ol>
+</ol>
+<li  class="L1" >Beautification <ol>
+<p  class="P2" >These are simple character styles. You must keep the start and end tags
+on the same line.
+</p>
+<table class="TAB2">
+<tr><th>Tag</th><th>Function</th><th align="left">Usage</th><th>Presentation</th></tr>
+<tr><td align="left">&#42;*</td><td>bold</td><td>&#42;*This is bold&#42;* This is not</td><td align="left"><strong>This is bold</strong> This is not</td></tr>
+<tr><td>&#47;/</td><td>italic</td><td>&#47;/This is italic&#47;/ This is not</td><td align="left"><i>This is italic</i> This is not</td></tr>
+<tr><td align="left">&#43;++</td><td>highlight</td><td>&#43;++As if I used a highlighter&#43;++ or not</td><td align="left"><code>As if I used a highlighter</code> or not</td></tr>
+<tr><td align="left">&#45;--</td><td>strikeout</td><td>The price is &#45;--old price&#45;-- new price</td><td align="left">The price is <strike>old price</strike> new price</td></tr>
+<tr><td align="left">&#40;c)</td><td>copyright symbol</td><td>Copyright &#40;c) 2005 Noel Henson</td><td align="left">Copyright &copy; 2005 Noel Henson</td></tr>
+<tr><td align="left">&#40;C)</td><td>copyright symbol</td><td>Copyright &#40;C) 2005 Noel Henson</td><td align="left">Copyright &copy; 2005 Noel Henson</td></tr>
+</table>
+<p  class="P2" >If proper nesting of tags is observed, several can be used at once:
+<code><i><strong>Highlight-Bold-Italic</strong></i></code>.
+</p>
+<li  class="L2" >Bullets <ol>
+<table class="TAB3">
+<tr><th>Tag</th><th>Function</th><th align="left">Usage</th><th>Presentation</th></tr>
+<tr><td>-</td><td>bulleted heading</td><td align="left">- Heading</td><td><ul><LI class="LB3">Heading<ul></td></tr>
+<tr><td>+</td><td>numbered heading</td><td align="left">+ Heading</td><td><ul><LI class="LN3">Heading<ul></td></tr> </table>
+</ol>
+<li  class="L2" >Horizontal Rule <ol>
+<p  class="P3" >This is the final beautifier. Just put 40 dashes on a line and it
+will be show up as a simple horizontal rule.
+</p>
+<li  class="L3" >&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;
+<p  class="P3" >It makes this: </p>
+</ol>
+</ol>
+<li  class="L1" ><br><hr><br>
+<li  class="L1" >Supported VO Data Blocks <ol>
+<li  class="LN2" >Headings
+<li  class="LN2" >Body Text
+<li  class="L2" >Preformatted Text
+<li  class="L2" >Tables </ol>
+<li  class="L1" >Version and Copyright <ol>
+<pre  class="PRE2" > Version 1.37
+ Copyright &copy; 2005 Noel Henson
+ License: GPL </ol>
+</ol>
+</div>
+<div class="Footer">
+<hr>
+
+<br>
+otl2html.otl&nbsp&nbsp 2005/03/05 07:05
+</div>
+</body></html>

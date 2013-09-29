@@ -1,0 +1,330 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html><head><title>Tina's Birthday</title>
+<!--  $Revision: 1.39 $ -->
+<!--  $Date: 2005/02/23 14:09:40 $ -->
+<!--  $Author: noel $ -->
+<style type="text/css">
+/* copyright notice and filename */
+body {
+        font-family: helvetica,arial,sans-serif;
+        font-size: 10pt;
+}
+	/* title at the top of the page */
+H1 {
+        font-family: helvetica,arial,sans-serif;
+        font-size: 14pt;
+        font-weight: bold;
+        text-align: center;
+        color: black;
+	background-color: #ddddee;
+	padding-top: 20px;
+	padding-bottom: 20px;
+}
+H2 {
+        font-family: helvetica,arial,sans-serif;
+        font-size: 12pt;
+        font-weight: bold;
+        text-align: left;
+        color: black;
+}
+H3 {
+        font-family: helvetica,arial,sans-serif;
+        font-size: 12pt;
+        text-align: left;
+        color: black;
+}
+H4 {
+        font-family: helvetica,arial,sans-serif;
+        font-size: 12pt;
+        text-align: left;
+        color: black;
+}
+H5 {
+        font-family: helvetica,arial,sans-serif;
+        font-size: 10pt;
+        text-align: left;
+        color: black;
+}
+	/* outline level spacing */
+OL {
+        padding-bottom: 8pt;
+}
+	/* global heading settings */
+LI {
+        font-family: helvetica,arial,sans-serif;
+        color: black;
+        font-weight: normal;
+        list-style: lower-alpha;
+	padding-top: 4px;
+}
+	/* level 1 heading overrides */
+LI.L1 {
+        font-size: 12pt;
+        font-weight: bold;
+        list-style: none;
+}
+	/* level 2 heading overrides */
+LI.L2 {
+        font-size: 10pt;
+        font-weight: bold;
+        list-style: none;
+}
+	/* level 3 heading overrides */
+LI.L3 {
+        font-size: 10pt;
+        list-style: none;
+}
+	/* level 4 heading overrides */
+LI.L4 {
+        font-size: 10pt;
+        list-style: none;
+}
+	/* level 5 heading overrides */
+LI.L5 {
+        font-size: 10pt;
+        list-style: none;
+}
+	/* level 6 heading overrides */
+LI.L6 {
+        font-size: 10pt;
+        list-style: none;
+}
+	/* level 7 heading overrides */
+LI.L7 {
+        font-size: 10pt;
+        list-style: none;
+}
+	/* level 1 bullet heading overrides */
+LI.LB1 {
+        font-size: 12pt;
+        font-weight: bold;
+        list-style: disc;
+}
+	/* level 2 bullet heading overrides */
+LI.LB2 {
+        font-size: 10pt;
+        font-weight: bold;
+        list-style: disc;
+}
+	/* level 3 bullet heading overrides */
+LI.LB3 {
+        font-size: 10pt;
+        list-style: disc;
+}
+	/* level 4 bullet heading overrides */
+LI.LB4 {
+        font-size: 10pt;
+        list-style: disc;
+}
+	/* level 5 bullet heading overrides */
+LI.LB5 {
+        font-size: 10pt;
+        list-style: disc;
+}
+	/* level 6 bullet heading overrides */
+LI.LB6 {
+        font-size: 10pt;
+        list-style: disc;
+}
+	/* level 7 bullet heading overrides */
+LI.LB7 {
+        font-size: 10pt;
+        list-style: disc;
+}
+	/* level 1 numeric heading overrides */
+LI.LN1 {
+        font-size: 12pt;
+        font-weight: bold;
+        list-style: decimal;
+}
+	/* level 2 numeric heading overrides */
+LI.LN2 {
+        font-size: 10pt;
+        font-weight: bold;
+        list-style: decimal;
+}
+	/* level 3 numeric heading overrides */
+LI.LN3 {
+        font-size: 10pt;
+        list-style: decimal;
+}
+	/* level 4 numeric heading overrides */
+LI.LN4 {
+        font-size: 10pt;
+        list-style: decimal;
+}
+	/* level 5 numeric heading overrides */
+LI.LN5 {
+        font-size: 10pt;
+        list-style: decimal;
+}
+	/* level 6 numeric heading overrides */
+LI.LN6 {
+        font-size: 10pt;
+        list-style: decimal;
+}
+	/* level 7 numeric heading overrides */
+LI.LN7 {
+        font-size: 10pt;
+        list-style: decimal;
+}
+       	/* body text */
+P {
+        font-family: helvetica,arial,sans-serif;
+        font-size: 9pt;
+        font-weight: normal;
+        color: darkgreen;
+}
+	/* preformatted text */
+PRE {
+        font-family: fixed;
+        font-size: 9pt;
+        font-weight: normal;
+        color: darkblue;
+}
+
+TABLE {
+	margin-top: 1em;
+        font-family: helvetica,arial,sans-serif;
+        font-size: 12pt;
+        font-weight: normal;
+	border-collapse: collapse;
+}
+
+TH {
+	border: 1px solid black;
+	padding: 0.5em;
+	background-color: #eeddee;
+}
+
+TD {
+	border: 1px solid black;
+	padding: 0.5em;
+	background-color: #ddeeee;
+}
+
+CODE {
+	background-color: yellow;
+}
+
+TABLE.TAB1 {
+	margin-top: 1em;
+        font-family: helvetica,arial,sans-serif;
+        font-size: 12pt;
+        font-weight: normal;
+	border-collapse: collapse;
+}
+TABLE.TAB2 {
+	margin-top: 1em;
+        font-family: helvetica,arial,sans-serif;
+        font-size: 11pt;
+        font-weight: normal;
+	border-collapse: collapse;
+}
+TABLE.TAB3 {
+	margin-top: 1em;
+        font-family: helvetica,arial,sans-serif;
+        font-size: 10pt;
+        font-weight: normal;
+	border-collapse: collapse;
+}
+TABLE.TAB4 {
+	margin-top: 1em;
+        font-family: helvetica,arial,sans-serif;
+        font-size: 10pt;
+        font-weight: normal;
+	border-collapse: collapse;
+}
+TABLE.TAB5 {
+	margin-top: 1em;
+        font-family: helvetica,arial,sans-serif;
+        font-size: 10pt;
+        font-weight: normal;
+	border-collapse: collapse;
+}
+TABLE.TAB6 {
+	margin-top: 1em;
+        font-family: helvetica,arial,sans-serif;
+        font-size: 10pt;
+        font-weight: normal;
+	border-collapse: collapse;
+}
+</style></head>
+<body>
+<div class="DocTitle">
+<h1>Tina's Birthday</h1>
+</div>
+<div class="MainPage">
+<ol>
+<li  class="L1" >Scope <ol>
+<p  class="P2" >Plan and execute a barbeque for the family and close friends. This is to
+be a combination barbeque and birthday party for Tina. </p>
+</ol>
+<li  class="L1" >Features <ol>
+<li  class="LB2" >Western Theme
+<li  class="LB2" >Hay rides
+<li  class="LB2" >Horseback rides
+<li  class="LB2" >Games </ol>
+<li  class="L1" >To Do (50%) <ol>
+<li  class="L2" >[_] 50% Vital <ol>
+<li  class="L3" >[_] Send Invitaions
+<li  class="L3" >[X] Buy Present <ol>
+<li  class="L4" >Options (in order of preference) <ol>
+<li  class="LN5" >Pony
+<li  class="LN5" >MP3 Player (the second choice is reasonable)
+<li  class="LN5" >XBox
+<li  class="LN5" >Bicycle </ol>
+</ol>
+</ol>
+<li  class="L2" >[X] 100% Important <ol>
+<li  class="L3" >[X] Order Clown
+<li  class="L3" >[X] Rent Horse and Handler </ol>
+<li  class="L2" >[_] 0% Optional <ol>
+<li  class="L3" >[_] Mow Lawn
+<li  class="L3" >[_] Trim Hedges
+<li  class="L3" >[_] Wash Dog </ol>
+</ol>
+<li  class="L1" >Materials (%) <ol>
+<li  class="L2" >[_] 63% Barbeque <ol>
+<li  class="L3" >[_] 83% Food <ol>
+<li  class="L4" >[X] 20 Burgers
+<li  class="L4" >[X] 20 Hamburger Buns
+<li  class="L4" >[X] 20 Hotdogs
+<li  class="L4" >[X] 20 Hotdog Buns
+<li  class="L4" >[X] Potato Chips
+<li  class="L4" >[_] Potato Salad </ol>
+<li  class="L3" >[_] 33% Drink <ol>
+<li  class="L4" >[_] Soda
+<li  class="L4" >[_] Diet Soda
+<li  class="L4" >[X] Beer </ol>
+<li  class="L3" >[_] Chairs for 30
+<li  class="L3" >[X] Tables (2 or 3)
+<li  class="L3" >[X] 5 Bags of ice
+<li  class="L3" >[_] 20 Hay Bails </ol>
+<li  class="L2" >[_] 66% Birthday <ol>
+<li  class="L3" >[_] Cake
+<li  class="L3" >[X] 100% Party Favors <ol>
+<li  class="L4" >[X] Hats
+<li  class="L4" >[X] Poppers
+<li  class="L4" >[X] Whistles </ol>
+<li  class="L3" >[X] Disposable Cameras </ol>
+<li  class="L2" >Guests <ol>
+<table class="TAB3">
+<tr><th align="left">Name</th><th>RSVP</th><th align="left">Food to Bring</th></tr>
+<tr><td align="left">Bill, Joan and Billie</td><td>YES</td><td align="left">Corn Bread</td></tr>
+<tr><td align="left">Jones</td><td>YES</td><td align="left">Popcorn Balls</td></tr>
+<tr><td align="left">Jack & Jill</td><td>YES</td><td align="left">Soda</td></tr>
+<tr><td align="left">Grandma</td><td>YES</td><td align="left">none</td></tr> </table>
+</ol>
+</ol>
+<li  class="L1" >Summary <ol>
+<p  class="P2" >This is just a simple example of what can be done. </ol>
+</ol>
+</div>
+<div class="Footer">
+<hr>
+
+<br>
+party.otl&nbsp&nbsp 2005/02/23 07:48
+</div>
+</body></html>

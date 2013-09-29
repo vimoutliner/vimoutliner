@@ -1,0 +1,47 @@
+OTL2HTML Webpage Demonstration
+_Menu
+	**Home**
+	[demo1.html About]
+	[demo2.html Usage]
+	[demo3.html Party Report]
+	[mailto:noel@noels-lab.com Contact]
+	Links
+		[http://www.vimoutliner.org Vim Outliner]
+		[http://www.troubleshooters.com Troubleshooters.com]
+		[http://www.sourceforge.net SourceForge.Net]
+		[http://www.freshmeat.net FreshMeat.Net]
+		[http://www.python.org Python]
+		[http://www.apache.org Apache]
+		[http://www.thinkgeek.com Think Geek]
+		[http://www.cnn.com CNN]
+		[http://www.linuxmag.com Linux Magazine]
+		[http://www.linuxjournal.com [ljlogo.png]]
+News
+	December 1, 2004
+		OTL2HTML.PY Tool Gets Twisted Upgrade
+		: Noel Henson's python-based otl2html.py tool gets a rather serious 
+		: but twisted upgrade. Mr. Henson claims that the tool can now take an 
+		: outline and generate a surprisingly nice-looking web page. The 
+		: extension would allow for entire websites to be developed using the 
+		: world renowned [http://www.vimoutliner.org Vim Outliner].
+		:
+		: -- anonymous
+	November 28, 2004
+		Hyperlinks and Images Are Added to OTL2HTML.PY
+		: In the same spirit as [http://txt2tags.sf.net TXT2TAGS], otl2html.py can 
+		: now process and include hyperlinks and images into the html files it 
+		: creates. The hyperlinks can be to web pages, ftp sites, mail-tos or 
+		: any other standard URL. The images can be included as just images or 
+		: as hyperlinks. Check out the LJ logo in the menu.
+		:
+		: -- anonymous
+Main
+	: Using VO to generate pages like this is surprisingly simple. A simple 
+	: .otl file and the otl2html.py script is all you need. To see the file 
+	: that generated this page, [demo.otl click here]. By the way, a heading 
+	: that stars with "_" won't show on the page. You can see examples of this 
+	: in the aforementioned file. To invoke the otl2html.py tool enter the 
+	: following from the command line:
+	Example
+		; otl2html.py -D -s webpage.css demo.otl > demo.html
+	: Have fun with this upgraded and potentially cool tool.

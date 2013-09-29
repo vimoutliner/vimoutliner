@@ -1,0 +1,381 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html><head><title>OTL2HTML Webpage Demonstration</title>
+<!--  $Revision: 1.40 $ -->
+<!--  $Date: 2005/03/01 00:34:46 $ -->
+<!--  $Author: noel $ -->
+<style type="text/css">
+/* copyright notice and filename */
+body {
+        font-family: helvetica,arial,sans-serif;
+        font-size: 10pt;
+	background-color: #888888;
+}
+	/* title at the top of the page */
+H1 {
+	border: 1px solid blue;
+        font-family: helvetica,arial,sans-serif;
+        font-size: 14pt;
+        font-weight: bold;
+        text-align: left;
+        color: black;
+	background-color: #ddddee;
+	padding-left: 10px;
+	padding-bottom: 10px;
+	padding-top: 10px;
+}
+H2 {
+        font-family: helvetica,arial,sans-serif;
+        font-size: 12pt;
+        font-weight: bold;
+        text-align: left;
+        color: black;
+}
+H3 {
+        font-family: helvetica,arial,sans-serif;
+        font-size: 12pt;
+        text-align: left;
+        color: black;
+}
+H4 {
+        font-family: helvetica,arial,sans-serif;
+        font-size: 12pt;
+        text-align: left;
+        color: black;
+}
+H5 {
+        font-family: helvetica,arial,sans-serif;
+        font-size: 10pt;
+        text-align: left;
+        color: black;
+}
+	/* outline level spacing */
+OL {
+        padding-bottom: 8pt;
+	margin-left: -20px;
+}
+	/* global heading settings */
+LI {
+        font-family: helvetica,arial,sans-serif;
+        color: black;
+        font-weight: normal;
+        list-style: lower-alpha;
+	margin-left: -5px;
+	padding-top: 4px;
+}
+	/* level 1 heading overrides */
+LI.L1 {
+        font-size: 12pt;
+        font-weight: bold;
+        list-style: none;
+}
+	/* level 2 heading overrides */
+LI.L2 {
+        font-size: 10pt;
+        font-weight: bold;
+        list-style: none;
+}
+	/* level 3 heading overrides */
+LI.L3 {
+        font-size: 10pt;
+        list-style: none;
+}
+	/* level 4 heading overrides */
+LI.L4 {
+        font-size: 10pt;
+        list-style: none;
+}
+	/* level 5 heading overrides */
+LI.L5 {
+        font-size: 10pt;
+        list-style: none;
+}
+	/* level 6 heading overrides */
+LI.L6 {
+        font-size: 10pt;
+        list-style: none;
+}
+	/* level 7 heading overrides */
+LI.L7 {
+        font-size: 10pt;
+        list-style: none;
+}
+	/* level 1 bullet heading overrides */
+LI.LB1 {
+        font-size: 12pt;
+        font-weight: bold;
+        list-style: disc;
+}
+	/* level 2 bullet heading overrides */
+LI.LB2 {
+        font-size: 10pt;
+        font-weight: bold;
+        list-style: disc;
+}
+	/* level 3 bullet heading overrides */
+LI.LB3 {
+        font-size: 10pt;
+        list-style: disc;
+}
+	/* level 4 bullet heading overrides */
+LI.LB4 {
+        font-size: 10pt;
+        list-style: disc;
+}
+	/* level 5 bullet heading overrides */
+LI.LB5 {
+        font-size: 10pt;
+        list-style: disc;
+}
+	/* level 6 bullet heading overrides */
+LI.LB6 {
+        font-size: 10pt;
+        list-style: disc;
+}
+	/* level 7 bullet heading overrides */
+LI.LB7 {
+        font-size: 10pt;
+        list-style: disc;
+}
+	/* level 1 numeric heading overrides */
+LI.LN1 {
+        font-size: 12pt;
+        font-weight: bold;
+        list-style: decimal;
+}
+	/* level 2 numeric heading overrides */
+LI.LN2 {
+        font-size: 10pt;
+        font-weight: bold;
+        list-style: decimal;
+}
+	/* level 3 numeric heading overrides */
+LI.LN3 {
+        font-size: 10pt;
+        list-style: decimal;
+}
+	/* level 4 numeric heading overrides */
+LI.LN4 {
+        font-size: 10pt;
+        list-style: decimal;
+}
+	/* level 5 numeric heading overrides */
+LI.LN5 {
+        font-size: 10pt;
+        list-style: decimal;
+}
+	/* level 6 numeric heading overrides */
+LI.LN6 {
+        font-size: 10pt;
+        list-style: decimal;
+}
+	/* level 7 numeric heading overrides */
+LI.LN7 {
+        font-size: 10pt;
+        list-style: decimal;
+}
+       	/* body text */
+P {
+        font-family: helvetica,arial,sans-serif;
+        font-size: 9pt;
+        font-weight: normal;
+        color: black;
+}
+	/* preformatted text */
+PRE {
+        font-family: fixed;
+        font-size: 9pt;
+        font-weight: normal;
+        color: black;
+}
+
+TABLE {
+	margin-top: 1em;
+        font-family: helvetica,arial,sans-serif;
+        font-size: 12pt;
+        font-weight: normal;
+	border-collapse: collapse;
+}
+
+TH {
+	border: 1px solid black;
+	padding: 0.5em;
+	background-color: #eeddee;
+}
+
+TD {
+	border: 1px solid black;
+	padding: 0.5em;
+	background-color: #ddeeee;
+}
+
+CODE {
+	background-color: yellow;
+}
+
+TABLE.TAB1 {
+	margin-top: 1em;
+        font-family: helvetica,arial,sans-serif;
+        font-size: 12pt;
+        font-weight: normal;
+	border-collapse: collapse;
+}
+TABLE.TAB2 {
+	margin-top: 1em;
+        font-family: helvetica,arial,sans-serif;
+        font-size: 11pt;
+        font-weight: normal;
+	border-collapse: collapse;
+}
+TABLE.TAB3 {
+	margin-top: 1em;
+        font-family: helvetica,arial,sans-serif;
+        font-size: 10pt;
+        font-weight: normal;
+	border-collapse: collapse;
+}
+TABLE.TAB4 {
+	margin-top: 1em;
+        font-family: helvetica,arial,sans-serif;
+        font-size: 10pt;
+        font-weight: normal;
+	border-collapse: collapse;
+}
+TABLE.TAB5 {
+	margin-top: 1em;
+        font-family: helvetica,arial,sans-serif;
+        font-size: 10pt;
+        font-weight: normal;
+	border-collapse: collapse;
+}
+TABLE.TAB6 {
+	margin-top: 1em;
+        font-family: helvetica,arial,sans-serif;
+        font-size: 10pt;
+        font-weight: normal;
+	border-collapse: collapse;
+}
+DIV.Menu {
+	float: left;
+	border: 1px solid blue;
+	background-color: #e6add8;
+	padding-right:10px;
+	text-align: left;
+	width: 25%;
+}
+DIV.TopMenu {
+	border: 1px solid blue;
+	background-color: #e6add8;
+	padding-right:10px;
+	margin-bottom: 15px;
+	text-align: Center;
+}
+DIV.News {
+	float: left;
+	border: 1px solid green;
+	background-color: #ade6d8;
+	padding-left: 3px;
+	padding-right: 8px;
+	text-align: left;
+	width: 69%;
+	margin-bottom: 15px;
+	margin-left: 15px;
+}
+Div.Main {
+	float: left;
+	border: 1px solid green;
+	background-color: white;
+	padding-left: 3px;
+	padding-right: 8px;
+	text-align: left;
+	width: 69%;
+	margin-bottom: 15px;
+	margin-left: 15px;
+}
+IMG {
+	border: none;
+}
+</style></head>
+<body>
+<div class="DocTitle">
+<h1>OTL2HTML Webpage Demonstration</h1>
+</div>
+<div class="MainPage">
+<div class="Menu">
+<ol>
+<li  class="L2" ><a href="demo.html">Home</a>
+<li  class="L2" ><a href="demo1.html">About</a>
+<li  class="L2" ><a href="demo2.html">Usage</a>
+<li  class="L2" ><strong>Party Report</strong>
+<li  class="L2" ><a href="mailto:noel@noels-lab.com">Contact</a> </ol>
+</ol>
+</div>
+<div class="Main">
+<ol>
+<li  class="L2" >Tina's Birthday
+<li  class="L2" >Scope <ol>
+<p  class="P3" >Plan and execute a barbeque for the family and close friends. This is to
+be a combination barbeque and birthday party for Tina. </p>
+</ol>
+<li  class="L2" >Features <ol>
+<li  class="LB3" >Western Theme
+<li  class="LB3" >Hay rides
+<li  class="LB3" >Horseback rides
+<li  class="LB3" >Games </ol>
+<li  class="L2" >To Do (50%) <ol>
+<li  class="L3" >[_] 50% Vital <ol>
+<li  class="L4" >[_] Send Invitaions
+<li  class="L4" >[X] Buy Present <ol>
+<li  class="L5" >Options (in order of preference) <ol>
+<li  class="LN6" >Pony
+<li  class="LN6" >MP3 Player (the second choice is reasonable)
+<li  class="LN6" >XBox
+<li  class="LN6" >Bicycle </ol>
+</ol>
+</ol>
+<li  class="L3" >[X] 100% Important <ol>
+<li  class="L4" >[X] Order Clown
+<li  class="L4" >[X] Rent Horse and Handler </ol>
+<li  class="L3" >[_] 0% Optional <ol>
+<li  class="L4" >[_] Mow Lawn
+<li  class="L4" >[_] Trim Hedges
+<li  class="L4" >[_] Wash Dog </ol>
+</ol>
+<li  class="L2" >Materials (%) <ol>
+<li  class="L3" >[_] 63% Barbeque <ol>
+<li  class="L4" >[_] 83% Food <ol>
+<li  class="L5" >[X] 20 Burgers
+<li  class="L5" >[X] 20 Hamburger Buns
+<li  class="L5" >[X] 20 Hotdogs
+<li  class="L5" >[X] 20 Hotdog Buns
+<li  class="L5" >[X] Potato Chips
+<li  class="L5" >[_] Potato Salad </ol>
+<li  class="L4" >[_] 33% Drink <ol>
+<li  class="L5" >[_] Soda
+<li  class="L5" >[_] Diet Soda
+<li  class="L5" >[X] Beer </ol>
+<li  class="L4" >[_] Chairs for 30
+<li  class="L4" >[X] Tables (2 or 3)
+<li  class="L4" >[X] 5 Bags of ice
+<li  class="L4" >[_] 20 Hay Bails </ol>
+<li  class="L3" >[_] 66% Birthday <ol>
+<li  class="L4" >[_] Cake
+<li  class="L4" >[X] 100% Party Favors <ol>
+<li  class="L5" >[X] Hats
+<li  class="L5" >[X] Poppers
+<li  class="L5" >[X] Whistles </ol>
+<li  class="L4" >[X] Disposable Cameras </ol>
+<li  class="L3" >Guests <ol>
+<table class="TAB4">
+<tr><th align="left">Name</th><th>RSVP</th><th align="left">Food to Bring</th></tr>
+<tr><td align="left">Bill, Joan and Billie</td><td>YES</td><td align="left">Corn Bread</td></tr>
+<tr><td align="left">Jones</td><td>YES</td><td align="left">Popcorn Balls</td></tr>
+<tr><td align="left">Jack & Jill</td><td>YES</td><td align="left">Soda</td></tr>
+<tr><td align="left">Grandma</td><td>YES</td><td align="left">none</td></tr> </table>
+</ol>
+</ol>
+<li  class="L2" >Summary <ol>
+<p  class="P3" >This is just a simple example of what can be done. </ol>
+</ol>
+</ol>
+</div>
+</body></html>

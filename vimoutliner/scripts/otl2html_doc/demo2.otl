@@ -1,0 +1,27 @@
+OTL2HTML Webpage Demonstration
+_Menu
+	[demo.html Home]
+	[demo1.html About]
+	**Usage**
+	[demo3.html Party Report]
+	[mailto:noel@noels-lab.com Contact]
+_Main
+	; Usage:
+	; otl2html.py [ options ] inputfile > outputfile
+	; Options
+	;     -p              Presentation: slide show output for use with HtmlSlides.
+	;     -D              First-level is divisions (for pretty web pages).
+	;     -s sheet        Use the specified style sheet with a link. Not compatible
+	;                     with -t.
+	;     -S sheet        Include the specified style sheet in-line the output. For
+	;                     encapsulated style. Not compatible with -t. Hide
+	;     -T              The first line is not the title. Treat it as outline data
+	;     -c              comments (line with [ as the first non-whitespace
+	;                     character. Ending with ] is optional.
+	;     -C copyright    Override the internal copyright notice with the
+	;                     one supplied in the quoted string following this
+	;                     flag. Single or double quotes can be used.
+	;     -v              Print version (RCS) information.
+	;     -H              Show the file syntax help.
+	; output is on STDOUT
+	; 

@@ -1,0 +1,13 @@
+  * Drop .py suffix from menu invocations; thanks to David Nusinow
+    (closes: #308073).
+  * Remove docs from debian/examples which are not part of the upstream
+    tarball; they'll eventually be added again later
+  * Add a debian/install file
+  * Add patch to make plugin actually work in global runtime path which was
+    hidden in changes to the upstream tarball (urg!)
+  * Add examples, which had been hidden in the modified upstream tarball
+    to debian/contrib. 
+  * Add a patch to fix color names
+  * Add a README.source to document patch handling
+
+ -- Patrick Schoenfeld <schoenfeld@debian.org>  Tue, 23 Jun 2009 14:53:58 +0200
