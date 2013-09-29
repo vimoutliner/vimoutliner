@@ -31,7 +31,7 @@ let b:current_syntax = "outliner"
 
 " User Preferences {{{1
 
-let maplocalleader = ",,"		" this is prepended to VO key mappings
+"let maplocalleader = ",,"		" this is prepended to VO key mappings
 
 "setlocal ignorecase			" searches ignore case
 "setlocal smartcase			" searches use smart case
