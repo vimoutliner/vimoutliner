@@ -670,7 +670,7 @@ let vo_dir = expand("<sfile>:p:h:h")
 
 " Load rc file, only the first found.
 let rcs = split(globpath('$HOME,$HOME/.vimoutliner','.vimoutlinerrc'), "\n") +
-    \ split(globpath('$HOME,$HOME/.vimouliner,$HOME/.vim', 'vimoutlinerrc'), "\n") +
+    \ split(globpath('$HOME,$HOME/.vimoutliner,$HOME/.vim', 'vimoutlinerrc'), "\n") +
     \ split(globpath(vo_dir, 'vimoutlinerrc'), "\n")
 
 if len(rcs) > 0
