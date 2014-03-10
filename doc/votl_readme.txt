@@ -1,7 +1,7 @@
-*vo_readme.txt*	For Vim version 7.1	Last change: 2011 March 25
+*votl_readme.txt*	For Vim version 7.2	Last change: 2013-04-10
 
                                                                 *vo* *vimoutliner*
-The VimOutliner  0.3.6 ~
+VimOutliner  0.3.7 ~
 
 VimOutliner is an outline processor designed with lighting fast authoring as
 the main feature, it also has many of the same features as Grandview, More,
@@ -10,37 +10,39 @@ promotion/demotion, level sensitive colors, interoutline linking, checkboxes
 and body text.
 
 
-  License                                                       |vo-license|
-  Version                                                       |vo-version|
-  Installing and testing VimOutliner                            |vo-install|
-      Automatic method                                     |vo-auto-install|
-      Updating                                                 |vo-updating|
-      Manual method                                      |vo-manual-install|
-      Color schemes                                               |vo-color|
-      Testing                                                   |vo-testing|
-      Debian                                                     |vo-debian|
-  Using VimOutliner on other file types                     |vo-other-files|
-  Troubleshooting                                       |vo-troubleshooting|
-  VimOutliner philosophy                                     |vo-philosophy|
-  Running VimOutliner                                           |vo-running|
-      Comma comma commands                                      |vo-command|
-      Basic VimOutliner activities                           |vo-activities|
-      Menu                                                         |vo-menu|
-      Vim Outliner objects                                      |vo-objects|
-      Post Processors                                   |vo-post-processors|
-  Advanced                                                     |vo-advanced|
-      Executable Lines                                 |vo-executable-lines|
-  Plugins                                                       |vo-plugins|
-      Checkboxes                                               |vo-checkbox|
-      Hoisting                                                 |vo-hoisting|
-  Scripts                                                       |vo-scripts|
-      vo_maketags.pl                                           |vo-maketags|
-      otl2html.py                                                 |otl2html|
-  Other information                                          |vo-other-info|
+  License                                                         |votl-license|
+  Version                                                         |votl-version|
+  Installing and testing VimOutliner                              |votl-install|
+      Automatic method                                       |votl-auto-install|
+      Updating                                                   |votl-updating|
+      Manual method                                        |votl-manual-install|
+      Testing                                                     |votl-testing|
+      Installation from distribution packages                    |votl-packages|
+
+
+  Using VimOutliner on other file types                       |votl-other-files|
+  Troubleshooting                                         |votl-troubleshooting|
+  VimOutliner philosophy                                       |votl-philosophy|
+  Running VimOutliner                                             |votl-running|
+      Comma comma commands                                        |votl-command|
+      Basic VimOutliner activities                             |votl-activities|
+      Menu                                                           |votl-menu|
+      Vim Outliner objects                                        |votl-objects|
+      Post Processors                                     |votl-post-processors|
+  Advanced                                                       |votl-advanced|
+      Executable Lines                                   |votl-executable-lines|
+  Plugins                                                         |votl-plugins|
+      Checkboxes                                                 |votl-checkbox|
+      Hoisting                                                   |votl-hoisting|
+      Clock                                                       |vo-clock|
+  Scripts                                                         |votl-scripts|
+      votl_maketags.pl                                           |votl-maketags|
+      otl2html.py                                                     |otl2html|
+  Other information                                            |votl-other-info|
 
 
 ==============================================================================
-License                                                             *vo-license*
+License                                                           *votl-license*
 
 
 VimOutliner Copyright (C) 2001, 2003 by Steve Litt
@@ -48,23 +50,21 @@ VimOutliner Copyright (C) 2001, 2003 by Steve Litt
 Licensed under the GNU General Public License (GPL), version 2
 Absolutely no warranty, see COPYING file for details.
 
-If your distro doesn't come with this file
     HTML: http://www.gnu.org/copyleft/gpl.html
     Text: http://www.gnu.org/copyleft/gpl.txt
 
 
 ==============================================================================
-Installing and Testing VimOutliner                                  *vo-install*
+Installing and Testing VimOutliner                                *votl-install*
 
 
-    Automatic Method                |vo-auto-install|
-    Updating                        |vo-updating|
-    Manual Method                   |vo-manual-install|
-    Color Schemes                   |vo-colors|
-    Testing                         |vo-testing|
+    Automatic Method                |votl-auto-install|
+    Updating                        |votl-updating|
+    Manual Method                   |votl-manual-install|
+    Testing                         |votl-testing|
 
 
-                                                               *vo-auto-install*
+                                                             *votl-auto-install*
 Automatic Method~
 
 The automatic installation targets Unix-compatible platforms: >
@@ -83,20 +83,21 @@ From zip archive
 
 From vimball
 
-Open vimoutliner-0.3.x.vba with Vim and type the following command to install in your home vim folder:
+Open vimoutliner-0.3.x.vba with Vim and type the following command to install
+in your home vim folder:
 
 :so % 
 
 <
-The install.sh script will ask you whether to install the VimOutliner files or abort the
-process leaving everything unchanged.  Assuming you confirmed the
+The install.sh script will ask you whether to install the VimOutliner files or
+abort the process leaving everything unchanged.  Assuming you confirmed the
 installation, the script creates the necessary directory tree and copies the
 files which provide the core functionality and documentation.
 
 With the second question you decide whether you want to install some brand new
 add-ons, currently implementing hoisting and checkboxes.
 
-                                                                   *vo-updating*
+                                                                 *votl-updating*
 Updating~
 
 Updating an existing installation might require some manual work.
@@ -111,7 +112,7 @@ newer versions. So if you put some local customisations into, say
 $HOME/.vim/vimoutliner/vimoutlinerrc, you'll probably have to merge the backup
 with the new file by hand.
 
-                                                             *vo-manual-install*
+                                                           *votl-manual-install*
 Manual Method~
 
 You can also copy the files from the unpacked distribution tarball into their
@@ -164,57 +165,16 @@ the vim help system.  Start vim and execute the following command: >
     :helptags $HOME/.vim/doc
 <
 At this point, VimOutliner should be functional.  Type ":help vo" to get
-started. You can also type ":help vo_cheatsheet" to a get a quick overview of all
-the VimOutliner commands.
+started. You can also type ":help votl_cheatsheet" to a get a quick overview
+of all the VimOutliner commands.
 
-                                                                      *vo-color*
-Color Schemes~
-
-Color schemes specify the colors Vim Outliner uses when displaying an outline.
-Colors are specified by object and level.  These objects currently include:
-headings, body text, pre- formatted body text, tables and others. See
-|vo-objects| for more information.
-
-Color scheme files are located in the system-wide vim colors directory and/or
-your $HOME/.vim/colors directory. You can select from any of the provided
-schemes. Vim Outliner internally includes a scheme the matches vo_light.vim.
-
-To override the default color scheme you can edit these lines in your
-$HOME/.vim/vimoutline/vimoutlinerrc file:
->
-    "Custom Colors **********************************
-    " Uncomment this next line to force using VO on
-    " a light background
-    " colorscheme vo_light
-    " Uncomment this next line to force using VO on
-    " a dark background
-    " colorscheme vo_dark
-<
-To create your own scheme follow these simple steps:
-
-1. Go to your $HOME/.vim/colors directory.  If you don't have one, create it.
-
-2. Make a copy of one of the included schemes to use as a starting point. You
-   should be able to find them in places like: $HOME/.vim/colors and
-   /usr/share/vim/vim63/colors. Put the copy in your own colors directory
-   ($HOME/.vim/colors)
-
-3. Edit the scheme file to change whatever colors you wish.
-
-4. Select the scheme in your $HOME/.vim/vimoutline/vimoutlinerrc file.  The
-   line should look something like this:
->
-       colorscheme noel
-<
-That's all there is to it.
-
-                                                                    *vo-testing*
+                                                                    *votl-testing*
 Testing Base Functionality~
 
 Open a new outline with the following:
 >
-    rm $HOME/vo_test.otl
-    gvim $HOME/vo_test.otl or vim $HOME/vo_test.otl
+    rm $HOME/votl_test.otl
+    gvim $HOME/votl_test.otl or vim $HOME/votl_test.otl
 <
 Verify the following:
 - Tabs indent the text
@@ -232,39 +192,43 @@ Interoutline linking currently requires a working perl installation to
 generate the necessary tag file. We are looking into porting this to vim's own
 scripting language.
 
-Place the following two lines in $HOME/vo_test.otl:
+Place the following two lines in $HOME/votl_test.otl:
 >
     _tag_newfile
-        $HOME/vo_newfile.otl
+        $HOME/votl_newfile.otl
 <
 Note that in the preceding, the 2nd line should be indented from the first.
 
-To create VimOutliner's tag file $HOME/.vim/vimoutliner/vo_tags.tag, run
-vo_maketags.pl, which resides in $HOME/.vimoutliner/scripts/: $
-$HOME/.vim/vimoutliner/scripts/vo_maketags.pl $HOME/vo_test.otl
+To create VimOutliner's tag file $HOME/.vim/vimoutliner/votl_tags.tag, run
+votl_maketags.pl, which resides in $HOME/.vimoutliner/scripts/: $
+$HOME/.vim/vimoutliner/scripts/votl_maketags.pl $HOME/votl_test.otl
 
 Try the following:
-- In $HOME/vo_test.otl
+- In $HOME/votl_test.otl
 - Cursor to the _tag_newfile marker
 - Press CTRL-K
-    You should be brought to $HOME/vo_newfile.otl
+    You should be brought to $HOME/votl_newfile.otl
 - Press CTRL-N
-    You should be brought back to $HOME/vo_test.otl
+    You should be brought back to $HOME/votl_test.otl
 Note:
     CTRL-K is a VimOutliner synonym for CTRL-]
     CTRL-N is a VimOutliner synonym for CTRL-T
 
-                                                                     *vo-debian*
-Debian Installation~
+This might also be achieved more efficiently by using the UTL plugin for
+linking to other files and text. Check out the plugin at:
 
-Debian does include Vim Outliner as a package. However some Debian version
-require this line to be added to your .vimrc file: >
+http://www.vim.org/scripts/script.php?script_id=293
 
-    syntax on
->
+                                                      *votl-packages* *votl-debian*
+Installation from distribution packages~
+
+Debian and Fedora/Extras include Vim Outliner as a package. It is usually
+preferable to use official package custom-tailored for your distribution than
+to install VimOutliner from generic tarball.
+ 
 
 ==============================================================================
-Using VimOutliner On Other File Types                           *vo-other-files*
+                                                               *votl-other-files*
 
 How to use VimOutliner on non .otl files~
 
@@ -275,24 +239,24 @@ VimOutliner is now a Vim plugin, so Vim does all the work.
 This makes VimOutliner much simpler to use in most cases, but Vim plugins are
 file extension based, meaning that if you want to use VimOutliner on a file
 extension other than .otl, you must declare that file extension in
-$HOME/.vim/ftdetect/vo_base.vim. In this section we'll use the .emdl extension
+$HOME/.vim/ftdetect/votl.vim. In this section we'll use the .emdl extension
 (Easy Menu Definition Language) as an example.
 
 To enable VimOutliner work with .emdl files, do this:
 >
-    vim $HOME/.vim/ftdetect/vo_base.vim
+    vim $HOME/.vim/ftdetect/votl.vim
 <
 Right below the line reading:
 >
-    au! BufRead,BufNewFile *.otl    setfiletype vo_base
+    au! BufRead,BufNewFile *.otl    setfiletype votl
 <
 Insert the following line:
 >
-    au! BufRead,BufNewFile *.emdl   setfiletype vo_base
+    au! BufRead,BufNewFile *.emdl   setfiletype votl
 <
 Save and exit
 >
-    gvim $HOME/vo_test.emdl
+    gvim $HOME/votl_test.emdl
 <
 You should get:
 - level colors,
@@ -301,7 +265,7 @@ You should get:
 
 
 ==============================================================================
-Troubleshooting                                             *vo-troubleshooting*
+Troubleshooting~                                             *votl-troubleshooting*
 
 
 Q: I can't switch between colon based and space based body text.
@@ -310,7 +274,7 @@ A: See next question
 Q: My ,,b and ,,B don't do anything. How do I fix it?
 A: Open vim like this:
 >
-      vim $HOME/.vim/ftplugin/vo_base.vim
+      vim $HOME/.vim/ftplugin/votl.vim
 <
    Search for use_space_colon
    Make sure it is set to 0, not 1
@@ -319,21 +283,21 @@ A: Open vim like this:
 Q: I don't get VimOutliner features on files of extension .whatever.
 A: Open vim like this:
 >
-      vim $HOME/.vim/ftdetect/vo_base.vim
+      vim $HOME/.vim/ftdetect/votl.vim
 <
    Right below the line reading:
 >
-      au! BufRead,BufNewFile *.otl          setfiletype vo_base
+      au! BufRead,BufNewFile *.otl          setfiletype votl
 <
    Insert the following line:
 >
-      au! BufRead,BufNewFile *.whatever     setfiletype vo_base
+      au! BufRead,BufNewFile *.whatever     setfiletype votl
 <
    Save and exit.
 
 
 ==============================================================================
-VimOutliner Philosophy                                           *vo-philosophy*
+VimOutliner Philosophy~                                           *votl-philosophy*
 
 
 Authoring Speed~
@@ -373,19 +337,14 @@ the ol script, which many saw as clumsy. Given that all VimOutliner features
 are produced by the Vim engine, it makes perfect sense to admit that
 VimOutliner is an add-on to Vim.
 
-Therefore VimOutliner now prides itself in being a Vim plugin.  With the
+Therefore VimOutliner now prides itself in being a Vim plugin. With the
 VimOutliner package installed, the Vim editor yields the VimOutliner feature
-set for files whose extensions are listed as vo_base types in
-$HOME/.vim/ftplugin/vo_base.vim.
-
-The Vim Plugin philosophy yields several benefits:
-- Less reliance on Perl, bash and environment vars
-- (upcoming) Portability between Linux, Windows and Mac
-- (upcoming) Installation via Vim script
+set for files whose extensions are listed as votl types in
+$HOME/.vim/ftplugin/votl.vim.
 
 
 ==============================================================================
-Running VimOutliner                                                 *vo-running*
+Running VimOutliner~                                                 *votl-running*
 
 
 Vim Knowledge~
@@ -399,13 +358,13 @@ Run Vim or GVim and follow the instruction on :help |tutor|
 
 VimOutliner is a set of Vim scripts and configurations. Its features all come
 from the Vim editor's engine. If you do not know Vim, you'll need to learn the
-Vim basics before using VimOutliner.  Start by taking the Vim tutorial. The
+Vim basics before using VimOutliner. Start by taking the Vim tutorial. The
 tutorial should take about 2 hours.
 
 VimOutliner is so fast, that if you often use outlining, you'll make up that
 time within a week.
 
-                                                                    *vo-command*
+                                                                    *votl-command*
 Comma Comma Commands~
 
 For maximum authoring speed, VimOutliner features are accessed through
@@ -459,9 +418,9 @@ Command list:
     Q             Reformat (Synonym for gq)
 
 
-To get a quick overview of all VimOutliner commands type ":help vo_cheatsheet" in vim.
+To get a quick overview of all VimOutliner commands type ":help votl_cheatsheet" in vim.
 
-                                                                 *vo-activities*
+                                                                 *votl-activities*
 Basic VimOutliner activities~
 
 How do I collapse a tree within command mode?
@@ -523,13 +482,13 @@ How do I switch between colon based and space based body text?
 
 What if ,,b and ,,B don't work
     Change variable use_space_colon from 1 to 0
-        in $HOME/.vim/ftplugin/vo_base.vim
+        in $HOME/.vim/ftplugin/votl.vim
 
 How do I perform a wordcount?
     Use the command :w !wc
         The space before the exclamation point is a MUST.
 
-                                                                       *vo-menu*
+                                                                       *votl-menu*
 Menu~
 
 There is a simple menu included in Vim Outliner when running in GUI mode.
@@ -554,7 +513,7 @@ create your own menu entries. Just add lines like these to your
 <
 I'm sure you get the idea.
 
-                                                                    *vo-objects*
+                                                                    *votl-objects*
 Vim Outliner Objects~
 
 There are several object/line types that VO supports. The most common on
@@ -751,22 +710,19 @@ When folded, the above would appear as:
 	[USER BLOCK Code] --------------------- (17 lines)
 <
 
-                                                            *vo-post-processors*
+                                                            *votl-post-processors*
 VimOutliner Post-Processors~
 
 There are already serveral post processors for Vim Outliner. Some are general
 purpose in nature and others perform specific conversions. There are several of 
 the tested scripts now included in the $HOME/.vim/vimoutliner/scripts folder.
-See also the scripts section.                                   |vo-scripts|
-
-For overview of several of the scripts on the web see:
-        https://sites.google.com/site/vimoutlinerinfo/scripts-for-vimoutliner
+See also the scripts section.                                   |votl-scripts|
 
 
 ==============================================================================
-Advanced VimOutliner                                               *vo-advanced*
+Advanced VimOutliner                                               *votl-advanced*
 
-                                                           *vo-executable-lines*
+                                                           *votl-executable-lines*
 Executable Lines~
 
 Executable lines enable you to launch any command from a specially constructed
@@ -782,20 +738,24 @@ Executable lines offer the huge benefit of a single-source knowledge tree,
 where all your knowledge, no matter what its format, exists within a single
 tree of outlines connected with inter-outline links and executable lines.
 
+A more efficient and feature rich way to achieve this might be to use the UTL 
+plugin for vim. See the scripts section at http://www.vim.org
+
 
 ==============================================================================
-Plugins                                                             *vo-plugins*
+Plugins                                                             *votl-plugins*
 
 
-The VimOutliner distribution currently includes two plugins for easy handling
-of checkboxes, hoisting (see below) and smart paste. 
+The VimOutliner distribution currently includes plugins for easy handling
+of checkboxes, hoisting (see below), smart paste, clocking, math and format. 
 
-The checkboxes plugin is enables by default. The hoisting and smart paste plugin are disabled by default.
-To enable these look for the easy instructions for this in your $HOME/.vimoutlinerrc file.
+The checkboxes tags and smart paste plugins are enabled by default. The hoisting,,
+clocking, math and format plugins are disabled by default. To enable these plugins
+look for the easy instructions for this in your $HOME/.vimoutlinerrc file.
 
 More information below and in the plugin files in the $HOME/.vim/vimoutliner/plugin folder.
 
-                                                                   *vo-checkbox*
+                                                                   *votl-checkbox*
 Checkboxes~
 
 Checkboxes enable VimOutliner to understand tasks and calculate the current
@@ -1058,11 +1018,8 @@ of how complete the project is.
             [_] Napkins
             [X] Trash Containers
 <
-                                                                   *vo-hoisting*
+                                                                   *votl-hoisting*
 Hoisting~
-
-NOTE: THIS PLUGIN IS NOT FINISHED AND MIGHT CAUSE DATA LOSS!!! USE IT AT YOUR
-OWN RISK. This plugin is disabled by default.
 
 Hoisting is a way to focus on the offspring of the currently selected outline
 item. The subitems will be presented as top level items in the automatically
@@ -1072,7 +1029,7 @@ You cannot hoist parts of an already hoisted file again.
 To enable this plugin uncomment the following line in
  ~/.vimoutlinerrc:
 >
-    "let g:vo_modules_load .= ':hoist'
+    "let g:vo_modules_load .= ':newhoist'
 <
 Once it is enabled, you hoist the subtopics of the currently selected
 item with
@@ -1092,25 +1049,91 @@ tag On this line, do
 
     ,,H    Manual de-hoisting
 
+                                                                      *vo-clock*
+Clock~
+
+The clock plugin is a little imitation of a nice feture from emacs orgmode.
+The clockpugin allows to track times and summarize them up in the parent
+heading.
+
+To enable this plugin uncomment the following line in ~/.vimoutlinerrc:
+>
+    "let g:vo_modules_load .= ':clock'
+<
+To start clocking you need to write a heading containing times in square
+brackets like shown below. After the closing bracket -> indicates the place
+where the calcualted time is written. The arrow can be followed by a char to
+indicate to unit in which the time is displayed. Use 's' for seconds, 'm' for
+minutes, 'h' for hours and 'd' for days. If no unit is given hours are used.
+>
+    Year 2011 -> d
+        January ->
+            Monday, 3th [08:30:00 -- 17:45:00] -> m
+            Tuesday, 3th [08:50:25 -- 18:00:02] -> s
+<
+
+To summarize the times up within the outline headings ending with -> {char}
+use
+
+    ,,cu    Clock update with the cursor somewhere in the hierarchy.
+
+After that the outline should look like this:
+>
+    Year 2011 -> 0.77 d
+        January -> 18.41 h
+            Monday, 3th [08:30:00 -- 17:45:00] -> 555.00 m
+            Tuesday, 3th [08:50:25 -- 18:00:02] -> 32977 s
+<
+Every time the times are changed or the units where changed use ,,cu to update
+all times within the hierarchy.
+
+Mappings for fast clocking:
+
+    ,,cs    Clock start. Date and current time as start and endtime are
+            written at cursor position. Works in normal mode and insert mode.
+>
+    Year 2011 -> 0.77 d
+        January -> 18.41 h
+            Monday, 3th [08:30:00 -- 17:45:00] -> 555.00 m
+            Tuesday, 3th [08:50:25 -- 18:00:02] -> 32977 s
+            2011-10-11 [01:32:11 -- 01:32:11] ->
+>
+To set a new endtime, place the cursor at the desired line and use following
+mapping:
+
+    ,,cS    Clock stop. Set the endtime to current time. This works also in
+            normal mode and insert mode.
+
+>
+    Year 2011 -> 0.77 d
+        January -> 18.41 h
+            Monday, 3th [08:30:00 -- 17:45:00] -> 555.00 m
+            Tuesday, 3th [08:50:25 -- 18:00:02] -> 32977 s
+            2011-10-11 [01:32:11 -- 01:42:19] -> 0.17 h
+>
+At the moment there are no userdefined timeformats supported. And it's not
+possible to clock times over the midnight like [22:25:00 -- 01:00:00], but
+it's usable for the most important cases.
+
 
 ==============================================================================
-Scripts                                                             *vo-scripts*
+Scripts                                                           *votl-scripts*
 
 
-The VimOutliner distribution currently includes several useful  external scripts to
-support interoutline links, HTML export and more. All scripts are included in your 
-$HOME/.vim/vimoutliner/scripts folder. For more information on these scripts see 
-usage section in the scripts. You can also find several of these scripts on this web site
-with links to their specific web site:
-       https://sites.google.com/site/vimoutlinerinfo/scripts-for-vimoutliner 
+The VimOutliner distribution currently includes several useful  external
+scripts to support interoutline links, HTML export and more. All scripts are
+included in your $HOME/.vim/vimoutliner/scripts folder. For more information
+on these scripts see usage section in the scripts. You can also find several
+of these scripts on this web site with links to their specific web site:
+https://sites.google.com/site/vimoutlinerinfo/scripts-for-vimoutliner 
 
 
 Information on some of the scripts
 
-vo_maketags.pl                                                     *vo-maketags*
+votl_maketags.pl                                                 *votl-maketags*
 
 A basic description of how to use this Perl script is given in section
-|vo-testing|, subsection "Verify interoutline linking".
+|votl-testing|, subsection "Verify interoutline linking".
 
 otl2html.py                                                           *otl2html*
 
@@ -1118,14 +1141,14 @@ This Python script transforms an outline into an HTML file. Use $ otl2html.py
 --help to get detailed information.
 
 This script does not adhere to the VimOutliner naming convention with the
-'vo_' prefix because it is not necessary for any VimOutliner functionality. It
-is provided both as a useful tool for creating HTML pages and HTML slides from
-outlines and as a working demonstration of how to convert .otl files to other
-formats.
+'votl_' prefix because it is not necessary for any VimOutliner functionality.
+It is provided both as a useful tool for creating HTML pages and HTML slides
+from outlines and as a working demonstration of how to convert .otl files to
+other formats.
 
 
 ==============================================================================
-Other Information                                                *vo-other-info*
+Other Information                                              *votl-other-info*
 
 
 The VimOutliner Project~
@@ -1149,7 +1172,7 @@ distribution in a timely manner.
 
 
 - What's with the VimOutliner file names?
-All VimOutliner files must begin with vo_ unless Vim itself requires them to
+All VimOutliner files must begin with votl_ unless Vim itself requires them to
 have a different name. A few older files from previous versions break this
 rule, but over time these will be changed to our naming convention.
 
@@ -1205,7 +1228,10 @@ Toolbar in gvim
 
 Further information on outlines, outline processing and outliners~
 
-http://freshmeat.net/projects/vimoutliner
+http://www.vim.org/scripts/script.php?script_id=3515
+vim.org script site
+
+http://freecode.com/projects/vimoutliner
 Main distribution website
 
 https://github.com/vimoutliner/vimoutliner
@@ -1245,82 +1271,6 @@ Not about outlines, but instead about how to use your brain.
 The whole purpose of outlines is to use your brain.
 New ways of using your brain produce new ways to use outlines.
 
-==============================================================================
-                                                                    *vo-history*
-Change Log                                                          *vo-version*
+For the VimOutliner version information and history, see the CHANGELOG. 
 
-Version 0.3.6
-Released 2011-05-08
-	* Additions/Changes:~
-	- Added updated comments and information to the user in the INSTALL
-	  file.
-	- Added comments and information to the user in install.sh to align
-	  with the new version.
-	- Added new light version of README and moved the more extensive file
-	  to README.detailed
-	- Several updates and additions to the README, README.detailed and
-	  doc/vo_readme.txt file.
-
-	* Bug fixes:~
-	- Source only the first vimoutlinerrc found.
-	- Do not echo mappings.
-	- Fixed typo and updated reference in install.sh.
-	- Fixed several typos and updated reference in the
-	  ftplugin/vo_base.vim
-	- Fixed typos and removed outdated references in the vo_hoist.otl and
-	  vo_hoist.vim files.
-	- Fixed typos and removed outdated references in the vo_checkbox.otl
-	  file.
-	- Fixed two mappings for sourcing rc file and writing file in
-	  ftplugin/vo_base.vim. 
-	- Fixed typos in colors/vo_base.vim
-	- Fixed errors when g:vo_modules_load is not defined, also updated the
-	  plugin loading process to use lists.
-
-Version 0.3.5
-Released 2011-03-20
-	* Additions/Changes:~
-	- Moved all files inside $HOME/.vim.
-	- Added a cheat sheet to the documentation.
-	- Added smart-paste plugin.
-	- Added and updated post-processor scripts:
-		· fs2otl
-		· Node.pm
-		· otl2aft.awk
-		· otl2docbook.pl
-		· otl2html.py
-		· otl2lyx.awk
-		· otl2ooimpress.py
-		· otl2table.py
-		· otl2tags.py
-		· otlgrep.py
-		· otlhead.sh
-		· otlsplit.py
-		· otltail.sh
-		· otl_handler
-		· outline_calendar
-		· outline_freemind
-		· vo_maketags.pl
-	- Added syntax support for _ilink_.
-	- Hoist plugin disabled by default.
-	- Layout of vo_readme.txt made more similar to Vim help.
-
-	* Bug fixes:~
-	- ,,S did not work. Fixed
-
-Version 0.3.4
-Released
-	* Additions/changes:~
-	- added ,,cp as an alias to ,,c%
-	- Color schemes have been added
-	- Checkboxes and hoisting default to 'on'
-	- Modified ,,cb and ,,c% (and ,,cp) to work only on headings
-	- Fixed the ,,cz command to make the correct call
-	- Added descriptions of VO objects to help (headings, text, tables, etc.)
-
-	* Bug fixes:~
-	- W18 errors have been fixed
-
-
- vim:set filetype=help textwidth=78:
-
+ vim:tw=78:et:ft=help:norl:

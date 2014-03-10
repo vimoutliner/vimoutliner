@@ -14,48 +14,6 @@
 "# GNU General Public License for more details.
 "######################################################################
 
-" Detailed Revision Log {{{1
-"vo_hoist.vim
-"Internal RCS
-"$Revision: 1.10 $"
-"$Date: 2005/06/12 15:53:54 $
-"$Log: vo_hoist.vim,v $
-"Revision 1.10  2005/06/12 15:53:54  noel
-"Moved key mappings so they work with Matej' new way to load plugins.
-"
-"Revision 1.9  2003/11/12 17:26:09  noel
-"Added a command to place the cursor on the first line of
-"a hoisted outline.
-"
-"Revision 1.8  2003/11/12 17:10:51  noel
-"Fixed a bug that occurs on a level 1 heading with no children.
-"
-"Revision 1.7  2003/10/23 22:14:14  noel
-"Minor changes to DeHoist() to compensate for current foldlevel settings.
-"
-"Revision 1.6  2003/08/17 15:35:24  noel
-"Put the new mappings in the correct place this time.
-"Added a : and <cr> to the ZZ command.
-"
-"Revision 1.5  2003/08/17 14:47:42  noel
-"Added ZZ, qa, and x to the list of commands that de-hoist the current
-"outline.
-"
-"Revision 1.4  2003/08/17 00:07:31  noel
-"Added "silent" to commands generating tedious messages.
-"
-"Revision 1.3  2003/08/16 20:08:06  noel
-"Removed a need to exclude fold level 1 headings.
-"
-"Revision 1.2  2003/08/16 19:02:44  noel
-"First fully functional version. May need some tweaks but it works and is
-"quite easy to use.
-"
-"Revision 1.1  2003/08/14 21:05:05  noel
-"First publicly available, experiment version
-"
-"}}}2
-
 " Load the plugin {{{1
 " mappings {{{1
 map <silent> <buffer> <localleader>h :call Hoist(line("."))<cr>

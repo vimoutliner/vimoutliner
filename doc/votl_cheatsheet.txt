@@ -1,8 +1,10 @@
- *vo_cheatsheet.txt*  Last change: 2011-03-01 
+ *vo_cheatsheet.txt*  Last change: 2013-04-06 
 
 VIMOUTLINER CHEAT SHEET~
 
-This overview has Vimoutliner specific commands for the available operations. Remember that all Vim commands can be performed in Vimoutliner files. This is especially useful for copy, paste, moving around and similar commands.
+This overview has Vimoutliner specific commands for the available operations.
+Remember that all Vim commands can be performed in Vimoutliner files. This is
+especially useful for copying, pasting, moving around and similar commands.
 
 For more extensive descriptions of command uses in Vimoutliner do ':h vo-command'. |vo-command|
 
@@ -71,11 +73,11 @@ TAGGING/INTEROUTLINE~
 TIME AND DATE~
 
 ,,t   normal   Append timestamp (HH:MM:SS) to heading
-,,T   normal   Pre-pend timestamp (HH:MM:SS) to heading
+,,T   normal   Prepend timestamp (HH:MM:SS) to heading
 ,,t   insert   Insert timestamp (HH:MM:SS) at cursor
 ,,d   normal   Append datestamp  (YYYY-MM-DD) to heading
 ,,d   insert   Insert datestamp  (YYYY-MM-DD) at cursor
-,,D   normal   Pre-pend datestamp  (YYYY-MM-DD) to heading
+,,D   normal   Prepend datestamp  (YYYY-MM-DD) to heading
 
 
   vim:set filetype=help textwidth=78:

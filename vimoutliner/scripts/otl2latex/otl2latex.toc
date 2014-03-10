@@ -1,0 +1,9 @@
+\beamer@endinputifotherversion {3.07pt}
+\select@language {english}
+\beamer@sectionintoc {1}{Introduction}{3}{0}{1}
+\beamer@subsectionintoc {1}{1}{What is otl2latex?}{3}{0}{1}
+\beamer@subsectionintoc {1}{2}{Requirements}{4}{0}{1}
+\beamer@sectionintoc {2}{Usage}{6}{0}{2}
+\beamer@subsectionintoc {2}{1}{Basics}{6}{0}{2}
+\beamer@subsectionintoc {2}{2}{Vim mappings}{9}{0}{2}
+\beamer@subsectionintoc {2}{3}{Future Extensions}{14}{0}{2}

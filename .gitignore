@@ -10,3 +10,6 @@ tags
 
 # osx noise
 .DS_Store
+
+# Python
+*.pyc

@@ -1,3 +1,8 @@
+
+VimOutliner README file
+
+Introduction
+
 VimOutliner is an outline processor with many of the same features
 as Grandview, More, Thinktank, Ecco, etc. Features include tree
 expand/collapse, tree promotion/demotion, level sensitive colors,
@@ -9,11 +14,11 @@ easy, especially for someone knowing the Vim editor. VimOutliner can be
 used without the mouse (but is supported to the extent that Vim supports
 the mouse). 
 
-Many of the VimOutliner commands start with a double comma ",,"
-because that's very quick to type. All VimOutliner files have the ".otl"
-extension. For an overview of the VimOutliner commands you can type ":h
-vo_cheatsheet" when you have opened an otl file. For help on VimOutliner
-type ":h vo".
+Many of the VimOutliner commands start with a double comma ",," because
+that's very quick to type. All VimOutliner files have the ".otl"
+extension. For help on VimOutliner type ":h vo". For an overview of
+all the most important VimOutliner commands you can type ":h vo_cheatsheet"
+when you have opened an otl file.
 
 
 * Usage
@@ -27,7 +32,7 @@ VimOutliner has been reported to help with the following tasks:
     - 'Plot device' for writing novels
     - Inventory control
     - Hierarchical database
-    - Web site managment
+    - Web site management
 
 * Characteristics
 
@@ -43,19 +48,20 @@ file in this directory.
 
 Installation details
 
-To install from the zip file in this page do the following (exchange
-"x" with version number from the package you have downloaded):
+1. Zip file
+
+To install from the zip file do the following (exchange "x" with
+version number from the package you have downloaded):
 
 $ unzip vimoutliner-0.3.x.zip $ cd vimoutliner-0.3.x $ sh install.sh
 
-gzip and vimball archives are available here:
-
-https://github.com/vimoutliner/vimoutliner/downloads
-
+2. Gzip archive
 
 To install from the gzip archive follow these steps:
 
 $ tar -xzvf vimoutliner-0.3.x.tgz $ cd vimoutliner-0.3.x $ sh install.sh
+
+3. Vimball
 
 Installing from the vimball archive does not require of external
 utilities, just open vimoutliner-0.3.x.vba with Vim and type the following
@@ -63,7 +69,7 @@ command to install in your home vim folder:
 
 :so %
 
-If you want to install it in other folder use the following command:
+If you want to install the package in another folder use the following command:
 
 :UseVimball path/to/folder
 
@@ -71,13 +77,19 @@ NOTE: If you install from a vimball archive you need to set the executable
 permissions for the scripts in ~/vim/vimoutliner/script (like chmod +x
 <script> in Linux/Mac OS X).
 
+Downloads
+
+gzip and vimball archives are available here:
+
+https://github.com/vimoutliner/vimoutliner/downloads
+
 Download of all packages can also be done from the Freshmeat site:
 
- http://freshmeat.net/projects/vimoutliner       
-
+http://freecode.com/projects/vimoutliner
 
 For more detailed installation instructions see the INSTALL file in
 this directory.
+
 
 
 

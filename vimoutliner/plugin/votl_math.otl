@@ -1,0 +1,28 @@
+Math Test
+Projects {SUM}= 5910.0
+	: SUM is an implicit name for results that are unnamed. Thus using SUM in 
+	: this case is the same as using the named variables Total in the next 
+	: case. Duplicate variable names in a given level of a given branch are 
+	: automatically summed.
+	Project1 {(Hours*Rate)+Materials}= 3150.0
+		Hours= 30.5
+		Rate= 100
+		Materials= 100
+	Project2 {(Hours*Rate)+Materials}= 2760
+		Hours= 41
+		Rate= 60
+		Materials= 300
+Projects {Total}= 5850.0
+	Project1 {(Hours*Rate)+Materials} Total= 3150.0
+		Hours= 30.5
+		Rate= 100
+		Materials= 100
+	Project2 {(Hours*Rate)+Materials} Total= 2700
+		Hours= 40
+		Rate= 60
+		Materials= 300
+Budget for proposal {40.5*60} budget= 2430.0
+Descriptive Budget for proposal {Hours*Rate} budget= 2430.0
+	Hours= 40.5
+	Rate= 60
+
