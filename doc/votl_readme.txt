@@ -17,7 +17,9 @@ and body text.
       Updating                                                   |votl-updating|
       Manual method                                        |votl-manual-install|
       Testing                                                     |votl-testing|
-      Debian                                                       |votl-debian|
+      Installation from distribution packages                    |votl-packages|
+
+
   Using VimOutliner on other file types                       |votl-other-files|
   Troubleshooting                                         |votl-troubleshooting|
   VimOutliner philosophy                                       |votl-philosophy|
@@ -218,17 +220,16 @@ linking to other files and text. Check out the plugin at:
 
 http://www.vim.org/scripts/script.php?script_id=293
 
-                                                                     *votl-debian*
-Debian Installation~
+                                                      *votl-packages* *votl-debian*
+Installation from distribution packages~
 
-Debian does include Vim Outliner as a package. However some Debian version
-require this line to be added to your .vimrc file: >
-
-    syntax on
->
+Debian and Fedora/Extras include Vim Outliner as a package. It is usually
+preferable to use official package custom-tailored for your distribution than
+to install VimOutliner from generic tarball.
+ 
 
 ==============================================================================
-Using VimOutliner On Other File Types~                           *votl-other-files*
+                                                               *votl-other-files*
 
 How to use VimOutliner on non .otl files~
 
@@ -1274,3 +1275,4 @@ New ways of using your brain produce new ways to use outlines.
 
 For the VimOutliner version information and history, see the CHANGELOG. 
 
+ vim:tw=78:et:ft=help:norl:
