@@ -4,9 +4,8 @@
 "map <S-Up> dd <up>P
 
 "Common Plugins
-" This variable holds name of all VO modules you want to load. Do NOT use ru
-" directly in this file, because you will get into many strange surprises. If
-" you do not want to load any VO modules leave it blank (default).
+" The vo_modules_load variable holds name of all VO modules you want to load. 
+" If you do not want to load any VO modules leave it blank (default).
 
 " This setting loads the checkboxes, tags and smart_paste plugins as default.
 let g:vo_modules_load = "checkbox:tags:smart_paste"
