@@ -4,7 +4,6 @@ Installing and Testing VimOutliner
     Automatic Method                |vo-auto-install|
     Updating                        |vo-updating|
     Manual Method                   |vo-manual-install|
-    Color Schemes                   |vo-colors|
     Testing                         |vo-testing|
 
 
@@ -61,14 +60,14 @@ You can also copy the files from the unpacked distribution tarball into their
 destination folders by yourself. The following steps are a description of what
 has to go where and assume some knowledge of your vim setup.
 
-If you encounter problems, please contact the mailinglist for an immediate
+If you encounter problems, please contact the mailing list for an immediate
 solution and more complete future documentation.  www.lists.vimoutliner.org
 
 If you want to setup VimOutliner on a system running Microsoft Windows, the
 directory $HOME denotes the base folder of the vim installation.  If you're on
 Unix based system, $HOME is as usual.
 
-You need the following subtrees in your $HOME directory:
+You need the following sub trees in your $HOME directory:
 
     $HOME/.vim/
         doc/
@@ -110,97 +109,25 @@ At this point, VimOutliner should be functional.  Type ":help vo" to get
 started. To get a quick overview of all VimOutliner commands you can view the 
 cheatsheet with ":help vo_cheatsheet". 
 
-
-Color Schemes
-
-Color schemes specify the colors Vim Outliner uses when displaying an outline.
-Colors are specified by object and level.  These objects currently include:
-headings, body text, pre- formatted body text, tables and others. See
-|vo-objects| for more information.
-
-Color scheme files are located in the system-wide vim colors directory and/or
-your $HOME/.vim/colors directory. You can select from any of the provided
-schemes. Vim Outliner internally includes a scheme the matches vo_light.vim.
-
-To override the default color scheme you can edit these lines in your
-$HOME/.vim/vimoutline/vimoutlinerrc file:
-
-    "Custom Colors **********************************
-    " Uncomment this next line to force using VO on
-    " a light background
-    " colorscheme vo_light
-    " Uncomment this next line to force using VO on
-    " a dark background
-    " colorscheme vo_dark
-
-To create your own scheme follow these simple steps:
-
-1. Go to your $HOME/.vim/colors directory.  If you don't have one, create it.
-
-2. Make a copy of one of the included schemes to use as a starting point. You
-   should be able to find them in places like: $HOME/.vim/colors and
-   /usr/share/vim/vim63/colors. Put the copy in your own colors directory
-   ($HOME/.vim/colors)
-
-3. Edit the scheme file to change whatever colors you wish.
-
-4. Select the scheme in your $HOME/.vim/vimoutline/vimoutlinerrc file.  The
-   line should look something like this:
-
-       colorscheme noel
-
-That's all there is to it.
-
-
 Testing Base Functionality
 
-Open a new outline with the following:
-
-    rm $HOME/vo_test.otl
-    gvim $HOME/vo_test.otl or vim $HOME/vo_test.otl
-
-Verify the following:
+Create a text file and save it as a .otl file like vo_test.otl. Enter
+some text and verify the following:
 - Tabs indent the text
 - Different indent levels are different colors
 - Lines starting with a colon and space word-wrap
 
-  Lines starting with colons are body text. They should word wrap and
-  should be a special color (typically green, but it can vary). Verify
-  that paragraphs of body text can be reformatted with the Vim gq
-  commands.
+Lines starting with colons are body text. They should word wrap and
+should be a special color (typically green, but it can vary). Verify
+that paragraphs of body text can be reformatted with the Vim gq
+commands.
 
-Verify Interoutline Linking:
-
-Interoutline linking currently requires a working perl installation to
-generate the necessary tag file. We are looking into porting this to vim's own
-scripting language.
-
-Place the following two lines in $HOME/vo_test.otl:
-
-    _tag_newfile
-        $HOME/vo_newfile.otl
-
-Note that in the preceding, the 2nd line should be indented from the first.
-
-To create VimOutliner's tag file $HOME/.vim/vimoutliner/vo_tags.tag, run
-vo_maketags.pl, which resides in $HOME/.vimoutliner/scripts/: $
-$HOME/.vim/vimoutliner/scripts/vo_maketags.pl $HOME/vo_test.otl
-
-Try the following:
-- In $HOME/vo_test.otl
-- Cursor to the _tag_newfile marker
-- Press CTRL-K
-    You should be brought to $HOME/vo_newfile.otl
-- Press CTRL-N
-    You should be brought back to $HOME/vo_test.otl
-Note:
-    CTRL-K is a VimOutliner synonym for CTRL-]
-    CTRL-N is a VimOutliner synonym for CTRL-T
-
+You can test the different VimOutliner commands by looking at the examples
+in the cheatsheet. "help vo_cheatsheet".
 
 Debian Installation
 
-Debian does include Vim Outliner as a package. However some Debian versions
+Debian does include VimOutliner as a package. However some Debian versions
 require this line to be added to your .vimrc file:
 
     syntax on

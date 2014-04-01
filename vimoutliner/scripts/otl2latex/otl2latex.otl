@@ -1,0 +1,95 @@
+preamble
+	@author Serge Rey
+	@institute sjsrey@gmail.com
+	@instituteShort sjsrey@gmail.com
+	@title otl2latex
+	@subtitle User's Guide
+	@titleShort http://code.google.com/p/otl2latex/ 
+	@date November 3, 2007
+	@dateShort otl2latex
+Introduction
+	What is otl2latex?
+		Translator		
+			otl to tex
+			|otl2latex allows you to
+			|* prepare your document in a powerful outliner
+			|* generate \LaTeX\ markup of your content
+	Requirements
+		Operating Systems
+			Operating Systems Supported
+			|otl2latex has been used successfully on
+			|* Linux
+			|* Mac OS X
+			|* Windows
+		Software Required
+			Packages and Programs
+			|* Python http://www.python.org
+			|* \LaTeX
+			|* Beamer http://latex-beamer.sourceforge.net/
+			|* The Vim Outliner http://bike-nomad.com/vim/vimoutliner.html 
+Usage
+	Basics
+		Usage
+			From the command line
+			| \texttt{python otl2latex.py -p filename.otl filename.tex}
+			|
+			Notes
+			|* \texttt{filename.tex} will be generated, you don't edit that one.
+			|* You can run all this from withing Vim (see Vim Mappings below).
+		Basics
+			Presentations/Beamer
+			|* Level 1 in the outline become sections
+			|* Level 2 in the outline become subsections
+			|* Level 3 in the outline become frame titles
+			|* Level 4 in the outline become block titles
+			|* Text in the outline is treated as \LaTeX\ markup
+			Using Bullets
+			| Placing a '*' at the begining of a line will tell otl2latex to begin an itemize list. otl2latex currently supports 3 levels of Itemization.
+			|* First Level
+			|** Second Level
+			|*** Third Level
+			|** Second Level
+		Advanced
+			Tips
+			|* Level 4 can be omitted
+			|* You will have no blocks on that frame
+	Vim mappings
+		Vim Mappings: .vimrc
+			Processing
+			|* ,b will generate a pdf file from your outline
+			|* ,nb will remove all empty lines in your otl file
+			|* ,p will run the current vim buffer through pdflatex
+		Vim Mappings: .vimrc
+			Lists
+			|* ,i on the first line will create an itemized list of a block of lines
+			|* ,t will mark a block as otl text
+			|* ,I itemize and mark block as otl text
+			|You need to have a blank line at the end of the block to apply these.
+		Vim Mappings: .vimrc
+			Figures
+			|\begin{itemize}
+			|\item ,f (insert mode) will generate stub for figures
+			|\end{itemize}
+		A figure
+		| \begin{center}
+		|	\includegraphics[width=.8\linewidth]{otl2latex.png}
+		|  \end{center}
+		A figure
+		|\begin{center}
+		|\includegraphics[width=.8\linewidth]{otl2latex.png}
+		|\end{center}
+	Future Extensions
+		Move to vim script
+			.vimrc to otl2latex.vim
+			|\begin{itemize}
+			|\item Currently we are just embedding mappings in .vimrc
+			|\item Ok for testing, not very polished for end user
+			|\end{itemize}
+		Reverse Engineering
+			latex2otl
+			|\begin{itemize}
+			|\item take a tex file
+			|\item generate the otl file
+			|\end{itemize}
+
+

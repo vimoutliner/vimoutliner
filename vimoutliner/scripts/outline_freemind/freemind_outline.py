@@ -1,3 +1,4 @@
+#!/usr/bin/python2
 '''Converts a freemind xml .mm file to an outline file compatable with vim 
 outliner.
 
@@ -8,6 +9,7 @@ Author: Julian Ryde
 import sys
 from xml.etree.ElementTree import XMLParser
 import textwrap
+import codecs
 
 class Outline:                     # The target object of the parser
     depth = -1
@@ -36,9 +38,11 @@ class Outline:                     # The target object of the parser
         pass
 
 outline = Outline()
-parser = XMLParser(target=outline)
+parser = XMLParser(target=outline, encoding='utf-8')
 
 fname = sys.argv[1]
-filelines = open(fname).readlines()
-parser.feed(''.join(filelines))
+file = codecs.open(fname, 'r', encoding='utf-8')
+filelines = file.readlines();
+print "filelines", type(filelines[0]), filelines[0]
+parser.feed(filelines[0].encode('utf-8'))
 parser.close()

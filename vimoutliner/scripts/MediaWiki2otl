@@ -1,0 +1,17 @@
+"delete trailing white space
+:%s/^[ \t][ \t]*\(.*\)$/\1/
+"delete one line from each block of empty lines
+:g/^\_$\n\_^..*$/d
+"add leading : to body text 
+:%s/^[^=]..*[^=]$/:&/
+"add leading : to dividers made entirely of equal signs
+:%s/^==*$/:&/
+"delete one leading = and space from heading
+"delete trailing space and = from heading
+"\1 is leading equal signs. \2 is heading.
+:%s/^=\(=*\) \(.*\) =\+$/\1\2/
+"indent body text lines (lines starting with ":")
+"how to indent body text lines?
+"indent headings
+"substitute each = with tab
+:g/^=/s/=/\t/g

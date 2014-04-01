@@ -7,13 +7,21 @@
 " This variable holds name of all VO modules you want to load. Do NOT use ru
 " directly in this file, because you will get into many strange surprises. If
 " you do not want to load any VO modules leave it blank (default).
-let g:vo_modules_load = "checkbox"
 
-" Uncomment the following line to enable hoisting.
-"let g:vo_modules_load .= ':hoist'
+" This setting loads the checkboxes, tags and smart_paste plugins as default.
+let g:vo_modules_load = "checkbox:tags:smart_paste"
 
-" Uncomment the following line to enable smart_paste.
-"let g:vo_modules_load .= ':smart_paste'
+" Uncomment the following line to enable the math plugin.
+"let g:vo_modules_load .= ':math'
+
+" Uncomment the following line to enable new hoisting.
+let g:vo_modules_load .= ':newhoist'
+
+" Uncomment the following line to enable the format plugin.
+"let g:vo_modules_load .= ':format'
+
+" Uncomment the following line to enable clocking.
+"let g:vo_modules_load .= ':clock'
 
 "User Preferences ***************************************************
 "let maplocalleader = ",,"		" this is prepended to VO key mappings
@@ -30,12 +38,3 @@ setlocal nowrap
 "Hoisting ***********************************************************
 "Uncomment and set to 1 to debug hoisting
 "let g:hoistParanoia=0
-
-"Custom Colors ******************************************************
-" Uncomment this next line to force using VO on a light background
-" colorscheme vo_light 
-" Uncomment this next line to force using VO on a dark background
-" colorscheme vo_dark 
-" Or create your own color scheme. You can find sample files in Vim's 
-" colors directory. There may even be a colors directory in your own
-" $HOME/.vim directory.

@@ -1,7 +1,35 @@
 CHANGELOG
 
+Version 0.3.7
+Development 2013-04-10
+	* Additions/Changes:
+	- Added new hoisting plugin.
+	- Added new tags plugin.
+	- Add weighted checkboxes.
+	- Now checkboxes calculations will ignore dash ([-]) marked items.
+	- Added new math plugin.
+	- Merged new clock plugin.
+	- Added new format plugin.
+	- Added new gtd plugin.
+	- Added updated smart_paste plugin.
+	- Added otl2latex script with files.
+	- New file type naming convention: vo_base to votl.
+	- Color fixes and updates.
+	- Updated vimoutlinerrc with more options for new plugins.
+	- Moved previous hoist plugin to prev directory,
+	- Made new TODO list
+	- Uploaded MediaWiki2otl script. 
+	- Updated documentation.
+	* Bug fixes:
+	- Stop setting global options.
+	- Fixed checkboxes calculation to make it faster and more consistent.
+	- Strtime fix in vo_base.vim
+	- Updates and corrections to readme, INSTALL and cheatsheet files.
+	- Corrections to install.sh.
+	- Replaced len() so it works with multibyte chars.
+
 Version 0.3.6
-Development
+Released 2011-05-09
 	* Additions/Changes:
 	- Added updated comments and information to the user in the INSTALL
 	  file.
@@ -26,6 +54,7 @@ Development
 	- Fixed typos in colors/vo_base.vim
 	- Fixed errors when g:vo_modules_load is not defined, also updated the
 	  plugin loading process to use lists.
+
 Version 0.3.5
 Released 2011-03-20
 	* Additions/Changes:

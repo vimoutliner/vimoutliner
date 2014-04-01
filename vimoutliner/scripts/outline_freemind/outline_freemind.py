@@ -1,3 +1,4 @@
+#!/usr/bin/python2
 '''Read in an otl file and generate an xml mind map viewable in freemind
 
 Make sure that you check that round trip on your file works.
@@ -9,6 +10,7 @@ import sys
 import os
 import xml.etree.ElementTree as et
 import otl
+import codecs
 
 fname = sys.argv[1]
 max_length = 40
@@ -62,7 +64,7 @@ parents = [mapnode, topnode]
 #left_side = True # POSITION="right"
 
 # read otl file into memory
-filelines = open(fname).readlines()
+filelines = codecs.open(fname, 'r', encoding='utf-8')
 
 # remove those that are too deep or body text and pesky end of line characters
 #filelines = [line.rstrip('\r\n') for line in filelines if otl.level(line) <= depth]
@@ -109,5 +111,4 @@ for heading, bodytext in zip(headings, bodytexts):
 
 xmltree = et.ElementTree(mapnode)
 xmltree.write(sys.stdout, 'utf-8')
-#xmltree.write('test.mm')
 print

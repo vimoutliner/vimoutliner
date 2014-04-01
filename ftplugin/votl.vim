@@ -1,6 +1,6 @@
 "#########################################################################
 "# ftplugin/vo_base.vim: VimOutliner functions, commands and settings
-"# version 0.3.6
+"# version 0.3.7
 "#   Copyright (C) 2001,2003 by Steve Litt (slitt@troubleshooters.com)
 "#   Copyright (C) 2004 by Noel Henson (noel@noels-lab.com)
 "#
@@ -21,40 +21,6 @@
 "# Steve Litt, slitt@troubleshooters.com, http://www.troubleshooters.com
 "#########################################################################
 
-" HISTORY {{{1
-"#########################################################################
-"#  V0.1.0 Pre-alpha
-"#      Set of outliner friendly settings
-"# Steve Litt, 5/28/2001
-"# End of version 0.1.0
-"# 
-"#  V0.1.1 Pre-alpha
-"#      No change
-"# 
-"# Steve Litt, 5/28/2001
-"# End of version 0.1.1
-"# 
-"#  V0.1.2 Pre-alpha
-"# 	No Change
-"# Steve Litt, 5/30/2001
-"# End of version 0.1.2
-"#  V0.1.3 Pre-alpha
-"# 	No Change
-"# Steve Litt, 5/30/2001
-"# End of version 0.1.3
-"#  V0.2.0 
-"# 	Noel Henson adds code for outliner-friendly expand and
-"# 	collapse, comma comma commands, color coding, hooks for a
-"# 	spellchecker, sorting, and date insertion.
-"# Noel Henson, 11/24/2002
-"# End of version 0.2.0
-"# 
-"# All other history in the CHANGELOG file.
-"# END OF HISTORY
-"# 
-"#########################################################################
-
-
 " Load the plugin {{{1
 " Prevent the plugin from being loaded twice
 "if exists("b:did_ftplugin")
@@ -65,10 +31,10 @@ let b:current_syntax = "outliner"
 
 " User Preferences {{{1
 
-let maplocalleader = ",,"		" this is prepended to VO key mappings
+"let maplocalleader = ",,"		" this is prepended to VO key mappings
 
-setlocal ignorecase			" searches ignore case
-setlocal smartcase			" searches use smart case
+"setlocal ignorecase			" searches ignore case
+"setlocal smartcase			" searches use smart case
 
 let use_space_colon=0
 
@@ -76,17 +42,17 @@ let use_space_colon=0
 
 " VimOutliner Standard Settings {{{1
 setlocal autoindent	
-setlocal backspace=2
+"setlocal backspace=2
 setlocal wrapmargin=5
-setlocal wrap!
+setlocal wrap
 setlocal tw=78
 setlocal noexpandtab
-setlocal nosmarttab
-setlocal softtabstop=0 
-setlocal foldlevel=20
-setlocal foldcolumn=1		" turns on "+" at the beginning of close folds
 setlocal tabstop=4			" tabstop and shiftwidth must match
 setlocal shiftwidth=4		" values from 2 to 8 work well
+"setlocal nosmarttab
+"setlocal softtabstop=0 
+setlocal foldlevel=20
+setlocal foldcolumn=1		" turns on "+" at the beginning of close folds
 setlocal foldmethod=expr
 setlocal foldexpr=MyFoldLevel(v:lnum)
 setlocal indentexpr=
@@ -292,6 +258,20 @@ endfunction
 " MyFoldText() {{{2
 " Create string used for folded text blocks
 function MyFoldText()
+    if exists('g:vo_fold_length') && g:vo_fold_length == "max"
+        let l:foldlength = winwidth(0) - 1 - &numberwidth - &foldcolumn
+    elseif exists('g:vo_fold_length')
+        let l:foldlength = g:vo_fold_length
+    else
+        let l:foldlength = 58
+    endif
+    " I have this as an option, if the user wants to set "…" as the padding
+    " string, or some other string, like "(more)"
+    if exists('g:vo_trim_string')
+        let l:trimstr = g:vo_trim_string
+    else
+        let l:trimstr = "..."
+    endif
 	let l:MySpaces = MakeSpaces(&sw)
 	let l:line = getline(v:foldstart)
 	let l:bodyTextFlag=0
@@ -339,15 +319,30 @@ function MyFoldText()
 		let l:line = l:MySpaces."[TABLE]"
 	endif
 	let l:sub = substitute(l:line,'\t',l:MySpaces,'g')
-	let l:len = strlen(l:sub)
-	let l:sub = l:sub . " " . MakeDashes(58 - l:len) 
-	let l:sub = l:sub . " (" . ((v:foldend + l:bodyTextFlag)- v:foldstart)
+    let l:sublen = strdisplaywidth(l:sub)
+	let l:end = " (" . ((v:foldend + l:bodyTextFlag)- v:foldstart)
 	if ((v:foldend + l:bodyTextFlag)- v:foldstart) == 1
-		let l:sub = l:sub . " line)" 
+		let l:end = l:end . " line)" 
 	else
-		let l:sub = l:sub . " lines)" 
+		let l:end = l:end . " lines)" 
 	endif
-	return l:sub
+    let l:endlen = strdisplaywidth(l:end)
+
+    " Multiple cases:
+    " (1) Full padding with ellipse (...) or user defined string,
+    " (2) No point in padding, pad would just obscure the end of text,
+    " (3) Don't pad and use dashes to fill up the space.
+    if l:endlen + l:sublen > l:foldlength
+        let l:sub = strpart(l:sub, 0, l:foldlength - l:endlen - strdisplaywidth(l:trimstr))
+        let l:sub = l:sub . l:trimstr
+        let l:sublen = strdisplaywidth(l:sub)
+        let l:sub = l:sub . l:end
+    elseif l:endlen + l:sublen == l:foldlength
+        let l:sub = l:sub . l:end
+    else
+        let l:sub = l:sub . " " . MakeDashes(l:foldlength - l:endlen - l:sublen - 1) . l:end
+    endif
+	return l:sub.repeat(' ', winwidth(0)-strdisplaywidth(l:sub))
 endfunction
 "}}}2
 " InsertDate() {{{2
@@ -372,7 +367,7 @@ endfunction
 " InsertTime() {{{2
 " Insert the time.
 function InsertTime(ba)
-	let @x = strftime("%T")
+    let @x = strftime("%H:%M:%S")
 	if a:ba == "0"
 		normal! "xp
 	else
@@ -384,7 +379,7 @@ endfunction
 " Insert a space, then the time.
 function InsertSpaceTime()
 	let @x = " "
-	let @x = @x . strftime("%T")
+    let @x = @x . strftime("%H:%M:%S")
 	normal! "xp
 endfunction
 "}}}2
@@ -546,7 +541,7 @@ endif
 " within the same buffer. Using :e has demonstrated this.
 set foldtext=MyFoldText()
 
-setlocal fillchars=|, 
+"setlocal fillchars=|, 
 
 endif " if !exists("loaded_vimoutliner_functions")
 " End Vim Outliner Functions
@@ -658,9 +653,9 @@ amenu &Help.&Vim\ Outliner.&Hoisting :he vo-hoisting<cr>
 " Auto-commands {{{1
 if !exists("autocommand_vo_loaded")
 	let autocommand_vo_loaded = 1
-	au BufNewFile,BufRead *.otl                     setf vo_base
+	au BufNewFile,BufRead *.otl                     setf votl
 "	au CursorHold *.otl                             syn sync fromstart
-	set updatetime=500
+	"set updatetime=500
 endif
 "}}}1
 
@@ -670,8 +665,14 @@ setlocal tags^=$HOME/.vim/vimoutliner/vo_tags.tag
 " Added an indication of current syntax as per Dillon Jones' request
 let b:current_syntax = "outliner"
 
+" Directory where VO is located now
+let vo_dir = expand("<sfile>:p:h:h")
+
 " Load rc file, only the first found.
-let rcs = split(globpath('$HOME,$HOME/.vimoutliner','.vimoutlinerrc'), "\n") + split(globpath('$HOME,$HOME/.vimouliner', 'vimoutlinerrc'), "\n")
+let rcs = split(globpath('$HOME,$HOME/.vimoutliner','.vimoutlinerrc'), "\n") +
+    \ split(globpath('$HOME,$HOME/.vimoutliner,$HOME/.vim', 'vimoutlinerrc'), "\n") +
+    \ split(globpath(vo_dir, 'vimoutlinerrc'), "\n")
+
 if len(rcs) > 0
 	exec 'source '.rcs[0]
 else
@@ -680,7 +681,7 @@ endif
 " Load modules
 if exists('g:vo_modules_load')
 	for vo_module in split(g:vo_modules_load, '\s*:\s*')
-		exec "runtime vimoutliner/plugin/vo_" . vo_module . ".vim"
+		exec "runtime! vimoutliner/plugin/votl_" . vo_module . ".vim"
 	endfor
 unlet! vo_module
 endif
