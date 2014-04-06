@@ -20,7 +20,7 @@ Outline Calendar 1.3
 			calendar dates (almost) without syntactic noise
 			update to documentation
 		in 1.1
-			we are almost vo_maketags.pl-compatible again
+			we are almost votl_maketags.pl-compatible again
 			you can use vo_calendar_shelf.otl to attach your calendar shelf to your outline tree
 			files follow vimoutliner naming convention
 			all installation files are kept within one directory
