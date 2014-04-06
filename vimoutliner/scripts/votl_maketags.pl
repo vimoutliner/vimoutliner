@@ -1,6 +1,6 @@
 #!/usr/bin/perl -w
 # #######################################################################
-# vo_maketags.pl: Vim outline tagging system, main program, version 0.3.5
+# votl_maketags.pl: Vim outline tagging system, main program, version 0.3.5
 #   Copyright (C) 2001-2003, 2011 by Steve Litt (slitt@troubleshooters.com)
 #
 #   This program is free software; you can redistribute it and/or modify
