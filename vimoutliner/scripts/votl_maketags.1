@@ -1,0 +1,50 @@
+.\"                                      Hey, EMACS: -*- nroff -*-
+.\" First parameter, NAME, should be all caps
+.\" Second parameter, SECTION, should be 1-8, maybe w/ subsection
+.\" other parameters are allowed: see man(7), man(1)
+.TH vo_maketags 1 "August 13, 2003"
+.\" Please adjust this date whenever revising the manpage.
+.\"
+.\" Some roff macros, for reference:
+.\" .nh        disable hyphenation
+.\" .hy        enable hyphenation
+.\" .ad l      left justify
+.\" .ad b      justify to both left and right margins
+.\" .nf        disable filling
+.\" .fi        enable filling
+.\" .br        insert line break
+.\" .sp <n>    insert n+1 empty lines
+.\" for manpage-specific macros, see man(7)
+.SH NAME
+vo_maketags \- build TAGS for vim outliner
+.SH SYNOPSIS
+.B vo_maketags
+.RI [ filename ]
+.SH DESCRIPTION
+This manual page documents briefly the
+.B vo_maketags
+Perl script.
+.PP
+.B vo_maketags
+is a
+.BR perl (1)
+script that creates tag file which works with
+.B vimoutliner
+.RB ( vim (1)
+plugin for editing outlines).
+.SH OPTIONS
+.B vo_maketags
+script called just with filename of the processed outline, which
+is a top of the hierarchy of linked outlines.
+.SH SEE ALSO
+.BR vim (1)
+.ig
+.br
+The script is fully documented on
+.UR http://www.vimoutliner.org
+http://www.vimoutliner.org
+.UE
+..
+.SH AUTHOR
+This manual page was written by Matej Cepl <matej@ceplovi.cz>,
+for the Debian GNU/Linux system (but may be used by others).
