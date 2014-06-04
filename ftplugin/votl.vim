@@ -639,15 +639,15 @@ amenu &VO.-Sep2- :
 amenu &VO.&Color\ Scheme :popup Edit.Color\ Scheme<cr>
 amenu &VO.-Sep3- :
 amenu &VO.&Help.&Index :he vo<cr>
-amenu &VO.&Help.&,,\ Commands :he vo-command<cr>
-amenu &VO.&Help.&Checkboxes :he vo-checkbox<cr>
-amenu &VO.&Help.&Hoisting :he vo-hoisting<cr>
+amenu &VO.&Help.&,,\ Commands :he votl-command<cr>
+amenu &VO.&Help.&Checkboxes :he votl-checkbox<cr>
+amenu &VO.&Help.&Hoisting :he votl-hoisting<cr>
 amenu &Help.-Sep1- :
 " Help menu additions
 amenu &Help.&Vim\ Outliner.&Index :he vo<cr>
-amenu &Help.&Vim\ Outliner.&,,\ Commands :he vo-command<cr>
-amenu &Help.&Vim\ Outliner.&Checkboxes :he vo-checkbox<cr>
-amenu &Help.&Vim\ Outliner.&Hoisting :he vo-hoisting<cr>
+amenu &Help.&Vim\ Outliner.&,,\ Commands :he votl-command<cr>
+amenu &Help.&Vim\ Outliner.&Checkboxes :he votl-checkbox<cr>
+amenu &Help.&Vim\ Outliner.&Hoisting :he votl-hoisting<cr>
 "}}}1
 " Auto-commands {{{1
 if !exists("autocommand_vo_loaded")
