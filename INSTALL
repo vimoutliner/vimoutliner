@@ -23,11 +23,12 @@ From zip archive
     $ cd vimoutliner-0.3.x
     $ sh install.sh 
 
-From vimball
+With pathogen
 
-Open vimoutliner-0.3.x.vba with Vim and type the following command to install in your home vim folder:
+If you have pathogen installed as your package manager you can clone the git repository in you
+pathogwn directory:
+        $ cd ~/.vim/bundle && git clone https://github.com/vimoutliner/vimoutliner.git
 
-:so % 
 
 First you can decide whether to install the VimOutliner files or abort the
 process leaving everything unchanged.  Assuming you confirmed the

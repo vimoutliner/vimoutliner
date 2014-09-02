@@ -61,25 +61,9 @@ To install from the gzip archive follow these steps:
 
 $ tar -xzvf vimoutliner-0.3.x.tgz $ cd vimoutliner-0.3.x $ sh install.sh
 
-3. Vimball
-
-Installing from the vimball archive does not require of external
-utilities, just open vimoutliner-0.3.x.vba with Vim and type the following
-command to install in your home vim folder:
-
-:so %
-
-If you want to install the package in another folder use the following command:
-
-:UseVimball path/to/folder
-
-NOTE: If you install from a vimball archive you need to set the executable
-permissions for the scripts in ~/vim/vimoutliner/script (like chmod +x
-<script> in Linux/Mac OS X).
-
 Downloads
 
-gzip and vimball archives are available here:
+zip archives are available here:
 
 https://github.com/vimoutliner/vimoutliner/downloads
 
