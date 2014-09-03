@@ -27,17 +27,7 @@
 "endif
 "let b:did_ftplugin = 1
 let b:current_syntax = "outliner"
-
-" User Preferences {{{1
-
-"let maplocalleader = ",,"		" this is prepended to VO key mappings
-
-"setlocal ignorecase			" searches ignore case
-"setlocal smartcase			" searches use smart case
-
 let use_space_colon=0
-
-" End User Preferences
 
 " VimOutliner Standard Settings {{{1
 setlocal autoindent	

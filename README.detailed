@@ -13,7 +13,8 @@ and body text.
   License                                                         |votl-license|
   Version                                                         |votl-version|
   Installing and testing VimOutliner                              |votl-install|
-      Automatic method                                       |votl-auto-install|
+      Install via Pathogen                               |votl-pathogen-install|
+      Legay Script Driven Method                             |votl-auto-install|
       Updating                                                   |votl-updating|
       Manual method                                        |votl-manual-install|
       Testing                                                     |votl-testing|
@@ -22,6 +23,7 @@ and body text.
   Troubleshooting                                         |votl-troubleshooting|
   VimOutliner philosophy                                       |votl-philosophy|
   Running VimOutliner                                             |votl-running|
+      VimOutliner configuration file                             |vimoutlinerrc|
       Comma comma commands                                        |votl-command|
       Basic VimOutliner activities                             |votl-activities|
       Menu                                                           |votl-menu|
@@ -56,14 +58,33 @@ Absolutely no warranty, see COPYING file for details.
 Installing and Testing VimOutliner                                *votl-install*
 
 
-    Automatic Method                |votl-auto-install|
+    Install via Pathogen            |votl-pathogen-install|
+    Legay Script Driven Method      |votl-auto-install|
     Updating                        |votl-updating|
     Manual Method                   |votl-manual-install|
     Testing                         |votl-testing|
 
+                                                         *votl-pathogen-install*
+Install via Pathogen~
+
+Preferred and most simple method of VimOutliner installation is using
+Pathogen (developers of VimOutliner actually believe that Pathogen
+(https://github.com/tpope/vim-pathogen), or Vundle, should be generally
+the preferred way of installation of any vim plugin).
+
+Installation with working Pathogen should be just
+
+   $ cd ~/.vim/bundle
+   # Or even better is to have whole ~/.vim/bundle as a separate repo
+   # and then plugins are added as submodules.
+   $ git clone git@github.com:vimoutliner/vimoutliner.git
+
+Restart vim and you should be good to go. If something doesn’t work,
+please, let us know (either on the email list or file a ticket to the
+GitHub issue tracker).
 
                                                              *votl-auto-install*
-Automatic Method~
+Legacy Script Driven Method~
 
 The automatic installation targets Unix-compatible platforms: >
 
@@ -73,11 +94,11 @@ From tar archive
     $ cd vimoutliner
     $ sh install.sh
 
-From zip archive 
+From zip archive
 
     $ unzip vimoutliner-0.3.x.zip
     $ cd vimoutliner-0.3.x
-    $ sh install.sh 
+    $ sh install.sh
 
 <
 The install.sh script will ask you whether to install the VimOutliner files or
@@ -98,10 +119,14 @@ slight chance that the current directory tree is different from your current
 one. In this case, you will have to manually migrate your files to the new
 locations.
 
-The installation script creates unique backups of files being replaced with
-newer versions. So if you put some local customisations into, say
-$HOME/.vim/vimoutliner/vimoutlinerrc, you'll probably have to merge the backup
-with the new file by hand.
+The installation script creates unique backups of files being replaced
+with newer versions. So if you put some local customisations into
+vimoutlinerrc in the directory where VimOutliner is run from (say
+$HOME/.vim/vimoutliner/vimoutlinerrc), you'll probably have to merge the
+backup with the new file by hand. Which is one good reason why it is
+preferred to use for the custom configuration and extensions your own
+copy of the |vimoutlinerrc| in some other location where the file is
+sought for.
 
                                                            *votl-manual-install*
 Manual Method~
@@ -111,7 +136,7 @@ destination folders by yourself. The following steps are a description of what
 has to go where and assume some knowledge of your vim setup.
 
 If you encounter problems, please contact the mailinglist for an immediate
-solution and more complete future documentation. 
+solution and more complete future documentation.
 https://groups.google.com/forum/#!forum/vimoutliner
 
 If you want to setup VimOutliner on a system running Microsoft Windows, the
@@ -160,7 +185,7 @@ At this point, VimOutliner should be functional.  Type ":help vo" to get
 started. You can also type ":help votl_cheatsheet" to a get a quick overview
 of all the VimOutliner commands.
 
-                                                                    *votl-testing*
+                                                                  *votl-testing*
 Testing Base Functionality~
 
 Open a new outline with the following:
@@ -211,17 +236,17 @@ linking to other files and text. Check out the plugin at:
 
 http://www.vim.org/scripts/script.php?script_id=293
 
-                                                                     *votl-debian*
+                                                                   *votl-debian*
 Debian Installation~
 
 Debian does include Vim Outliner as a package. However some Debian version
-require this line to be added to your .vimrc file: >
+require this line to be added to your |vimrc| file: >
 
     syntax on
 >
 
 ==============================================================================
-Using VimOutliner On Other File Types~                           *votl-other-files*
+Using VimOutliner On Other File Types~                        *votl-other-files*
 
 How to use VimOutliner on non .otl files~
 
@@ -258,7 +283,7 @@ You should get:
 
 
 ==============================================================================
-Troubleshooting~                                             *votl-troubleshooting*
+Troubleshooting~                                          *votl-troubleshooting*
 
 
 Q: I can't switch between colon based and space based body text.
@@ -290,7 +315,7 @@ A: Open vim like this:
 
 
 ==============================================================================
-VimOutliner Philosophy~                                           *votl-philosophy*
+VimOutliner Philosophy~                                        *votl-philosophy*
 
 
 Authoring Speed~
@@ -337,7 +362,7 @@ $HOME/.vim/ftplugin/votl.vim.
 
 
 ==============================================================================
-Running VimOutliner~                                                 *votl-running*
+Running VimOutliner~                                              *votl-running*
 
 
 Vim Knowledge~
@@ -357,12 +382,46 @@ tutorial should take about 2 hours.
 VimOutliner is so fast, that if you often use outlining, you'll make up that
 time within a week.
 
-                                                                    *votl-command*
+                                                                 *vimoutlinerrc*
+VimOutliner configuration file~
+
+Custom configuration (and small custom extensions) should be written to
+the vimoutlinerrc file. It is a regular vimscript file and the first of
+the files searched in the following locations will be used:
+
+ * a file .vimoutlinerrc (notice the leading dot) in the users $HOME or
+   $HOME/.vimoutliner directory
+ * a file vimoutlinerrc (name without the leading dot) in the users
+   $HOME, $HOME/.vimoutliner, or $HOME/.vim directory
+ * a file vimoutlinerrc (again without the leading dot) in the folder
+   where the VimOutliner is run from (that could be again $HOME/.vim
+   directory with manual installation or for example
+   $HOME/.vim/bundle/vimoutliner when using pathogen)
+
+Many global variables can be also set in the normal vim manner in the
+user’s $VIMRC file. See general vim documentation for more details for
+individual variables.
+
+                                                                  *votl-command*
 Comma Comma Commands~
 
-For maximum authoring speed, VimOutliner features are accessed through
-keyboard commands starting with 2 commas.  The double comma followed by a
-character is incredibly fast to type.
+Traditionally (meaning in terms of the VimOutliner traditions ;)) all
+commands were all VimOutliner features accessed through keyboard
+commands starting with 2 commas. The double comma followed by
+a character is incredibly fast to type. However, with more widespread
+use of the VimOutliner some developers felt that all idiosyncrasies
+should be eliminated and VimOutliner should behave as a normal vim
+plugin. Therefore now we don’t redefine this command leader (as it is
+called in the Vim lingo) and unless the user redefines it on her own (in
+|vimoutlinerrc|) it defaults to backslash. If you configure VimOutliner
+to use different key combination, you have to mentally replace it
+everywhere in this documentation.
+
+If you are friend of the ancient regimé, then just uncomment the line in
+|vimoutlinerrc| (see more about the locations where you should put it):
+
+    "let maplocalleader = ',,'  " uncomment for compatibility with
+                                " previous versions of VO
 
 We expect to create more comma comma commands, so try not to create your own,
 as they may clash with later comma comma commands. If you have an
@@ -414,7 +473,7 @@ Command list:
 
 To get a quick overview of all VimOutliner commands type ":help votl_cheatsheet" in vim.
 
-                                                                 *votl-activities*
+                                                               *votl-activities*
 Basic VimOutliner activities~
 
 How do I collapse a tree within command mode?
@@ -482,7 +541,7 @@ How do I perform a wordcount?
     Use the command :w !wc
         The space before the exclamation point is a MUST.
 
-                                                                       *votl-menu*
+                                                                     *votl-menu*
 Menu~
 
 There is a simple menu included in Vim Outliner when running in GUI mode.
@@ -499,7 +558,7 @@ myotl2html.sh script might look like this:
 <
 If you have several different types of reports you create regularly, you can
 create your own menu entries. Just add lines like these to your
-~/.vimoutlinerrc file: >
+|vimoutlinerrc| file: >
 >
     amenu &VO.&Reports.&Big\ Project :!otl2html.py -S big.css % > %.html
     amenu &VO.&Reports.&Hot\ List :!otl2html.py -S todo.css % > %.html
@@ -507,7 +566,7 @@ create your own menu entries. Just add lines like these to your
 <
 I'm sure you get the idea.
 
-                                                                    *votl-objects*
+                                                                  *votl-objects*
 Vim Outliner Objects~
 
 There are several object/line types that VO supports. The most common on
@@ -704,19 +763,19 @@ When folded, the above would appear as:
 	[USER BLOCK Code] --------------------- (17 lines)
 <
 
-                                                            *votl-post-processors*
+                                                          *votl-post-processors*
 VimOutliner Post-Processors~
 
 There are already several post processors for Vim Outliner. Some are general
-purpose in nature and others perform specific conversions. There are several of 
+purpose in nature and others perform specific conversions. There are several of
 the tested scripts now included in the $HOME/.vim/vimoutliner/scripts folder.
 See also the scripts section.                                   |votl-scripts|
 
 
 ==============================================================================
-Advanced VimOutliner                                               *votl-advanced*
+Advanced VimOutliner                                             *votl-advanced*
 
-                                                           *votl-executable-lines*
+                                                         *votl-executable-lines*
 Executable Lines~
 
 Executable lines enable you to launch any command from a specially constructed
@@ -732,24 +791,28 @@ Executable lines offer the huge benefit of a single-source knowledge tree,
 where all your knowledge, no matter what its format, exists within a single
 tree of outlines connected with inter-outline links and executable lines.
 
-A more efficient and feature rich way to achieve this might be to use the UTL 
+A more efficient and feature rich way to achieve this might be to use the UTL
 plugin for vim. See the scripts section at http://www.vim.org
 
 
 ==============================================================================
-Plugins                                                             *votl-plugins*
+Plugins                                                           *votl-plugins*
 
 
 The VimOutliner distribution currently includes plugins for easy handling
-of checkboxes, hoisting (see below), smart paste, clocking, math and format. 
+of checkboxes, hoisting (see below), smart paste, clocking, math and format.
 
-The checkboxes tags and smart paste plugins are enabled by default. The hoisting,,
-clocking, math and format plugins are disabled by default. To enable these plugins
-look for the easy instructions for this in your $HOME/.vimoutlinerrc file.
+The checkboxes tags and smart paste plugins are enabled by default. The
+hoisting, clocking, math and format plugins are disabled by default. To
+enable these plugins look for the easy instructions for this in your
+|vimoutlinerrc| file.
 
-More information below and in the plugin files in the $HOME/.vim/vimoutliner/plugin folder.
+More information below and in the plugin files in the directory where
+the VimOutliner is run from (either $HOME/.vim/vimoutliner/plugin for
+manual installation or $HOME/.vim/bundle/vimoutliner/plugin when using
+pathogen).
 
-                                                                   *votl-checkbox*
+                                                                 *votl-checkbox*
 Checkboxes~
 
 Checkboxes enable VimOutliner to understand tasks and calculate the current
@@ -1012,7 +1075,7 @@ of how complete the project is.
             [_] Napkins
             [X] Trash Containers
 <
-                                                                   *votl-hoisting*
+                                                                 *votl-hoisting*
 Hoisting~
 
 Hoisting is a way to focus on the offspring of the currently selected outline
@@ -1020,8 +1083,7 @@ item. The sub items will be presented as top level items in the automatically
 extracted hoist-file located in the same directory as the main outline file.
 You cannot hoist parts of an already hoisted file again.
 
-To enable this plugin uncomment the following line in
- ~/.vimoutlinerrc:
+To enable this plugin uncomment the following line in |vimoutlinerrc|:
 >
     "let g:vo_modules_load .= ':newhoist'
 <
@@ -1050,7 +1112,7 @@ The clock plugin is a little imitation of a nice feature from emacs org mode.
 The clockpugin allows to track times and summarize them up in the parent
 heading.
 
-To enable this plugin uncomment the following line in ~/.vimoutlinerrc:
+To enable this plugin uncomment the following line in |vimoutlinerrc|:
 >
     "let g:vo_modules_load .= ':clock'
 <
@@ -1119,7 +1181,7 @@ scripts to support interoutline links, HTML export and more. All scripts are
 included in your $HOME/.vim/vimoutliner/scripts folder. For more information
 on these scripts see usage section in the scripts. You can also find several
 of these scripts on this web site with links to their specific web site:
-https://sites.google.com/site/vimoutlinerinfo/scripts-for-vimoutliner 
+https://sites.google.com/site/vimoutlinerinfo/scripts-for-vimoutliner
 
 
 Information on some of the scripts
@@ -1149,8 +1211,8 @@ The VimOutliner Project~
 
 - How do I add my own features?
 Two ways -- by changing VimOutliner source code, or by inserting your own code
-in $HOME/.vimoutlinerrc, which runs at the end of the VimOutliner startup
-scripts. You might have to merge your personal .vimoutlinerrc with future
+in |vimoutlinerrc|, which runs at the end of the VimOutliner startup
+scripts. You might have to merge your personal vimoutlinerrc with future
 versions to take advantage of new features.
 
 - How is VimOutliner licensed?
@@ -1158,10 +1220,10 @@ VimOutliner is licensed under the GNU General Public License.
 
 - How do I contribute to VimOutliner
 Step 1 is to subscribe to our mailing list. Join up at
-https://groups.google.com/forum/#!forum/vimoutliner. 
-Lurk for a few days or so to get the feel, then submit your idea/suggestion. 
+https://groups.google.com/forum/#!forum/vimoutliner.
+Lurk for a few days or so to get the feel, then submit your idea/suggestion.
 A lively discussion will ensue, after which your idea, probably in some modified
-form, will be considered. The more of the actual work you have done, the more 
+form, will be considered. The more of the actual work you have done, the more
 likely your feature will go in the distribution in a timely manner.
 
 
@@ -1265,5 +1327,5 @@ Not about outlines, but instead about how to use your brain.
 The whole purpose of outlines is to use your brain.
 New ways of using your brain produce new ways to use outlines.
 
-For the VimOutliner version information and history, see the CHANGELOG. 
+For the VimOutliner version information and history, see the CHANGELOG.
 
