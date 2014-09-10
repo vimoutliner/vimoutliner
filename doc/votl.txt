@@ -14,7 +14,7 @@ and body text.
   Version                                                         |votl-version|
   Installing and testing VimOutliner                              |votl-install|
       Install via Pathogen                               |votl-pathogen-install|
-      Legay Script Driven Method                             |votl-auto-install|
+      Legacy Script Driven Method                             |votl-auto-install|
       Updating                                                   |votl-updating|
       Manual method                                        |votl-manual-install|
       Testing                                                     |votl-testing|
@@ -59,7 +59,7 @@ Installing and Testing VimOutliner                                *votl-install*
 
 
     Install via Pathogen            |votl-pathogen-install|
-    Legay Script Driven Method      |votl-auto-install|
+    Legacy Script Driven Method      |votl-auto-install|
     Updating                        |votl-updating|
     Manual Method                   |votl-manual-install|
     Testing                         |votl-testing|
@@ -406,16 +406,16 @@ individual variables.
 Comma Comma Commands~
 
 Traditionally (meaning in terms of the VimOutliner traditions ;)) all
-commands were all VimOutliner features accessed through keyboard
-commands starting with 2 commas. The double comma followed by
-a character is incredibly fast to type. However, with more widespread
-use of the VimOutliner some developers felt that all idiosyncrasies
-should be eliminated and VimOutliner should behave as a normal vim
-plugin. Therefore now we don’t redefine this command leader (as it is
-called in the Vim lingo) and unless the user redefines it on her own (in
-|vimoutlinerrc|) it defaults to backslash. If you configure VimOutliner
-to use different key combination, you have to mentally replace it
-everywhere in this documentation.
+VimOutliner were features accessed through keyboard commands starting
+with two commas. The double comma followed by a character is incredibly
+fast to type. However, with more widespread use of the VimOutliner some
+developers felt that all idiosyncrasies should be eliminated and
+VimOutliner should behave as a normal vim plugin.  Therefore now we
+don’t redefine this command leader (as it is called in the Vim lingo)
+and unless the user redefines it on her own (in |vimoutlinerrc|) it
+defaults to backslash. If you configure VimOutliner to use different key
+combination, you have to mentally replace it everywhere in this
+documentation.
 
 If you are friend of the ancient regimé, then just uncomment the line in
 |vimoutlinerrc| (see more about the locations where you should put it):
