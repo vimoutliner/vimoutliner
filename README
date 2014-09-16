@@ -17,7 +17,7 @@ the mouse).
 Many of the VimOutliner commands start with a double comma ",," because
 that's very quick to type. All VimOutliner files have the ".otl"
 extension. For help on VimOutliner type ":h vo". For an overview of
-all the most important VimOutliner commands you can type ":h vo_cheatsheet"
+all the most important VimOutliner commands you can type ":h votl_cheatsheet"
 when you have opened an otl file.
 
 

@@ -23,12 +23,13 @@ From zip archive
     $ cd vimoutliner-0.3.x
     $ sh install.sh 
 
-With pathogen
+Installing with pathogen
 
 If you have pathogen installed as your package manager you can clone the git repository in you
-pathogwn directory:
+pathogen directory:
         $ cd ~/.vim/bundle && git clone https://github.com/vimoutliner/vimoutliner.git
 
+Installing using install.sh:
 
 First you can decide whether to install the VimOutliner files or abort the
 process leaving everything unchanged.  Assuming you confirmed the
@@ -108,7 +109,7 @@ the vim help system.  Start vim and execute the following command:
 
 At this point, VimOutliner should be functional.  Type ":help vo" to get
 started. To get a quick overview of all VimOutliner commands you can view the 
-cheatsheet with ":help vo_cheatsheet". 
+cheatsheet with ":help votl_cheatsheet". 
 
 Testing Base Functionality
 
@@ -124,7 +125,7 @@ that paragraphs of body text can be reformatted with the Vim gq
 commands.
 
 You can test the different VimOutliner commands by looking at the examples
-in the cheatsheet. "help vo_cheatsheet".
+in the cheatsheet. "help votl_cheatsheet".
 
 Debian Installation
 
