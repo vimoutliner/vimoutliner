@@ -18,8 +18,7 @@ fi
 #SOME FUNCTIONS
 sure () {
 	read REPLY
-	echo
-	test $REPLY = "y" || test $REPLY = "Y"
+	echo test $REPLY = "y" || test $REPLY = "Y"
 }
 
 make_dir () {
@@ -115,7 +114,7 @@ copyfile ftplugin/votl.vim $vimdir
 copyfile ftdetect/votl.vim $vimdir
 copyfile doc/votl_readme.txt $vimdir
 copyfile doc/votl_cheatsheet.txt $vimdir
-copyfile vimoutliner/vimoutlinerrc $vimdir
+copyfile vimoutlinerrc $vodir
 copyfile vimoutliner/scripts/votl_maketags.pl $vimdir
 
 #INCORPORATE HELP DOCUMENTATION
