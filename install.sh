@@ -6,13 +6,14 @@ vodir=$vimdir/vimoutliner
 OS=`uname`
 
 #BACKUP FILE NAMES
-bext=`date +_%T_%F.old`
-if [ $OS = Linux ] ; then 
-       backupargs="-bS $bext"
-elif [ $OS = FreeBSD ] ; then
-       backupargs="-bB $bext"
-else backupargs="";
-fi
+# bext=`date +_%T_%F.old`
+# if [ $OS = Linux ] ; then 
+#        backupargs="-bS $bext"
+# elif [ $OS = FreeBSD ] ; then
+#        backupargs="-bB $bext"
+# else backupargs="";
+# fi
+backupargs=""
 
 
 #SOME FUNCTIONS
@@ -107,8 +108,26 @@ egrep -lq "runtime\! ftdetect/\*.vim" $homedir/.vim/filetype.vim || \
        }
 if [ $modified -eq 0 ] ; then echo "    not modified"; fi
 
+#CLEANUP OLD INSTALLATIONS
+echo "cleaning up old (<0.3.5) installations"
+files=`find $vimdir -iname "vo_base*"`
+for file in $files; do
+	echo "removing $file"
+	rm -f $file
+done
+
+#CLEANUP OLD BACKUPS
+if [ -z $backupargs ]; then
+	echo "cleaning up old backups"
+	files=`find $vimdir -iname "vo*.old"`
+	for file in $files; do
+		echo "removing $file"
+		rm -f $file
+	done
+fi
+
 #COPY FILES AND BACKUP ANY EXISTING FILES
-echo "installing files and making backups if necessary (*$bext)"
+echo "installing files"
 copyfile syntax/votl.vim $vimdir
 copyfile ftplugin/votl.vim $vimdir
 copyfile ftdetect/votl.vim $vimdir
