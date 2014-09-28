@@ -1,6 +1,6 @@
-*votl_readme.txt*	For Vim version 7.2	Last change: 2013-04-10
+*votl_readme.txt*	For Vim version 7.2	Last change: 2014-09-28
 
-                                                                *vo* *vimoutliner*
+                                                                *vo* *votl* *vimoutliner*
 VimOutliner  0.3.7 ~
 
 VimOutliner is an outline processor designed with lighting fast authoring as
@@ -79,7 +79,7 @@ Installation with working Pathogen should be just
    # and then plugins are added as submodules.
    $ git clone git@github.com:vimoutliner/vimoutliner.git
 
-Restart vim and you should be good to go. If something doesnâ€™t work,
+Restart vim and you should be good to go. If something does not€™t work,
 please, let us know (either on the email list or file a ticket to the
 GitHub issue tracker).
 
@@ -120,7 +120,7 @@ one. In this case, you will have to manually migrate your files to the new
 locations.
 
 The installation script creates unique backups of files being replaced
-with newer versions. So if you put some local customisations into
+with newer versions. So if you put some local customizations into
 vimoutlinerrc in the directory where VimOutliner is run from (say
 $HOME/.vim/vimoutliner/vimoutlinerrc), you'll probably have to merge the
 backup with the new file by hand. Which is one good reason why it is
@@ -131,11 +131,11 @@ sought for.
                                                            *votl-manual-install*
 Manual Method~
 
-You can also copy the files from the unpacked distribution tarball into their
+You can also copy the files from the unpacked distribution tar ball into their
 destination folders by yourself. The following steps are a description of what
 has to go where and assume some knowledge of your vim setup.
 
-If you encounter problems, please contact the mailinglist for an immediate
+If you encounter problems, please contact the mailing list for an immediate
 solution and more complete future documentation.
 https://groups.google.com/forum/#!forum/vimoutliner
 
@@ -154,7 +154,7 @@ You need the following subtrees in your $HOME directory: >
             plugins/
             scripts/
 <
-The distribution tarball unpacks into a directory vimoutliner with the
+The distribution tar ball unpacks into a directory vimoutliner with the
 following contents: >
 
     vimoutliner/
@@ -346,7 +346,7 @@ added.
 
 Vim Integration~
 
-Earlier VimOutliner versions prided themselves on being standalone
+Earlier VimOutliner versions prided themselves on being stand alone
 applications, self-contained in a single directory with a special script to
 run everything.
 
@@ -368,7 +368,7 @@ Running VimOutliner~                                              *votl-running*
 Vim Knowledge~
 
 You needn't be a Vim expert to use VimOutliner. If you know the basics --
-inserting and deleting linewise and characterwise, moving between command and
+inserting and deleting line-wise and character-wise, moving between command and
 insert modes, use of Visual Mode selections,and reformatting, you should be
 well equipped to use VimOutliner.
 
@@ -417,7 +417,7 @@ defaults to backslash. If you configure VimOutliner to use different key
 combination, you have to mentally replace it everywhere in this
 documentation.
 
-If you are friend of the ancient regimÃ©, then just uncomment the line in
+If you are friend of the ancient regime©, then just uncomment the line in
 |vimoutlinerrc| (see more about the locations where you should put it):
 
     "let maplocalleader = ',,'  " uncomment for compatibility with
@@ -537,7 +537,7 @@ What if ,,b and ,,B don't work
     Change variable use_space_colon from 1 to 0
         in $HOME/.vim/ftplugin/votl.vim
 
-How do I perform a wordcount?
+How do I perform a word count?
     Use the command :w !wc
         The space before the exclamation point is a MUST.
 
@@ -576,10 +576,10 @@ specify other objects. Here is a list of each of the non-heading types:
 
     Start    Description~
       :      body text (wrapping)
-      ;      preformatted body text (non-wrapping)
+      ;      Pre-formatted body text (non-wrapping)
       |      table
       >      user-defined, text block (wrapping)
-      <      user-defined, preformatted text block (non-wrapping)
+      <      user-defined, Pre-formatted text block (non-wrapping)
 
 The body text marker, :, is used to specify lines that are automatically
 wrapped and reformatted. VO and post-processors are free to wrap and reformat
@@ -595,14 +595,14 @@ Here is an example:
 	: signals. He is affectionate, playful and attentive.
 	:
 	: His breeding is unknown. He appears to be a mix between
-	: a german shepherd and a collie.
+	: a German shepherd and a collie.
 <
 When folded, body text looks something like this:
 >
     Kirby the Wonder Dog
 	[TEXT] -------------------------------- (6 lines)
 <
-The preformatted text marker, ;, is used to mark text that should not be
+The Pre-formatted text marker, ;, is used to mark text that should not be
 reformatted nor wrapped by VO or any post-processor. A post- processor would
 use a fixed-space font, like courier, to render these lines. A post-processor
 will probably not change the appearance of what you have written. This is
@@ -615,7 +615,7 @@ Here is an example:
 	;   _____/       \______________/
 	;        |-10us--|----35us------|
 <
-When folded, preformatted body text looks something like this:
+When folded, Pre-formatted body text looks something like this:
 >
     Output waveform
 	[TEXT BLOCK] -------------------------- (6 lines)
@@ -654,7 +654,7 @@ For example:
 	> signals. He is affectionate, playful and attentive.
 	>
 	> His breeding is unknown. He appears to be a mix between
-	> a german shepherd and a collie.
+	> a German shepherd and a collie.
 <
 When folded, body text looks something like this:
 >
@@ -682,9 +682,9 @@ When folded, the above would appear as:
 	[USER Tips] --------------------------- (4 lines)
 	[USER Warning]------------------------- (3 lines)
 <
-The user-defined, preformatted text block marker, <, behaves just like
-preformatted text. But like >, it leaves the functional definition up to the
-user. A simple user-defined, preformatted text block could be:
+The user-defined, pre-formatted text block marker, <, behaves just like
+pre-formatted text. But like >, it leaves the functional definition up to the
+user. A simple user-defined, pre-formatted text block could be:
 >
     Tux
 	<                 _.._
@@ -838,11 +838,11 @@ Several ,,-commands make up the user interface:
 <
 How do I use it?
 
-Start with a simple example. Let's start planning a small party, say a barbeque.
+Start with a simple example. Let's start planning a small party, say a barbecue.
 
 1. Make the initial outline.
 >
-    Barbeque
+    Barbecue
         Guests
             Bill and Barb
             Larry and Louise
@@ -875,7 +875,7 @@ Start with a simple example. Let's start planning a small party, say a barbeque.
 This can be done by visually selecting them and typing ,,cb.  When done, you
 should see this:
 >
-    [_] Barbeque
+    [_] Barbecue
         [_] Guests
             [_] Bill and Barb
             [_] Larry and Louise
@@ -909,7 +909,7 @@ Checking off what is complete is easy with the
 ,,cx command.  Just place the cursor on a heading and ,,cx it. Now you can see
 what's done as long as the outline is fully expanded.
 >
-    [_] Barbeque
+    [_] Barbecue
         [_] Guests
             [X] Bill and Barb
             [X] Larry and Louise
@@ -940,12 +940,12 @@ what's done as long as the outline is fully expanded.
 4. Now summarize what's done.
 
 You can summarize what is done with the ,,cz command.  Place the cursor on the
-'Barbeque' heading and ,,cz it.  The command will recursively process the
+'Barbecue' heading and ,,cz it.  The command will recursively process the
 outline and update the check boxes of the parent headlines. You should see:
 (Note: the only change is on the 'Guests' heading. It changed because all of
 its children are complete.)
 >
-    [_] Barbeque
+    [_] Barbecue
         [X] Guests
             [X] Bill and Barb
             [X] Larry and Louise
@@ -979,7 +979,7 @@ You can get a much better view of what's going on, especially with collapsed
 headings, if you add percentages.  Place a % on each heading that has children
 like this:
 >
-    [_] % Barbeque
+    [_] % Barbecue
         [X] % Guests
             [X] Bill and Barb
             [X] Larry and Louise
@@ -1009,11 +1009,11 @@ like this:
 
 6. Now compute the percentage of completion.
 
-After adding the % symbols, place the cursor on the 'Barbeque' heading and
+After adding the % symbols, place the cursor on the 'Barbecue' heading and
 execute ,,cz as before. Keep in mind that the recursive percentages are
 weighted. You should see:
 >
-    [_] 58% Barbeque
+    [_] 58% Barbecue
         [X] 100% Guests
             [X] Bill and Barb
             [X] Larry and Louise
@@ -1045,10 +1045,10 @@ weighted. You should see:
 
 Mark Salad and Soda and you should see the outline below.  Try playing around
 with zc and zo to see the effects of opening and closing folds. Even if you
-place the cursor on 'Barbeque' and zo it, you still have a good understanding
+place the cursor on 'Barbecue' and zo it, you still have a good understanding
 of how complete the project is.
 >
-    [_] 69% Barbeque
+    [_] 69% Barbecue
         [X] 100% Guests
             [X] Bill and Barb
             [X] Larry and Louise
@@ -1261,7 +1261,7 @@ Command-invoking headlines
 Groupware
     Not yet well defined
     Enables collaborative work on an outline
-    A pipedream, but VimOutliner itself was once a pipedream
+    A pipe dream, but VimOutliner itself was once a pipe dream
 
 Easy mode
     Let's Windows users operate VO like a common insert-only editor. This will
@@ -1308,7 +1308,7 @@ Former Web page for the VimOutliner distro
 http://www.outliners.com
 Discussion of (proprietary) outliners from days gone by.
 Downloads for ancient versions of such outliners.
-Unfortunately, all are DOS, windows and mac.
+Unfortunately, all are DOS, Windows and Mac.
 
 http://members.ozemail.com.au/~caveman/Creative/Software/Inspiration/index.html
 Discussion of (proprietary,Mac) Inspiration software
