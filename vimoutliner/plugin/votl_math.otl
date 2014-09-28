@@ -1,28 +1,46 @@
-Math Test
-Projects {SUM}= 5910.0
-	: SUM is an implicit name for results that are unnamed. Thus using SUM in 
-	: this case is the same as using the named variables Total in the next 
-	: case. Duplicate variable names in a given level of a given branch are 
-	: automatically summed.
-	Project1 {(Hours*Rate)+Materials}= 3150.0
-		Hours= 30.5
-		Rate= 100
-		Materials= 100
-	Project2 {(Hours*Rate)+Materials}= 2760
-		Hours= 41
-		Rate= 60
-		Materials= 300
-Projects {Total}= 5850.0
-	Project1 {(Hours*Rate)+Materials} Total= 3150.0
-		Hours= 30.5
-		Rate= 100
-		Materials= 100
-	Project2 {(Hours*Rate)+Materials} Total= 2700
-		Hours= 40
-		Rate= 60
-		Materials= 300
-Budget for proposal {40.5*60} budget= 2430.0
-Descriptive Budget for proposal {Hours*Rate} budget= 2430.0
-	Hours= 40.5
-	Rate= 60
-
+VO Math
+Syntax
+	{}		contains formalae to compute
+	{f0;f1}	semicolon separates formulae
+	name=n	name become a named result for passing to a parent
+	A=n B=n	space separates variables
+	A=n test B=n	space separates variables, interspersed words are allowed
+Math Examples
+	Example 1: one-line math {3*5} result=15
+	Example 2: one-line floating-point math {3*5.0} result=15.0
+	Example 3: Simple math with child variables {A*B+C} result=5.0
+		Item 1 A=1
+		Item 2 B=2
+		Item 3 C=3.0
+	Example 4: Automatic summing {bonk} total=6.0
+		Item 1 bonk=1
+		Item 2 bonk=2
+		Item 3 bonk=3.0
+	Example 5: Multiple equations {A*B;B*C;C*A;A+B+C} AB=2.0 BC=6.0 CA=3.0 sumABC=6.0
+		Item 1 A=1
+		Item 2 B=2
+		Item 3 C=3.0
+	Example 6: Multiple trees {Labor;Materials;Total} Labor=1122.5 Materials=225.0 Total=1347.5
+		Project 1 {Labor;Materials;Labor+Materials} Labor=647.5 Materials=110.0 Total=757.5
+			Task 1 {Hours*Rate;Materials} Labor=400.0 Materials=100.0
+				Hours=8
+				Rate=50
+				Materials=100
+			Task 2 {Hours*Rate;Materials} Labor=247.5 Materials=10.0
+				Hours=4.5
+				Rate=55
+				Materials=10
+		Project 2 {Labor;Materials;Labor+Materials} Labor=475.0 Materials=115.0 Total=590.0
+			Task 1 {Hours*Rate;Materials} Labor=300.0 Materials=70.0
+				Hours=6
+				Rate=50
+				Materials=70
+			Task 2 {Hours*Rate;Materials} Labor=175.0 Materials=45.0
+				Hours=3.5
+				Rate=50
+				Materials=45
+	Example 7: Scientific notation: {10000.0*100000} result=1.0e9
+	Example 8: Trigonometry: {sin(pi/4)} theta=0.707107
+		pi=3.1415926
+	Example 9: Base conversion: {printf("0x%x",65)} hex='0x41'
+	Example 10: Vim internal state: {&ts;&foldlevel} tabstop=4 foldlevel=99999
