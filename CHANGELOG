@@ -2,6 +2,7 @@ CHANGELOG
 
 
 Version Development (0.4.0)
+Updated 2014-09-28
 	* Additions/Changes:
 	Complete rewrite of the outline math plugin.
 	Modified to install.sh to: 1. Turn off backup functionality.
