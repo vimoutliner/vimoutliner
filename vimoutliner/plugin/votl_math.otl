@@ -2,6 +2,12 @@ VO Math
 Syntax
 	{}		contains formalae to compute
 	{f0;f1}	semicolon separates formulae
+		There is a respective order between the formulae and variables in a heading
+			{math0;math1;math2} var0=result0 var1=result1 var2=result2
+	ordering
+		Math can come before or after variables
+			{3+5;3*5} sum=8 product=15
+			sum=8 product=15 {3+5;3*5} 
 	name=n	name become a named result for passing to a parent
 	A=n B=n	space separates variables
 	A=n test B=n	space separates variables, interspersed words are allowed
@@ -9,7 +15,7 @@ Math Examples
 	Example 1: one-line math {3*5} result=15
 	Example 2: one-line floating-point math {3*5.0} result=15.0
 	Example 3: Simple math with child variables {A*B+C} result=5.0
-		Item 1 A=1
+		Item 1 A=2
 		Item 2 B=2
 		Item 3 C=3.0
 	Example 4: Automatic summing {bonk} total=6.0
@@ -20,10 +26,10 @@ Math Examples
 		Item 1 A=1
 		Item 2 B=2
 		Item 3 C=3.0
-	Example 6: Multiple trees {Labor;Materials;Total} Labor=1122.5 Materials=225.0 Total=1347.5
-		Project 1 {Labor;Materials;Labor+Materials} Labor=647.5 Materials=110.0 Total=757.5
-			Task 1 {Hours*Rate;Materials} Labor=400.0 Materials=100.0
-				Hours=8
+	Example 6: Multiple trees {Labor;Materials;Total} Labor=1222.5 Materials=225.0 Total=1447.5
+		Project 1 {Labor;Materials;Labor+Materials} Labor=747.5 Materials=110.0 Total=857.5
+			Task 1 {Hours*Rate;Materials} Labor=500.0 Materials=100.0
+				Hours=10
 				Rate=50
 				Materials=100
 			Task 2 {Hours*Rate;Materials} Labor=247.5 Materials=10.0
@@ -39,8 +45,12 @@ Math Examples
 				Hours=3.5
 				Rate=50
 				Materials=45
-	Example 7: Scientific notation: {10000.0*100000} result=1.0e9
-	Example 8: Trigonometry: {sin(pi/4)} theta=0.707107
+	Example 7: Reversal of results and maths AB=2.0 BC=6.0 CA=3.0 sumABC=6.0 {A*B;B*C;C*A;A+B+C}
+		Item 1 A=1
+		Item 2 B=2
+		Item 3 C=3.0
+	Example 8: Scientific notation: {10000.0*100000} result=1.0e9
+	Example 9: Trigonometry: {sin(pi/4)} theta=0.707107
 		pi=3.1415926
-	Example 9: Base conversion: {printf("0x%x",65)} hex='0x41'
-	Example 10: Vim internal state: {&ts;&foldlevel} tabstop=4 foldlevel=99999
+	Example 10: Base conversion: {printf("0x%x",65)} hex='0x41'
+	Example 11: Vim internal state: {&ts;&foldlevel} tabstop=4 foldlevel=99999

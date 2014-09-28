@@ -94,8 +94,17 @@ endfunction
 "	return match(a:string,'{.*}.*=-\?[0-9]\+\(.[0-9]\+\)\+\([eE][-+]\?[0-9]\+\)\?')
 " endfunction
 " the below is faster!
+" function! FindMath(string)
+" 	return match(a:string,'{.*}.*=-\?[0-9]')
+" endfunction
+" the below is even faster 
+" and allows for formulae to be placed at the end of a heading
 function! FindMath(string)
-	return match(a:string,'{.*}.*=-\?[0-9]')
+	if match(a:string,'=') != -1
+		return match(a:string,'{.*}')
+	else
+		return -1
+	endif
 endfunction
 
 " GetMathFromString(string) {{{2
@@ -261,8 +270,17 @@ function! ComputeDocument(lnum)
 	endfor
 endfunction
 
+" Concealings {{{1
+" BadWord is a very old VO region that is no longer used.
+" It can be used now for plugins :)
+" This should probably be fixed at some point in the future
+syntax match BadWord "{.\+}" conceal transparent cchar=µ
+set conceallevel=1
+
 " mappings {{{1
 
 map <silent><buffer> <localleader>mm :call ComputeUp(line("."))<cr>
 map <silent><buffer> <localleader>mt :call ComputeTree(line("."))<cr>
 map <silent><buffer> <localleader>md :call ComputeDocument()<cr>
+map <silent><buffer> <localleader>mh :set conceallevel=1<cr>
+map <silent><buffer> <localleader>mH :set conceallevel=0<cr>
