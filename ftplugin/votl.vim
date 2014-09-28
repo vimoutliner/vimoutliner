@@ -673,14 +673,6 @@ map! <silent><buffer>  <localleader>w           <Esc>:w<CR>a
 nmap <silent><buffer>  <localleader>e           :call Spawn()<cr>
 " Steve's additional mappings end here
 
-" Placeholders for already assigned but non-functional commands
-map <silent><buffer> <localleader>h :echo "VimOutliner reserved command: ,,h"<cr>
-imap <silent><buffer> <localleader>h :echo "VimOutliner reserved command: ,,h"<cr>
-map <silent><buffer> <localleader>H :echo "VimOutliner reserved command: ,,H"<cr>
-imap <silent><buffer> <localleader>H :echo "VimOutliner reserved command: ,,H"<cr>
-map <silent><buffer> <localleader>c :echo "VimOutliner reserved command: ,,c"<cr>
-imap <silent><buffer> <localleader>c :echo "VimOutliner reserved command: ,,c"<cr>
-
 " End of Vim Outliner Key Mappings }}}1
 
 " The End
