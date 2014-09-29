@@ -1,8 +1,8 @@
 "#########################################################################
-"# ftplugin/vo_base.vim: VimOutliner functions, commands and settings
+"# ftplugin/votl.vim: VimOutliner functions, commands and settings
 "# version 0.3.7
 "#   Copyright (C) 2001,2003 by Steve Litt (slitt@troubleshooters.com)
-"#   Copyright (C) 2004 by Noel Henson (noel@noels-lab.com)
+"#   Copyright (C) 2004,2014 by Noel Henson (noelwhenson@gmail.com)
 "#
 "#   This program is free software; you can redistribute it and/or modify
 "#   it under the terms of the GNU General Public License as published by
@@ -575,7 +575,7 @@ amenu &VO.&Help.&Checkboxes :he votl-checkbox<cr>
 amenu &VO.&Help.&Hoisting :he votl-hoisting<cr>
 amenu &Help.-Sep1- :
 " Help menu additions
-amenu &Help.&Vim\ Outliner.&Index :he vo<cr>
+amenu &Help.&Vim\ Outliner.&Index :he votl<cr>
 amenu &Help.&Vim\ Outliner.&,,\ Commands :he votl-command<cr>
 amenu &Help.&Vim\ Outliner.&Checkboxes :he votl-checkbox<cr>
 amenu &Help.&Vim\ Outliner.&Hoisting :he votl-hoisting<cr>

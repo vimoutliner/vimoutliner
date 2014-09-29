@@ -14,7 +14,7 @@ and body text.
   Version                                                         |votl-version|
   Installing and testing VimOutliner                              |votl-install|
       Install via Pathogen                               |votl-pathogen-install|
-      Legacy Script Driven Method                             |votl-auto-install|
+      Legacy Script Driven Method                            |votl-auto-install|
       Updating                                                   |votl-updating|
       Manual method                                        |votl-manual-install|
       Testing                                                     |votl-testing|
@@ -34,7 +34,7 @@ and body text.
   Plugins                                                         |votl-plugins|
       Checkboxes                                                 |votl-checkbox|
       Hoisting                                                   |votl-hoisting|
-      Clock                                                       |vo-clock|
+      Clock                                                         |votl-clock|
   Scripts                                                         |votl-scripts|
       votl_maketags.pl                                           |votl-maketags|
       otl2html.py                                                     |otl2html|
@@ -46,7 +46,7 @@ License                                                           *votl-license*
 
 
 VimOutliner Copyright (C) 2001, 2003 by Steve Litt
-            Copyright (C) 2004 by Noel Henson
+            Copyright (C) 2004, 2014 by Noel Henson
 Licensed under the GNU General Public License (GPL), version 2
 Absolutely no warranty, see COPYING file for details.
 
@@ -1105,7 +1105,7 @@ tag On this line, do
 
     ,,H    Manual de-hoisting
 
-                                                                      *vo-clock*
+                                                                    *votl-clock*
 Clock~
 
 The clock plugin is a little imitation of a nice feature from emacs org mode.
