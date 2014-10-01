@@ -1,0 +1,33 @@
+VO Checkboxes Enhancements
+[_] A this is just a test
+	[_] 75% B
+		[X] 100% C [TODO][Feature][Normal][Work]
+		[_] 0% D [TODO][Bug][Normal][Work]
+		[X] 100%2 E [FEEDBACK][Bug][High][Work]
+Notes
+	[tag]	syntax for a tag
+	[tag]	syntax for default tag - ,,ct and ,,cT to use cbTags
+	,,ct	Cycle through options in the current list - cursor on tag word
+	,,cT	Cycle through lists (first option of each) - cursor on tag word
+Example g:cbTags (put in .vimoutlinerrc)
+	let g:cbTags = [
+	\ ['TODO','FEEDBACK','VERIFY','DELEGATED','HOLDING']
+	\,['Feature','Enhancement','Bug']
+	\,['Low','Normal','High','URGENT']
+	\,['Home','Lab','Work','Shopping']
+	\]
+Other information
+	: Checkbox Tags
+	:  Tags can contain any word characters (:help word)
+	:  tags must not contain whitespace
+	:  tags must be unique
+	:     there can be no intersections between lists
+	:    'high', 'High', and 'HIGH' are considered to be unique and nonintersecting
+	:  each sub-list represents a unique circular 'ring' of tags
+	:  currently, these options do not affect checkboxes
+	:     status indicators like DONE, NOT DONE and CANCELED are
+	:     refelected in the checkbox state: [X], [_] and [-], respectively
+	:  each tag is a [] block, just like a checkbox; chosen for possible future integration
+	:     [TODO][Feature]
+	:     [TODO] [Feature]
+
