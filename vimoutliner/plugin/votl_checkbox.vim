@@ -58,6 +58,12 @@ endif
 " calculate the proportion of work done on the subtree
 noremap <silent><buffer> <localleader>cz :call NewHMD(FindRootParent(line(".")))<cr>
 
+" tag list key mappings
+if exists("g:cbTags")
+	noremap <silent><buffer> <localleader>ct :call SetNextTag()<cr>
+	noremap <silent><buffer> <localleader>cT :call SetNextList()<cr>
+endif
+
 "}}}1
 " Load guard for functions {{{1
 if exists('s:loaded')
@@ -369,8 +375,11 @@ endif
 " GetTag() {{{2
 " return the tag word under the cursor
 function! GetTag()
-	let word = expand("<cword>")
-	return word
+	let word = expand("<cWORD>")
+	if word[0] == '[' && word[-1:] == ']'
+		return word[1:-2]
+	endif
+	return ""
 endfunction
 
 " WhereInLists(word) {{{2
@@ -447,7 +456,7 @@ function! GetNextList(word)
 		return ""
 	endif
 	let liti[0] = NextListIdx(liti[0])
-	let nextword = g:cbTags[liti[0]][liti[1]]
+	let nextword = g:cbTags[liti[0]][0]
 	return nextword
 endfunction
 
@@ -463,8 +472,4 @@ function! SetNextList()
 	let sub = "normal!ci[".newtag
 	exec sub
 endfunction
-
-" tag list key mappings
-noremap <silent><buffer> <localleader>ct :call SetNextTag()<cr>
-noremap <silent><buffer> <localleader>cT :call SetNextList()<cr>
 " vim600: set foldlevel=0 foldmethod=marker:
