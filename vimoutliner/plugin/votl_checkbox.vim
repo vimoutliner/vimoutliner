@@ -58,6 +58,12 @@ endif
 " calculate the proportion of work done on the subtree
 noremap <silent><buffer> <localleader>cz :call NewHMD(FindRootParent(line(".")))<cr>
 
+" tag list key mappings
+if exists("g:cbTags")
+	noremap <silent><buffer> <localleader>ct :call SetNextTag()<cr>
+	noremap <silent><buffer> <localleader>cT :call SetNextList()<cr>
+endif
+
 "}}}1
 " Load guard for functions {{{1
 if exists('s:loaded')
@@ -117,6 +123,18 @@ function! SafelyInsertCheckBoxPercentAlways()
         endif
 endfunction
 "}}}1
+" SetBox(char) {{{1
+" Switch the state of the checkbox on the current line.
+function! SetBox(char)
+   substitute/\[.\]/\="[".expand(a:char)."]"/
+   if a:char == 'X'
+      call SetPercent(".",100)
+   elseif a:char == '_'
+      call SetPercent(".",0)
+   endif
+endfunction
+
+"}}}1
 " SwitchBox() {{{1
 " Switch the state of the checkbox on the current line.
 function! SwitchBox()
@@ -124,13 +142,11 @@ function! SwitchBox()
    let questa = strridx(l:line,"[_]")
    let questb = strridx(l:line,"[X]")
    if (questa != -1) || (questb != -1)
-	   if (questa != -1) 
-	      substitute/\[_\]/\[X\]/
-	      call SetPercent(".",100)
-	   else
-	      substitute/\[X\]/\[_\]/
-	      call SetPercent(".",0)
-	   endif
+	if (questa != -1) 
+		call SetBox('X')
+	else
+		call SetBox('_')
+	endif
    endif
 endfunction
 "}}}1
@@ -206,7 +222,7 @@ function! GetPercent(line)
    return l:proportion
 endf
 
-" SetPercent(line) {{{1
+" SetPercent(line,proportion) {{{1
 " Set the percent complete for a line
 function! SetPercent(line,proportion)
    let mbegin=match(getline(a:line), " [0-9]*%")
@@ -350,5 +366,110 @@ function! NewHMD(line)
 	return ComputePW(a:line,l:count,l:done) " returns with (proportion,weight)
 endf
 
+" Experimental Heading Tags {{{1
 
+if !exists('g:cbTags')
+	finish
+endif
+
+" GetTag() {{{2
+" return the tag word under the cursor
+function! GetTag()
+	let word = expand("<cWORD>")
+	if word[0] == '[' && word[-1:] == ']'
+		return word[1:-2]
+	endif
+	return ""
+endfunction
+
+" WhereInLists(word) {{{2
+" return a single-entry list with a pair of values [listIndex,tagIndex]
+" return -1,-1 if tag word not found
+function! WhereInLists(word)
+	let lidx = 0
+	for list in g:cbTags
+		let tidx = index(list,a:word)
+		if tidx >= 0
+			return [lidx,tidx]
+		endif
+		let lidx += 1
+	endfor
+	return [-1,-1]
+endfunction
+
+" NextTagIdx(lidx,tidx) {{{2
+" return the index of the next tag in the current list
+function! NextTagIdx(lidx,tidx)
+	if a:tidx >= 0
+		let llen = len(g:cbTags[a:lidx])
+		let tidx = (a:tidx + 1)%llen
+	endif
+	return tidx
+endfunction
+
+" GetNextTag(word) {{{2
+" return the next tag word (from a:word) in the list
+function! GetNextTag(word)
+	if a:word == 'tag'
+		return g:cbTags[0][0]
+	endif
+	let liti = WhereInLists(a:word)
+	if liti[1] == -1
+		return ""
+	endif
+	let liti[1] = NextTagIdx(liti[0],liti[1])
+	let nextword = g:cbTags[liti[0]][liti[1]]
+	return nextword
+endfunction
+
+" SetNextTag() {{{2
+" set the current tag to the next tag in the same list
+" this is circular, the last tag will roll to the first tag
+function! SetNextTag()
+	let oldtag = GetTag()
+	let newtag = GetNextTag(oldtag)
+	if newtag == ""
+		return
+	endif
+	let sub = "normal!ci[".newtag
+	exec sub
+endfunction
+
+" NextListIdx(lidx) {{{2
+" return the index of the next list
+function! NextListIdx(lidx)
+	if a:lidx >= 0
+		let llen = len(g:cbTags)
+		let lidx = (a:lidx + 1)%llen
+	endif
+	return lidx
+endfunction
+
+" GetNextList(word) {{{2
+" return the next tag word (from a:word) in the list
+function! GetNextList(word)
+	if a:word == 'tag'
+		return g:cbTags[0][0]
+	endif
+	let liti = WhereInLists(a:word)
+	if liti[1] == -1
+		return ""
+	endif
+	let liti[0] = NextListIdx(liti[0])
+	let nextword = g:cbTags[liti[0]][0]
+	return nextword
+endfunction
+
+" SetNextList() {{{2
+" set the current tag to the first tag in the next list
+" this is circular, the last list will roll to the first list
+function! SetNextList()
+	let oldtag = GetTag()
+	let newtag = GetNextList(oldtag)
+	if newtag == ""
+		return
+	endif
+	let sub = "normal!ci[".newtag
+	exec sub
+endfunction
 " vim600: set foldlevel=0 foldmethod=marker:
