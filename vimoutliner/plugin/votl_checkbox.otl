@@ -7,11 +7,24 @@ Installation
 	This should already be included in your Vim Outliner package
 		The newest, stable version is included with this package in the plugin directory
 		The pluging is already enabled in your ~/.vimoutlinerrc
-The Checkbox Tags
-	[_]		an unchecked item or incomplete task
-	[X]		a checked item or complete task
-	%		a placeholder for percentage of completion
-The Checkbox Commands
+Tag Syntax
+	[_]			an unchecked item or incomplete task
+	[X]			a checked item or complete task
+	[-]			a canceled item - removes this item/branch from completion calculations
+	%			a placeholder for percentage of completion
+	n%			a percentage of completion, used in calculating parent completion
+	n%w			a percentage with a weighting factor - e.g.: 10%2
+	[tag]		a tag than can be replaced from a list of tags
+	[tag]		also the default tag name - will be replaced by tag[0] of tag list[0]
+	[tag] [tag]	tags must be separated by whitespace
+Example g:cbTags (put in .vimoutlinerrc)
+	let g:cbTags = [
+	\ ['TODO','FEEDBACK','VERIFY','DELEGATED','HOLDING']
+	\,['Feature','Enhancement','Bug']
+	\,['Low','Normal','High','URGENT']
+	\,['Home','Lab','Work','Shopping']
+	\]
+Checkbox Commands
 	: The default <localleader> for VimOutliner is ,, so we will use this
 	: leader in the command discussions.
 	,,cb	Create a check box
@@ -24,6 +37,9 @@ The Checkbox Commands
 	,,c%	Create a checkbox and % symbol
 		: This works just like ,,cb but add a % symbol for use in completion 
 		: calculations.
+	,,cp	Create a checkbox and % symbol
+		: This works just like ,,cb but add a % symbol for use in completion 
+		: calculations; even on childless headings.
 	,,cx	Change check box state
 		: If there is a checkbox on the line the cursor is on, change its
 		: state. If it's checked, uncheck it and vice-versa. Then recompute 
@@ -33,6 +49,35 @@ The Checkbox Commands
 	,,cz	Compute completion
 		: Starting at the heading the cursor is on, recursively compute the
 		: completion level of all sub-headings.
+	,,c1	Set completion to 10%
+		: Set the completion to 10%, if a percentage already exists.
+	,,c2	Set completion to 20%
+		: Set the completion to 20%, if a percentage already exists.
+	,,c3	Set completion to 30%
+		: Set the completion to 30%, if a percentage already exists.
+	,,c4	Set completion to 40%
+		: Set the completion to 40%, if a percentage already exists.
+	,,c5	Set completion to 50%
+		: Set the completion to 50%, if a percentage already exists.
+	,,c6	Set completion to 60%
+		: Set the completion to 60%, if a percentage already exists.
+	,,c7	Set completion to 70%
+		: Set the completion to 70%, if a percentage already exists.
+	,,c8	Set completion to 80%
+		: Set the completion to 80%, if a percentage already exists.
+	,,c9	Set completion to 90%
+		: Set the completion to 90%, if a percentage already exists.
+	,,c+	Increment the completion by 10%
+		: Increment the completion by 10%, if a percentage already exists.
+	,,c-	Decrement the completion by 10%
+		: Decrement the completion by 10%, if a percentage already exists.
+	,,ct	Set tag to next tag in current tag list
+		: Set the tag under the cursor to the next tag in the list that 
+		: contains the current tag.  This command is not mapped if g:cbTags 
+		: does not exist.
+	,,cT	Set tag to next tag list
+		: Set the tag under the cursor to the first tag in the next tag list. 
+		: This command is not mapped if g:cbTags does not exist.
 How do I use it?
 	Start with a simple example
 		: Let's start with planning a small party; say a barbeque.
@@ -42,15 +87,10 @@ How do I use it?
 					Bill and Barb
 					Larry and Louise
 					Marty and Mary
-					Chris and Christine
-					David and Darla
-					Noel and Susan
 				Food
 					Chicken
 					Ribs
 					Corn on the cob
-					Salad
-					Desert
 				Beverages
 					Soda
 					Iced Tea
@@ -71,15 +111,10 @@ How do I use it?
 					[_] Bill and Barb
 					[_] Larry and Louise
 					[_] Marty and Mary
-					[_] Chris and Christine
-					[_] David and Darla
-					[_] Noel and Susan
 				[_] Food
 					[_] Chicken
 					[_] Ribs
 					[_] Corn on the cob
-					[_] Salad
-					[_] Desert
 				[_] Beverages
 					[_] Soda
 					[_] Iced Tea
@@ -97,19 +132,14 @@ How do I use it?
 			: Just place the cursor on a heading and ,,cx it. Now you can see
 			: what's done as long as the outline is fully expanded.
 			[_] Barbeque
-				[_] Guests
+				[X] Guests
 					[X] Bill and Barb
 					[X] Larry and Louise
 					[X] Marty and Mary
-					[X] Chris and Christine
-					[X] David and Darla
-					[X] Noel and Susan
 				[_] Food
 					[X] Chicken
 					[X] Ribs
 					[_] Corn on the cob
-					[_] Salad
-					[X] Desert
 				[_] Beverages
 					[_] Soda
 					[X] Iced Tea
@@ -135,15 +165,10 @@ How do I use it?
 					[X] Bill and Barb
 					[X] Larry and Louise
 					[X] Marty and Mary
-					[X] Chris and Christine
-					[X] David and Darla
-					[X] Noel and Susan
 				[_] Food
 					[X] Chicken
 					[X] Ribs
 					[_] Corn on the cob
-					[_] Salad
-					[X] Desert
 				[_] Beverages
 					[_] Soda
 					[X] Iced Tea
@@ -158,52 +183,42 @@ How do I use it?
 					[X] Trash Containers
 		Add percentages for a better view
 			: You can get a much better view of what's going on, especially
-			: with collapsed headings, if you add percentages. Place a % on
+			: with collapsed headings, if you add percentages. Place a 0% on
 			: each heading that has children like this:
-			[_] % Barbeque
-				[X] % Guests
-					[X] Bill and Barb
-					[X] Larry and Louise
-					[X] Marty and Mary
-					[X] Chris and Christine
-					[X] David and Darla
-					[X] Noel and Susan
-				[_] % Food
-					[X] Chicken
-					[X] Ribs
-					[_] Corn on the cob
-					[_] Salad
-					[X] Desert
-				[_] % Beverages
-					[_] Soda
-					[X] Iced Tea
-					[X] Beer
-				[_] % Party Favors
-					[_] Squirt guns
-					[_] Hats
-					[_] Name tags
-				[_] % Materials
-					[X] Paper Plates
-					[_] Napkins
-					[X] Trash Containers
-		Now compute the percentage of completion
-			: After adding the % symbols, place the cursor on the 'Barbeque'
-			: heading and execute ,,cz as before. Keep in mind that the
-			: recursive percentages are weighted. You should see:
-			[_] 58% Barbeque
+			[_] 59% Barbeque
 				[X] 100% Guests
 					[X] Bill and Barb
 					[X] Larry and Louise
 					[X] Marty and Mary
-					[X] Chris and Christine
-					[X] David and Darla
-					[X] Noel and Susan
-				[_] 60% Food
+				[_] 66% Food
 					[X] Chicken
 					[X] Ribs
 					[_] Corn on the cob
-					[_] Salad
-					[X] Desert
+				[_] 66% Beverages
+					[_] Soda
+					[X] Iced Tea
+					[X] Beer
+				[_] 0% Party Favors
+					[_] Squirt guns
+					[_] Hats
+					[_] Name tags
+				[_] 66% Materials
+					[X] Paper Plates
+					[_] Napkins
+					[X] Trash Containers
+		Now compute the percentage of completion
+			: After adding the 0% symbols, place the cursor on the 'Barbeque'
+			: heading and execute ,,cz as before. Keep in mind that the
+			: recursive percentages are weighted. You should see:
+			[_] 59% Barbeque
+				[X] 100% Guests
+					[X] Bill and Barb
+					[X] Larry and Louise
+					[X] Marty and Mary
+				[_] 66% Food
+					[X] Chicken
+					[X] Ribs
+					[_] Corn on the cob
 				[_] 66% Beverages
 					[_] Soda
 					[X] Iced Tea
@@ -224,20 +239,15 @@ How do I use it?
 			: and closing folds. Even if you place the cursor on 'Barbeque'
 			: and zo it, you still have a good understanding of how complete
 			: the project is.
-			[_] 69% Barbeque
+			[_] 66% Barbeque
 				[X] 100% Guests
 					[X] Bill and Barb
 					[X] Larry and Louise
 					[X] Marty and Mary
-					[X] Chris and Christine
-					[X] David and Darla
-					[X] Noel and Susan
-				[_] 80% Food
+				[_] 66% Food
 					[X] Chicken
 					[X] Ribs
 					[_] Corn on the cob
-					[X] Salad
-					[X] Desert
 				[X] 100% Beverages
 					[X] Soda
 					[X] Iced Tea
@@ -250,7 +260,51 @@ How do I use it?
 					[X] Paper Plates
 					[_] Napkins
 					[X] Trash Containers
-Limitations
-	Body text is not yet supported
-		: ,,cb will falsely add a check box to body text.
-
+	Getting way more advanced
+		Weighted Tasks
+			Here is a simple outline to track a project
+				[_] 22% Garage Upgrade
+					[_] 66% Clean out old junk
+						[X] 100% empty garage
+						[X] 100% sort junk
+						[_] 0% dispose of junk
+					[_] 0% Build Shelves
+					[_] 0% Oranize Junk
+						[_] 0% oranize saved junk
+						[_] 0% put junk on shelves
+			What if some tasks take more effort?
+				: Assume that you know that it will take twice as long to sort 
+				: junk as it does to remove it from the garage or to dispose 
+				: of it. This can be represented with weights. Notice the 
+				: completion percentage of 'Clean out old junk' once a weight 
+				: has been added. Each percentage can be weighted.
+				[_] 25% Garage Upgrade
+					[_] 75% Clean out old junk
+						[X] 100% empty garage
+						[X] 100%2 sort junk
+						[_] 0% dispose of junk
+					[_] 0% Build Shelves
+					[_] 0% Oranize Junk
+						[_] 0% oranize saved junk
+						[_] 0% put junk on shelves
+			Complex weighting
+				[_] 83% Garage Upgrade
+					[_] 75%2 Clean out old junk
+						[X] 100% empty garage
+						[X] 100%2 sort junk
+						[_] 0% dispose of junk
+					[X] 100%2 Build Shelves
+					[_] 66% Oranize Junk
+						[X] 100%2 oranize saved junk
+						[_] 0% put junk on shelves
+		Tags: Add more information to a heading
+			: Additional information and workflow information can easily 
+			: be added to headings with tags. The command ,,ct can be used 
+			: to cycle a tag among it sibling tags in g:cbTags. ,,cT can 
+			: be be used to cycle a tag to a different list of sibling 
+			: tags.
+			My Software Project
+				[_] 33% To Do
+					[X] Misspellings in documention [Bug] [High]
+					[_] Installation infects all networked systems with app [Feature] [Normal]
+					[_] Clean garage [Low] [@Home]
