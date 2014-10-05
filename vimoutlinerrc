@@ -48,7 +48,9 @@ colorscheme vo_light
 "    status indicators like DONE, NOT DONE and CANCELED are
 "    refelected in the checkbox state: [X], [_] and [-], respectively
 " each tag is a [] block, just like a checkbox; chosen for possible future integration
-"    [TODO] [Feature]
+" each tag must be delimited by whitespace
+"    [TODO] [Feature] <-- this
+"    [TODO][Feature] <-- not this
 
 let g:cbTags = [
 \ ['TODO','FEEDBACK','VERIFY','DELEGATED','HOLDING']
