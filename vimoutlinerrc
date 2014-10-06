@@ -61,6 +61,31 @@ let g:cbTags = [
 \]
 
 
+colorscheme vo_light
+
+"Checkbox Tags
+" Tags can contain any word characters (:help word)
+" tags must not contain whitespace
+" tags must be unique
+"    there can be no intersections between lists
+"   'high', 'High', and 'HIGH' are considered to be unique and nonintersecting
+" each sub-list represents a unique circular 'ring' of tags
+" currently, these options do not affect checkboxes
+"    status indicators like DONE, NOT DONE and CANCELED are
+"    refelected in the checkbox state: [X], [_] and [-], respectively
+" each tag is a [] block, just like a checkbox; chosen for possible future integration
+" each tag must be delimited by whitespace
+"    [TODO] [Feature] <-- this
+"    [TODO][Feature] <-- not this
+
+let g:cbTags = [
+\ ['TODO','FEEDBACK','VERIFY','DELEGATED','HOLDING']
+\,['Feature','Enhancement','Bug']
+\,['Low','Normal','High','URGENT']
+\,['@Home','@Lab','@Work','@Shopping']
+\]
+
+
 "Hoisting ***********************************************************
 "Uncomment and set to 1 to debug hoisting
 "let g:hoistParanoia=0
