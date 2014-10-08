@@ -279,8 +279,8 @@ set conceallevel=1
 
 " mappings {{{1
 
-map <silent><buffer> <localleader>mm :call ComputeUp(line("."))<cr>
-map <silent><buffer> <localleader>mt :call ComputeTree(line("."))<cr>
-map <silent><buffer> <localleader>md :call ComputeDocument()<cr>
-map <silent><buffer> <localleader>mh :set conceallevel=1<cr>
-map <silent><buffer> <localleader>mH :set conceallevel=0<cr>
+map <silent><buffer> <localleader>== :call ComputeUp(line("."))<cr>
+map <silent><buffer> <localleader>=t :call ComputeTree(line("."))<cr>
+map <silent><buffer> <localleader>=d :call ComputeDocument()<cr>
+map <silent><buffer> <localleader>=h :set conceallevel=1<cr>
+map <silent><buffer> <localleader>=H :set conceallevel=0<cr>
