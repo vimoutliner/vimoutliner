@@ -124,9 +124,14 @@ if [ -z $backupargs ]; then
 		echo "removing $file"
 		rm -f $file
 	done
+	files2=`find $vodir -iname "vim*.old"`
+	for file in $files2; do
+		echo "removing $file"
+		rm -f $file
+	done
 fi
 
-#COPY FILES AND BACKUP ANY EXISTING FILES
+#COPY FILES 
 echo "installing files"
 copyfile syntax/votl.vim $vimdir
 copyfile ftplugin/votl.vim $vimdir
