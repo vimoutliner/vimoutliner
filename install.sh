@@ -111,12 +111,12 @@ if [ -z $backupargs ]; then
 	files=`find $vimdir -iname "vo*.old"`
 	for file in $files; do
 		echo "removing $file"
-		rm -v ${files}
+		rm -v $file}
 	done
 	files2=`find $vodir -iname "vo_*" -o -iname "*.old"`
 	for file in $files2; do
 		echo "removing $file"
-		rm -v ${files2}
+		rm -v $file
 	done
 fi
 
