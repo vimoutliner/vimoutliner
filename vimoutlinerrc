@@ -34,9 +34,8 @@ let g:vo_modules_load = "checkbox:tags:smart_paste"
 "setlocal shiftwidth=4			" values from 2 to 8 work well
 "setlocal background=dark		" for dark backgrounds
 "setlocal nowrap
-colorscheme vo_light			" set a reasonable colorscheme
 
-colorscheme vo_light
+" colorscheme vo_light			" set a VO specific colorscheme
 
 "Checkbox Tags
 " Tags can contain any word characters (:help word)
