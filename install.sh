@@ -5,17 +5,6 @@ vimdir=$homedir/.vim
 vodir=$vimdir/vimoutliner
 OS=`uname`
 
-#BACKUP FILE NAMES
-# bext=`date +_%T_%F.old`
-# if [ $OS = Linux ] ; then 
-#        backupargs="-bS $bext"
-# elif [ $OS = FreeBSD ] ; then
-#        backupargs="-bB $bext"
-# else backupargs="";
-# fi
-backupargs=""
-
-
 #SOME FUNCTIONS
 sure () {
 	read REPLY
@@ -122,12 +111,12 @@ if [ -z $backupargs ]; then
 	files=`find $vimdir -iname "vo*.old"`
 	for file in $files; do
 		echo "removing $file"
-		rm -f $file
+		rm -v ${files}
 	done
 	files2=`find $vodir -iname "vim*.old"`
 	for file in $files2; do
 		echo "removing $file"
-		rm -f $file
+		rm -v ${files2}
 	done
 fi
 
@@ -136,7 +125,7 @@ echo "installing files"
 copyfile syntax/votl.vim $vimdir
 copyfile ftplugin/votl.vim $vimdir
 copyfile ftdetect/votl.vim $vimdir
-copyfile doc/votl_readme.txt $vimdir
+copyfile doc/votl.txt $vimdir
 copyfile doc/votl_cheatsheet.txt $vimdir
 copyfile vimoutlinerrc $vodir
 copyfile vimoutliner/scripts/votl_maketags.pl $vimdir
@@ -164,7 +153,8 @@ if sure; then
 fi
 
 #ALL DONE
-echo Installation complete
+echo ""
+echo "Installation of vimoutliner is now complete"
 
 cat <<EOT
 
