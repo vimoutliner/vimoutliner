@@ -1,5 +1,37 @@
 CHANGELOG
 
+
+Version 0.4.0
+Updated 2014-10-19
+	* Additions/Changes:
+	- Added a list-based tags feature similar to org-mode	
+	- Complete rewrite of the outline math plugin.
+	- Added colorscheme option to vimoutlinerrc and directory
+	- Modified to install.sh to: 1. Turn off backup functionality.
+	  2. Remove old backup clutter. 3. Remove old vo_base.vim files from
+	  syntax, ftdetect and ftpluginAdd VimOutliner icons to the repository.
+	- Updated TODO.otl
+	- Move README.detailed to doc/votl.txt to make Pathogen working.
+	- Added information on pathogen installation to INSTALL file.
+	- Added syntax conceal for math equations. Concealed equations appear
+	  as µ
+	- Add VimOutliner icons to the repository  
+	- Add votl_maketags manpage
+	* Bug fixes:
+	- Small corrections and updates
+	- Removed unnecessary reserved mappings
+	- doc/votl_readme.txt is just a copy of old votl.txt, removed it.
+	- Fix for user-defined <localleader> for command mappings.
+        - Moved loading of .vimoutlinerrc to before key mappings, other fixes
+	- Update in install.sh so that it installs vimoutlinerrc correctly.
+	- Correct votl_cheatsheet so that it is installed with helptags.
+	- Gramatical and stylistic corrections.
+	- Remove all remainders of localleader munging.
+	- Removed vimball install instructions from INSTALL and README files.
+	- Fix Help links
+	- Fix FSF address
+
+
 Version 0.3.7
 Released 2014-04-05
 	* Additions/Changes:
