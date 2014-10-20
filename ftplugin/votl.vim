@@ -1,6 +1,6 @@
 "#########################################################################
 "# ftplugin/votl.vim: VimOutliner functions, commands and settings
-"# version 0.3.7
+"# version 0.4.0
 "#   Copyright (C) 2001,2003 by Steve Litt (slitt@troubleshooters.com)
 "#   Copyright (C) 2004,2014 by Noel Henson (noelwhenson@gmail.com)
 "#

@@ -1,6 +1,6 @@
 "# #######################################################################
 "# filetype.vim: filetype loader
-"#   version 0.3.7
+"#   version 0.4.0
 "#   Copyright (C) 2001,2003 by Steve Litt (slitt@troubleshooters.com)
 "#
 "#   This program is free software; you can redistribute it and/or modify
