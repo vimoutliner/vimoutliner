@@ -90,14 +90,14 @@ The automatic installation targets Unix-compatible platforms: >
 
 From tar archive
 
-    $ tar xzvf vimoutliner-0.3.x.tar.gz
+    $ tar xzvf vimoutliner-0.4.0.tar.gz
     $ cd vimoutliner
     $ sh install.sh
 
 From zip archive
 
-    $ unzip vimoutliner-0.3.x.zip
-    $ cd vimoutliner-0.3.x
+    $ unzip vimoutliner-0.4.0.zip
+    $ cd vimoutliner-0.4.0
     $ sh install.sh
 
 <
