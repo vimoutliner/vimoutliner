@@ -1285,16 +1285,13 @@ Toolbar in gvim
 Further information on outlines, outline processing and outliners~
 
 http://www.vim.org/scripts/script.php?script_id=3515
-vim.org script site
-
-http://freecode.com/projects/vimoutliner
-Main distribution website
+vim.org script site for vimoutliner
 
 https://github.com/vimoutliner/vimoutliner
-git repository
+git repository for vimoutliner
 
 http://www.troubleshooters.com/projects/alt-vimoutliner-litt/
-Preliminary main web site with links to other sites
+Preliminary main web site with links to other sites. (Outdated).
 
 http://www.troubleshooters.com/tpromag/199911/199911.htm
 Outlining discussion, not product specific
@@ -1305,27 +1302,4 @@ Discussion on how to use Vim for outlining
 http://www.troubleshooters.com/projects/vimoutliner.htm
 Former Web page for the VimOutliner distro
 
-http://www.outliners.com
-Discussion of (proprietary) outliners from days gone by.
-Downloads for ancient versions of such outliners.
-Unfortunately, all are DOS, Windows and Mac.
-
-http://members.ozemail.com.au/~caveman/Creative/Software/Inspiration/index.html
-Discussion of (proprietary,Mac) Inspiration software
-This page discusses many methods of thought/computer interaction:
-    Visual Outlining
-    Textual Outlining
-    Idea mapping
-    Mind Mapping
-    Brainstorming with Rapid Fire Entry
-    Concept Mapping
-    Story boarding
-    Diagrams (using rich symbol library)
-
-http://members.ozemail.com.au/~caveman/Creative/index.html
-Not about outlines, but instead about how to use your brain.
-The whole purpose of outlines is to use your brain.
-New ways of using your brain produce new ways to use outlines.
-
 For the VimOutliner version information and history, see the CHANGELOG.
-
