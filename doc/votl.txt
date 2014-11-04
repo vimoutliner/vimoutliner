@@ -1,4 +1,4 @@
-*votl_readme.txt*	For Vim version 7.2	Last change: 2014-09-28
+*votl_readme.txt*	For Vim version 7.2	Last change: 2014-11-04
 
                                                                 *vo* *votl* *vimoutliner*
 VimOutliner  0.4.0 ~
@@ -79,7 +79,7 @@ Installation with working Pathogen should be just
    # and then plugins are added as submodules.
    $ git clone git@github.com:vimoutliner/vimoutliner.git
 
-Restart vim and you should be good to go. If something does not€™t work,
+Restart vim and you should be good to go. If something does not work,
 please, let us know (either on the email list or file a ticket to the
 GitHub issue tracker).
 
@@ -399,7 +399,7 @@ the files searched in the following locations will be used:
    $HOME/.vim/bundle/vimoutliner when using pathogen)
 
 Many global variables can be also set in the normal vim manner in the
-userâ€™s $VIMRC file. See general vim documentation for more details for
+user's $VIMRC file. See general vim documentation for more details for
 individual variables.
 
                                                                   *votl-command*
@@ -411,7 +411,7 @@ with two commas. The double comma followed by a character is incredibly
 fast to type. However, with more widespread use of the VimOutliner some
 developers felt that all idiosyncrasies should be eliminated and
 VimOutliner should behave as a normal vim plugin.  Therefore now we
-donâ€™t redefine this command leader (as it is called in the Vim lingo)
+don't redefine this command leader (as it is called in the Vim lingo)
 and unless the user redefines it on her own (in |vimoutlinerrc|) it
 defaults to backslash. If you configure VimOutliner to use different key
 combination, you have to mentally replace it everywhere in this
