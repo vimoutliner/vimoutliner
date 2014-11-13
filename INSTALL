@@ -23,38 +23,24 @@ From zip archive
     $ cd vimoutliner-0.4.0
     $ sh install.sh 
 
-Installing with pathogen
+Installing with pathogen:
 
-If you have pathogen installed as your package manager you can clone the git repository in you
+If you have pathogen installed as your package manager you can clone the git repository in your
 pathogen directory:
         $ cd ~/.vim/bundle && git clone https://github.com/vimoutliner/vimoutliner.git
 
 Installing using install.sh:
 
-First you can decide whether to install the VimOutliner files or abort the
-process leaving everything unchanged.  Assuming you confirmed the
-installation, the script creates the necessary directory tree and copies the
-files which provide the core functionality and documentation.
+First you can decide whether to install the VimOutliner files or abort
+the process leaving everything unchanged. Assuming you have confirmed the
+installation, the install script creates the necessary directory tree and
+copies the files which provide the core functionality and documentation.
 
-With the second question you decide whether you want to install some brand new
-add-ons, currently implementing checkboxes(enabled), hoisting(disabled) 
-and smart paste(disabled), as well as several useful external scripts in the vimoutliner/scripts folder.
-
-
-Updating
-
-Updating an existing installation might require some manual work.
-
-If you are already working with a previous VimOutliner release, there is a
-slight chance that the current directory tree is different from your current
-one. In this case, you will have to manually migrate your files to the new
-locations.
-
-The installation script creates unique backups of files being replaced with
-newer versions. So if you put some local customisations into, say
-$HOME/.vim/vimoutliner/vimoutlinerrc, you'll probably have to merge the backup
-with the new file by hand.
-
+With the second question you decide whether you want to install some
+brand new add-ons, currently implementing checkboxes, tags and smart
+paste as enabled, as well as several useful external scripts in the
+vimoutliner/scripts folder. There are also several more useful plugins
+that you can enable by uncommenting them in your vimoutlinerrc file.
 
 Manual Method
 
@@ -63,7 +49,8 @@ destination folders by yourself. The following steps are a description of what
 has to go where and assume some knowledge of your vim setup.
 
 If you encounter problems, please contact the mailing list for an immediate
-solution and more complete future documentation.  www.lists.vimoutliner.org
+solution and more complete future documentation: https://groups.google.com/forum/#!forum/vimoutliner.
+
 
 If you want to setup VimOutliner on a system running Microsoft Windows, the
 directory $HOME denotes the base folder of the vim installation.  If you're on
@@ -124,8 +111,11 @@ should be a special color (typically green, but it can vary). Verify
 that paragraphs of body text can be reformatted with the Vim gq
 commands.
 
-You can test the different VimOutliner commands by looking at the examples
-in the cheatsheet. "help votl_cheatsheet".
+You can test the different VimOutliner commands by looking at the
+examples in the cheatsheet. "help votl_cheatsheet". To get the comma
+commands working, uncomment this line in your vimoutlinerrc file:
+    let maplocalleader = ',,'
+                               
 
 Debian Installation
 
