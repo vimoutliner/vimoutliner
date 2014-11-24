@@ -17,11 +17,11 @@ From tar archive
     $ cd vimoutliner
     $ sh install.sh
 
-From zip archive 
+From zip archive
 
     $ unzip vimoutliner-0.4.0.zip
     $ cd vimoutliner-0.4.0
-    $ sh install.sh 
+    $ sh install.sh
 
 Installing with pathogen:
 
@@ -95,8 +95,8 @@ the vim help system.  Start vim and execute the following command:
     :helptags $HOME/.vim/doc
 
 At this point, VimOutliner should be functional.  Type ":help vo" to get
-started. To get a quick overview of all VimOutliner commands you can view the 
-cheatsheet with ":help votl_cheatsheet". 
+started. To get a quick overview of all VimOutliner commands you can view the
+cheatsheet with ":help votl_cheatsheet".
 
 Testing Base Functionality
 
@@ -115,7 +115,7 @@ You can test the different VimOutliner commands by looking at the
 examples in the cheatsheet. "help votl_cheatsheet". To get the comma
 commands working, uncomment this line in your vimoutlinerrc file:
     let maplocalleader = ',,'
-                               
+
 
 Debian Installation
 
