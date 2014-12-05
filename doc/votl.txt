@@ -289,15 +289,6 @@ Troubleshooting~                                          *votl-troubleshooting*
 Q: I can't switch between colon based and space based body text.
 A: See next question
 
-Q: My ,,b and ,,B don't do anything. How do I fix it?
-A: Open vim like this:
->
-      vim $HOME/.vim/ftplugin/votl.vim
-<
-   Search for use_space_colon
-   Make sure it is set to 0, not 1
-   Rerun Vim, and ,,b and ,,B should work
-
 Q: I don't get VimOutliner features on files of extension .whatever.
 A: Open vim like this:
 >
@@ -532,10 +523,6 @@ How do I reformat one paragraph of body text?
 
 How do I switch between colon based and space based body text?
     ,,b for colon based, ,,B for space based
-
-What if ,,b and ,,B don't work
-    Change variable use_space_colon from 1 to 0
-        in $HOME/.vim/ftplugin/votl.vim
 
 How do I perform a word count?
     Use the command :w !wc

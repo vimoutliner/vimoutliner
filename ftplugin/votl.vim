@@ -30,8 +30,6 @@ let b:current_syntax = "outliner"
 
 " Default Preferences {{{1
 
-let use_space_colon=0
-
 " End User Preferences
 
 " VimOutliner Standard Settings {{{1
@@ -641,18 +639,10 @@ imap <silent><buffer> <localleader>f :e .<cr>
 map <silent><buffer> <localleader>- o----------------------------------------0
 imap <silent><buffer> <localleader>- ----------------------------------------<cr>
 
-" switch document between the two types of bodytext styles
-if use_space_colon == 1
-  "   First, convert document to the marker style
-  map <silent><buffer><localleader>b :%s/\(^\t*\) :/\1/e<cr>:%s/\(^\t*\) /\1 : /e<cr>:let @/=""<cr>
-  "   Now, convert document to the space style
-  map <silent><buffer><localleader>B :%s/\(^\t*\) :/\1/e<cr>:let @/=""<cr>
-else
-  "   First, convert document to the marker style
-  map <silent><buffer><localleader>b :%s/\(^\t*\):/\1/e<cr>:%s/\(^\t*\) /\1: /e<cr>:let @/=""<cr>
-  "   Now, convert document to the space style
-  map <silent><buffer><localleader>B :%s/\(^\t*\):/\1/e<cr>:let @/=""<cr>
-endif
+"   First, convert document to the marker style
+map <silent><buffer><localleader>b :%s/\(^\t*\):/\1/e<cr>:%s/\(^\t*\) /\1: /e<cr>:let @/=""<cr>
+"   Now, convert document to the space style
+map <silent><buffer><localleader>B :%s/\(^\t*\):/\1/e<cr>:let @/=""<cr>
 
 " Steve's additional mappings start here
 map <silent><buffer>   <C-K>         <C-]>
