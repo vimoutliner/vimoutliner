@@ -1,4 +1,4 @@
-let g:colors_name="VO Dark"
+let g:colors_name="vo_dark"
 hi normal guifg=white guibg=black	ctermfg=gray ctermbg=black
 hi StatusLine guifg=white guibg=black	ctermfg=gray ctermbg=black
 hi StatusLineNC guifg=white guibg=black	ctermfg=gray ctermbg=black
