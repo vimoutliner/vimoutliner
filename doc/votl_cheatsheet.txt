@@ -1,4 +1,4 @@
- *votl_cheatsheet.txt*  Last change: 2013-04-06 
+﻿ *votl_cheatsheet.txt*  Last change: 2013-04-06
 
 VIMOUTLINER CHEAT SHEET~
 
@@ -14,7 +14,7 @@ List format explained: [command] [mode] [description]
 
 CHECKBOXES~
 
-,,cb  normal Insert a check box on the current line/range 
+,,cb  normal Insert a check box on the current line/range
 ,,cx  normal Toggle check box state (percentage aware)
 ,,cd  normal Delete check boxes
 ,,c%  normal Create a check box with percentage placeholder
@@ -30,7 +30,7 @@ EXECUTABLE LINES~
 
 
 FOLDING~
-         
+
 ,,1   all      set foldlevel=0
 ,,2   all      set foldlevel=1
 ,,3   all      set foldlevel=2
@@ -47,7 +47,7 @@ FORMATTING~
 
 ,,-   all      Draw dashed line
 ,,s   normal   Sort sub-tree under cursor ascending
-,,S   normal   Sort sub-tree under cursor descending 
+,,S   normal   Sort sub-tree under cursor descending
 ,,B   normal   Make body text start with a space
 ,,b   normal   Make body text start with a colon and space
 >>    normal   Demote headline
