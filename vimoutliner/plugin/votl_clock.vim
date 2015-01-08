@@ -41,7 +41,7 @@ function! ClockStart(space)
     if a:space == 1
         let @x = " "
     endif
-	let @x = @x . strftime("%Y-%m-%d [%T -- %T] ->")
+	let @x = @x . strftime("%Y-%m-%d [%H:%M:%S -- %H:%M:%S] ->")
 	normal! "xp
 endfunction
 "}}}1
@@ -49,7 +49,7 @@ endfunction
 " Insert a space, then the datetime.
 function! ClockStop()
     if match(getline("."), "\\[.* -- .*\\]\\s*-\>") != -1
-        call setline(".",substitute(getline(".")," -- .*]\\s*-\>"," -- ".strftime("%T] ->"),""))
+        call setline(".",substitute(getline(".")," -- .*]\\s*-\>"," -- ".strftime("%H:%M:%S] ->"),""))
     endif
 endfunction
 "}}}1
