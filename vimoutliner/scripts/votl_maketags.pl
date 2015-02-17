@@ -1,4 +1,4 @@
-#!/usr/bin/perl -w
+#!/usr/bin/env perl
 # #######################################################################
 # votl_maketags.pl: Vim outline tagging system, main program, version 0.3.5
 #   Copyright (C) 2001-2003, 2011 by Steve Litt (slitt@troubleshooters.com)
@@ -79,260 +79,102 @@
 #
 # #######################################################################
 
-
 use strict;
-use vars qw($TAGFILENAME);
-use Cwd;
+use warnings;
+use Path::Tiny;
+use autodie qw(:all);
+use List::AllUtils qw(uniq);
 
-$TAGFILENAME = $ENV{"HOME"} . "/.vim/vimoutliner/vo_tags.tag";
-##### OLD LOCATION BELOW, REMOVE IN 0.3.6, COMMENT FOR NOW
-#$TAGFILENAME = $ENV{"HOME"} . "/.vimoutliner/vo_tags.tag";
+my $TAGFILENAME = path("$ENV{HOME}/.vim/vimoutliner/vo_tags.tag");
+my $TAGFILENAME_fh;
 
-sub process1Outline($$); #Early prototype the recursive routine
-sub makeDirectory($);    #Early prototype the recursive routine
+# HashRef containing a map from a filename to its tag names
+# { filename => { tagname => filename } }
+my $files_to_tags;
+# Array of all the files left to process
+my @process_queue;
 
-sub makeTagFileStartingAt($)
-	{
-	unless(@ARGV == 1)
-		{
-		usage();
-		die;
-		}
-	my($absoluteFileName) =  deriveAbsoluteFileName(Cwd::cwd(), $_[0]);
-	
-	my(%processedFiles) = ();
-	recordFileAsProcessed($absoluteFileName,\%processedFiles);
-	unlink $TAGFILENAME;
-	process1Outline($absoluteFileName, \%processedFiles);
-	sortAndDeleteDupsFromTagFile();
+main();
+
+sub main {
+	return usage() unless @ARGV;
+
+	push @process_queue, @ARGV; # add all arguments to the process queue
+
+	$TAGFILENAME_fh = $TAGFILENAME->opena();
+	# no process each one
+	while( @process_queue ) {
+		create_and_process( shift @process_queue );
 	}
+	$TAGFILENAME_fh->close;
 
-sub sortAndDeleteDupsFromTagFile()
-	{
-	my($TEMPTAGFILENAME) = "$ENV{'HOME'}/temptagfile.tag";
-	system("sort $TAGFILENAME | uniq > $TEMPTAGFILENAME"); 
-	system("rm $TAGFILENAME");
-	system("mv $TEMPTAGFILENAME $TAGFILENAME");
-	}
+	sort_and_dedupe_tagfile();
+}
 
-
-sub process1Outline($$)
-	{
-	my($fileName) = $_[0];
-	my($processedFilesHashRef) = $_[1];
-	
-	unless(fileExists($fileName))
-		{
-		makeDirectory($fileName);
-		makeEmptyFile($fileName);
-		}
-
-	print "Begin processing file $fileName.\n";
-
-	my($baseDirectory) = getBaseDirectory($fileName);
-	my(%tags) = getTagsFromFile($fileName);
-	my(@tagKeys) = keys(%tags);
-	my($tagKey);
-	foreach $tagKey (@tagKeys)
-		{
-		my($absoluteFileName);
-		if(isAbsoluteFilePath($tags{$tagKey}))
-			{
-			$absoluteFileName = $tags{$tagKey};
-			}
-		else
-			{
-			$absoluteFileName =
-			 deriveAbsoluteFileName($baseDirectory, $tags{$tagKey});
-			}
-		appendTagToTagFile($tagKey,$absoluteFileName);
- 		if(notProcessedYet($absoluteFileName, $processedFilesHashRef))
- 			{
-			recordFileAsProcessed($absoluteFileName,$processedFilesHashRef);
- 			process1Outline($absoluteFileName, $processedFilesHashRef);
- 			}
-		}
-	}
-
-sub appendTagToTagFile($$)
-	{
-	open(TAGFILE, ">>$TAGFILENAME");
-	print TAGFILE "$_[0]	$_[1]	:1\n";
-	close(TAGFILE);
-	}
-
-
-sub makeEmptyFile($)
-	{
-	open(OUTLINEFILE, ">" . $_[0]);
-	close(OUTLINEFILE);
-	}
-
-
-sub makeDirectory($)
-	{
-	my($completeFileName) = $_[0];
-	my($directoryName) = ($completeFileName =~ m/^(.*?)[^\/]*$/);
-	unless($directoryName eq "")
-		{
-		my($temp) = ($directoryName =~ m/^(.*).$/);
-		makeDirectory($temp);
-		print "Creating $directoryName...";
-		if(mkdir $directoryName)
-			{
-			print " succeeded.\n";
-			}
-		else
-			{
-			print " no action: $!.\n";
-			}
-		}
-	}
-
-sub fileExists($)
-	{
-	my($outlineFileName) = $_[0];
-	my($success) = open(OUTLINEFILE, "<" . $outlineFileName);
-	if($success)
-		{
-		close(OUTLINEFILE);
-		return(1);
-		}
-	else
-		{
-		return(0);
-		}
-	}
-
-sub getTagsFromFile($)
-	{
-	my($outlineFileName) = $_[0];
-	my(%tags);
-	my($tagString) = "";
-	my($success) = open(OUTLINEFILE, "<" . $outlineFileName);
-	unless($success)
-		{
-		print "Failed to open $outlineFileName\n";
-		return(());
-		}
-	while(<OUTLINEFILE>)
-		{
-		my($line) = $_;
-		chomp($line);
-		if($line =~ m/^\s*(_tag_\S+)/)
-			{
-			$tagString = $1;
-			}
-		elsif($tagString ne "")
-			{
-			$line =~ m/^\s*(\S+)/;
-			my($filename) = $1;
-			$tags{$tagString} =
-			  deriveAbsoluteFileName(getBaseDirectory($_[0]), $1);
-			$tagString = "";
-			}
-		}	
-	return(%tags);
-	}
-
-sub recordFileAsProcessed($$)
-	{
-	my($absoluteFileName) = $_[0];
-	my($processedFilesHashRef) = $_[1];
-	${$processedFilesHashRef}{$absoluteFileName} = "1";
-	}
-
-sub notProcessedYet($$)
-	{
-        my($absoluteFileName) = $_[0];
-	my(%processedFiles) = %{$_[1]};
-	if(defined($processedFiles{$absoluteFileName}))
-		{
-		return(0);
-		}
-	else
-		{
-		return(1);
-		}
-	}
-
-sub dia($)
-	{
-	print "dia " . $_[0] . "\n";
-	}
-
-
-sub isAbsoluteFilePath($)
-	{
-	if($_[0] =~ m/^\//)
-		{
-		return 1;
-		}
-	else
-		{
-		return 0;
-		}
-	}
-
-sub getFileNameOnly($)
-	{ 
-	my($fileString); 
-	if ($_[0] =~ m/.+\/(.*)$/)
-		{
-		$fileString= $1
-		}
-	else
-		{
-		$fileString = $_[0];
-		}
-
-	return $fileString;
-	}
-
-sub getBaseDirectory($)
-	{ 
-	my($dirString) = ($_[0] =~ m/(.+\/).*$/);
-	return $dirString;
-	}
-
-sub deriveAbsoluteFileName($$)
-	{
-	my($absoluteFileName);
-	my($baseDirectory) = $_[0];
-	my($passedFileName) = $_[1];
-	unless($baseDirectory =~ m/\/$/)
-		{
-		$baseDirectory= $baseDirectory . "/"; 
-		}
-	if($passedFileName =~ m/^\//)
-		{
-		$absoluteFileName = $passedFileName;
-		}
-	else
-		{
-		$absoluteFileName = $baseDirectory . $passedFileName;
-		}
-
-	$absoluteFileName =~ s/\/\.\//\//g;  #remove all "./";
-	deleteDoubleDots($absoluteFileName);
-
-	return($absoluteFileName);
-	}
-
-sub deleteDoubleDots($)
-	{
-	while($_[0] =~ m/\.\./)
-		{
-		$_[0] =~ s/\/[^\/]*\/\.\.//;
-		}
-	}
-
-sub usage()
-	{
+sub usage {
 	print "\nUsage is:\n";
 	print "otltags topLevelOutlineFileName\n\n";
+}
+
+sub expand_filename {
+	my ($filename, $base_dir) = @_;
+	$filename =~ s|^\$HOME/|~/|; # special case the $HOME environment variable
+	$filename = path( $filename ); # path expansion
+	$filename = $filename->absolute( $base_dir ) if( $base_dir );
+	$filename;
+}
+
+sub process_file {
+	my ($filename) = @_;
+	my $f = path( $filename );
+	my $f_contents = $f->slurp;
+	my %f_tags = $f_contents =~ /
+		^\s*(?<tagname>_tag_\S+).*
+		\n # and on the next line
+		^\s*(?<filename>.*)
+		/mgx;
+	\%f_tags;
+}
+
+sub create_and_process {
+	my ($filename) = @_;
+	# we want an absolute path
+	$filename = expand_filename( $filename, Path::Tiny->cwd );
+
+	# it has already been processed
+	return if exists $files_to_tags->{$filename};
+
+	if( ! -f $filename ) {
+		# does not exist: create it
+		$filename->parent->mkpath( { verbose => 1 } ); # make path and be verbose about it
+		$filename->touch;
+		$files_to_tags->{$filename} = {}; # new file -> already processed
+	} else {
+		my $results = process_file( $filename );
+		my $basedir = $filename->parent;
+		for my $tag (keys $results) {
+			# expand the files for each of the tags
+			$results->{$tag} = expand_filename($results->{$tag}, $basedir);
+		}
+
+		# and add the files for each of the tags to the @process_queue
+		push @process_queue, values %$results;
+
+		append_tags_to_tagfile($results);
+
+		$files_to_tags->{$filename} = $results; # let's store all the tags (useful for debugging)
 	}
-	
+}
 
-makeTagFileStartingAt($ARGV[0])
+sub sort_and_dedupe_tagfile {
+	my @contents = $TAGFILENAME->lines;
+	my @uniq_tags = uniq sort { $a cmp $b } @contents;
+	$TAGFILENAME->spew( \@uniq_tags );
+}
 
+sub append_tags_to_tagfile {
+	my ($tags) = @_;
+	for my $tag (keys $tags) {
+		print $TAGFILENAME_fh "$tag\t$tags->{$tag}\t:1\n"
+	}
+}
