@@ -1,4 +1,4 @@
-#!/usr/bin/python2
+#!/usr/bin/env python
 # otlgrep.py
 # grep an outline for a regex and return the branch with all the leaves.
 #
