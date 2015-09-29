@@ -23,9 +23,10 @@
 ###########################################################################
 # include whatever mdules we need
 
-import sys
-import re
+import locale
 import os
+import re
+import sys
 import time
 
 ###########################################################################
@@ -1031,26 +1032,28 @@ def createCSS():
 
 def printHeader(linein):
     global styleSheet, inlineStyle
-    print """<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\"s
-        \"http://www.w3.org/TR/html4/strict.dtd\">
-    <html><head><title>""" + getTitleText(linein) + "</title></head>"
+    out_string = """<!DOCTYPE HTML>
+        <html>
+    <head>
+        <meta charset="%s">
+        <title>%s</title>
+    """ % (
+        locale.getpreferredencoding(),
+        getTitleText(linein))
     try:
         file = open(styleSheet, "r")
     except IOError:
         createCSS()
         file = open(styleSheet, "r")
     if (styleSheet != "" and inlineStyle == 0):
-        print "<link href=\"" + styleSheet + \
-              "\" rel=\"stylesheet\" type=\"text/css\">"
+        out_string += '<link href="%s" rel="stylesheet" type="text/css">' \
+            % (styleSheet)
     if (styleSheet != "" and inlineStyle == 1):
-        print "<style type=\"text/css\">"
-        csslinein = file.readline()
-        while csslinein != "":
-            print csslinein,
-            csslinein = file.readline()
+        out_string += '<style type="text/css">'
+        out_string += file.read()
         file.close()
-        print "</style></head>"
-    print "<body>"
+        out_string += "</style>\n</head>"
+    print out_string + "\n<body>"
 
 
 def printFirstLine(linein):
@@ -1068,7 +1071,7 @@ def printFooter():
         print "<hr>"
         print copyright
         print "<br>"
-        print inputFile + "&nbsp&nbsp " + \
+        print inputFile + "&nbsp;&nbsp; " + \
             time.strftime("%Y/%m/%d %H:%M", time.localtime(time.time()))
         print "</div>"
     print "</body></html>"
@@ -1076,6 +1079,7 @@ def printFooter():
 
 def main():
     global showTitle
+    locale.setlocale(locale.LC_ALL, '')
     getArgs()
     file = open(inputFile, "r")
     if (slides == 0):
