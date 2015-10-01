@@ -22,6 +22,7 @@ from __future__ import print_function, unicode_literals
 import argparse
 import os.path
 import re
+import errno
 
 
 TAGFILENAME = os.path.expanduser("~/.vim/vimoutliner/vo_tags.tag")
@@ -59,7 +60,13 @@ def create_and_process(filename, outfile, queue, filestag):
     basedir = os.path.dirname(filename)
 
     if not os.path.exists(filename):
-        os.makedirs(basedir)
+        try:
+            os.makedirs(basedir)
+        except OSError as ose:
+            if ose.errno == errno.EEXIST and os.path.isdir(basedir):
+                pass
+            else:
+                raise
         open(filename, 'a')
         filestag[filename] = {}
     else:
