@@ -1033,7 +1033,11 @@ def printHeader(linein):
     global styleSheet, inlineStyle
     print """<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.01 Transitional//EN\"s
         \"http://www.w3.org/TR/html4/strict.dtd\">
-    <html><head><title>""" + getTitleText(linein) + "</title></head>"
+    <html>
+        <head>
+            <meta charset="utf-8"/>
+            <title>""" + getTitleText(linein) + """</title>
+        </head>"""
     try:
         file = open(styleSheet, "r")
     except IOError:
