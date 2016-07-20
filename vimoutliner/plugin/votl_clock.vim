@@ -63,6 +63,9 @@ function! CalculateSeconds(str)
     let l:seconds = (str2nr(l:endparts[2]) - str2nr(l:startparts[2]))
     let l:seconds = (str2nr(l:endparts[1]) - str2nr(l:startparts[1])) * 60 + l:seconds
     let l:seconds = (str2nr(l:endparts[0]) - str2nr(l:startparts[0])) * 3600 + l:seconds
+    if l:seconds <0
+	    let l:seconds = l:seconds + 86400
+    endif
     return l:seconds
 endfunction
 " }}}1
@@ -86,7 +89,7 @@ function! CalculateDuration(line)
     " if no childs found calculate the seconds for the line
     let l:lineString = getline(a:line)
     if match(l:lineString,"\\s*-\>") != -1
-        let l:times = matchstr(l:lineString,"\\[.* -- .*\\]\\s*-\>")
+        let l:times = matchstr(l:lineString,"\\[\\d\\d:\\d\\d:\\d\\d -- \\d\\d:\\d\\d:\\d\\d\\]\\s*-\>")
         if l:times != ""
             " calculate the real time difference
             let l:seconds = CalculateSeconds(substitute(l:times,"\\[\\(.*\\)\\]","\\1",""))
