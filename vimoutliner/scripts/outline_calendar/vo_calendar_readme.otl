@@ -169,7 +169,7 @@ Outline Calendar 1.3
 					: if you're running X, you'll get a gvim, otherwise a vim
 					: you'll be on today's entry
 				move around, add some items to the outline
-				move cursor on a ISO-format date yyyy-mm-dd and <C-k> it
+				move cursor on a ISO-format date yyyy-mm-dd and <C-]> it
 			edit any available day
 				$ td 2005-05-04
 					: release day

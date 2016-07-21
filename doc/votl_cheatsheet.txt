@@ -64,12 +64,6 @@ OTHER~
 ,,D   all      VimOutliner reserved command
 
 
-TAGGING/INTEROUTLINE~
-
-<C-K>   normal  Follow tag/interoutline (Synonym for Ctrl+])
-<C-N>   normal  Return from tag (Synonym for Ctrl+T)
-
-
 TIME AND DATE~
 
 ,,t   normal   Append timestamp (HH:MM:SS) to heading

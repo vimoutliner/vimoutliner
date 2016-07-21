@@ -645,8 +645,6 @@ map <silent><buffer><localleader>b :%s/\(^\t*\):/\1/e<cr>:%s/\(^\t*\) /\1: /e<cr
 map <silent><buffer><localleader>B :%s/\(^\t*\):/\1/e<cr>:let @/=""<cr>
 
 " Steve's additional mappings start here
-map <silent><buffer>   <C-K>         <C-]>
-map <silent><buffer>   <C-N>         <C-T>
 map <silent><buffer>   <localleader>0           :set foldlevel=99999<CR>
 map <silent><buffer>   <localleader>9           :set foldlevel=8<CR>
 map <silent><buffer>   <localleader>8           :set foldlevel=7<CR>

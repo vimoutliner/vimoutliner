@@ -223,13 +223,10 @@ $HOME/.vim/vimoutliner/scripts/votl_maketags.pl $HOME/votl_test.otl
 Try the following:
 - In $HOME/votl_test.otl
 - Cursor to the _tag_newfile marker
-- Press CTRL-K
+- Press CTRL-]
     You should be brought to $HOME/votl_newfile.otl
-- Press CTRL-N
+- Press CTRL-T
     You should be brought back to $HOME/votl_test.otl
-Note:
-    CTRL-K is a VimOutliner synonym for CTRL-]
-    CTRL-N is a VimOutliner synonym for CTRL-T
 
 This might also be achieved more efficiently by using the UTL plugin for
 linking to other files and text. Check out the plugin at:
@@ -452,14 +449,18 @@ others could benefit from it.
 
 Other VimOutliner Commands~
 
-Naturally, almost all Vim commands work in VimOutliner.  Additionally,
-VimOutliner adds a few extra commands besides the comma comma commands
-discussed previously.
+Naturally, almost all Vim commands work in VimOutliner. Besides
+the comma comma commands VimOutliner suggests a few extra commands.
+To further enhance your VimOutliner experience add the following
+lines to your .vimrc file.
+>
+	map <silent> <buffer> <C-K> <Plug>VO_FollowLink
+	map <silent> <buffer> <C-N> <Plug>VO_JumpBack
+<
+which will add the following mappings
 
-Command list:
-    CTRL-K        Follow tag (Synonym for CTRL-])
-    CTRL-N        Return from tag (Synonym for CTRL-T)
-    Q             Reformat (Synonym for gq)
+<C-K>   normal  Follow tag/interoutline (Synonym for Ctrl+])
+<C-N>   normal  Return from tag (Synonym for Ctrl+T)
 
 
 To get a quick overview of all VimOutliner commands type ":help votl_cheatsheet" in vim.
