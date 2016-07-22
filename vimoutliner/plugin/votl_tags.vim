@@ -19,6 +19,12 @@ endif
 
 " Mappings {{{1
 
+" Follow inter-outline link.
+noremap <buffer> <Plug>VO_FollowLink :call <SID>follow_link()<CR>
+
+" Go back to previous outline.
+noremap <buffer> <Plug>VO_JumpBack :call <SID>jump_back()<CR>
+
 " Create a link from a word in normal mode.
 noremap <buffer> <Plug>VO_CreateLink :call <SID>create_link()<CR>
 if !hasmapto('<Plug>VO_CreateLink')
