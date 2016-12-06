@@ -1,4 +1,4 @@
-﻿ *votl_cheatsheet.txt*  Last change: 2013-04-06
+ *votl_cheatsheet.txt*  Last change: 2013-04-06
 
 VIMOUTLINER CHEAT SHEET~
 
