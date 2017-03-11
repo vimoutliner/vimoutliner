@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 # otl2ooimpress.sh
 # needs otl2ooimpress.py to work at all
 #############################################################################
@@ -29,6 +29,6 @@ RMPATH=/bin
 # Path to zip
 ZIPPATH=/usr/bin
 
-$MYPATH/otl2ooimpress.py $1 > content.xml
-$ZIPPATH/zip $1.sxi content.xml
+$MYPATH/otl2ooimpress.py "$1" > content.xml
+$ZIPPATH/zip "$1.sxi" content.xml
 $RMPATH/rm content.xml

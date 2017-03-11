@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 if [ "$#" -lt 1 ] ; then
 	echo " Usage: otltail level < file"
 	echo "	      Remove the specified number of parent headings."

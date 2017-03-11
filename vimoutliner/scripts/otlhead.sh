@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 if [ "$#" -lt 1 ] ; then
 	echo " Usage: otlhead level < file"
 	echo "        Keep the number of levels specified, remove the rest."

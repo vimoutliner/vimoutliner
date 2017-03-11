@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 homedir=$HOME
 vimdir=$homedir/.vim

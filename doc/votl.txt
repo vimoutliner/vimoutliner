@@ -541,7 +541,7 @@ The last tool item calls a shell script, 'myotl2html.sh'. This script should
 be provided by the user and is not included in VO releases. A sample
 myotl2html.sh script might look like this:
 >
-    #!/bin/bash
+    #!/bin/sh
     otl2html.py -S pjtstat.css $1 > $HOME/public_html/$1.html
 <
 If you have several different types of reports you create regularly, you can
