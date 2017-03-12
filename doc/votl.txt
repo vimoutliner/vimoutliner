@@ -317,7 +317,7 @@ What sets VimOutliner apart from the rest is that it's been constructed from
 the ground up for fast and easy authoring.  Keystrokes are quick and easy,
 especially for someone knowing the Vim editor. The mouse is completely
 unnecessary (but is supported to the extent that Vim supports the mouse). Many
-of the VimOutliner commands start with a double comma because that's very
+of the VimOutliner commands start with a backslash because that's very
 quick to type.
 
 Many outliners are prettier than VimOutliner. Most other outliners are more
@@ -395,7 +395,7 @@ Backslash Leader Commands~
 
 Traditionally (meaning in terms of the VimOutliner traditions ;)) all
 VimOutliner were features accessed through keyboard commands starting
-with two commas. The double comma followed by a character is incredibly
+with two commas. The backslash followed by a character is incredibly
 fast to type. However, with more widespread use of the VimOutliner some
 developers felt that all idiosyncrasies should be eliminated and
 VimOutliner should behave as a normal vim plugin.  Therefore now we
