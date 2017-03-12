@@ -24,7 +24,7 @@ and body text.
   VimOutliner philosophy                                       |votl-philosophy|
   Running VimOutliner                                             |votl-running|
       VimOutliner configuration file                             |vimoutlinerrc|
-      Comma comma commands                                        |votl-command|
+      Backslash Leader commands                                   |votl-command|
       Basic VimOutliner activities                             |votl-activities|
       Menu                                                           |votl-menu|
       Vim Outliner objects                                        |votl-objects|
@@ -276,7 +276,7 @@ Save and exit
 You should get:
 - level colors,
 - body text (lines starting with colon)
-- comma comma commands (try ,,2 and ,,1)
+- leader commands (try \2 and \1)
 
 
 ==============================================================================
@@ -391,7 +391,7 @@ user's $VIMRC file. See general vim documentation for more details for
 individual variables.
 
                                                                   *votl-command*
-Comma Comma Commands~
+Backslash Leader Commands~
 
 Traditionally (meaning in terms of the VimOutliner traditions ;)) all
 VimOutliner were features accessed through keyboard commands starting
@@ -411,46 +411,46 @@ If you are friend of the ancient régime, then just uncomment the line in
     "let maplocalleader = ',,'  " uncomment for compatibility with
                                 " previous versions of VO
 
-We expect to create more comma comma commands, so try not to create your own,
-as they may clash with later comma comma commands. If you have an
+We expect to create more leader commands, so try not to create your own,
+as they may clash with later leader commands. If you have an
 exceptionally handy command, please report it to the VimOutliner list. Perhaps
 others could benefit from it.
 
     Command   List     Description ~
-        ,,D   all      VimOutliner reserved command
-        ,,H   all      reserved for manual de-hoisting (add-on)
-        ,,h   all      reserved for hoisting (add-on)
-        ,,1   all      set foldlevel=0
-        ,,2   all      set foldlevel=1
-        ,,3   all      set foldlevel=2
-        ,,4   all      set foldlevel=3
-        ,,5   all      set foldlevel=4
-        ,,6   all      set foldlevel=5
-        ,,7   all      set foldlevel=6
-        ,,8   all      set foldlevel=7
-        ,,9   all      set foldlevel=8
-        ,,0   all      set foldlevel=99999
-        ,,-   all      Draw dashed line
-        ,,f   normal   Directory listing of the current directory
-        ,,s   normal   Sort sub-tree under cursor ascending
-        ,,S   normal   Sort sub-tree under cursor descending
-        ,,t   normal   Append timestamp (HH:MM:SS) to heading
-        ,,T   normal   Pre-pend timestamp (HH:MM:SS) to heading
-        ,,T   normal   Pre-pend timestamp (HH:MM:SS) to heading
-        ,,t   insert   Insert timestamp (HH:MM:SS) at cursor
-        ,,d   normal   Append datestamp  (YYYY-MM-DD) to heading
-        ,,d   insert   Insert datestamp  (YYYY-MM-DD) at cursor
-        ,,D   normal   Pre-pend datestamp  (YYYY-MM-DD) to heading
-        ,,B   normal   Make body text start with a space
-        ,,b   normal   Make body text start with a colon and space
-        ,,w   insert   Save changes and return to insert mode
-        ,,e   normal   Execute the executable tag line under cursor
+        \D   all      VimOutliner reserved command
+        \H   all      reserved for manual de-hoisting (add-on)
+        \h   all      reserved for hoisting (add-on)
+        \1   all      set foldlevel=0
+        \2   all      set foldlevel=1
+        \3   all      set foldlevel=2
+        \4   all      set foldlevel=3
+        \5   all      set foldlevel=4
+        \6   all      set foldlevel=5
+        \7   all      set foldlevel=6
+        \8   all      set foldlevel=7
+        \9   all      set foldlevel=8
+        \0   all      set foldlevel=99999
+        \-   all      Draw dashed line
+        \f   normal   Directory listing of the current directory
+        \s   normal   Sort sub-tree under cursor ascending
+        \S   normal   Sort sub-tree under cursor descending
+        \t   normal   Append timestamp (HH:MM:SS) to heading
+        \T   normal   Pre-pend timestamp (HH:MM:SS) to heading
+        \T   normal   Pre-pend timestamp (HH:MM:SS) to heading
+        \t   insert   Insert timestamp (HH:MM:SS) at cursor
+        \d   normal   Append datestamp  (YYYY-MM-DD) to heading
+        \d   insert   Insert datestamp  (YYYY-MM-DD) at cursor
+        \D   normal   Pre-pend datestamp  (YYYY-MM-DD) to heading
+        \B   normal   Make body text start with a space
+        \b   normal   Make body text start with a colon and space
+        \w   insert   Save changes and return to insert mode
+        \e   normal   Execute the executable tag line under cursor
 
 
 Other VimOutliner Commands~
 
 Naturally, almost all Vim commands work in VimOutliner. Besides
-the comma comma commands VimOutliner suggests a few extra commands.
+the leader commands VimOutliner suggests a few extra commands.
 To further enhance your VimOutliner experience add the following
 lines to your .vimrc file.
 >
@@ -498,13 +498,13 @@ How do I promote or demote an entire tree?
     Use << or >> as appropriate
 
 How do I collapse an entire outline?
-    ,,1
+    \1
 
 How do I maximally expand an entire outline?
-    ,,0
+    \0
 
 How do I expand an outline down to the third level?
-    ,,3
+    \3
 
 How do I move a tree?
     Use Vim's visual cut and paste
@@ -523,7 +523,7 @@ How do I reformat one paragraph of body text?
         DANGER! Other methods can reformat genuine headlines.
 
 How do I switch between colon based and space based body text?
-    ,,b for colon based, ,,B for space based
+    \b for colon based, \B for space based
 
 How do I perform a word count?
     Use the command :w !wc
@@ -810,19 +810,19 @@ status of todo-lists etc. Three special notations are used:
     [X]     a checked item or complete task
     %       a placeholder for percentage of completion
 <
-Several ,,-commands make up the user interface:
+Several \-commands make up the user interface:
 >
-    ,,cb  Insert a check box on the current line or each line of the currently
+    \cb  Insert a check box on the current line or each line of the currently
           selected range (including lines in selected but closed folds). This
           command is currently not aware of body text. Automatic recalculation
           of is performed for the entire root-parent branch that contains the
-          updated child. (see ,,cz)
-    ,,cx  Toggle check box state (percentage aware)
-    ,,cd  Delete check boxes
-    ,,c%  Create a check box with percentage placeholder except on childless
+          updated child. (see \cz)
+    \cx  Toggle check box state (percentage aware)
+    \cd  Delete check boxes
+    \c%  Create a check box with percentage placeholder except on childless
           parents
-    ,,cp  Create a check box with percentage placeholder on all headings
-    ,,cz  Compute completion for the tree below the current heading.
+    \cp  Create a check box with percentage placeholder on all headings
+    \cz  Compute completion for the tree below the current heading.
 <
 How do I use it?
 
@@ -860,7 +860,7 @@ Start with a simple example. Let's start planning a small party, say a barbecue.
 
 2. Add the check boxes.
 
-This can be done by visually selecting them and typing ,,cb.  When done, you
+This can be done by visually selecting them and typing \cb.  When done, you
 should see this:
 >
     [_] Barbecue
@@ -894,7 +894,7 @@ should see this:
 3. Now check off what's done.
 
 Checking off what is complete is easy with the
-,,cx command.  Just place the cursor on a heading and ,,cx it. Now you can see
+\cx command.  Just place the cursor on a heading and \cx it. Now you can see
 what's done as long as the outline is fully expanded.
 >
     [_] Barbecue
@@ -927,8 +927,8 @@ what's done as long as the outline is fully expanded.
 
 4. Now summarize what's done.
 
-You can summarize what is done with the ,,cz command.  Place the cursor on the
-'Barbecue' heading and ,,cz it.  The command will recursively process the
+You can summarize what is done with the \cz command.  Place the cursor on the
+'Barbecue' heading and \cz it.  The command will recursively process the
 outline and update the check boxes of the parent headlines. You should see:
 (Note: the only change is on the 'Guests' heading. It changed because all of
 its children are complete.)
@@ -998,7 +998,7 @@ like this:
 6. Now compute the percentage of completion.
 
 After adding the % symbols, place the cursor on the 'Barbecue' heading and
-execute ,,cz as before. Keep in mind that the recursive percentages are
+execute \cz as before. Keep in mind that the recursive percentages are
 weighted. You should see:
 >
     [_] 58% Barbecue
@@ -1078,7 +1078,7 @@ To enable this plugin uncomment the following line in |vimoutlinerrc|:
 Once it is enabled, you hoist the subtopics of the currently selected
 item with
 
-    ,,h   Hoist the subtopics into a temporary file
+    \h   Hoist the subtopics into a temporary file
 
 The changes are merged back into the original file by closing the temporary
 hoist file with
@@ -1091,7 +1091,7 @@ following procedure:
 Open the main file in VimOutliner Search for the line containing the __hoist
 tag On this line, do
 
-    ,,H    Manual de-hoisting
+    \H    Manual de-hoisting
 
                                                                     *votl-clock*
 Clock~
@@ -1119,7 +1119,7 @@ minutes, 'h' for hours and 'd' for days. If no unit is given hours are used.
 To summarize the times up within the outline headings ending with -> {char}
 use
 
-    ,,cu    Clock update with the cursor somewhere in the hierarchy.
+    \cu    Clock update with the cursor somewhere in the hierarchy.
 
 After that the outline should look like this:
 >
@@ -1128,12 +1128,12 @@ After that the outline should look like this:
             Monday, 3th [08:30:00 -- 17:45:00] -> 555.00 m
             Tuesday, 3th [08:50:25 -- 18:00:02] -> 32977 s
 <
-Every time the times are changed or the units where changed use ,,cu to update
+Every time the times are changed or the units where changed use \cu to update
 all times within the hierarchy.
 
 Mappings for fast clocking:
 
-    ,,cs    Clock start. Date and current time as start and end time are
+    \cs    Clock start. Date and current time as start and end time are
             written at cursor position. Works in normal mode and insert mode.
 >
     Year 2011 -> 0.77 d
@@ -1145,7 +1145,7 @@ Mappings for fast clocking:
 To set a new end time, place the cursor at the desired line and use following
 mapping:
 
-    ,,cS    Clock stop. Set the end time to current time. This works also in
+    \cS    Clock stop. Set the end time to current time. This works also in
             normal mode and insert mode.
 
 >
