@@ -4,10 +4,10 @@
 " middle of a branch.
 " Added 2011-03-01(JB): This script will now also copy an outline correctly by
 " using \\y, copy to the register with \\r, cut an outline by using \\d, and
-" paste from the register using \\b. 
+" paste from the register using \\b.
 " http://www.lists.vimoutliner.org/pipermail/vimoutliner/2008-October/002366.html
 
-map <buffer>p :call VOput()<cr>
+map <buffer>p :<c-u>call VOput()<cr>
 map <buffer>\\b :call VOputreg()<cr>
 map <buffer>\\y :call VOcop()<cr>
 map <buffer>\\r :call VOreg()<cr>
@@ -80,17 +80,17 @@ function! VOput()
 	if (foldclosed(thisLine) == -1) && IsParent(thisLine)
 		normal! zc
 		let fold_cursor = getpos(".")
-		normal! ]p
+		exe "normal! " . v:count1 . '"' . v:register . "]p"
 		let put_cursor = getpos(".")
 		call setpos('.',fold_cursor)
 		normal! zo
 		call setpos('.',put_cursor)
 	else
-		normal! ]p
+		exe "normal! " . v:count1 . '"' . v:register . "]p"
 	endif
 endfunction
 
- 
+
 function! VOputreg()
 	let thisLine = line(".")
 	if (foldclosed(thisLine) == -1) && IsParent(thisLine)
@@ -105,13 +105,3 @@ function! VOputreg()
 		normal! "+]p
 	endif
 endfunction
- 
- 
- 
- 
- 
- 
- 
- 
- 
-
