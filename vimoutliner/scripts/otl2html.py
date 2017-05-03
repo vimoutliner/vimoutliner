@@ -1,4 +1,4 @@
-#!/usr/bin/python2
+#!/usr/bin/env python
 # otl2html.py
 # convert a tab-formatted outline from VIM to HTML
 #
