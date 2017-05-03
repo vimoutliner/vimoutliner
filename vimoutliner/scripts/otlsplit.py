@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python2
 # otlslit.py
 # split an outline into several files.
 #
