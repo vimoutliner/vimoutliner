@@ -263,7 +263,7 @@ endfunction
 " ComputeDocument() {{{2
 " compute down all trees
 
-function! ComputeDocument(lnum)
+function! ComputeDocument()
 	let parents = RootParents()
 	for parent in parents
 		call ComputeDown(parent)
