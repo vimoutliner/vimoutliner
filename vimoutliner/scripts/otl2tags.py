@@ -132,26 +132,21 @@ def stripMarker(line, marker):
 # input: line
 # output: returns text, usertext, table, preftext, etc.
 def getLineType(line):
-    if (line[0] == ':'):
-        return 'text'
-    elif (line[0] == ';'):
-        return 'preftext'
-    elif (line[0] == '>'):
-        return 'usertext'
-    elif (line[0] == '<'):
-        return 'userpreftext'
-    elif (line[0] == '|'):
-        return 'table'
-    elif (line[0] == '-'):
-        return 'bulletheading'
-    elif (line[0] == '+'):
-        return 'numberheading'
-# elif (line[0] == '['):
-#    return 'checkboxheading'
-    elif (line[0] == ''):
-        return 'blank'
-    else:
-        return 'heading'
+    linetype = {
+        ':': 'text',
+        ';': 'preftext',
+        '>': 'usertext',
+        '<': 'userpreftext',
+        '|': 'table',
+        '-': 'bulletheading',
+        '+': 'numberheading',
+        # '[': 'checkboxheading',
+    }
+    try:
+        ret = linetype.get(line, 'heading')
+    except IndexError:
+        ret = 'blank'
+    return ret
 
 
 # getChildren
