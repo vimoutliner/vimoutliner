@@ -15,6 +15,7 @@
 ###########################################################################
 # include whatever mdules we need
 
+import argparse
 import sys
 from ConfigParser import ConfigParser
 import re
@@ -46,53 +47,43 @@ def dprint(*vals):
         print >> sys.stderr, vals
 
 
-# usage
-# print the simplest form of help
-# input: none
-# output: simple command usage is printed on the console
-def showUsage():
-    print """
-        Usage:
-        otl2table.py [options] inputfile
-        Options
-            -c             config-file
-            -d             debug
-            --help         show help
-        output filenames are based on the input file name and the config file
-        """
-
-
 # getArgs
 # Check for input arguments and set the necessary switches
 # input: none
 # output: possible console output for help, switch variables may be set
 def getArgs():
     global inputfile, debug, noTrailing, formatMode, config
-    if (len(sys.argv) == 1):
-        showUsage()
-        sys.exit()()
-    else:
-        for i in range(len(sys.argv)):
-            if (i != 0):
-                if (sys.argv[i] == "-c"):         # test for the type flag
-                    config.read(sys.argv[i + 1])  # read the config
-                    i = i + 1                     # increment the pointer
-                elif (sys.argv[i] == "-d"):
-                    debug = 1
-                elif (sys.argv[i] == "-?"):     # test for help flag
-                    showUsage()          # show the help
-                    sys.exit()         # exit
-                elif (sys.argv[i] == "--help"):
-                    showUsage()
-                    sys.exit()
-                elif (sys.argv[i] == "-h"):
-                    showUsage()
-                    sys.exit()
-                elif (sys.argv[i][0] == "-"):
-                    print "Error!  Unknown option.  Aborting"
-                    sys.exit()
-            else:                  # get the input file name
-                inputfile = sys.argv[i]
+    parser = argparse.ArgumentParser(
+        description="Script to convert vimoutliner's otl files to graphviz' dot",
+        epilog="output file names are based on the input file name and the config file."
+    )
+    parser.add_argument('-?', action='help')
+    parser.add_argument(
+        'inputfile',
+        nargs=1,
+        type=argparse.FileType('r'),
+    )
+    parser.add_argument(
+        '-d', '--debug',
+        dest='debug',
+        action='store_const',
+        const=1,
+        help='debug'
+    )
+    parser.add_argument(
+        '-c', '--config',
+        dest='config',
+        nargs=1,
+        help='config-file',
+        type=argparse.FileType('r'),
+    )
+    args = parser.parse_args(sys.argv[1:])
+    if args.debug:
+        debug = 1
+    inputfile = args.inputfile[0].name
+    config.read(args.config[0].name)
+
+
 
 
 # printConfig
