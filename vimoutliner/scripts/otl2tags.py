@@ -290,16 +290,16 @@ def getURL(line):
 def handleURL(line):
     link, url, text = getURL(line)
     if link is None:
-        return re.replace(line, "[url]", "")
+        return line.replace("[url]", "")
 
     v["%u"] = url
     v["%v"] = text
 
     text = subTags("URLs", "url")
-    line = re.replace(line, link, text)
+    line = line.replace(link, text)
 
     url = subTags("URLs", "url-attr")
-    line = re.replace(line, "[url]", url)
+    line = line.replace("[url]", url)
 
     return line
 
