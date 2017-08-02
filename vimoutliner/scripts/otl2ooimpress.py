@@ -71,7 +71,7 @@ def showUsage():
 # input: none
 # output: possible console output for help, switch variables may be set
 def getArgs():
-    global inputfile, debug
+    global inputFile, debug
     if (len(sys.argv) == 1):
         showUsage()
         sys.exit()()
@@ -93,7 +93,7 @@ def getArgs():
                     print "Error!  Unknown option.  Aborting"
                     sys.exit()
                 else:     # get the input file name
-                    inputfile = sys.argv[i]
+                    inputFile = sys.argv[i]
 
 
 # getLineLevel
