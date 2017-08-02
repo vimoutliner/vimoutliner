@@ -126,12 +126,12 @@ echo "installing files"
 copyfile syntax/votl.vim $vimdir
 copyfile ftplugin/votl.vim $vimdir
 copyfile ftdetect/votl.vim $vimdir
-copyfile colors/vo_light.vim $vimdir
-copyfile colors/vo_dark.vim $vimdir
+copyfile colors/votl_light.vim $vimdir
+copyfile colors/votl_dark.vim $vimdir
 copyfile doc/votl.txt $vimdir
 copyfile doc/votl_cheatsheet.txt $vimdir
 copyfile vimoutlinerrc $vodir
-copyfile vimoutliner/scripts/votl_maketags.pl $vimdir
+copyfile vimoutliner/scripts/votl_maketags.py $vimdir
 
 #INCORPORATE HELP DOCUMENTATION
 echo "Installing vimoutliner documentation"
