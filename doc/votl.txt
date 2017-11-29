@@ -13,10 +13,6 @@ and body text.
   License                                                         |votl-license|
   Version                                                         |votl-version|
   Installing and testing VimOutliner                              |votl-install|
-      Install via Pathogen                               |votl-pathogen-install|
-      Legacy Script Driven Method                            |votl-auto-install|
-      Updating                                                   |votl-updating|
-      Manual method                                        |votl-manual-install|
       Testing                                                     |votl-testing|
       Debian                                                       |votl-debian|
   Using VimOutliner on other file types                       |votl-other-files|
@@ -64,126 +60,43 @@ Installing and Testing VimOutliner                                *votl-install*
     Manual Method                   |votl-manual-install|
     Testing                         |votl-testing|
 
-                                                         *votl-pathogen-install*
-Install via Pathogen~
+                                                                  *votl-install*
+Install~
 
-Preferred and most simple method of VimOutliner installation is using
-Pathogen (developers of VimOutliner actually believe that Pathogen
-(https://github.com/tpope/vim-pathogen), or Vundle, should be generally
-the preferred way of installation of any vim plugin).
-
-Installation with working Pathogen should be just
-
-   $ cd ~/.vim/bundle
-   # Or even better is to have whole ~/.vim/bundle as a separate repo
-   # and then plugins are added as submodules.
-   $ git clone git@github.com:vimoutliner/vimoutliner.git
-
-Restart vim and you should be good to go. If something does not work,
-please, let us know (either on the email list or file a ticket to the
-GitHub issue tracker).
-
-                                                             *votl-auto-install*
-Legacy Script Driven Method~
-
-The automatic installation targets Unix-compatible platforms: >
-
-From tar archive
-
-    $ tar xzvf vimoutliner-0.4.0.tar.gz
-    $ cd vimoutliner
-    $ sh install.sh
-
-From zip archive
-
-    $ unzip vimoutliner-0.4.0.zip
-    $ cd vimoutliner-0.4.0
-    $ sh install.sh
-
-<
-The install.sh script will ask you whether to install the VimOutliner files or
-abort the process leaving everything unchanged.  Assuming you confirmed the
-installation, the script creates the necessary directory tree and copies the
-files which provide the core functionality and documentation.
-
-With the second question you decide whether you want to install some brand new
-add-ons, currently implementing hoisting and checkboxes.
-
-                                                                 *votl-updating*
-Updating~
-
-Updating an existing installation might require some manual work.
-
-If you are already working with a previous VimOutliner release, there is a
-slight chance that the current directory tree is different from your current
-one. In this case, you will have to manually migrate your files to the new
-locations.
-
-The installation script creates unique backups of files being replaced
-with newer versions. So if you put some local customizations into
-vimoutlinerrc in the directory where VimOutliner is run from (say
-$HOME/.vim/vimoutliner/vimoutlinerrc), you'll probably have to merge the
-backup with the new file by hand. Which is one good reason why it is
-preferred to use for the custom configuration and extensions your own
-copy of the |vimoutlinerrc| in some other location where the file is
-sought for.
-
-                                                           *votl-manual-install*
-Manual Method~
-
-You can also copy the files from the unpacked distribution tar ball into their
-destination folders by yourself. The following steps are a description of what
-has to go where and assume some knowledge of your vim setup.
-
-If you encounter problems, please contact the mailing list for an immediate
-solution and more complete future documentation.
-https://groups.google.com/forum/#!forum/vimoutliner
-
-If you want to setup VimOutliner on a system running Microsoft Windows, the
-directory $HOME denotes the base folder of the vim installation.  If you're on
-Unix based system, the location of $HOME is as usual.
-
-You need the following subtrees in your $HOME directory: >
-
-    $HOME/.vim/
-        doc/
-        ftdetect/
-        ftplugin/
-        syntax/
-        vimoutliner/
-            plugins/
-            scripts/
-<
-The distribution tar ball unpacks into a directory vimoutliner with the
-following contents: >
-
-    vimoutliner/
-        plugins/             (1)
-        scripts/             (1)
-    doc/                     (1)
-    ftdetect/                (1)
-    ftplugin/                (1)
-    install.sh*
-    syntax/                  (1)
-    syntax/                  (1)
-    vimoutlinerrc            (1)
-<
-(1) The content of these folders should be copied to their namesakes in the
-$HOME/.vim folder
-
-Your $HOME/.vimrc file should contain the lines >
-
-     filetype plugin indent on
-     syntax on
-<
-Finally, you need to integrate the online help provided with VimOutliner into
-the vim help system.  Start vim and execute the following command: >
+VimOutliner uses now standard method of installation of vim plugins (vim
+version 8 is shown, but similar steps for older versions of vim could
+work with using vim-pathogen, Vundle):
 >
-    :helptags $HOME/.vim/doc
+   $ mkdir -p ~/.vim/pack/thirdparty/start  # the "thirdparty" name may
+                                            # be different, there just
+                                            # need to be one more level
+                                            # of directories
+   $ cd ~/.vim/pack/thirdparty/start
+   $ git clone https://github.com/vimoutliner/vimoutliner.git
+   $ vim -u NONE -c "helptags vimoutliner/doc" -c q
 <
-At this point, VimOutliner should be functional.  Type ":help vo" to get
-started. You can also type ":help votl_cheatsheet" to a get a quick overview
-of all the VimOutliner commands.
+Alternatively instead of making a clone as a separate repo, the
+developers of VimOutliner believe, it is better to have whole ~/.vim
+directory as one git repo and then vim plugins would be just submodules.
+If you have setup ~/.vim in this way then installing VimOutliner is
+just:
+>
+   $ cd ~/.vim/
+   $ git submodule add https://github.com/vimoutliner/vimoutliner.git \
+        pack/thirdparty/start/vimoutliner
+   $ vim -u NONE -c "helptags vimoutliner/doc" -c q
+<
+Restart vim and you should be good to go.
+
+Getting all your vim plugins updated would be then just
+>
+   $ cd ~/.vim
+   $ git submodule update --remote --rebase
+<
+For more about working with git submodules, read git-submodule(1).
+
+If something does not work, please, let us know (either on the email
+list or file a ticket to the GitHub issue tracker).
 
                                                                   *votl-testing*
 Testing Base Functionality~
@@ -234,38 +147,26 @@ linking to other files and text. Check out the plugin at:
 http://www.vim.org/scripts/script.php?script_id=293
 
                                                                    *votl-debian*
-Debian Installation~
+Package Installation~
 
-Debian does include Vim Outliner as a package. However some Debian version
-require this line to be added to your |vimrc| file: >
-
-    syntax on
->
+Some Linux distros include Vim Outliner as a package.
 
 ==============================================================================
 Using VimOutliner On Other File Types~                        *votl-other-files*
 
 How to use VimOutliner on non .otl files~
 
-Previous VimOutliner versions used the ol script to invoke VimOutliner. As of
-VimOutliner 0.3.0, the ol script is no longer necessary nor provided. Instead,
-VimOutliner is now a Vim plugin, so Vim does all the work.
-
-This makes VimOutliner much simpler to use in most cases, but Vim plugins are
-file extension based, meaning that if you want to use VimOutliner on a file
-extension other than .otl, you must declare that file extension in
-$HOME/.vim/ftdetect/votl.vim. In this section we'll use the .emdl extension
-(Easy Menu Definition Language) as an example.
+Vim plugins like VimOutliner are file extension based, meaning that if
+you want to use VimOutliner on a file extension other than .otl, you
+must declare that file extension in $HOME/.vim/ftdetect/votl.vim. In
+this section we'll use the .emdl extension (Easy Menu Definition
+Language) as an example.
 
 To enable VimOutliner work with .emdl files, do this:
 >
     vim $HOME/.vim/ftdetect/votl.vim
 <
-Right below the line reading:
->
-    au! BufRead,BufNewFile *.otl    setfiletype votl
-<
-Insert the following line:
+Insert the following line as the last line of the file:
 >
     au! BufRead,BufNewFile *.emdl   setfiletype votl
 <
@@ -287,19 +188,7 @@ Q: I can't switch between colon based and space based body text.
 A: See next question
 
 Q: I don't get VimOutliner features on files of extension .whatever.
-A: Open vim like this:
->
-      vim $HOME/.vim/ftdetect/votl.vim
-<
-   Right below the line reading:
->
-      au! BufRead,BufNewFile *.otl          setfiletype votl
-<
-   Insert the following line:
->
-      au! BufRead,BufNewFile *.whatever     setfiletype votl
-<
-   Save and exit.
+A: See |votl-other-files|
 
 
 ==============================================================================
@@ -1291,3 +1180,5 @@ http://www.troubleshooters.com/projects/vimoutliner.htm
 Former Web page for the VimOutliner distro
 
 For the VimOutliner version information and history, see the CHANGELOG.
+
+ vim:tw=78:ts=8:ft=help:norl:
