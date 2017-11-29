@@ -46,20 +46,7 @@ For more information on the use of VimOutliner see the README.detailed
 file in this directory.
 
 
-Installation details
-
-1. Zip file
-
-To install from the zip file do the following (exchange "x" with
-version number from the package you have downloaded):
-
-$ unzip vimoutliner-0.4.0.zip $ cd vimoutliner-0.4.0 $ sh install.sh
-
-2. Gzip archive
-
-To install from the gzip archive follow these steps:
-
-$ tar -xzvf vimoutliner-0.4.0.tgz $ cd vimoutliner-0.4.0 $ sh install.sh
+Installation details are in the file README.detailed.
 
 Downloads
 
