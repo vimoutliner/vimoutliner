@@ -1,216 +1,153 @@
 #!/usr/bin/env python2
-# otl2html.py
-# convert a tab-formatted outline from VIM to HTML
-#
-# Copyright 2001 Noel Henson All rights reserved
-#
-# ALPHA VERSION!!!
-
-###########################################################################
-# Basic function
-#
-#    This program accepts text outline files and converts them
-#    to HTML.  The outline levels are indicated by tabs. A line with no
-#    tabs is assumed to be part of the highest outline level.
-#
-#    10 outline levels are supported.  These loosely correspond to the
-#    HTML H1 through H9 tags.  Alphabetic, numeric and bullet formats
-#    are also supported.
-#
-#    CSS support has been added.
-#
-
-###########################################################################
-# include whatever mdules we need
-
+import argparse
 import locale
 import os
 import re
 import sys
 import time
 
-###########################################################################
-# global variables
-
-formatMode = "indent"
-copyright = ""
-level = 0
-div = 0
-silentdiv = 0
-slides = 0
-hideComments = 0
-showTitle = 1
-inputFile = ""
 outline = []
 flatoutline = []
-inBodyText = 0        # 0: no, 1: text, 2: preformatted text, 3: table
-styleSheet = "nnnnnn.css"
-inlineStyle = 0
 
-###########################################################################
-# function definitions
+class SyntaxAction(argparse.Action):
+    def __init__(self, option_strings, dest, nargs=None, **kwargs):
+        if nargs is not None:
+            raise ValueError("nargs not allowed")
+        super(SyntaxAction, self).__init__(option_strings, dest, **kwargs)
 
-# usage
-# print the simplest form of help
-# input: none
-# output: simple command usage is printed on the console
+    def __call__(self, parser, namespace, values, option_string=None):
+        print '''
+Syntax
+Syntax is Vim Outliner's normal syntax. The following are supported:
 
+    Text
+:    Body text marker. This text will wrap in the output.
+;    Preformmated text. This text will will not wrap.
 
-def showUsage():
-    print """
-    Usage:
-        otl2html.py [options] inputfile > outputfile
-    Options
-        -p              Presentation: slide show output for use with
-                        HtmlSlides.
-        -D              First-level is divisions (<div> </div>) for making
-                        pretty web pages.
-        -s sheet        Use the specified style sheet with a link. This is the
-                        default.
-        -S sheet        Include the specified style sheet in-line the
-                        output. For encapsulated style.
-        -T              The first line is not the title. Treat it as
-                        outline data
-        -c              comments (line with [ as the first non-whitespace
-                        character. Ending with ] is optional.
-        -C copyright    Override the internal copyright notice with the
-                        one supplied in the quoted string following this
-                        flag. Single or double quotes can be used.
-        -H              Show the file syntax help.
-    output is on STDOUT
-      Note: if neither -s or -S are specified, otl2html.py will default
-            to -s. It will try to use the css file 'nnnnnn.css' if it
-            exists. If it does not exist, it will be created automatically.
-    """
+    Tables
+||    Table header line.
+|    Table and table columns. Example:
+        || Name | Age | Animal |
+        | Kirby | 9 | Dog |
+        | Sparky | 1 | Bird |
+        | Sophia | 8 | Cat |
+        This will cause an item to be left-justified.
+            | whatever  |
+        This will cause an item to be right-justified.
+            |  whatever |
+        This will cause an item to be centered.
+            |  whatever  |
+        This will cause an item to be default aligned.
+            | whatever |
 
+    Character Styles
+**    Bold. Example: **Bold Text**
+//    Italic. Example: //Italic Text//
++++    Highlight. Example: +++Highlight Text+++
+---    Strikeout. Example: ---Strikeout Text---
+Insane    ---+++//**Wow! This is insane!**//+++---
+    Just remember to keep it all on one line.
+    Horizontal Rule
+----------------------------------------  (40 dashes).
+    Copyright
+(c) or (C)    Converts to a standard copyright symbol.
 
-def showSyntax():
-    print """
-    Syntax
-    Syntax is Vim Outliner's normal syntax. The following are supported:
+    Including Images (for web pages)
+[imagename]    Examples:
+        [logo.gif] [photo.jpg] [car.png]
+        [http://i.a.cnn.net/cnn/.element/img/1.1/logo/logl.gif]
+        or from a database:
+        [http://www.lab.com/php/image.php?id=4]
 
-        Text
-    :    Body text marker. This text will wrap in the output.
-    ;    Preformmated text. This text will will not wrap.
+    Including links (for web pages)
+[link text-or-image]    Examples:
+        [about.html About] [http://www.cnn.com CNN]
+        or with an image:
+        [http://www.ted.com [http://www.ted.com/logo.png]]
+        Links starting with a '+' will be opened in a new
+        window. Eg. [+about.html About]
 
-        Tables
-    ||    Table header line.
-    |    Table and table columns. Example:
-            || Name | Age | Animal |
-            | Kirby | 9 | Dog |
-            | Sparky | 1 | Bird |
-            | Sophia | 8 | Cat |
-            This will cause an item to be left-justified.
-                | whatever  |
-            This will cause an item to be right-justified.
-                |  whatever |
-            This will cause an item to be centered.
-                |  whatever  |
-            This will cause an item to be default aligned.
-                | whatever |
+    Including external files
+!filename!    Examples:
+        !file.txt!
 
-        Character Styles
-    **    Bold. Example: **Bold Text**
-    //    Italic. Example: //Italic Text//
-    +++    Highlight. Example: +++Highlight Text+++
-    ---    Strikeout. Example: ---Strikeout Text---
-    Insane    ---+++//**Wow! This is insane!**//+++---
-        Just remember to keep it all on one line.
-        Horizontal Rule
-    ----------------------------------------  (40 dashes).
-        Copyright
-    (c) or (C)    Converts to a standard copyright symbol.
+    Including external outlines (first line is parent)
+!!filename!!    Examples:
+        !!menu.otl!!
 
-        Including Images (for web pages)
-    [imagename]    Examples:
-            [logo.gif] [photo.jpg] [car.png]
-            [http://i.a.cnn.net/cnn/.element/img/1.1/logo/logl.gif]
-            or from a database:
-            [http://www.lab.com/php/image.php?id=4]
+    Including output from executing external programs
+!!!program args!!!    Examples:
+        !!!date +%Y%m%d!!!
 
-        Including links (for web pages)
-    [link text-or-image]    Examples:
-            [about.html About] [http://www.cnn.com CNN]
-            or with an image:
-            [http://www.ted.com [http://www.ted.com/logo.png]]
-            Links starting with a '+' will be opened in a new
-            window. Eg. [+about.html About]
-
-        Including external files
-    !filename!    Examples:
-            !file.txt!
-
-        Including external outlines (first line is parent)
-    !!filename!!    Examples:
-            !!menu.otl!!
-
-        Including output from executing external programs
-    !!!program args!!!    Examples:
-            !!!date +%Y%m%d!!!
-
-        Note:
-    When using -D, the top-level headings become divisions (<div>)
-    and will be created using a class of the heading name. Spaces
-    are not allowed. If a top-level heading begins with '_', it
-    will not be shown but the division name will be the same as
-    without the '_'. Example: _Menu will have a division name of
-    Menu and will not be shown.
-    """
+    Note:
+When using -D, the top-level headings become divisions (<div>)
+and will be created using a class of the heading name. Spaces
+are not allowed. If a top-level heading begins with '_', it
+will not be shown but the division name will be the same as
+without the '_'. Example: _Menu will have a division name of
+Menu and will not be shown.
+    '''
 
 
-# getArgs
-# Check for input arguments and set the necessary switches
-# input: none
-# output: possible console output for help, switch variables may be set
 def getArgs():
-    global inputFile, debug, formatMode, slides, hideComments, copyright, \
-        styleSheet, inlineStyle, div, showTitle
-    if (len(sys.argv) == 1):
-        showUsage()
-        sys.exit()()
-    else:
-        for i in range(len(sys.argv)):
-            if (i != 0):
-                if (sys.argv[i] == "-d"):
-                    debug = 1                   # test for debug flag
-                elif (sys.argv[i] == "-?"):     # test for help flag
-                    showUsage()                 # show the help
-                    sys.exit()                  # exit
-                elif (sys.argv[i] == "-p"):     # test for the slides flag
-                    slides = 1                  # set the slides flag
-                elif (sys.argv[i] == "-D"):     # test for the divisions flag
-                    div = 1                     # set the divisions flag
-                elif (sys.argv[i] == "-T"):     # test for the no-title flag
-                    showTitle = 0               # clear the show-title flag
-                elif (sys.argv[i] == "-c"):     # test for the comments flag
-                    hideComments = 1            # set the comments flag
-                elif (sys.argv[i] == "-C"):     # test for the copyright flag
-                    copyright = sys.argv[i + 1]  # get the copyright
-                    i = i + 1                   # increment the pointer
-                elif (sys.argv[i] == "-s"):     # test for the style sheet flag
-                    styleSheet = sys.argv[i + 1]  # get the style sheet name
-                    formatMode = "indent"       # set the format
-                    i = i + 1                   # increment the pointer
-                elif (sys.argv[i] == "-S"):     # test for the style sheet flag
-                    styleSheet = sys.argv[i + 1]  # get the style sheet name
-                    formatMode = "indent"       # set the format
-                    inlineStyle = 1
-                    i = i + 1                   # increment the pointer
-                elif (sys.argv[i] == "--help"):
-                    showUsage()
-                    sys.exit()
-                elif (sys.argv[i] == "-h"):
-                    showUsage()
-                    sys.exit()
-                elif (sys.argv[i] == "-H"):
-                    showSyntax()
-                    sys.exit()
-                elif (sys.argv[i][0] == "-"):
-                    print "Error!  Unknown option.  Aborting"
-                    sys.exit()
-                else:                           # get the input file name
-                    inputFile = sys.argv[i]
+    parser = argparse.ArgumentParser(
+        description='''
+Convert a tab-formatted outline from VIM to HTML
 
+Copyright 2001 Noel Henson All rights reserved
+
+This program accepts text outline files and converts them
+to HTML.  The outline levels are indicated by tabs. A line with no
+tabs is assumed to be part of the highest outline level.
+
+10 outline levels are supported.  These loosely correspond to the
+HTML H1 through H9 tags.  Alphabetic, numeric and bullet formats
+are also supported.
+''')
+    parser.add_argument('inputFile', nargs=1,
+                        help='Input OTL outline filename.')
+    parser.add_argument('-d', '--debug', action='store_true',
+                        help='Show debugging report.')
+    parser.add_argument('-?', '-h', '--help', action='help')
+    parser.add_argument('-p', '--slides', action='store_true',
+                        help='Presentation: ' +
+                        'slide show output for use with HtmlSlides.')
+    parser.add_argument('-D', '--silentDiv', action='store_true',
+                        help='First-level is divisions (<div> </div>)' +
+                        'for making pretty web pages')
+    parser.add_argument('-T', '--showTitle', action='store_false',
+                        help='The first line is not the title. ' +
+                        'Treat it as outline data')
+    parser.add_argument('-c', '--hideComments', action='store_true',
+                        help='comments (line with [ as the first ' +
+                        'non-whitespace character. Ending with ] is optional.')
+    parser.add_argument('-C', '--copyright', action='store',
+                        help='Override the internal copyright notice with ' +
+                        'the one supplied in the quoted string following ' +
+                        'this flag. Single or double quotes can be used.')
+    parser.add_argument('-s', '--inlineStyle', action='store',
+                        default='indent',
+                        help='Use the specified style sheet with a link. ' +
+                        'This is the default.')
+    parser.add_argument('-S', '--styleSheet', action='store',
+                        help='Include the specified style sheet in-line ' +
+                        ' the output. For encapsulated style.')
+    parser.add_argument('-l', '--level', action='store', default=0,
+                        help='level')
+    parser.add_argument('-B', '--inBody',
+                        choices=['no', 'text', 'preformatted', 'table'],
+                        default='no',
+                        help='Divisions.')
+    parser.add_argument('-H', action=SyntaxAction,
+                        help='Divisions.')
+
+    args = parser.parse_args()
+    if args.styleSheet or args.inlineStyle:
+        args.formatMode = 'indent'
+
+    args.inBodyText = {
+        'no': 0, 'text': 1, 'preformatted': 2, 'table': 3}[args.inBody]
+    return args
 
 # getLineLevel
 # get the level of the current line (count the number of tabs)
@@ -220,7 +157,7 @@ def getLineLevel(linein):
     strstart = linein.lstrip()      # find the start of text in line
     x = linein.find(strstart)       # find the text index in the line
     n = linein.count("\t", 0, x)    # count the tabs
-    return(n + 1)                   # return the count + 1 (for level)
+    return n + 1                    # return the count + 1 (for level)
 
 
 # getLineTextLevel
@@ -233,7 +170,7 @@ def getLineTextLevel(linein):
     x = linein.find(strstart)        # find the text index in the line
     n = linein.count("\t", 0, x)     # count the tabs
     n = n + linein.count(" ", 0, x)  # count the spaces
-    return(n + 1)                     # return the count + 1 (for level)
+    return n + 1                     # return the count + 1 (for level)
 
 
 # colonStrip(line)
@@ -241,7 +178,7 @@ def getLineTextLevel(linein):
 # input: line
 # output: returns a string with a stipped ':'
 def colonStrip(line):
-    if (line[0] == ":"):
+    if line[0] == ":":
         return line[1:].lstrip()
     else:
         return line
@@ -252,7 +189,7 @@ def colonStrip(line):
 # input: line
 # output: returns a string with a stipped ';'
 def semicolonStrip(line):
-    if (line[0] == ";"):
+    if line[0] == ";":
         return line[1:]
     else:
         return line
@@ -263,7 +200,7 @@ def semicolonStrip(line):
 # input: line
 # output: returns a string with a stipped '-'
 def dashStrip(line):
-    if (line[0] == "-"):
+    if line[0] == "-":
         return line[1:]
     else:
         return line
@@ -274,7 +211,7 @@ def dashStrip(line):
 # input: line
 # output: returns a string with a stipped '|'
 def pipeStrip(line):
-    if (line[0] == "|"):
+    if line[0] == "|":
         return line[1:]
     else:
         return line
@@ -285,7 +222,7 @@ def pipeStrip(line):
 # input: line
 # output: returns a string with a stipped '+'
 def plusStrip(line):
-    if (line[0] == "+"):
+    if line[0] == "+":
         return line[1:]
     else:
         return line
@@ -296,16 +233,15 @@ def plusStrip(line):
 # are being used. otherwise print just <p>
 # input: linein - a single line that may or may not have tabs at the beginning
 # output: through standard out
-def handleBodyText(linein, lineLevel):
-    global inBodyText
-    if (inBodyText == 2):
+def handleBodyText(linein, lineLevel, conf):
+    if conf.inBodyText == 2:
         print "</pre>"
-    if (inBodyText == 3):
+    if conf.inBodyText == 3:
         print "</table>"
     print "<p",
-    if (styleSheet != ""):
+    if conf.styleSheet != "":
         print " class=\"P" + str(lineLevel) + "\"",
-        inBodyText = 1
+        conf.inBodyText = 1
     print ">" + colonStrip(linein.strip()),
 
 
@@ -314,16 +250,15 @@ def handleBodyText(linein, lineLevel):
 # are being used. otherwise print just <pre>
 # input: linein - a single line that may or may not have tabs at the beginning
 # output: through standard out
-def handlePreformattedText(linein, lineLevel):
-    global inBodyText
-    if (inBodyText == 1):
+def handlePreformattedText(linein, lineLevel, config):
+    if config.inBodyText == 1:
         print "</p>"
-    if (inBodyText == 3):
+    if config.inBodyText == 3:
         print "</table>"
     print "<pre",
-    if (styleSheet != ""):
+    if config.styleSheet != "":
         print " class=\"PRE" + str(lineLevel) + "\"",
-        inBodyText = 2
+        config.inBodyText = 2
     print ">" + semicolonStrip(linein.strip()),
 
 
@@ -332,7 +267,7 @@ def handlePreformattedText(linein, lineLevel):
 # input: coldata, a string
 def isAlignRight(coldata):
     l = len(coldata)
-    if (coldata[0:2] == "  ") and (coldata[l - 2:l] != "  "):
+    if coldata[0:2] == "  " and coldata[l - 2:l] != "  ":
         return 1
     else:
         return 0
@@ -343,7 +278,7 @@ def isAlignRight(coldata):
 # input: coldata, a string
 def isAlignLeft(coldata):
     l = len(coldata)
-    if (coldata[0:2] != "  ") and (coldata[l - 2:l] == "  "):
+    if coldata[0:2] != "  " and coldata[l - 2:l] == "  ":
         return 1
     else:
         return 0
@@ -354,7 +289,7 @@ def isAlignLeft(coldata):
 # input: coldata, a string
 def isAlignCenter(coldata):
     l = len(coldata)
-    if (coldata[0:2] == "  ") and (coldata[l - 2:l] == "  "):
+    if coldata[0:2] == "  " and coldata[l - 2:l] == "  ":
         return 1
     else:
         return 0
@@ -379,7 +314,7 @@ def getColumnAlignment(coldata):
 # return the souce for a row's columns
 # input: linein - a single line that may or may not have tabs at the beginning
 # output: string with the columns' source
-def handleTableColumns(linein, lineLevel):
+def handleTableColumns(linein):
     out = ""
     coldata = linein.strip()
     coldata = coldata.split("|")
@@ -393,7 +328,7 @@ def handleTableColumns(linein, lineLevel):
 # return the souce for a row's headers
 # input: linein - a single line that may or may not have tabs at the beginning
 # output: string with the columns' source
-def handleTableHeaders(linein, lineLevel):
+def handleTableHeaders(linein):
     out = ""
     coldata = linein.strip()
     coldata = coldata.split("|")
@@ -411,10 +346,10 @@ def handleTableHeaders(linein, lineLevel):
 # output: out
 def handleTableRow(linein, lineLevel):
     out = "<tr>"
-    if (lineLevel == linein.find("|| ") + 1):
-        out += handleTableHeaders(linein, lineLevel)
+    if lineLevel == (linein.find("|| ") + 1):
+        out += handleTableHeaders(linein)
     else:
-        out += handleTableColumns(linein, lineLevel)
+        out += handleTableColumns(linein)
     out += "</tr>"
     return out
 
@@ -423,15 +358,14 @@ def handleTableRow(linein, lineLevel):
 # print a table, starting with a <TABLE> tag if necessary
 # input: linein - a single line that may or may not have tabs at the beginning
 # output: through standard out
-def handleTable(linein, lineLevel):
-    global inBodyText
-    if (inBodyText == 1):
+def handleTable(linein, lineLevel, config):
+    if config.inBodyText == 1:
         print "</p>"
-    if (inBodyText == 2):
+    if config.inBodyText == 2:
         print "</pre>"
-    if (inBodyText != 3):
+    if config.inBodyText != 3:
         print "<table class=\"TAB" + str(lineLevel) + "\">"
-        inBodyText = 3
+        config.inBodyText = 3
     print handleTableRow(linein, lineLevel),
 
 
@@ -440,9 +374,9 @@ def handleTable(linein, lineLevel):
 # input: line
 # output: modified line
 def linkOrImage(line):
-    line = re.sub('\[(\S+?)\]', '<img src="\\1" alt="\\1">', line)
-    line = re.sub('\[(\S+)\s(.*?)\]', '<a href="\\1">\\2</a>', line)
-    line = re.sub('(<a href=")\+(.*)"\>', '\\1\\2" target=_new>', line)
+    line = re.sub(r'[(\S+?)]', r'<img src="\1" alt="\1">', line)
+    line = re.sub(r'[(\S+)\s(.*?)]', r'<a href="\1">\2</a>', line)
+    line = re.sub(r'(<a href=")\+(.*)">', r'\1\2" target=_new>', line)
     line = line.replace('<img src="X" alt="X">', '[X]')
     line = line.replace('<img src="_" alt="_">', '[_]')
     return line
@@ -454,10 +388,9 @@ def linkOrImage(line):
 # output: string of tabs
 def tabs(count):
     out = ""
-    if (count == 0):
+    if count == 0:
         return ""
-    for i in range(0, count - 1):
-        out = out + "\t"
+    out += "\t" * (count - 1)
     return out
 
 
@@ -465,13 +398,13 @@ def tabs(count):
 # include the specified file, if it exists
 # input: line and lineLevel
 # output: line is replaced by the contents of the file
-def includeFile(line, lineLevel):
-    filename = re.sub('!(\S+?)!', '\\1', line.strip())
+def includeFile(line, lineLevel, config):
+    filename = re.sub(r'!(\S+?)!', r'\1', line.strip())
     incfile = open(filename, "r")
     linein = incfile.readline()
     while linein != "":
         linein = re.sub('^', tabs(lineLevel), linein)
-        processLine(linein)
+        processLine(linein, config)
         linein = incfile.readline()
     incfile.close()
     return
@@ -481,16 +414,16 @@ def includeFile(line, lineLevel):
 # include the specified file, if it exists
 # input: line and lineLevel
 # output: line is replaced by the contents of the file
-def includeOutline(line, lineLevel):
-    filename = re.sub('!!(\S+?)!!', '\\1', line.strip())
+def includeOutline(line, lineLevel, config):
+    filename = re.sub(r'!!(\S+?)!!', r'\1', line.strip())
     incfile = open(filename, "r")
     linein = incfile.readline()
     linein = re.sub('^', tabs(lineLevel), linein)
-    processLine(linein)
+    processLine(linein, config)
     linein = incfile.readline()
     while linein != "":
         linein = re.sub('^', tabs(lineLevel + 1), linein)
-        processLine(linein)
+        processLine(linein, config)
         linein = incfile.readline()
     incfile.close()
     return
@@ -500,13 +433,13 @@ def includeOutline(line, lineLevel):
 # execute the specified program
 # input: line
 # output: program specified is replaced by program output
-def execProgram(line):
-    program = re.sub('.*!!!(.*)!!!.*', '\\1', line.strip())
+def execProgram(line, config):
+    program = re.sub('.*!!!(.*)!!!.*', r'\1', line.strip())
     child = os.popen(program)
     out = child.read()
     err = child.close()
     out = re.sub('!!!(.*)!!!', out, line)
-    processLine(out)
+    processLine(out, config)
     if err:
         raise RuntimeError('%s failed w/ exit code %d' % (program, err))
     return
@@ -516,11 +449,10 @@ def execProgram(line):
 # create a name for a division
 # input: line
 # output: division name
-def divName(line):
-    global silentdiv
+def divName(line, conf):
     line = line.strip()
-    if (line[0] == '_'):
-        silentdiv = 1
+    if line[0] == '_':
+        conf.silentDiv = 1
         line = line[1:]
     line = line.replace(' ', '_')
     return'<div class="' + line + '">'
@@ -531,10 +463,10 @@ def divName(line):
 # input: line
 # output: modified line
 def getTitleText(line):
-    out = re.sub('.*#(.*)#.*', '\\1', line)
-    out = re.sub('<.*>', '', out)
+    out = re.sub(r'.*#(.*)#.*', r'\1', line)
+    out = re.sub(r'<.*>', '', out)
 #  if (out != ""): out = re.sub('\"(.*?)\"', '\\1', line)
-    return(out)
+    return out
 
 
 # stripTitleText(line)
@@ -542,8 +474,7 @@ def getTitleText(line):
 # input: line
 # output: modified line
 def stripTitleText(line):
-    out = re.sub('#\W*.*#', '', line)
-    return(out)
+    return re.sub(r'#\W*.*#', '', line)
 
 
 # beautifyLine(line)
@@ -551,26 +482,25 @@ def stripTitleText(line):
 # input: line
 # output: modified line
 def beautifyLine(line):
-    if (line.strip() == "-" * 40):
+    if line.strip() == ("-" * 40):
         return "<br><hr><br>"
 
     out = line
     line = ""
 
-    while (line != out):
+    while line != out:
         line = out
         # out = replace(out, '---', '<strike>', 1)
-        if (line[0].lstrip() != ";"):
-            out = re.sub('\-\-\-(.*?)\-\-\-', '<strike>\\1</strike>', out)
+        if line[0].lstrip() != ";":
+            out = re.sub(r'---(.*?)---', r'<strike>\1</strike>', out)
         out = linkOrImage(out)
         # out = replace(out, '**', '<strong>', 1)
-        out = re.sub('\*\*(.*?)\*\*', '<strong>\\1</strong>', out)
+        out = re.sub(r'**(.*?)**', r'<strong>\1</strong>', out)
         # out = replace(out, '//', '<i>', 1)
-        out = re.sub('\/\/(.*?)\/\/', '<i>\\1</i>', out)
+        out = re.sub(r'//(.*?)//', r'<i>\1</i>', out)
         # out = replace(out, '+++', '<code>', 1)
-        out = re.sub('\+\+\+(.*?)\+\+\+', '<code>\\1</code>', out)
-        out = re.sub('\(c\)', '&copy;', out)
-        out = re.sub('\(C\)', '&copy;', out)
+        out = re.sub(r'+++(.*?)+++', r'<code>\1</code>', out)
+        out = re.sub(r'(c)', '&copy;', out, flags=re.IGNORECASE)
     return out
 
 
@@ -580,16 +510,14 @@ def beautifyLine(line):
 #        level - an integer between 1 and 9 that show the current level
 #               (not to be confused with the level of the current line)
 # output: through standard out
-def closeLevels():
-    global level, formatMode
-    while (level > 0):
-        if (formatMode == "bullets"):
+def closeLevels(config):
+    while config.level > 0:
+        if config.formatMode == "bullets":
             print "</ul>"
-        if (formatMode == "alpha") or (formatMode == "numeric") or \
-                (formatMode == "roman") or (formatMode == "indent"):
+        if config.formatMode in ["alpha", "numeric", "roman", "indent"]:
             print "</ol>"
 
-        level = level - 1
+        config.level -= 1
 
 
 # processLine
@@ -599,124 +527,121 @@ def closeLevels():
 #        level - an integer between 1 and 9 that show the current level
 #               (not to be confused with the level of the current line)
 # output: through standard out
-def processLine(linein):
-    global level, formatMode, slides, hideComments, inBodyText, styleSheet, \
-        inlineStyle, div, silentdiv
-    if (linein.lstrip() == ""):
+def processLine(linein, conf):
+    if linein.lstrip() == "":
         return
     linein = beautifyLine(linein)
     lineLevel = getLineLevel(linein)
-    if ((hideComments == 0) or (lineLevel != linein.find("[") + 1)):
+    if not conf.hideComments or lineLevel != (linein.find("[") + 1):
 
-        if (lineLevel > level):  # increasing depth
-            while (lineLevel > level):
-                if (formatMode == "indent" or formatMode == "simple"):
-                    if (inBodyText == 1):
+        if lineLevel > conf.level:  # increasing depth
+            while lineLevel > conf.level:
+                if conf.formatMode in ["indent", "simple"]:
+                    if conf.inBodyText == 1:
                         print"</p>"
-                        inBodyText = 0
-                    elif (inBodyText == 2):
+                        conf.inBodyText = 0
+                    elif conf.inBodyText == 2:
                         print"</pre>"
-                        inBodyText = 0
-                    elif (inBodyText == 3):
+                        conf.inBodyText = 0
+                    elif conf.inBodyText == 3:
                         print"</table>"
-                        inBodyText = 0
-                    if not (div == 1 and lineLevel == 1):
+                        conf.inBodyText = 0
+                    if not (conf.div == 1 and lineLevel == 1):
                         print "<ol>"
                 else:
                     sys.exit("Error! Unknown formatMode type")
-                level = level + 1
+                conf.level += 1
 
-        elif (lineLevel < level):  # decreasing depth
-            while (lineLevel < level):
-                if (inBodyText == 1):
+        elif lineLevel < conf.level:  # decreasing depth
+            while lineLevel < conf.level:
+                if conf.inBodyText == 1:
                     print"</p>"
-                    inBodyText = 0
-                elif (inBodyText == 2):
+                    conf.inBodyText = 0
+                elif conf.inBodyText == 2:
                     print"</pre>"
-                    inBodyText = 0
-                elif (inBodyText == 3):
+                    conf.inBodyText = 0
+                elif conf.inBodyText == 3:
                     print"</table>"
-                    inBodyText = 0
+                    conf.inBodyText = 0
                 print "</ol>"
-                level = level - 1
-                if (div == 1 and level == 1):
-                    if (silentdiv == 0):
+                conf.level = conf.level - 1
+                if conf.div == 1 and conf.level == 1:
+                    if conf.silentDiv == 0:
                         print'</ol>'
                     else:
-                        silentdiv = 0
+                        conf.silentDiv = 0
                     print'</div>'
 
         else:
             print  # same depth
-        if (div == 1 and lineLevel == 1):
-            if (lineLevel != linein.find("!") + 1):
-                print divName(linein)
-                if (silentdiv == 0):
+        if conf.div == 1 and lineLevel == 1:
+            if lineLevel != (linein.find("!") + 1):
+                print divName(linein, conf)
+                if conf.silentDiv == 0:
                     print "<ol>"
 
-        if (slides == 0):
+        if conf.slides == 0:
             if (lineLevel == linein.find(" ") + 1) or \
                     (lineLevel == linein.find(":") + 1):
-                if (inBodyText != 1):
-                    handleBodyText(linein, lineLevel)
-                elif (colonStrip(linein.strip()) == ""):
+                if conf.inBodyText != 1:
+                    handleBodyText(linein, lineLevel, conf)
+                elif colonStrip(linein.strip()) == "":
                     print "</p>"
-                    handleBodyText(linein, lineLevel)
+                    handleBodyText(linein, lineLevel, conf)
                 else:
                     print colonStrip(linein.strip()),
-            elif (lineLevel == linein.find(";") + 1):
-                if (inBodyText != 2):
-                    handlePreformattedText(linein, lineLevel)
-                elif (semicolonStrip(linein.strip()) == ""):
+            elif lineLevel == (linein.find(";") + 1):
+                if conf.inBodyText != 2:
+                    handlePreformattedText(linein, lineLevel, conf)
+                elif semicolonStrip(linein.strip()) == "":
                     print "</pre>"
-                    handlePreformattedText(linein, lineLevel)
+                    handlePreformattedText(linein, lineLevel, conf)
                 else:
                     print semicolonStrip(linein.strip()),
-            elif (lineLevel == linein.find("|") + 1):
-                if (inBodyText != 3):
-                    handleTable(linein, lineLevel)
-                elif (pipeStrip(linein.strip()) == ""):
+            elif lineLevel == (linein.find("|") + 1):
+                if conf.inBodyText != 3:
+                    handleTable(linein, lineLevel, conf)
+                elif pipeStrip(linein.strip()) == "":
                     print "</table>"
-                    handleTable(linein, lineLevel)
+                    handleTable(linein, lineLevel, conf)
                 else:
                     print handleTableRow(linein, lineLevel),
-            elif (lineLevel == linein.find("!!!") + 1):
-                execProgram(linein)
-            elif (lineLevel == linein.find("!!") + 1):
-                includeOutline(linein, lineLevel)
-            elif (lineLevel == linein.find("!") + 1):
-                includeFile(linein, lineLevel)
+            elif lineLevel == (linein.find("!!!") + 1):
+                execProgram(linein, conf)
+            elif lineLevel == (linein.find("!!") + 1):
+                includeOutline(linein, lineLevel, conf)
+            elif lineLevel == (linein.find("!") + 1):
+                includeFile(linein, lineLevel, conf)
             else:
-                if (inBodyText == 1):
+                if conf.inBodyText == 1:
                     print"</p>"
-                    inBodyText = 0
-                elif (inBodyText == 2):
+                    conf.inBodyText = 0
+                elif conf.inBodyText == 2:
                     print"</pre>"
-                    inBodyText = 0
-                elif (inBodyText == 3):
+                    conf.inBodyText = 0
+                elif conf.inBodyText == 3:
                     print"</table>"
-                    inBodyText = 0
-                if (silentdiv == 0):
+                    conf.inBodyText = 0
+                if conf.silentDiv == 0:
                     print "<li",
-                    if (styleSheet != ""):
-                        if (lineLevel == linein.find("- ") + 1):
+                    if conf.styleSheet != "":
+                        if lineLevel == (linein.find("- ") + 1):
                             print " class=\"LB" + str(lineLevel) + "\"",
                             print ">" + \
                                   dashStrip(linein.strip()),
-                        elif (lineLevel == linein.find("+ ") + 1):
+                        elif lineLevel == (linein.find("+ ") + 1):
                             print " class=\"LN" + str(lineLevel) + "\"",
-                            print ">" + \
-                                  plusStrip(linein.strip()),
+                            print ">" + plusStrip(linein.strip()),
                         else:
-                            print " class=\"L" + str(lineLevel) + "\"",
+                            print ' class="L' + str(lineLevel) + '"',
                             print ">" + linein.strip(),
                 else:
-                    silentdiv = 0
+                    conf.silentDiv = 0
         else:
-            if (lineLevel == 1):
-                if (linein[0] == " "):
-                    if (inBodyText == 0):
-                        handleBodyText(linein, lineLevel)
+            if lineLevel == 1:
+                if linein[0] == " ":
+                    if conf.inBodyText == 0:
+                        handleBodyText(linein, lineLevel, conf)
                     else:
                         print linein.strip(),
                 else:
@@ -726,16 +651,16 @@ def processLine(linein):
             else:
                 if (lineLevel == linein.find(" ") + 1) or \
                         (lineLevel == linein.find(":") + 1):
-                    if (inBodyText == 0):
-                        handleBodyText(linein, lineLevel)
+                    if conf.inBodyText == 0:
+                        handleBodyText(linein, lineLevel, conf)
                     else:
                         print linein.strip(),
                 else:
-                    if (inBodyText == 1):
+                    if conf.inBodyText == 1:
                         print"</p>"
-                        inBodyText = 0
+                        conf.inBodyText = 0
                     print "<li",
-                    if (styleSheet != ""):
+                    if conf.styleSheet != "":
                         print " class=\"LI.L" + str(lineLevel) + "\"",
                     print ">" + linein.strip(),
 
@@ -750,35 +675,33 @@ def processLine(linein):
 # input: idx - the index into the outline.  The indexed line is the title.
 # output: adds reformatted lines to flatoutline[]
 def flatten(idx):
-    if (outline[idx] == ""):
+    if outline[idx] == "":
         return
-    if (len(outline) <= idx):
+    if len(outline) <= idx:
         return
     titleline = outline[idx]
     titlelevel = getLineLevel(titleline)
-    if (getLineLevel(outline[idx + 1]) > titlelevel):
-        if (titleline[titlelevel - 1] != " "):
+    if getLineLevel(outline[idx + 1]) > titlelevel:
+        if titleline[titlelevel - 1] != " ":
             flatoutline.append(titleline.lstrip())
         exitflag = 0
-        while (exitflag == 0):
-            if (idx < len(outline) - 1):
+        while exitflag == 0:
+            if idx < (len(outline) - 1):
                 idx = idx + 1
                 currlevel = getLineLevel(outline[idx])
-                if (currlevel == titlelevel + 1):
-                    if (currlevel == outline[idx].find(" ") + 1):
+                if currlevel == titlelevel + 1:
+                    if currlevel == outline[idx].find(" ") + 1:
                         flatoutline.append("\t " + outline[idx].lstrip())
                     else:
                         flatoutline.append("\t" + outline[idx].lstrip())
-                elif (currlevel <= titlelevel):
+                elif currlevel <= titlelevel:
                     exitflag = 1
             else:
                 exitflag = 1
-    # level = titlelevel  # FIXME level assigned but never used
     return
 
 
-def createCSS():
-    global styleSheet
+def createCSS(config):
     output = """    /* copyright notice and filename */
     body {
             font-family: helvetica, arial, sans-serif;
@@ -1026,12 +949,11 @@ def createCSS():
             font-weight: normal;
         border-collapse: collapse;
     """
-    file = open(styleSheet, "w")
-    file.write(output)
+    with open(config.styleSheet, "w") as css_file:
+        css_file.write(output)
 
 
-def printHeader(linein):
-    global styleSheet, inlineStyle
+def printHeader(linein, config):
     out_string = """<!DOCTYPE HTML>
         <html>
     <head>
@@ -1041,19 +963,19 @@ def printHeader(linein):
         locale.getpreferredencoding(),
         getTitleText(linein))
     try:
-        file = open(styleSheet, "r")
+        css_file = open(config.styleSheet, "r")
     except IOError:
-        createCSS()
-        file = open(styleSheet, "r")
-    if (styleSheet != "" and inlineStyle == 0):
+        createCSS(config)
+        css_file = open(config.styleSheet, "r")
+    if config.styleSheet != "" and not config.inlineStyle:
         out_string += '<link href="%s" rel="stylesheet" type="text/css">' \
-            % (styleSheet)
-    if (styleSheet != "" and inlineStyle == 1):
+            % (config.styleSheet)
+    if config.styleSheet != "" and config.inlineStyle:
         out_string += '<style type="text/css">'
-        out_string += file.read()
-        file.close()
+        out_string += css_file.read()
         out_string += "</style>\n</head>"
     print out_string + "\n<body>"
+    css_file.close()
 
 
 def printFirstLine(linein):
@@ -1063,52 +985,49 @@ def printFirstLine(linein):
     <div class="MainPage">''' % stripTitleText(linein.strip())
 
 
-def printFooter():
-    global slides, div
+def printFooter(config):
     print "</div>"
-    if (slides == 0 and div == 0):
+    if not config.slides and not config.div:
         print "<div class=\"Footer\">"
         print "<hr>"
-        print copyright
+        print config.copyright
         print "<br>"
-        print inputFile + "&nbsp;&nbsp; " + \
+        print config.inputFile + "&nbsp;&nbsp; " + \
             time.strftime("%Y/%m/%d %H:%M", time.localtime(time.time()))
         print "</div>"
     print "</body></html>"
 
 
 def main():
-    global showTitle
     locale.setlocale(locale.LC_ALL, '')
-    getArgs()
-    file = open(inputFile, "r")
-    if (slides == 0):
-        firstLine = beautifyLine(file.readline().strip())
-        printHeader(firstLine)
-        if (showTitle == 1):
-            printFirstLine(firstLine)
-            linein = beautifyLine(file.readline().strip())
+    conf = getArgs()
+    with open(conf.inputFile, "r") as in_file:
+        if conf.slides:
+            firstLine = beautifyLine(in_file.readline().strip())
+            printHeader(firstLine, conf)
+            if conf.showTitle:
+                printFirstLine(firstLine)
+                linein = beautifyLine(in_file.readline().strip())
+            else:
+                linein = firstLine
+            while linein != "":
+                processLine(linein, conf)
+                linein = in_file.readline()
+            closeLevels(conf)
         else:
-            linein = firstLine
-        while linein != "":
-            processLine(linein)
-            linein = file.readline()
-        closeLevels()
-    else:
-        linein = beautifyLine(file.readline().strip())
-        outline.append(linein)
-        linein = file.readline().strip()
-        while linein != "":
-            outline.append("\t" + linein)
-            linein = file.readline().rstrip()
-        for i in range(0, len(outline) - 1):
-            flatten(i)
-        printHeader(flatoutline[0])
-        for i in range(0, len(flatoutline)):
-            processLine(flatoutline[i])
+            linein = beautifyLine(in_file.readline().strip())
+            outline.append(linein)
+            linein = in_file.readline().strip()
+            while linein != "":
+                outline.append("\t" + linein)
+                linein = in_file.readline().rstrip()
+            for i in range(0, len(outline) - 1):
+                flatten(i)
+            printHeader(flatoutline[0], conf)
+            for i in range(0, len(flatoutline)):
+                processLine(flatoutline[i], conf)
 
-    printFooter()
-    file.close()
+        printFooter(conf)
 
 
 if __name__ == "__main__":
