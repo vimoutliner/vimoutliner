@@ -1,8 +1,8 @@
 TODO LIST
 	Updated: 20140916
-		:This is just a preliminary roadmap, use the issue list at
-		:https://github.com/vimoutliner/vimoutliner/issues for suggesting new
-		:features and register issues or bugs
+		: This is just a preliminary roadmap, use the issue list at
+		: https://github.com/vimoutliner/vimoutliner/issues for suggesting new
+		: features and register issues or bugs
 
 Work planned for next version:
 	Cleanup code in plugins to more efficient vim script 
