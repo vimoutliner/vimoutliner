@@ -23,11 +23,13 @@
 ###########################################################################
 # include whatever mdules we need
 
+import argparse
 import locale
 import os
 import re
 import sys
 import time
+from textwrap import dedent
 
 ###########################################################################
 # global variables
@@ -56,32 +58,94 @@ inlineStyle = 0
 # output: simple command usage is printed on the console
 
 
-def showUsage():
-    print """
-    Usage:
-        otl2html.py [options] inputfile > outputfile
-    Options
-        -p              Presentation: slide show output for use with
-                        HtmlSlides.
-        -D              First-level is divisions (<div> </div>) for making
-                        pretty web pages.
-        -s sheet        Use the specified style sheet with a link. This is the
-                        default.
-        -S sheet        Include the specified style sheet in-line the
-                        output. For encapsulated style.
-        -T              The first line is not the title. Treat it as
-                        outline data
-        -c              comments (line with [ as the first non-whitespace
-                        character. Ending with ] is optional.
-        -C copyright    Override the internal copyright notice with the
-                        one supplied in the quoted string following this
-                        flag. Single or double quotes can be used.
-        -H              Show the file syntax help.
-    output is on STDOUT
-      Note: if neither -s or -S are specified, otl2html.py will default
-            to -s. It will try to use the css file 'nnnnnn.css' if it
-            exists. If it does not exist, it will be created automatically.
-    """
+class StyleSheetAction(argparse.Action):
+    '''
+    The two stylesheet options set two values each at the same time. This is
+    not directly supported by the default argparse actions so we need to create
+    this one.
+
+    This will set the following namespace attributes:
+
+        - stylesheet (filename)
+        - inline_css (boolean)
+    '''
+
+    def __call__(self, parser, namespace, values, option_string=None):
+        if option_string not in ('-s', '-S', '--stylesheet', '--inline-css'):
+            raise NotImplementedError(
+                'StyleSheetAction not implemented for %r' % option_string)
+        do_inline = option_string in ('-S', '--inline-css')
+        setattr(namespace, 'inline_css', do_inline)
+        setattr(namespace, 'stylesheet', values)
+
+
+def parse_args():
+    parser = argparse.ArgumentParser(epilog=(
+        "Output is on <stdout>! NOTE: if neither -s or -S are specified, "
+        "otl2html.py will default to -s. It will try to use the css file "
+        "'nnnnnn.css' if it exists. If it does not exist, it will be created "
+        "automatically."))
+    parser.add_argument(
+        '-d',
+        '--debug',
+        action='store_true',
+        default=False,
+        help="Enable debug mode")
+    parser.add_argument(
+        '-p',
+        '--presentation',
+        action='store_true',
+        default=False,
+        help="Presentation: slide show output for use with HtmlSlides.")
+    parser.add_argument(
+        '-D',
+        '--divs',
+        action='store_true',
+        default=False,
+        help=("First-level is divisions (<div> </div>) for making "
+              "pretty web pages."))
+    parser.add_argument(
+        '-s',
+        '--stylesheet',
+        action=StyleSheetAction,
+        help="Use the specified style sheet with a link. This is the default.")
+    parser.add_argument(
+        '-S',
+        '--inline-css',
+        action=StyleSheetAction,
+        help=("Include the specified style sheet in-line the output. "
+              "For encapsulated style."))
+    parser.add_argument(
+        '-T',
+        '--skip-title',
+        action='store_true',
+        default=False,
+        help="The first line is not the title. Treat it as outline data")
+    parser.add_argument(
+        '-c',
+        '--comments',
+        action='store_false',
+        default=True,
+        help=("comments line with [ as the first non-whitespace character. "
+              "Ending with ] is optional."))
+    parser.add_argument(
+        '-C',
+        '--copyright',
+        help=("Override the internal copyright notice with the one supplied "
+              "in the quoted string following this flag. Single or double "
+              "quotes can be used."))
+    parser.add_argument(
+        '-H',
+        '--help-syntax',
+        action='store_true',
+        default=False,
+        help="Show syntax example and exit")
+    parser.add_argument('inputfile', help='The OTL file to convert')
+    args = parser.parse_args()
+    if args.help_syntax:
+        showSyntax()
+        sys.exit(0)
+    return args
 
 
 def showSyntax():
@@ -156,60 +220,6 @@ def showSyntax():
     without the '_'. Example: _Menu will have a division name of
     Menu and will not be shown.
     """
-
-
-# getArgs
-# Check for input arguments and set the necessary switches
-# input: none
-# output: possible console output for help, switch variables may be set
-def getArgs():
-    global inputFile, debug, formatMode, slides, hideComments, copyright, \
-        styleSheet, inlineStyle, div, showTitle
-    if (len(sys.argv) == 1):
-        showUsage()
-        sys.exit()()
-    else:
-        for i in range(len(sys.argv)):
-            if (i != 0):
-                if (sys.argv[i] == "-d"):
-                    debug = 1                   # test for debug flag
-                elif (sys.argv[i] == "-?"):     # test for help flag
-                    showUsage()                 # show the help
-                    sys.exit()                  # exit
-                elif (sys.argv[i] == "-p"):     # test for the slides flag
-                    slides = 1                  # set the slides flag
-                elif (sys.argv[i] == "-D"):     # test for the divisions flag
-                    div = 1                     # set the divisions flag
-                elif (sys.argv[i] == "-T"):     # test for the no-title flag
-                    showTitle = 0               # clear the show-title flag
-                elif (sys.argv[i] == "-c"):     # test for the comments flag
-                    hideComments = 1            # set the comments flag
-                elif (sys.argv[i] == "-C"):     # test for the copyright flag
-                    copyright = sys.argv[i + 1]  # get the copyright
-                    i = i + 1                   # increment the pointer
-                elif (sys.argv[i] == "-s"):     # test for the style sheet flag
-                    styleSheet = sys.argv[i + 1]  # get the style sheet name
-                    formatMode = "indent"       # set the format
-                    i = i + 1                   # increment the pointer
-                elif (sys.argv[i] == "-S"):     # test for the style sheet flag
-                    styleSheet = sys.argv[i + 1]  # get the style sheet name
-                    formatMode = "indent"       # set the format
-                    inlineStyle = 1
-                    i = i + 1                   # increment the pointer
-                elif (sys.argv[i] == "--help"):
-                    showUsage()
-                    sys.exit()
-                elif (sys.argv[i] == "-h"):
-                    showUsage()
-                    sys.exit()
-                elif (sys.argv[i] == "-H"):
-                    showSyntax()
-                    sys.exit()
-                elif (sys.argv[i][0] == "-"):
-                    print "Error!  Unknown option.  Aborting"
-                    sys.exit()
-                else:                           # get the input file name
-                    inputFile = sys.argv[i]
 
 
 # getLineLevel
@@ -1080,7 +1090,26 @@ def printFooter():
 def main():
     global showTitle
     locale.setlocale(locale.LC_ALL, '')
-    getArgs()
+
+    args = parse_args()
+
+    # In order to avoid changing too much code, we extract the values from the
+    # argparse namespace into global namespace.
+    global debug, slides, div, styleSheet, inlineStyle, showTitle, \
+        hideComments, copyright, inputFile, formatMode
+
+    debug = args.debug
+    slides = args.presentation
+    div = args.divs
+    styleSheet = args.stylesheet or "nnnnnn.css"
+    inlineStyle = args.inline_css or False
+    showTitle = not args.skip_title
+    hideComments = args.comments
+    copyright = args.copyright or ''
+    inputFile = args.inputfile
+    if args.stylesheet:
+        formatMode = 'indent'
+
     file = open(inputFile, "r")
     if (slides == 0):
         firstLine = beautifyLine(file.readline().strip())
