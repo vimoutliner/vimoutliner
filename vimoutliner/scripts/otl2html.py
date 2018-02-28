@@ -1,22 +1,21 @@
 #!/usr/bin/env python2
 import argparse
 import locale
+import logging
 import os
 import re
 import sys
 import time
 
+logging.basicConfig(format='%(levelname)s:%(funcName)s:%(message)s',
+                    stream=sys.stdout, level=logging.DEBUG)
+log = logging.getLogger('otl2html')
+
 outline = []
 flatoutline = []
 
-class SyntaxAction(argparse.Action):
-    def __init__(self, option_strings, dest, nargs=None, **kwargs):
-        if nargs is not None:
-            raise ValueError("nargs not allowed")
-        super(SyntaxAction, self).__init__(option_strings, dest, **kwargs)
-
-    def __call__(self, parser, namespace, values, option_string=None):
-        print '''
+def print_syntax():
+    print '''
 Syntax
 Syntax is Vim Outliner's normal syntax. The following are supported:
 
@@ -104,11 +103,10 @@ tabs is assumed to be part of the highest outline level.
 HTML H1 through H9 tags.  Alphabetic, numeric and bullet formats
 are also supported.
 ''')
-    parser.add_argument('inputFile', nargs=1,
+    parser.add_argument('inputFile', nargs=argparse.REMAINDER,
                         help='Input OTL outline filename.')
     parser.add_argument('-d', '--debug', action='store_true',
                         help='Show debugging report.')
-    parser.add_argument('-?', '-h', '--help', action='help')
     parser.add_argument('-p', '--slides', action='store_true',
                         help='Presentation: ' +
                         'slide show output for use with HtmlSlides.')
@@ -138,10 +136,19 @@ are also supported.
                         choices=['no', 'text', 'preformatted', 'table'],
                         default='no',
                         help='Divisions.')
-    parser.add_argument('-H', action=SyntaxAction,
-                        help='Divisions.')
+    parser.add_argument('-H', '--syntax', action='store_true', help='Syntax')
 
     args = parser.parse_args()
+    log.debug('args = %s', args)
+
+    if args.syntax:
+        print_syntax()
+        sys.exit(0)
+    elif len(args.inputFile) == 0:
+        raise argparse.ArgumentTypeError('too few arguments')
+    else:
+        args.inputFile = args.inputFile[0]
+
     if args.styleSheet or args.inlineStyle:
         args.formatMode = 'indent'
 
@@ -374,8 +381,8 @@ def handleTable(linein, lineLevel, config):
 # input: line
 # output: modified line
 def linkOrImage(line):
-    line = re.sub(r'[(\S+?)]', r'<img src="\1" alt="\1">', line)
-    line = re.sub(r'[(\S+)\s(.*?)]', r'<a href="\1">\2</a>', line)
+    line = re.sub(r'\[(\S+?)\]', r'<img src="\1" alt="\1">', line)
+    line = re.sub(r'\[(\S+)\s(.*?)\]', r'<a href="\1">\2</a>', line)
     line = re.sub(r'(<a href=")\+(.*)">', r'\1\2" target=_new>', line)
     line = line.replace('<img src="X" alt="X">', '[X]')
     line = line.replace('<img src="_" alt="_">', '[_]')
@@ -495,12 +502,12 @@ def beautifyLine(line):
             out = re.sub(r'---(.*?)---', r'<strike>\1</strike>', out)
         out = linkOrImage(out)
         # out = replace(out, '**', '<strong>', 1)
-        out = re.sub(r'**(.*?)**', r'<strong>\1</strong>', out)
+        out = re.sub(r'\*\*(.*?)\*\*', r'<strong>\1</strong>', out)
         # out = replace(out, '//', '<i>', 1)
         out = re.sub(r'//(.*?)//', r'<i>\1</i>', out)
         # out = replace(out, '+++', '<code>', 1)
-        out = re.sub(r'+++(.*?)+++', r'<code>\1</code>', out)
-        out = re.sub(r'(c)', '&copy;', out, flags=re.IGNORECASE)
+        out = re.sub(r'\+\+\+(.*?)\+\+\+', r'<code>\1</code>', out)
+        out = re.sub(r'\(c\)', '&copy;', out, flags=re.IGNORECASE)
     return out
 
 
@@ -546,7 +553,7 @@ def processLine(linein, conf):
                     elif conf.inBodyText == 3:
                         print"</table>"
                         conf.inBodyText = 0
-                    if not (conf.div == 1 and lineLevel == 1):
+                    if not (conf.silentDiv and lineLevel == 1):
                         print "<ol>"
                 else:
                     sys.exit("Error! Unknown formatMode type")
@@ -565,16 +572,16 @@ def processLine(linein, conf):
                     conf.inBodyText = 0
                 print "</ol>"
                 conf.level = conf.level - 1
-                if conf.div == 1 and conf.level == 1:
-                    if conf.silentDiv == 0:
+                if conf.silentDiv and conf.level == 1:
+                    if not conf.silentDiv:
                         print'</ol>'
                     else:
-                        conf.silentDiv = 0
+                        conf.silentDiv = False
                     print'</div>'
 
         else:
             print  # same depth
-        if conf.div == 1 and lineLevel == 1:
+        if conf.silentDiv and lineLevel == 1:
             if lineLevel != (linein.find("!") + 1):
                 print divName(linein, conf)
                 if conf.silentDiv == 0:
@@ -987,7 +994,7 @@ def printFirstLine(linein):
 
 def printFooter(config):
     print "</div>"
-    if not config.slides and not config.div:
+    if not config.slides and not config.silentDiv:
         print "<div class=\"Footer\">"
         print "<hr>"
         print config.copyright
