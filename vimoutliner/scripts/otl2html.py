@@ -5,6 +5,7 @@ import logging
 import os
 import re
 import sys
+import textwrap
 import time
 
 logging.basicConfig(format='%(levelname)s:%(funcName)s:%(message)s',
@@ -15,94 +16,97 @@ outline = []
 flatoutline = []
 
 def print_syntax():
-    print '''
-Syntax
-Syntax is Vim Outliner's normal syntax. The following are supported:
+    print(textwrap.dedent(
+        '''Syntax
+        Syntax is Vim Outliner's normal syntax. The following are supported:
 
-    Text
-:    Body text marker. This text will wrap in the output.
-;    Preformmated text. This text will will not wrap.
+            Text
+        :    Body text marker. This text will wrap in the output.
+        ;    Preformmated text. This text will will not wrap.
 
-    Tables
-||    Table header line.
-|    Table and table columns. Example:
-        || Name | Age | Animal |
-        | Kirby | 9 | Dog |
-        | Sparky | 1 | Bird |
-        | Sophia | 8 | Cat |
-        This will cause an item to be left-justified.
-            | whatever  |
-        This will cause an item to be right-justified.
-            |  whatever |
-        This will cause an item to be centered.
-            |  whatever  |
-        This will cause an item to be default aligned.
-            | whatever |
+            Tables
+        ||    Table header line.
+        |    Table and table columns. Example:
+                || Name | Age | Animal |
+                | Kirby | 9 | Dog |
+                | Sparky | 1 | Bird |
+                | Sophia | 8 | Cat |
+                This will cause an item to be left-justified.
+                    | whatever  |
+                This will cause an item to be right-justified.
+                    |  whatever |
+                This will cause an item to be centered.
+                    |  whatever  |
+                This will cause an item to be default aligned.
+                    | whatever |
 
-    Character Styles
-**    Bold. Example: **Bold Text**
-//    Italic. Example: //Italic Text//
-+++    Highlight. Example: +++Highlight Text+++
----    Strikeout. Example: ---Strikeout Text---
-Insane    ---+++//**Wow! This is insane!**//+++---
-    Just remember to keep it all on one line.
-    Horizontal Rule
-----------------------------------------  (40 dashes).
-    Copyright
-(c) or (C)    Converts to a standard copyright symbol.
+            Character Styles
+        **    Bold. Example: **Bold Text**
+        //    Italic. Example: //Italic Text//
+        +++    Highlight. Example: +++Highlight Text+++
+        ---    Strikeout. Example: ---Strikeout Text---
+        Insane    ---+++//**Wow! This is insane!**//+++---
+            Just remember to keep it all on one line.
+            Horizontal Rule
+        ----------------------------------------  (40 dashes).
+            Copyright
+        (c) or (C)    Converts to a standard copyright symbol.
 
-    Including Images (for web pages)
-[imagename]    Examples:
-        [logo.gif] [photo.jpg] [car.png]
-        [http://i.a.cnn.net/cnn/.element/img/1.1/logo/logl.gif]
-        or from a database:
-        [http://www.lab.com/php/image.php?id=4]
+            Including Images (for web pages)
+        [imagename]    Examples:
+                [logo.gif] [photo.jpg] [car.png]
+                [http://i.a.cnn.net/cnn/.element/img/1.1/logo/logl.gif]
+                or from a database:
+                [http://www.lab.com/php/image.php?id=4]
 
-    Including links (for web pages)
-[link text-or-image]    Examples:
-        [about.html About] [http://www.cnn.com CNN]
-        or with an image:
-        [http://www.ted.com [http://www.ted.com/logo.png]]
-        Links starting with a '+' will be opened in a new
-        window. Eg. [+about.html About]
+            Including links (for web pages)
+        [link text-or-image]    Examples:
+                [about.html About] [http://www.cnn.com CNN]
+                or with an image:
+                [http://www.ted.com [http://www.ted.com/logo.png]]
+                Links starting with a '+' will be opened in a new
+                window. Eg. [+about.html About]
 
-    Including external files
-!filename!    Examples:
-        !file.txt!
+            Including external files
+        !filename!    Examples:
+                !file.txt!
 
-    Including external outlines (first line is parent)
-!!filename!!    Examples:
-        !!menu.otl!!
+            Including external outlines (first line is parent)
+        !!filename!!    Examples:
+                !!menu.otl!!
 
-    Including output from executing external programs
-!!!program args!!!    Examples:
-        !!!date +%Y%m%d!!!
+            Including output from executing external programs
+        !!!program args!!!    Examples:
+                !!!date +%Y%m%d!!!
 
-    Note:
-When using -D, the top-level headings become divisions (<div>)
-and will be created using a class of the heading name. Spaces
-are not allowed. If a top-level heading begins with '_', it
-will not be shown but the division name will be the same as
-without the '_'. Example: _Menu will have a division name of
-Menu and will not be shown.
-    '''
+            Note:
+        When using -D, the top-level headings become divisions (<div>)
+        and will be created using a class of the heading name. Spaces
+        are not allowed. If a top-level heading begins with '_', it
+        will not be shown but the division name will be the same as
+        without the '_'. Example: _Menu will have a division name of
+        Menu and will not be shown.
+        ''')
+         )
 
 
 def getArgs():
     parser = argparse.ArgumentParser(
-        description='''
-Convert a tab-formatted outline from VIM to HTML
+        description=textwrap.dedent(
+            '''Convert a tab-formatted outline from VIM to HTML
 
-Copyright 2001 Noel Henson All rights reserved
+            Copyright 2001 Noel Henson All rights reserved
 
-This program accepts text outline files and converts them
-to HTML.  The outline levels are indicated by tabs. A line with no
-tabs is assumed to be part of the highest outline level.
+            This program accepts text outline files and converts them
+            to HTML.  The outline levels are indicated by tabs. A line with no
+            tabs is assumed to be part of the highest outline level.
 
-10 outline levels are supported.  These loosely correspond to the
-HTML H1 through H9 tags.  Alphabetic, numeric and bullet formats
-are also supported.
-''')
+            10 outline levels are supported.  These loosely correspond to the
+            HTML H1 through H9 tags.  Alphabetic, numeric and bullet formats
+            are also supported.
+            '''
+        )
+    )
     parser.add_argument('inputFile', nargs=argparse.REMAINDER,
                         help='Input OTL outline filename.')
     parser.add_argument('-d', '--debug', action='store_true',
