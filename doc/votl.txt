@@ -51,7 +51,7 @@ Absolutely no warranty, see COPYING file for details.
 
 
 ==============================================================================
-Installing and Testing VimOutliner                                *votl-install*
+Installing and Testing VimOutliner
 
 
     Install via Pathogen            |votl-pathogen-install|
