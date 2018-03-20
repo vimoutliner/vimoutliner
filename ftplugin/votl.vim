@@ -33,7 +33,7 @@ let b:current_syntax = "outliner"
 " End User Preferences
 
 " VimOutliner Standard Settings {{{1
-setlocal autoindent	
+setlocal autoindent
 "setlocal backspace=2
 setlocal wrapmargin=5
 setlocal wrap
@@ -42,7 +42,7 @@ setlocal noexpandtab
 setlocal tabstop=4			" tabstop and shiftwidth must match
 setlocal shiftwidth=4			" values from 2 to 8 work well
 "setlocal nosmarttab
-"setlocal softtabstop=0 
+"setlocal softtabstop=0
 setlocal foldlevel=20
 setlocal foldcolumn=1			" turns on "+" at the beginning of close folds
 setlocal foldmethod=expr
@@ -56,7 +56,7 @@ setlocal iskeyword=@,39,45,48-57,_,129-255
 if !exists("loaded_vimoutliner_functions")
 let loaded_vimoutliner_functions=1
 
-" Sorting {{{2 
+" Sorting {{{2
 " IsParent(line) {{{3
 " Return 1 if this line is a parent
 function! IsParent(line)
@@ -160,7 +160,7 @@ endfunction
 " Sort1Line(line) {{{3
 " Compare this heading and the next and swap if out of order
 " Dir is 0 for forward, 1 for reverse
-" Return a 1 if a change was made 
+" Return a 1 if a change was made
 function! Sort1Line(line,dir)
 	if (CompHead(a:line) == -1) && (a:dir == 0)
 		call DelHead(a:line)
@@ -191,7 +191,7 @@ endfunction
 "}}}3
 " Sort(start,end,dir) {{{3
 " Sort this range of headings
-" dir: 0 = ascending, 1 = decending 
+" dir: 0 = ascending, 1 = decending
 function! SortRange(fstart,fend,dir)
 	let l:changed = 1
 	while l:changed != 0
@@ -200,8 +200,8 @@ function! SortRange(fstart,fend,dir)
 endfunction
 "}}}3
 " SortChildren(dir) {{{3
-" Sort the children of a parent 
-" dir: 0 = ascending, 1 = descending 
+" Sort the children of a parent
+" dir: 0 = ascending, 1 = descending
 function! SortChildren(dir)
 	let l:oldcursor = line(".")
 	let l:fstart = FindParent(line("."))
@@ -249,7 +249,7 @@ endfunction
 "}}}2
 " MyFoldText() {{{2
 " Create string used for folded text blocks
-function MyFoldText()
+function! MyFoldText()
     if exists('g:vo_fold_length') && g:vo_fold_length == "max"
         let l:foldlength = winwidth(0) - 1 - &numberwidth - &foldcolumn
     elseif exists('g:vo_fold_length')
@@ -314,9 +314,9 @@ function MyFoldText()
     let l:sublen = strdisplaywidth(l:sub)
 	let l:end = " (" . ((v:foldend + l:bodyTextFlag)- v:foldstart)
 	if ((v:foldend + l:bodyTextFlag)- v:foldstart) == 1
-		let l:end = l:end . " line)" 
+		let l:end = l:end . " line)"
 	else
-		let l:end = l:end . " lines)" 
+		let l:end = l:end . " lines)"
 	endif
     let l:endlen = strdisplaywidth(l:end)
 
@@ -533,7 +533,7 @@ endif
 " within the same buffer. Using :e has demonstrated this.
 set foldtext=MyFoldText()
 
-"setlocal fillchars=|, 
+"setlocal fillchars=|,
 
 endif " if !exists("loaded_vimoutliner_functions")
 " End Vim Outliner Functions
