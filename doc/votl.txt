@@ -60,7 +60,6 @@ Installing and Testing VimOutliner                                *votl-install*
     Manual Method                   |votl-manual-install|
     Testing                         |votl-testing|
 
-                                                                  *votl-install*
 Install~
 
 VimOutliner uses now standard method of installation of vim plugins (vim
