@@ -9,7 +9,7 @@ import textwrap
 import time
 
 logging.basicConfig(format='%(levelname)s:%(funcName)s:%(message)s',
-                    stream=sys.stdout, level=logging.DEBUG)
+                    stream=sys.stdout, level=logging.INFO)
 log = logging.getLogger('otl2html')
 
 outline = []
