@@ -617,12 +617,12 @@ endif
 " Vim Outliner Key Mappings {{{1
 " insert the date
 nmap <silent><buffer> <localleader>d $:call InsertSpaceDate()<cr>
-imap <silent><buffer> <localleader>d ~<esc>x:call InsertDate(0)<cr>a
+imap <silent><buffer> <localleader>d <c-o>:call InsertDate(0)<cr>
 nmap <silent><buffer> <localleader>D ^:call InsertDate(1)<cr>a <esc>
 
 " insert the time
 nmap <silent><buffer> <localleader>t $:call InsertSpaceTime()<cr>
-imap <silent><buffer> <localleader>t ~<esc>x:call InsertTime(0)<cr>a
+imap <silent><buffer> <localleader>t <c-o>:call InsertTime(0)<cr>
 nmap <silent><buffer> <localleader>T ^:call InsertTime(1)<cr>a <esc>
 
 " sort a list naturally
