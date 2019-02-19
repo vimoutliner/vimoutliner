@@ -442,7 +442,9 @@ function MyFoldLevel(line)
 	let l:myindent = Ind(a:line)
 	let l:nextindent = Ind(a:line+1)
 
-	if BodyText(a:line)
+	if getline(a:line) =~ "^\s*$"
+		return '='
+	elseif BodyText(a:line)
 		if (BodyText(a:line-1) == 0)
 			return '>'.(l:myindent+1)
 		endif
