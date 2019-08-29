@@ -1,5 +1,4 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
+#!/usr/bin/env python3
 #   Based on votl_maketags.pl
 #   Copyright (C) 2001-2003, 2011 by Steve Litt (slitt@troubleshooters.com)
 #   This script is

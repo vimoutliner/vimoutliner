@@ -21,7 +21,7 @@ debug = False
 # TODO body text with manual breaks
 # TODO commandline arguments for depth, maxlength etc.
 # TODO do not read whole file into memory?
-# TODO handle decreasing indent by more than one tab 
+# TODO handle decreasing indent by more than one tab
 # TODO handle body text lines sometimes not ending with space
 
 otlfile = open(fname)
@@ -47,9 +47,9 @@ def attach_note(node, textlines):
         pnode = et.SubElement(bodynode, 'p')
         pnode.text = line
 
-# node ID should be based on the line number of line in the otl file for easier 
+# node ID should be based on the line number of line in the otl file for easier
 # debugging
-#for lineno, line in enumerate(open(fname)): 
+#for lineno, line in enumerate(open(fname)):
 # enumerate starts at 0 I want to start at 1
 lineno = 0
 
@@ -70,8 +70,8 @@ filelines = codecs.open(fname, 'r', encoding='utf-8')
 #filelines = [line.rstrip('\r\n') for line in filelines if otl.level(line) <= depth]
 #filelines = [line for line in filelines if otl.is_heading(line)]
 
-# first handle the body texts turn it into a list of headings with associated 
-# body text for each one this is because the body text especially multi-line is 
+# first handle the body texts turn it into a list of headings with associated
+# body text for each one this is because the body text especially multi-line is
 # what makes it awkward.
 headings = []
 bodytexts = []
@@ -86,7 +86,7 @@ for line in filelines:
 #import pdb; pdb.set_trace()
 oldheading = ''
 for heading, bodytext in zip(headings, bodytexts):
-    if debug: print heading, bodytext
+    if debug: print("%s\t%s" % (heading, bodytext))
 
     level = otl.level(heading)
     oldlevel = otl.level(oldheading)
@@ -94,7 +94,7 @@ for heading, bodytext in zip(headings, bodytexts):
     if level == oldlevel:
         pass
     elif level > oldlevel:
-        # about to go down in the hierarchy so add this line as a parent to the 
+        # about to go down in the hierarchy so add this line as a parent to the
         # stack
         parents.append(node)
     elif level < oldlevel:
@@ -111,4 +111,4 @@ for heading, bodytext in zip(headings, bodytexts):
 
 xmltree = et.ElementTree(mapnode)
 xmltree.write(sys.stdout, 'utf-8')
-print
+print()

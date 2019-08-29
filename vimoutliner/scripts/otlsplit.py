@@ -1,4 +1,4 @@
-#!/usr/bin/env python2
+#!/usr/bin/env python3
 # otlslit.py
 # split an outline into several files.
 #
@@ -47,7 +47,7 @@ inputfile = ""
 def dprint(*vals):
     global debug
     if debug != 0:
-        print vals
+        print(vals)
 
 
 # usage
@@ -55,7 +55,7 @@ def dprint(*vals):
 # input: none
 # output: simple command usage is printed on the console
 def showUsage():
-    print """
+    print("""
     Usage:
     otlsplit.py [options] inputfile
     Options
@@ -64,7 +64,7 @@ def showUsage():
         -t        Include a title line (the parerent heading) in split files
         -h        Show help.
     output is on STDOUT
-    """
+    """)
 
 
 # getArgs
@@ -99,7 +99,7 @@ def getArgs():
                     showUsage()
                     sys.exit()
                 elif (sys.argv[i][0] == "-"):
-                    print "Error!  Unknown option.  Aborting"
+                    print("Error!  Unknown option.  Aborting")
                     sys.exit()
                 else:                             # get the input file name
                     inputfile = sys.argv[i]
@@ -174,7 +174,7 @@ def processFile(ifile):
                     dprint("title:", title)
                     ofile.write(nameparts[level - 1])
             ofile.write(line[level:])
-        line = file.readline()
+        line = ifile.readline()
 
 
 # main
@@ -184,8 +184,8 @@ def processFile(ifile):
 def main():
     global inputfile, debug
     getArgs()
-    file = open(inputfile, "r")
-    processFile(file)
-    file.close()
+    ifile = open(inputfile, "r")
+    processFile(ifile)
+    ifile.close()
 
 main()

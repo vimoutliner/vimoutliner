@@ -8,7 +8,7 @@ Usage:
     otl2latex.py -[abp] file.otl [file.tex]
 
     -a: Output to article class
-    -b: Output to book class 
+    -b: Output to book class
     -p: Output to Beamer (presentation) class (default)
 
 
@@ -168,7 +168,7 @@ class Beamer(Manager):
         preamble+="\\subtitle{%s}\n"%(d['subtitle '])
         preamble+="\\date[%s]{%s}\n"%(d['dateShort '],d['date '])
 
-        print self.preamble
+        print(self.preamble)
         self.preamble=preamble
 
 
@@ -268,7 +268,7 @@ class Beamer(Manager):
         self.markup=self.top1+self.preamble+self.top2
         self.markup+=self.body
         self.markup+="\n\\end{document}\n"
-        print self.markup
+        print(self.markup)
 
 # Process command line arguments
 args = sys.argv
@@ -279,7 +279,7 @@ inputFileName=None
 outputFileName=None
 
 def printUsage():
-    print usage
+    print(usage)
     sys.exit()
 
 if nargs==1:

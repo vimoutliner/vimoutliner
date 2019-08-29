@@ -1,4 +1,4 @@
-#!/usr/bin/env python2
+#!/usr/bin/env python3
 # otlgrep.py
 # grep an outline for a regex and return the branch with all the leaves.
 #
@@ -89,7 +89,7 @@ inputfiles = []
 def dprint(*vals):
     global debug
     if debug != 0:
-        print vals
+        print(vals)
 
 
 # usage
@@ -97,7 +97,7 @@ def dprint(*vals):
 # input: none
 # output: simple command usage is printed on the console
 def showUsage():
-    print """
+    print("""
     Usage:
     otlgrep.py [options] pattern [file...]
     Options
@@ -106,7 +106,7 @@ def showUsage():
     [file...] is zero or more files to search. Wildcards are supported.
             if no file is specified, input is expected on stdin.
     output is on STDOUT
-    """
+    """)
 
 
 # getArgs
@@ -133,7 +133,7 @@ def getArgs():
                     showUsage()
                     sys.exit()
                 elif (sys.argv[i][0] == "-"):
-                    print "Error!  Unknown option.  Aborting"
+                    print("Error!  Unknown option.  Aborting")
                     sys.exit()
                 else:       # get the input file name
                     if (pattern == ""):
@@ -182,12 +182,12 @@ def processFile(file):
             matchlevel = level
             for i in range(level):  # print my ancestors
                 if (parentprinted[i] == 0):
-                    print parents[i][:-1]
+                    print(parents[i][:-1])
                     parentprinted[i] = 1
-            print parents[level][:-1]  # print myself
+            print(parents[level][:-1])  # print myself
             line = file.readline()
             while (line != "") and (getLineLevel(line) > matchlevel):
-                print line[:-1]
+                print(line[:-1])
                 line = file.readline()
         else:
             line = file.readline()

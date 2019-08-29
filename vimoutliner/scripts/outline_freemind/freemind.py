@@ -51,7 +51,7 @@ class Outline:                     # The target object of the parser
             #textlines = textwrap.wrap(bodytext, width=77-len(bodyindent),
             #   break_on_hyphens=False)
             #for line in textlines:
-            print bodyindent + bodyline
+            print(bodyindent + bodyline)
 
     def close(self):    # Called when all data has been parsed.
         pass
@@ -137,7 +137,7 @@ def otl2mm(*arg, **kwarg):
     oldheading = ''
     for heading, bodytext in zip(headings, bodytexts):
         if debug:
-            print heading, bodytext
+            print("%s\t%s"% (heading, bodytext))
 
         level = otl.level(heading)
         oldlevel = otl.level(oldheading)
@@ -167,16 +167,16 @@ def otl2mm(*arg, **kwarg):
 
 
 def usage():
-    print "usage: %s -[mo] <files>" % (sys.argv[0])
+    print("usage: %s -[mo] <files>" % (sys.argv[0]))
 
 
 def main():
     args = sys.argv
     try:
         opts, args = getopt.getopt(sys.argv[1:], 'moh', [""])
-    except getopt.GetoptError, err:
+    except getopt.GetoptError as err:
         usage()
-        print str(err)
+        print(str(err))
         sys.exit(2)
 
     for o, a in opts:

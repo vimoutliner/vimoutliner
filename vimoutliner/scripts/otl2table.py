@@ -1,4 +1,4 @@
-#!/usr/bin/env python2
+#!/usr/bin/env python3
 # otl2table.py
 # convert a tab-formatted outline from VIM to tab-delimited table
 #
@@ -54,19 +54,19 @@ columns = []
 # output: simple command usage is printed on the console
 
 def showUsage():
-  print
-  print "Usage:"
-  print "otl2table.py [options] inputfile > outputfile"
-  print "Options"
-  print "    -n              Don't include trailing columns."
-  print "    -t type        Specify field separator type."
-  print "                   Types:"
-  print "                      tab - separate fields with tabs (default)"
-  print "                      csv - separate fields with ,"
-  print "                      qcsv - separate fields with \",\""
-  print "                      bullets - uses HTML tags <ul> and <li>"
-  print "output is on STDOUT"
-  print
+  print()
+  print("Usage:")
+  print("otl2table.py [options] inputfile > outputfile")
+  print("Options")
+  print("    -n              Don't include trailing columns.")
+  print("    -t type        Specify field separator type.")
+  print("                   Types:")
+  print("                      tab - separate fields with tabs (default)")
+  print("                      csv - separate fields with ,")
+  print("                      qcsv - separate fields with \",\"")
+  print("                      bullets - uses HTML tags <ul> and <li>")
+  print("output is on STDOUT")
+  print()
 
 # getArgs
 # Check for input arguments and set the necessary switches
@@ -96,7 +96,7 @@ def getArgs():
           formatMode = sys.argv[i+1]            # get the type
           i = i + 1                             # increment the pointer
         elif (sys.argv[i][0] == "-"):
-          print "Error!  Unknown option.  Aborting"
+          print("Error!  Unknown option.  Aborting")
           sys.exit()
         else:                                   # get the input file name
           inputfile = sys.argv[i]
@@ -140,20 +140,20 @@ def closeLevels():
      colcount = 10
   if formatMode == "tab":
     for i in range(1,colcount+1):
-      print columns[i] + "\t",
-    print
+      print(columns[i] + "\t\t")
+    print()
   elif formatMode == "csv":
     output = ""
     for i in range(1,colcount):
       output = output + columns[i] + ","
     output = output + columns[colcount]
-    print output
+    print(output)
   elif formatMode == "qcsv":
     output = "\""
     for i in range(1,colcount):
       output = output + columns[i] + "\",\""
     output = output + columns[colcount] + "\""
-    print output
+    print(output)
   for i in range(level+1,10):
     columns[i] = ""
 
@@ -196,4 +196,3 @@ def main():
   file.close()
 
 main()
-

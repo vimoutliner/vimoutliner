@@ -1,5 +1,5 @@
-#!/usr/bin/python2
-'''Converts a freemind xml .mm file to an outline file compatable with vim 
+#!/usr/bin/python3
+'''Converts a freemind xml .mm file to an outline file compatable with vim
 outliner.
 
 Make sure that you check that round trip on your file works.
@@ -31,8 +31,8 @@ class Outline:                     # The target object of the parser
             bodyline = data.rstrip('\r\n')
             bodyindent = (self.depth-5)*self.indent + ": "
             #textlines = textwrap.wrap(bodytext, width=77-len(bodyindent), break_on_hyphens=False)
-            #for line in textlines: 
-            print bodyindent + bodyline
+            #for line in textlines:
+            print(bodyindent + bodyline)
 
     def close(self):    # Called when all data has been parsed.
         pass
@@ -43,6 +43,6 @@ parser = XMLParser(target=outline, encoding='utf-8')
 fname = sys.argv[1]
 file = codecs.open(fname, 'r', encoding='utf-8')
 filelines = file.readlines();
-print "filelines", type(filelines[0]), filelines[0]
+print("filelines\t%s\t%s" % (type(filelines[0]), filelines[0]))
 parser.feed(filelines[0].encode('utf-8'))
 parser.close()

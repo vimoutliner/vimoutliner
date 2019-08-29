@@ -1,4 +1,4 @@
-#!/usr/bin/env python2
+#!/usr/bin/env python3
 import argparse
 import locale
 import logging
@@ -246,14 +246,14 @@ def plusStrip(line):
 # output: through standard out
 def handleBodyText(linein, lineLevel, conf):
     if conf.inBodyText == 2:
-        print "</pre>"
+        print("</pre>")
     if conf.inBodyText == 3:
-        print "</table>"
-    print "<p",
+        print("</table>")
+    print("<p\t")
     if conf.styleSheet != "":
-        print " class=\"P" + str(lineLevel) + "\"",
+        print(" class=\"P" + str(lineLevel) + "\"\t")
         conf.inBodyText = 1
-    print ">" + colonStrip(linein.strip()),
+    print(">" + colonStrip(linein.strip()) + '\t')
 
 
 # handlePreformattedText
@@ -263,14 +263,14 @@ def handleBodyText(linein, lineLevel, conf):
 # output: through standard out
 def handlePreformattedText(linein, lineLevel, config):
     if config.inBodyText == 1:
-        print "</p>"
+        print("</p>")
     if config.inBodyText == 3:
-        print "</table>"
-    print "<pre",
+        print("</table>")
+    print("<pre\t")
     if config.styleSheet != "":
-        print " class=\"PRE" + str(lineLevel) + "\"",
+        print(" class=\"PRE" + str(lineLevel) + "\"\t")
         config.inBodyText = 2
-    print ">" + semicolonStrip(linein.strip()),
+    print(">" + semicolonStrip(linein.strip()) + "\t")
 
 
 # isAlignRight
@@ -371,13 +371,13 @@ def handleTableRow(linein, lineLevel):
 # output: through standard out
 def handleTable(linein, lineLevel, config):
     if config.inBodyText == 1:
-        print "</p>"
+        print("</p>")
     if config.inBodyText == 2:
-        print "</pre>"
+        print("</pre>")
     if config.inBodyText != 3:
-        print "<table class=\"TAB" + str(lineLevel) + "\">"
+        print("<table class=\"TAB" + str(lineLevel) + "\">")
         config.inBodyText = 3
-    print handleTableRow(linein, lineLevel),
+    print(handleTableRow(linein, lineLevel) + "\t")
 
 
 # linkOrImage
@@ -524,9 +524,9 @@ def beautifyLine(line):
 def closeLevels(config):
     while config.level > 0:
         if config.formatMode == "bullets":
-            print "</ul>"
+            print("</ul>")
         if config.formatMode in ["alpha", "numeric", "roman", "indent"]:
-            print "</ol>"
+            print("</ol>")
 
         config.level -= 1
 
@@ -549,16 +549,16 @@ def processLine(linein, conf):
             while lineLevel > conf.level:
                 if conf.formatMode in ["indent", "simple"]:
                     if conf.inBodyText == 1:
-                        print"</p>"
+                        print("</p>")
                         conf.inBodyText = 0
                     elif conf.inBodyText == 2:
-                        print"</pre>"
+                        print("</pre>")
                         conf.inBodyText = 0
                     elif conf.inBodyText == 3:
-                        print"</table>"
+                        print("</table>")
                         conf.inBodyText = 0
                     if not (conf.silentDiv and lineLevel == 1):
-                        print "<ol>"
+                        print("<ol>")
                 else:
                     sys.exit("Error! Unknown formatMode type")
                 conf.level += 1
@@ -566,30 +566,30 @@ def processLine(linein, conf):
         elif lineLevel < conf.level:  # decreasing depth
             while lineLevel < conf.level:
                 if conf.inBodyText == 1:
-                    print"</p>"
+                    print("</p>")
                     conf.inBodyText = 0
                 elif conf.inBodyText == 2:
-                    print"</pre>"
+                    print("</pre>")
                     conf.inBodyText = 0
                 elif conf.inBodyText == 3:
-                    print"</table>"
+                    print("</table>")
                     conf.inBodyText = 0
-                print "</ol>"
+                print("</ol>")
                 conf.level = conf.level - 1
                 if conf.silentDiv and conf.level == 1:
                     if not conf.silentDiv:
-                        print'</ol>'
+                        print('</ol>')
                     else:
                         conf.silentDiv = False
-                    print'</div>'
+                    print('</div>')
 
         else:
             print  # same depth
         if conf.silentDiv and lineLevel == 1:
             if lineLevel != (linein.find("!") + 1):
-                print divName(linein, conf)
+                print(divName(linein, conf))
                 if conf.silentDiv == 0:
-                    print "<ol>"
+                    print("<ol>")
 
         if conf.slides == 0:
             if (lineLevel == linein.find(" ") + 1) or \
@@ -597,26 +597,26 @@ def processLine(linein, conf):
                 if conf.inBodyText != 1:
                     handleBodyText(linein, lineLevel, conf)
                 elif colonStrip(linein.strip()) == "":
-                    print "</p>"
+                    print("</p>")
                     handleBodyText(linein, lineLevel, conf)
                 else:
-                    print colonStrip(linein.strip()),
+                    print(colonStrip(linein.strip()) + '\t')
             elif lineLevel == (linein.find(";") + 1):
                 if conf.inBodyText != 2:
                     handlePreformattedText(linein, lineLevel, conf)
                 elif semicolonStrip(linein.strip()) == "":
-                    print "</pre>"
+                    print("</pre>")
                     handlePreformattedText(linein, lineLevel, conf)
                 else:
-                    print semicolonStrip(linein.strip()),
+                    print(semicolonStrip(linein.strip()) + '\t')
             elif lineLevel == (linein.find("|") + 1):
                 if conf.inBodyText != 3:
                     handleTable(linein, lineLevel, conf)
                 elif pipeStrip(linein.strip()) == "":
-                    print "</table>"
+                    print("</table>")
                     handleTable(linein, lineLevel, conf)
                 else:
-                    print handleTableRow(linein, lineLevel),
+                    print(handleTableRow(linein, lineLevel) + '\t')
             elif lineLevel == (linein.find("!!!") + 1):
                 execProgram(linein, conf)
             elif lineLevel == (linein.find("!!") + 1):
@@ -625,27 +625,26 @@ def processLine(linein, conf):
                 includeFile(linein, lineLevel, conf)
             else:
                 if conf.inBodyText == 1:
-                    print"</p>"
+                    print("</p>")
                     conf.inBodyText = 0
                 elif conf.inBodyText == 2:
-                    print"</pre>"
+                    print("</pre>")
                     conf.inBodyText = 0
                 elif conf.inBodyText == 3:
-                    print"</table>"
+                    print("</table>")
                     conf.inBodyText = 0
                 if conf.silentDiv == 0:
-                    print "<li",
+                    print ("<li\t")
                     if conf.styleSheet != "":
                         if lineLevel == (linein.find("- ") + 1):
-                            print " class=\"LB" + str(lineLevel) + "\"",
-                            print ">" + \
-                                  dashStrip(linein.strip()),
+                            print(" class=\"LB" + str(lineLevel) + "\"\t")
+                            print(">" + dashStrip(linein.strip()) + '\t')
                         elif lineLevel == (linein.find("+ ") + 1):
-                            print " class=\"LN" + str(lineLevel) + "\"",
-                            print ">" + plusStrip(linein.strip()),
+                            print(" class=\"LN" + str(lineLevel) + "\"\t")
+                            print(">" + plusStrip(linein.strip()) + '\t')
                         else:
-                            print ' class="L' + str(lineLevel) + '"',
-                            print ">" + linein.strip(),
+                            print(' class="L' + str(lineLevel) + '"\t')
+                            print(">" + linein.strip() + '\t')
                 else:
                     conf.silentDiv = 0
         else:
@@ -654,26 +653,26 @@ def processLine(linein, conf):
                     if conf.inBodyText == 0:
                         handleBodyText(linein, lineLevel, conf)
                     else:
-                        print linein.strip(),
+                        print(linein.strip() + '\t')
                 else:
-                    print "<address>"
-                    print linein.strip(),
-                    print "</address>\n"
+                    print("<address>")
+                    print(linein.strip() + '\t')
+                    print("</address>\n\t")
             else:
                 if (lineLevel == linein.find(" ") + 1) or \
                         (lineLevel == linein.find(":") + 1):
                     if conf.inBodyText == 0:
                         handleBodyText(linein, lineLevel, conf)
                     else:
-                        print linein.strip(),
+                        print(linein.strip() + '\t')
                 else:
                     if conf.inBodyText == 1:
-                        print"</p>"
+                        print("</p>")
                         conf.inBodyText = 0
-                    print "<li",
+                    print("<li\t")
                     if conf.styleSheet != "":
-                        print " class=\"LI.L" + str(lineLevel) + "\"",
-                    print ">" + linein.strip(),
+                        print(" class=\"LI.L" + str(lineLevel) + "\"\t")
+                    print(">" + linein.strip() + '\t')
 
 
 # flatten
@@ -985,28 +984,28 @@ def printHeader(linein, config):
         out_string += '<style type="text/css">'
         out_string += css_file.read()
         out_string += "</style>\n</head>"
-    print out_string + "\n<body>"
+    print(out_string + "\n<body>")
     css_file.close()
 
 
 def printFirstLine(linein):
-    print '''<div class="DocTitle">
+    print('''<div class="DocTitle">
     <h1>%s</h1>
     </div>
-    <div class="MainPage">''' % stripTitleText(linein.strip())
+    <div class="MainPage">''' % stripTitleText(linein.strip()))
 
 
 def printFooter(config):
-    print "</div>"
+    print("</div>")
     if not config.slides and not config.silentDiv:
-        print "<div class=\"Footer\">"
-        print "<hr>"
-        print config.copyright
-        print "<br>"
-        print config.inputFile + "&nbsp;&nbsp; " + \
-            time.strftime("%Y/%m/%d %H:%M", time.localtime(time.time()))
-        print "</div>"
-    print "</body></html>"
+        print("<div class=\"Footer\">")
+        print("<hr>")
+        print(config.copyright)
+        print("<br>")
+        print(config.inputFile + "&nbsp;&nbsp; " + \
+            time.strftime("%Y/%m/%d %H:%M", time.localtime(time.time())))
+        print("</div>")
+    print("</body></html>")
 
 
 def main():

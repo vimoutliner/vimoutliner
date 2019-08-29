@@ -1,4 +1,4 @@
-#!/usr/bin/env python2
+#!/usr/bin/env python3
 # otl2tags.py
 # Convert an OTL file to any tags-based file using config user-
 # definable configuration files. HTML, OPML, XML, LATEX and
@@ -44,7 +44,7 @@ inputfile = ""
 def dprint(*vals):
     global debug
     if debug != 0:
-        print >> sys.stderr, vals
+        print(vals, file=sys.stderr)
 
 
 # getArgs
@@ -92,16 +92,16 @@ def getArgs():
 # output: configuration data printed to console
 def printConfig():
     global config
-    print >> sys.stderr, "Config ---------------------------------------------"
+    print("Config ---------------------------------------------", file=sys.stderr)
     list = config.sections()
     for i in range(len(list)):
         print >> sys.stderr
         print >> sys.stderr, list[i]
         for x in config.options(list[i]):
             if (x != "name") and (x != "__name__"):
-                print >> sys.stderr, x, ":", config.get(list[i], x)
-    print >> sys.stderr, "----------------------------------------------------"
-    print >> sys.stderr
+                print(x, ":", config.get(list[i], x), file=sys.stderr)
+    print("----------------------------------------------------", file=sys.stderr)
+    print(file=sys.stderr)
 
 ###########################################################################
 # low-level outline processing functions
@@ -618,8 +618,8 @@ def handleObject(linenum, enum):
     elif obj == 'table':
         handleTable(linenum, enum)
     else:
-        print
-        print "Error: unknown line type @ ", linenum
+        print()
+        print("Error: unknown line type @ \t" + linenum)
         sys.exit(1)
 
 
@@ -694,6 +694,6 @@ def main():
     # output the final data
     for line in output:
         if line.strip() != "":
-            print line.strip()
+            print(line.strip())
 
 main()

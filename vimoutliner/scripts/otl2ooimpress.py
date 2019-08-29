@@ -1,4 +1,4 @@
-#!/usr/bin/env python2
+#!/usr/bin/env python3
 # otl2ooimpress.py
 # needs otl2ooimpress.sh to work in an automated way
 #############################################################################
@@ -58,12 +58,12 @@ debug = 0
 # input: none
 # output: simple command usage is printed on the console
 def showUsage():
-    print
-    print "Usage:"
-    print "otl2ooimpress.py [options] inputfile > outputfile"
-    print ""
-    print "output is on STDOUT"
-    print
+    print()
+    print("Usage:")
+    print("otl2ooimpress.py [options] inputfile > outputfile")
+    print("")
+    print("output is on STDOUT")
+    print()
 
 
 # getArgs
@@ -139,11 +139,11 @@ def colonStrip(line):
 def processLine(linein):
     global inPage, pageNumber
     if (linein.lstrip() == ""):
-        print
+        print()
         return
     if (getLineLevel(linein) == 1):
         if (inPage == 1):
-            print '</draw:text-box></draw:page>'
+            print('</draw:text-box></draw:page>')
             inPage = 0
         pageNumber += 1
         outstring = '<draw:page draw:name="'
@@ -152,27 +152,27 @@ def processLine(linein):
         outstring += '" draw:style-name="dp1" draw:id="1" ' + \
             'draw:master-page-name="Default" ' + \
             'presentation:presentation-page-layout-name="AL1T0">'
-        print outstring
+        print(outstring)
         outstring = '<draw:text-box presentation:style-name="pr1" ' + \
             'draw:layer="layout" svg:width="23.911cm" ' + \
             'svg:height="3.508cm" svg:x="2.057cm" svg:y="1.0cm" ' + \
             'presentation:class="title">'
-        print outstring
+        print(outstring)
         outstring = '<text:p text:style-name="P1">'
         outstring += linein.lstrip()
         outstring += "</text:p></draw:text-box>"
-        print outstring
+        print(outstring)
         outstring = '<draw:text-box presentation:style-name="pr1" ' + \
             'draw:layer="layout" svg:width="23.911cm" ' + \
             'svg:height="3.508cm" svg:x="2.057cm" svg:y="5.38cm" ' + \
             'presentation:class="subtitle">'
-        print outstring
+        print(outstring)
         inPage = 1
     else:
         outstring = '<text:p text:style-name="P1">'
         outstring += linein.lstrip()
         outstring += '</text:p>'
-        print outstring
+        print(outstring)
 
 
 # flatten
@@ -212,7 +212,7 @@ def flatten(idx):
 
 
 def printHeader(linein):
-    print'''<?xml version="1.0" encoding="UTF-8"?>
+    print('''<?xml version="1.0" encoding="UTF-8"?>
     <!DOCTYPE office:document-content PUBLIC
         "-//OpenOffice.org//DTD OfficeDocument 1.0//EN"
         "office.dtd">
@@ -233,12 +233,12 @@ def printHeader(linein):
         xmlns:script="http://openoffice.org/2000/script"
         office:class="presentation" office:version="1.0">
     <office:script/>
-    <office:body>'''
+    <office:body>''')
 
 
 def printFooter():
-    print '</draw:text-box></draw:page>'
-    print'</office:body>'
+    print('</draw:text-box></draw:page>')
+    print('</office:body>')
 
 
 def main():
