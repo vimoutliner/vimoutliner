@@ -93,7 +93,7 @@ function! SafelyInsertCheckBox()
 endfunction
 "}}}1
 " Safely InsertCheckBoxPercent() {{{1
-" Insert a checkbox and % sign at the beginning of a header without disturbing 
+" Insert a checkbox and % sign at the beginning of a header without disturbing
 " the current folding only if there is no checkbox already.
 function! SafelyInsertCheckBoxPercent()
 	if match(getline("."),"^\t\t*\[<>:;|\]") != -1
@@ -110,8 +110,8 @@ function! SafelyInsertCheckBoxPercent()
 endfunction
 "}}}1
 " Safely InsertCheckBoxPercentAlways() {{{1
-" Insert a checkbox and % sign at the beginning of a header without disturbing 
-" the current folding only if there is no checkbox already. Include the 
+" Insert a checkbox and % sign at the beginning of a header without disturbing
+" the current folding only if there is no checkbox already. Include the
 " checkbox even on childless headings.
 function! SafelyInsertCheckBoxPercentAlways()
 	if match(getline("."),"^\t\t*\[<>:;|\]") != -1
@@ -139,10 +139,9 @@ endfunction
 " Switch the state of the checkbox on the current line.
 function! SwitchBox()
    let l:line = getline(".")
-   let questa = strridx(l:line,"[_]")
-   let questb = strridx(l:line,"[X]")
-   if (questa != -1) || (questb != -1)
-	if (questa != -1) 
+   let questa = l:line =~ "\[[_-]\]"
+   if questa || (l:line =~ "\[X\]")
+	if (questa)
 		call SetBox('X')
 	else
 		call SetBox('_')
@@ -153,10 +152,9 @@ endfunction
 " DeleteCheckbox() {{{1
 " Delete a checkbox if one exists
 function! DeleteCheckbox()
-   let questa = strridx(getline("."),"[_]")
-   let questb = strridx(getline("."),"[X]")
-   if (questa != -1) || (questb != -1)
-	   if (questa != -1) 
+   let questa = getline(".") =~ "\[[_-]\]"
+   if questa || (getline(".") =~ "\[X\]")
+	   if questa
 	      substitute/\(^\s*\)\[_\] \(.*\)/\1\2/
 	   else
 	      substitute/\(^\s*\)\[X\] \(.*\)/\1\2/
@@ -307,7 +305,7 @@ function! ComputePW(line,count,done)
 endf
 
 " CalculateMyChildren(line) {{{1
-" Calculates percent completion only on the immediate children of the 
+" Calculates percent completion only on the immediate children of the
 " parent specified by line.
 function! CalculateMyChildren(line)
 	let l:done = 0
@@ -341,9 +339,9 @@ function! CalculateMyBranch(line)
 endf
 
 " NewHMD(line) {{{1
-" (New How Many Done) 
+" (New How Many Done)
 " Calculates proportion of already done work in the subtree
-" Recursive, but slow because it computes an entire branch of an outline 
+" Recursive, but slow because it computes an entire branch of an outline
 " from level 1.
 " Returns (proportion,weight) proportion could be a flag of -1
 function! NewHMD(line)
