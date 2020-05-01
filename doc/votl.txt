@@ -960,10 +960,14 @@ item. The sub items will be presented as top level items in the automatically
 extracted hoist-file located in the same directory as the main outline file.
 You cannot hoist parts of an already hoisted file again.
 
-To enable this plugin uncomment the following line in |vimoutlinerrc|:
+To enable this plugin, create the file:
+
+    $HOME/.vim/after/pack/thirdparty/start/vimoutliner/ftplugin/votl.vim
 >
+with the contents:
+
     "let g:vo_modules_load .= ':newhoist'
-<
+
 Once it is enabled, you hoist the subtopics of the currently selected
 item with
 
@@ -989,7 +993,11 @@ The clock plugin is a little imitation of a nice feature from emacs org mode.
 The clockpugin allows to track times and summarize them up in the parent
 heading.
 
-To enable this plugin uncomment the following line in |vimoutlinerrc|:
+To enable this plugin, create the file
+
+    $HOME/.vim/after/pack/thirdparty/start/vimoutliner/ftplugin/votl.vim
+
+with the contents:
 >
     "let g:vo_modules_load .= ':clock'
 <
