@@ -640,7 +640,7 @@ map <silent><buffer> <localleader>- o----------------------------------------0
 imap <silent><buffer> <localleader>- ----------------------------------------<cr>
 
 "   First, convert document to the marker style
-map <silent><buffer><localleader>b :%s/\(^\t*\):/\1/e<cr>:%s/\(^\t*\) /\1: /e<cr>:let @/=""<cr>
+map <silent><buffer><localleader>b :%s/\(^\t*\):\n/\1 \r/e<cr>:%s/\(^\t*\):/\1/e<cr>:%s/\(^\t*\) /\1: /e<cr>:let @/=""<cr>
 "   Now, convert document to the space style
 map <silent><buffer><localleader>B :%s/\(^\t*\):/\1/e<cr>:let @/=""<cr>
 
