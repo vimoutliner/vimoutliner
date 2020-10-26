@@ -90,7 +90,7 @@ def getArgs():
                     showUsage()
                     sys.exit()
                 elif (sys.argv[i][0] == "-"):
-                    print "Error!  Unknown option.  Aborting"
+                    print("Error!  Unknown option.  Aborting")
                     sys.exit()
                 else:     # get the input file name
                     inputFile = sys.argv[i]
@@ -259,5 +259,6 @@ def main():
         printFooter()
 
     file.close()
+
 
 main()

@@ -1,4 +1,4 @@
-#!/usr/bin/python2
+#!/usr/bin/python3
 '''Read in an otl file and generate an xml mind map viewable in freemind
 
 Make sure that you check that round trip on your file works.
@@ -7,7 +7,6 @@ Author: Julian Ryde
 '''
 
 import sys
-import os
 import xml.etree.ElementTree as et
 import otl
 import codecs
@@ -27,25 +26,26 @@ debug = False
 otlfile = open(fname)
 indent = '  '
 
+
 def attach_note(node, textlines):
     et.ElementTree
-    # Format should look like
-    #<richcontent TYPE="NOTE">
-    #<html>
-    #  <head> </head>
-    #  <body>
-    #  %s
-    #  </body>
-    #</html>
-    #</richcontent>
+    #  Format should look like
+    # <richcontent TYPE="NOTE">
+    # <html>
+    #   <head> </head>
+    #   <body>
+    #   %s
+    #   </body>
+    # </html>
+    # </richcontent>
     notenode = et.SubElement(node, 'richcontent')
     notenode.set('TYPE', 'NOTE')
     htmlnode = et.SubElement(notenode, 'html')
-    headnode = et.SubElement(htmlnode, 'head')
     bodynode = et.SubElement(htmlnode, 'body')
     for line in textlines:
         pnode = et.SubElement(bodynode, 'p')
         pnode.text = line
+
 
 # node ID should be based on the line number of line in the otl file for easier
 # debugging
@@ -61,14 +61,14 @@ topnode.set('TEXT', fname)
 
 parents = [mapnode, topnode]
 
-#left_side = True # POSITION="right"
+# left_side = True # POSITION="right"
 
 # read otl file into memory
 filelines = codecs.open(fname, 'r', encoding='utf-8')
 
 # remove those that are too deep or body text and pesky end of line characters
-#filelines = [line.rstrip('\r\n') for line in filelines if otl.level(line) <= depth]
-#filelines = [line for line in filelines if otl.is_heading(line)]
+# filelines = [line.rstrip('\r\n') for line in filelines if otl.level(line) <= depth]
+# filelines = [line for line in filelines if otl.is_heading(line)]
 
 # first handle the body texts turn it into a list of headings with associated
 # body text for each one this is because the body text especially multi-line is
@@ -83,10 +83,10 @@ for line in filelines:
         # TODO this ': ' removal should go in otl.py?
         bodytexts[-1].append(line.lstrip()[2:] + '\n')
 
-#import pdb; pdb.set_trace()
 oldheading = ''
 for heading, bodytext in zip(headings, bodytexts):
-    if debug: print("%s\t%s" % (heading, bodytext))
+    if debug:
+        print("%s\t%s" % (heading, bodytext))
 
     level = otl.level(heading)
     oldlevel = otl.level(oldheading)
@@ -104,7 +104,6 @@ for heading, bodytext in zip(headings, bodytexts):
 
     node = et.SubElement(parents[-1], 'node')
     node.set('TEXT', heading.lstrip().rstrip('\r\n'))
-    #if len(bodytext) > 0:
     attach_note(node, bodytext)
 
     oldheading = heading

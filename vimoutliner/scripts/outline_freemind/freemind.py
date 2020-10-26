@@ -1,4 +1,4 @@
-#!/usr/bin/python2
+#!/usr/bin/python3
 
 '''
 usage:
@@ -18,6 +18,7 @@ Author: Julian Ryde
 import sys
 import getopt
 import codecs
+# import textwrap
 
 import otl
 import xml.etree.ElementTree as et
@@ -36,9 +37,7 @@ class Outline:                     # The target object of the parser
         self.current_tag = tag
         # print the indented heading
         if tag == 'node' and self.depth > 1:
-            #if 'tab' in attrib['TEXT']:
-                #import pdb; pdb.set_trace()
-            print (self.depth - 2) * self.indent + attrib['TEXT']
+            print(self.depth - 2) * self.indent + attrib['TEXT']
 
     def end(self, tag):            # Called for each closing tag.
         self.depth -= 1
@@ -48,9 +47,9 @@ class Outline:                     # The target object of the parser
         if self.current_tag == 'p':
             bodyline = data.rstrip('\r\n')
             bodyindent = (self.depth - 5) * self.indent + ": "
-            #textlines = textwrap.wrap(bodytext, width=77-len(bodyindent),
-            #   break_on_hyphens=False)
-            #for line in textlines:
+            # textlines = textwrap.wrap(bodytext, width=77-len(bodyindent),
+            #    break_on_hyphens=False)
+            # for line in textlines:
             print(bodyindent + bodyline)
 
     def close(self):    # Called when all data has been parsed.
@@ -79,15 +78,15 @@ depth = 99
 
 def attach_note(node, textlines):
     et.ElementTree
-    # Format should look like
-    #<richcontent TYPE="NOTE">
-    #<html>
-    #  <head> </head>
-    #  <body>
-    #  %s
-    #  </body>
-    #</html>
-    #</richcontent>
+    #  Format should look like
+    # <richcontent TYPE="NOTE">
+    # <html>
+    #   <head> </head>
+    #   <body>
+    #   %s
+    #   </body>
+    # </html>
+    # </richcontent>
     notenode = et.SubElement(node, 'richcontent')
     notenode.set('TYPE', 'NOTE')
     htmlnode = et.SubElement(notenode, 'html')
@@ -102,11 +101,8 @@ def otl2mm(*arg, **kwarg):
 
     # node ID should be based on the line number of line in the
     # otl file for easier debugging
-    #for lineno, line in enumerate(open(fname)):
+    #  for lineno, line in enumerate(open(fname)):
     # enumerate starts at 0 I want to start at 1
-    # FIXME freemind.py|107| W806 local variable 'lineno' is assigned to but never used
-    lineno = 0
-
     mapnode = et.Element('map')
     mapnode.set('version', '0.9.0')
 
@@ -115,7 +111,7 @@ def otl2mm(*arg, **kwarg):
 
     parents = [mapnode, topnode]
 
-    #left_side = True # POSITION="right"
+    # left_side = True # POSITION="right"
 
     # read otl file into memory
     filelines = codecs.open(fname, 'r', encoding='utf-8')
@@ -133,11 +129,10 @@ def otl2mm(*arg, **kwarg):
             # TODO this ': ' removal should go in otl.py?
             bodytexts[-1].append(line.lstrip()[2:] + '\n')
 
-    #import pdb; pdb.set_trace()
     oldheading = ''
     for heading, bodytext in zip(headings, bodytexts):
         if debug:
-            print("%s\t%s"% (heading, bodytext))
+            print("%s\t%s" % (heading, bodytext))
 
         level = otl.level(heading)
         oldlevel = otl.level(oldheading)
@@ -156,7 +151,6 @@ def otl2mm(*arg, **kwarg):
 
         node = et.SubElement(parents[-1], 'node')
         node.set('TEXT', heading.lstrip().rstrip('\r\n'))
-        #if len(bodytext) > 0:
         attach_note(node, bodytext)
 
         oldheading = heading
@@ -191,6 +185,7 @@ def main():
             usage()
             assert False, "unhandled option: %s" % o
     return args
+
 
 if __name__ == "__main__":
     main()

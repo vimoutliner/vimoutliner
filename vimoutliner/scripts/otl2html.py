@@ -15,6 +15,7 @@ log = logging.getLogger('otl2html')
 outline = []
 flatoutline = []
 
+
 def print_syntax():
     print(textwrap.dedent(
         '''Syntax
@@ -160,6 +161,7 @@ def getArgs():
         'no': 0, 'text': 1, 'preformatted': 2, 'table': 3}[args.inBody]
     return args
 
+
 # getLineLevel
 # get the level of the current line (count the number of tabs)
 # input: linein - a single line that may or may not have tabs at the beginning
@@ -277,8 +279,8 @@ def handlePreformattedText(linein, lineLevel, config):
 # return flag
 # input: coldata, a string
 def isAlignRight(coldata):
-    l = len(coldata)
-    if coldata[0:2] == "  " and coldata[l - 2:l] != "  ":
+    ldata = len(coldata)
+    if coldata[0:2] == "  " and coldata[ldata - 2:ldata] != "  ":
         return 1
     else:
         return 0
@@ -288,8 +290,8 @@ def isAlignRight(coldata):
 # return flag
 # input: coldata, a string
 def isAlignLeft(coldata):
-    l = len(coldata)
-    if coldata[0:2] != "  " and coldata[l - 2:l] == "  ":
+    ldata = len(coldata)
+    if coldata[0:2] != "  " and coldata[ldata - 2:ldata] == "  ":
         return 1
     else:
         return 0
@@ -299,8 +301,8 @@ def isAlignLeft(coldata):
 # return flag
 # input: coldata, a string
 def isAlignCenter(coldata):
-    l = len(coldata)
-    if coldata[0:2] == "  " and coldata[l - 2:l] == "  ":
+    ldata = len(coldata)
+    if coldata[0:2] == "  " and coldata[ldata - 2:ldata] == "  ":
         return 1
     else:
         return 0
@@ -634,7 +636,7 @@ def processLine(linein, conf):
                     print("</table>")
                     conf.inBodyText = 0
                 if conf.silentDiv == 0:
-                    print ("<li\t")
+                    print("<li\t")
                     if conf.styleSheet != "":
                         if lineLevel == (linein.find("- ") + 1):
                             print(" class=\"LB" + str(lineLevel) + "\"\t")
@@ -1002,8 +1004,8 @@ def printFooter(config):
         print("<hr>")
         print(config.copyright)
         print("<br>")
-        print(config.inputFile + "&nbsp;&nbsp; " + \
-            time.strftime("%Y/%m/%d %H:%M", time.localtime(time.time())))
+        print(config.inputFile + "&nbsp;&nbsp; " +
+              time.strftime("%Y/%m/%d %H:%M", time.localtime(time.time())))
         print("</div>")
     print("</body></html>")
 
