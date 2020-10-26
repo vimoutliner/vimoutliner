@@ -121,7 +121,7 @@ def getLineLevel(linein):
 # input: line - a single line that may or may not have tabs at the beginning
 # output: returns a string
 def convertSensitiveChars(line):
-    line = re.sub('\W', '_', line.strip())
+    line = re.sub(r'\W', '_', line.strip())
     return(line)
 
 
@@ -155,7 +155,7 @@ def processFile(ifile):
     outOpen = 0
 
     line = ifile.readline()      # read the outline title
-                                # and discard it
+                                 # and discard it
     line = ifile.readline()      # read the first parent heading
     dprint(level)
     while (line != ""):
@@ -187,5 +187,6 @@ def main():
     ifile = open(inputfile, "r")
     processFile(ifile)
     ifile.close()
+
 
 main()

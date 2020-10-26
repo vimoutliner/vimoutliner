@@ -84,8 +84,6 @@ def getArgs():
     config.read(args.config[0].name)
 
 
-
-
 # printConfig
 # Debugging routine to print the parsed configuration file
 # input: none
@@ -95,8 +93,7 @@ def printConfig():
     print("Config ---------------------------------------------", file=sys.stderr)
     list = config.sections()
     for i in range(len(list)):
-        print >> sys.stderr
-        print >> sys.stderr, list[i]
+        print("\nlist[i]", file=sys.stderr)
         for x in config.options(list[i]):
             if (x != "name") and (x != "__name__"):
                 print(x, ":", config.get(list[i], x), file=sys.stderr)
@@ -190,10 +187,10 @@ def subTags(section, type):
     return pattern
 
 
-#getBlock
-#return a list of lines that match a mark (like : or ;)
-#input: line number
-#output: list of stripped lines
+# getBlock
+# return a list of lines that match a mark (like : or ;)
+# input: line number
+# output: list of stripped lines
 def getBlock(linenum, marker):
     global outline, linecount
 
@@ -208,10 +205,10 @@ def getBlock(linenum, marker):
     return lines
 
 
-#getUnstrippedBlock
-#return a list of lines that match a mark (like : or ;)
-#input: line number
-#output: list of stripped lines
+# getUnstrippedBlock
+# return a list of lines that match a mark (like : or ;)
+# input: line number
+# output: list of stripped lines
 def getUnstrippedBlock(linenum, marker):
     global outline, linecount
 
@@ -466,8 +463,8 @@ def handleUserPrefText(linenum, enum):
 # return flag
 # input: col, a string
 def isAlignRight(col):
-    l = len(col)
-    if (col[0:2] == "  ") and (col[l - 2:l] != "  "):
+    ldata = len(col)
+    if (col[0:2] == "  ") and (col[ldata - 2:ldata] != "  "):
         return 1
     else:
         return 0
@@ -477,8 +474,8 @@ def isAlignRight(col):
 # return flag
 # input: col, a string
 def isAlignLeft(col):
-    l = len(col)
-    if (col[0:2] != "  ") and (col[l - 2:l] == "  "):
+    ldata = len(col)
+    if (col[0:2] != "  ") and (col[ldata - 2:ldata] == "  "):
         return 1
     else:
         return 0
@@ -488,8 +485,8 @@ def isAlignLeft(col):
 # return flag
 # input: col, a string
 def isAlignCenter(col):
-    l = len(col)
-    if (col[0:2] == "  ") and (col[l - 2:l] == "  "):
+    ldata = len(col)
+    if (col[0:2] == "  ") and (col[ldata - 2:ldata] == "  "):
         return 1
     else:
         return 0
