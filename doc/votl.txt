@@ -32,7 +32,7 @@ and body text.
       Hoisting                                                   |votl-hoisting|
       Clock                                                         |votl-clock|
   Scripts                                                         |votl-scripts|
-      votl_maketags.pl                                           |votl-maketags|
+      votl_maketags.py                                           |votl-maketags|
       otl2html.py                                                     |otl2html|
   Other information                                            |votl-other-info|
 
@@ -67,7 +67,6 @@ of vim could work with using vim-pathogen, Vundle):
    $ cd ~/.vim/pack/thirdparty/start
    $ git clone https://github.com/vimoutliner/vimoutliner.git
    $ vim -u NONE -c "helptags vimoutliner/doc" -c q
-   $ mkdir ~/.vim/vimoutliner 		     # votl_maketags expects this
 <
 
 The installation of vimoutliner comes with helper scripts to be run
@@ -98,7 +97,6 @@ just:
    $ git submodule add https://github.com/vimoutliner/vimoutliner.git \
         pack/thirdparty/start/vimoutliner
    $ vim -u NONE -c "helptags vimoutliner/doc" -c q
-   $ mkdir ~/.vim/vimoutliner
 <
 Restart vim and you should be good to go.  If you want to run the
 helper scripts, see the earlier discussion for how to set that up,
@@ -1059,11 +1057,19 @@ votl_maketags.py                                                 *votl-maketags*
 This script supports links between different files.  To create such a
 link you should enter _tag_TTT where TTT is the tag name on one line,
 and the file to which it links on the next line, indented.  The target
-path will implicitly have ~/ prepended to it; do not specify it
-explicitly or with $HOME.
+path may use ~/ or ~user/ and environment variables like $HOME,
+${HOME}, or %HOME% on Windows.  If the path is relative, it will be
+interpreted relative to the directory of the file in which the tag
+reference occurs.
 
-Run votl_tags with any file names it should scan for such links.  This
-writes to VimOutliner's tag file $HOME/.vim/vimoutliner/votl_tags.tag.
+votl_maketags accepts one or more file names as arguments.  Each will
+be scanned for links.  This writes to VimOutliner's tag file
+~/.vim/vimoutliner/votl_tags.tag.  If any target files are
+missing, votl_maketags will create them.
+
+Running votl_maketags repeatedly with different file arguments will
+probably accumulate the results, but do so at your own risk.  You can
+delete votl_tags.tag and rerun votl_maketags to get a fresh start.
 
 After having done that, if you are over the _tag_TTT in the source
 file and press CTRL-] it should take you to the target, and CTRL-T in
@@ -1077,7 +1083,7 @@ Place the following two lines in $HOME/votl_test.otl:
         votl_newfile.otl
 <
 Note that in the preceding, the 2nd line should be indented from the
-first.  Save the result and create votl_newfile.otl if it does not exist.
+first.  Save the result.
 >
      votl_maketags.py $HOME/votl_test.otl
 <
