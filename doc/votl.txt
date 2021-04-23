@@ -67,6 +67,7 @@ work with using vim-pathogen, Vundle):
    $ cd ~/.vim/pack/thirdparty/start
    $ git clone https://github.com/vimoutliner/vimoutliner.git
    $ vim -u NONE -c "helptags vimoutliner/doc" -c q
+   $ mkdir ~/.vim/vimoutliner 		     # votl_maketags expects this
 <
 Alternatively instead of making a clone as a separate repo, the
 developers of VimOutliner believe, it is better to have whole ~/.vim
@@ -78,6 +79,7 @@ just:
    $ git submodule add https://github.com/vimoutliner/vimoutliner.git \
         pack/thirdparty/start/vimoutliner
    $ vim -u NONE -c "helptags vimoutliner/doc" -c q
+   $ mkdir ~/.vim/vimoutliner
 <
 Restart vim and you should be good to go.
 
