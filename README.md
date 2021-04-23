@@ -94,7 +94,7 @@ of vim could work with using vim-pathogen, Vundle):
    $ vim -u NONE -c "helptags vimoutliner/doc" -c q
 ```
 
-See [below](Helper Scripts) for additional set for external scripts.
+See Helper Scripts below for additional setup for external scripts.
 
 Submodule Install
 ------------------
@@ -160,10 +160,10 @@ Verify the following:
   that paragraphs of body text can be reformatted with the Vim gq
   commands.
 
-If you plan to use particular features, you may want to test them too.
-|votl-checkbox| discusses expected behavior of checkboxes, and
-|votl-maketags| provides explicit instructions for a simple test of
-interoutline linking.
+If you plan to use particular features, you may want to test them
+too. In the online help, |votl-checkbox| discusses expected behavior
+of checkboxes, and |votl-maketags| provides explicit instructions for
+a simple test of interoutline linking.
 
 
 
