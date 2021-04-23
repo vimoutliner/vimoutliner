@@ -1,7 +1,7 @@
-
-VimOutliner README file
+**VimOutliner README file**
 
 Introduction
+============
 
 VimOutliner is an outline processor with many of the same features
 as Grandview, More, Thinktank, Ecco, etc. Features include tree
@@ -14,14 +14,14 @@ easy, especially for someone knowing the Vim editor. VimOutliner can be
 used without the mouse (but is supported to the extent that Vim supports
 the mouse). 
 
-All VimOutliner files have the ".otl" extension. For help on
-VimOutliner type ":h vo". For an overview of all the most important
-VimOutliner commands you can type ":h votl_cheatsheet" when you have
+All VimOutliner files have the `.otl` extension. For help on
+VimOutliner type `:h vo`. For an overview of all the most important
+VimOutliner commands you can type `:h votl_cheatsheet` when you have
 opened an otl file.
 
 
-* Usage
-
+Usage
+=====
 VimOutliner has been reported to help with the following tasks:
 
     - Project management
@@ -33,7 +33,8 @@ VimOutliner has been reported to help with the following tasks:
     - Hierarchical database
     - Web site management
 
-* Characteristics
+Characteristics
+===============
 
     - Fast and effective
     - Fully integrated with Vim
@@ -41,16 +42,15 @@ VimOutliner has been reported to help with the following tasks:
     - Many post-processing scripts  allow exporting to multiple formats
     - Extensive documentation
 
-Further information, including installation instructions, is in
-doc/votl.txt.  It is a standard vim help file that you get after
-installation when you type ":he vo".
+See the [help file](doc/votl.txt) for further information, including
+installation instructions.  After installation you can access it from
+with vim with `:h vo`.
 
 Downloads
+=========
 
-zip archives are available here:
+[zip archives](https://github.com/vimoutliner/vimoutliner/downloads)
 
-https://github.com/vimoutliner/vimoutliner/downloads
+Download of all packages can also be done from the [Freshmeat
+site](http://freecode.com/projects/vimoutliner).
 
-Download of all packages can also be done from the Freshmeat site:
-
-http://freecode.com/projects/vimoutliner
