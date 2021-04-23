@@ -43,7 +43,7 @@ Characteristics
     - Extensive documentation
 
 See the [help file](doc/votl.txt) for further information.  After
-installation you can access it from with vim with `:h vo`.
+installation you can access it from within vim using `:h vo`.
 
 If something does not work, please, let us know (either on the email
 list or file a ticket to the GitHub issue tracker).
