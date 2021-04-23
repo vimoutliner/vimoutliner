@@ -1,7 +1,7 @@
-*votl_readme.txt*	For Vim version 7.2	Last change: 2014-09-28
+*votl_readme.txt*	For Vim version 8.1	Last change: 2021-04-22
 
                                                                 *vo* *votl* *vimoutliner*
-VimOutliner  0.4.0 ~
+VimOutliner  0.5.0 ~
 
 VimOutliner is an outline processor designed with lighting fast authoring as
 the main feature, it also has many of the same features as Grandview, More,
@@ -56,9 +56,9 @@ Installing and Testing VimOutliner
                                                                   *votl-install*
 Install~
 
-VimOutliner uses now standard method of installation of vim plugins (vim
-version 8 is shown, but similar steps for older versions of vim could
-work with using vim-pathogen, Vundle):
+VimOutliner uses the now standard method of installation of vim
+plugins (vim version 8 is shown, but similar steps for older versions
+of vim could work with using vim-pathogen, Vundle):
 >
    $ mkdir -p ~/.vim/pack/thirdparty/start  # the "thirdparty" name may
                                             # be different, there just
@@ -69,6 +69,25 @@ work with using vim-pathogen, Vundle):
    $ vim -u NONE -c "helptags vimoutliner/doc" -c q
    $ mkdir ~/.vim/vimoutliner 		     # votl_maketags expects this
 <
+
+The installation of vimoutliner comes with helper scripts to be run
+outside of vim.  They will be in
+>
+    ~/.vim/pack/thirdparty/start/vimoutliner/vimoutliner/scripts/
+<
+if you follow the instructions above.  If you want to run them, you
+will probably want a convenient way to access them.  Here are some
+possibilities:
+	1. Add that directory to your PATH.
+	2. Only invoke them from menus within vim.
+	3. Make links or copies of files you want to use to
+	   a directory already in your path.
+In all cases you should leave the originals in place, as various parts
+of the system may assume they are there (e.g., the menus in option 2).
+
+Individual helper scripts may have additional software requirements,
+for example a Perl or Python 3 interpreter.
+
 Alternatively instead of making a clone as a separate repo, the
 developers of VimOutliner believe, it is better to have whole ~/.vim
 directory as one git repo and then vim plugins would be just submodules.
@@ -81,7 +100,9 @@ just:
    $ vim -u NONE -c "helptags vimoutliner/doc" -c q
    $ mkdir ~/.vim/vimoutliner
 <
-Restart vim and you should be good to go.
+Restart vim and you should be good to go.  If you want to run the
+helper scripts, see the earlier discussion for how to set that up,
+adjusting the path as appropriate.
 
 Getting all your vim plugins updated would be then just
 >
@@ -111,40 +132,16 @@ Verify the following:
   that paragraphs of body text can be reformatted with the Vim gq
   commands.
 
-Verify Interoutline Linking:
-
-Interoutline linking currently requires a working perl installation to
-generate the necessary tag file. We are looking into porting this to vim's own
-scripting language.
-
-Place the following two lines in $HOME/votl_test.otl:
->
-    _tag_newfile
-        $HOME/votl_newfile.otl
-<
-Note that in the preceding, the 2nd line should be indented from the first.
-
-To create VimOutliner's tag file $HOME/.vim/vimoutliner/votl_tags.tag, run
-votl_maketags.pl, which resides in $HOME/.vimoutliner/scripts/: $
-$HOME/.vim/vimoutliner/scripts/votl_maketags.pl $HOME/votl_test.otl
-
-Try the following:
-- In $HOME/votl_test.otl
-- Cursor to the _tag_newfile marker
-- Press CTRL-]
-    You should be brought to $HOME/votl_newfile.otl
-- Press CTRL-T
-    You should be brought back to $HOME/votl_test.otl
-
-This might also be achieved more efficiently by using the UTL plugin for
-linking to other files and text. Check out the plugin at:
-
-http://www.vim.org/scripts/script.php?script_id=293
+If you plan to use particular features, you may want to test them too.
+|votl-checkbox| discusses expected behavior of checkboxes, and
+|votl-maketags| provides explicit instructions for a simple test of
+interoutline linking.
 
                                                                    *votl-debian*
 Package Installation~
 
-Some Linux distros include Vim Outliner as a package.
+Some Linux distros include Vim Outliner as a package.  Debian
+currently does not.
 
 ==============================================================================
 Using VimOutliner On Other File Types~                        *votl-other-files*
@@ -1047,20 +1044,58 @@ it's usable for the most important cases.
 Scripts                                                           *votl-scripts*
 
 
-The VimOutliner distribution currently includes several useful  external
-scripts to support interoutline links, HTML export and more. All scripts are
-included in your $HOME/.vim/vimoutliner/scripts folder. For more information
-on these scripts see usage section in the scripts. You can also find several
-of these scripts on this web site with links to their specific web site:
-https://sites.google.com/site/vimoutlinerinfo/scripts-for-vimoutliner
+The VimOutliner distribution currently includes several useful
+external scripts to support interoutline links, HTML export and
+more. See the installation instructions for how to make those scripts
+accessible.  For more information on these scripts see usage section
+in the scripts. You can also find several of these scripts on
+https://sites.google.com/site/vimoutlinerinfo/scripts-for-vimoutliner.
 
 
 Information on some of the scripts
 
-votl_maketags.pl                                                 *votl-maketags*
+votl_maketags.py                                                 *votl-maketags*
 
-A basic description of how to use this Perl script is given in section
-|votl-testing|, subsection "Verify interoutline linking".
+This script supports links between different files.  To create such a
+link you should enter _tag_TTT where TTT is the tag name on one line,
+and the file to which it links on the next line, indented.  The target
+path will implicitly have ~/ prepended to it; do not specify it
+explicitly or with $HOME.
+
+Run votl_tags with any file names it should scan for such links.  This
+writes to VimOutliner's tag file $HOME/.vim/vimoutliner/votl_tags.tag.
+
+After having done that, if you are over the _tag_TTT in the source
+file and press CTRL-] it should take you to the target, and CTRL-T in
+the target will take you back.
+
+Testing Inter-Outline Linking
+
+Place the following two lines in $HOME/votl_test.otl:
+>
+    _tag_newfile
+        votl_newfile.otl
+<
+Note that in the preceding, the 2nd line should be indented from the
+first.  Save the result and create votl_newfile.otl if it does not exist.
+>
+     votl_maketags.py $HOME/votl_test.otl
+<
+Try the following:
+- In $HOME/votl_test.otl
+- Cursor to the _tag_newfile marker
+- Press CTRL-]
+    You should be brought to $HOME/votl_newfile.otl
+- Press CTRL-T
+    You should be brought back to $HOME/votl_test.otl
+
+This might also be achieved more efficiently by using the UTL plugin for
+linking to other files and text. Check out the plugin at:
+
+http://www.vim.org/scripts/script.php?script_id=293
+
+
+
 
 otl2html.py                                                           *otl2html*
 
