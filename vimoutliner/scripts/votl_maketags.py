@@ -49,7 +49,19 @@ def process_file(filename):
 
     return f_tags
 
-
+"""Open requested file for appending, returning a file  object
+Will create any necessary directories and even the target file
+if they are not present.
+May throw an error if the operations are not possible.
+"""
+def open_or_make(filename):
+    if os.path.exists(filename):
+        return open(filename, 'a')
+    basedir = os.path.dirname(filename)
+    if not os.path.exists(basedir):
+        os.makedirs(basedir)
+    return open(filename, 'a') # creates empty file
+    
 def create_and_process(filename, outfile, queue, filestag):
     filename = os.path.abspath(filename)
 
@@ -59,19 +71,16 @@ def create_and_process(filename, outfile, queue, filestag):
     basedir = os.path.dirname(filename)
 
     if not os.path.exists(filename):
-        try:
-            os.makedirs(basedir)
-        except OSError as ose:
-            if ose.errno == errno.EEXIST and os.path.isdir(basedir):
-                pass
-            else:
-                raise
-        open(filename, 'a')
+        open_or_make(filename)
         filestag[filename] = {}
     else:
         results = process_file(filename)
         for tag in results:
-            results[tag] = os.path.abspath(os.path.join(basedir, results[tag]))
+            target = results[tag]
+            target = os.path.expandvars(os.path.expanduser(target))
+            if not os.path.isabs(target):
+                target = os.path.join(basedir, target)
+            results[tag] = os.path.abspath(target)
         queue.extend(results.values())
 
         append_tags_to_tagfile(results, outfile)
@@ -92,11 +101,11 @@ def main():
     files_to_tags = {}
     parser = argparse.ArgumentParser()
     parser.add_argument('files', nargs="+",
-                        help='directories with data')
+                        help='otl files to scan for tags')
     args = parser.parse_args()
     process_queue = args.files
 
-    tagfile = open(TAGFILENAME, 'a')
+    tagfile = open_or_make(TAGFILENAME)
 
     for otl_file in process_queue:
         create_and_process(otl_file, tagfile, process_queue,
