@@ -12,8 +12,6 @@ and body text.
 
   License                                                         |votl-license|
   Version                                                         |votl-version|
-  Using VimOutliner on other file types                       |votl-other-files|
-  Troubleshooting                                         |votl-troubleshooting|
   VimOutliner philosophy                                       |votl-philosophy|
   Running VimOutliner                                             |votl-running|
       VimOutliner configuration file                             |vimoutlinerrc|
@@ -31,6 +29,8 @@ and body text.
   Scripts                                                         |votl-scripts|
       votl_maketags.py                                           |votl-maketags|
       otl2html.py                                                     |otl2html|
+  Using VimOutliner on other file types                       |votl-other-files|
+  Troubleshooting                                         |votl-troubleshooting|
   Other information                                            |votl-other-info|
 
 
@@ -45,46 +45,6 @@ Absolutely no warranty, see COPYING file for details.
 
     HTML: http://www.gnu.org/copyleft/gpl.html
     Text: http://www.gnu.org/copyleft/gpl.txt
-
-
-==============================================================================
-Using VimOutliner On Other File Types~                        *votl-other-files*
-
-How to use VimOutliner on non .otl files~
-
-Vim plugins like VimOutliner are file extension based, meaning that if
-you want to use VimOutliner on a file extension other than .otl, you
-must declare that file extension in $HOME/.vim/ftdetect/votl.vim. In
-this section we'll use the .emdl extension (Easy Menu Definition
-Language) as an example.
-
-To enable VimOutliner work with .emdl files, do this:
->
-    vim $HOME/.vim/ftdetect/votl.vim
-<
-Insert the following line as the last line of the file:
->
-    au! BufRead,BufNewFile *.emdl   setfiletype votl
-<
-Save and exit
->
-    gvim $HOME/votl_test.emdl
-<
-You should get:
-- level colors,
-- body text (lines starting with colon)
-- leader commands (try \2 and \1)
-
-
-==============================================================================
-Troubleshooting~                                          *votl-troubleshooting*
-
-
-Q: I can't switch between colon based and space based body text.
-A: See next question
-
-Q: I don't get VimOutliner features on files of extension .whatever.
-A: See |votl-other-files|
 
 
 ==============================================================================
@@ -1019,6 +979,46 @@ This script does not adhere to the VimOutliner naming convention with the
 It is provided both as a useful tool for creating HTML pages and HTML slides
 from outlines and as a working demonstration of how to convert .otl files to
 other formats.
+
+==============================================================================
+Using VimOutliner On Other File Types~                        *votl-other-files*
+
+How to use VimOutliner on non .otl files~
+
+Vim plugins like VimOutliner are file extension based, meaning that if
+you want to use VimOutliner on a file extension other than .otl, you
+must declare that file extension in $HOME/.vim/ftdetect/votl.vim. In
+this section we'll use the .emdl extension (Easy Menu Definition
+Language) as an example.
+
+To enable VimOutliner work with .emdl files, do this:
+>
+    vim $HOME/.vim/ftdetect/votl.vim
+<
+Insert the following line as the last line of the file:
+>
+    au! BufRead,BufNewFile *.emdl   setfiletype votl
+<
+Save and exit
+>
+    gvim $HOME/votl_test.emdl
+<
+You should get:
+- level colors,
+- body text (lines starting with colon)
+- leader commands (try \2 and \1)
+
+
+==============================================================================
+Troubleshooting~                                          *votl-troubleshooting*
+
+
+Q: I can't switch between colon based and space based body text.
+A: See next question
+
+Q: I don't get VimOutliner features on files of extension .whatever.
+A: See |votl-other-files|
+
 
 
 ==============================================================================
