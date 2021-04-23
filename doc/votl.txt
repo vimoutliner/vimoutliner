@@ -12,9 +12,6 @@ and body text.
 
   License                                                         |votl-license|
   Version                                                         |votl-version|
-  Installing and testing VimOutliner                              |votl-install|
-      Testing                                                     |votl-testing|
-      Debian                                                       |votl-debian|
   Using VimOutliner on other file types                       |votl-other-files|
   Troubleshooting                                         |votl-troubleshooting|
   VimOutliner philosophy                                       |votl-philosophy|
@@ -49,97 +46,6 @@ Absolutely no warranty, see COPYING file for details.
     HTML: http://www.gnu.org/copyleft/gpl.html
     Text: http://www.gnu.org/copyleft/gpl.txt
 
-
-==============================================================================
-Installing and Testing VimOutliner
-
-                                                                  *votl-install*
-Install~
-
-VimOutliner uses the now standard method of installation of vim
-plugins (vim version 8 is shown, but similar steps for older versions
-of vim could work with using vim-pathogen, Vundle):
->
-   $ mkdir -p ~/.vim/pack/thirdparty/start  # the "thirdparty" name may
-                                            # be different, there just
-                                            # need to be one more level
-                                            # of directories
-   $ cd ~/.vim/pack/thirdparty/start
-   $ git clone https://github.com/vimoutliner/vimoutliner.git
-   $ vim -u NONE -c "helptags vimoutliner/doc" -c q
-<
-
-The installation of vimoutliner comes with helper scripts to be run
-outside of vim.  They will be in
->
-    ~/.vim/pack/thirdparty/start/vimoutliner/vimoutliner/scripts/
-<
-if you follow the instructions above.  If you want to run them, you
-will probably want a convenient way to access them.  Here are some
-possibilities:
-	1. Add that directory to your PATH.
-	2. Only invoke them from menus within vim.
-	3. Make links or copies of files you want to use to
-	   a directory already in your path.
-In all cases you should leave the originals in place, as various parts
-of the system may assume they are there (e.g., the menus in option 2).
-
-Individual helper scripts may have additional software requirements,
-for example a Perl or Python 3 interpreter.
-
-Alternatively instead of making a clone as a separate repo, the
-developers of VimOutliner believe, it is better to have whole ~/.vim
-directory as one git repo and then vim plugins would be just submodules.
-If you have setup ~/.vim in this way then installing VimOutliner is
-just:
->
-   $ cd ~/.vim/
-   $ git submodule add https://github.com/vimoutliner/vimoutliner.git \
-        pack/thirdparty/start/vimoutliner
-   $ vim -u NONE -c "helptags vimoutliner/doc" -c q
-<
-Restart vim and you should be good to go.  If you want to run the
-helper scripts, see the earlier discussion for how to set that up,
-adjusting the path as appropriate.
-
-Getting all your vim plugins updated would be then just
->
-   $ cd ~/.vim
-   $ git submodule update --remote --rebase
-<
-For more about working with git submodules, read git-submodule(1).
-
-If something does not work, please, let us know (either on the email
-list or file a ticket to the GitHub issue tracker).
-
-                                                                  *votl-testing*
-Testing Base Functionality~
-
-Open a new outline with the following:
->
-    rm $HOME/votl_test.otl
-    gvim $HOME/votl_test.otl or vim $HOME/votl_test.otl
-<
-Verify the following:
-- Tabs indent the text
-- Different indent levels are different colors
-- Lines starting with a colon and space word-wrap
-
-  Lines starting with colons are body text. They should word wrap and
-  should be a special color (typically green, but it can vary). Verify
-  that paragraphs of body text can be reformatted with the Vim gq
-  commands.
-
-If you plan to use particular features, you may want to test them too.
-|votl-checkbox| discusses expected behavior of checkboxes, and
-|votl-maketags| provides explicit instructions for a simple test of
-interoutline linking.
-
-                                                                   *votl-debian*
-Package Installation~
-
-Some Linux distros include Vim Outliner as a package.  Debian
-currently does not.
 
 ==============================================================================
 Using VimOutliner On Other File Types~                        *votl-other-files*
