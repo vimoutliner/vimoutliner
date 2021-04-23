@@ -53,13 +53,6 @@ Absolutely no warranty, see COPYING file for details.
 ==============================================================================
 Installing and Testing VimOutliner
 
-
-    Install via Pathogen            |votl-pathogen-install|
-    Legacy Script Driven Method     |votl-auto-install|
-    Updating                        |votl-updating|
-    Manual Method                   |votl-manual-install|
-    Testing                         |votl-testing|
-
                                                                   *votl-install*
 Install~
 
@@ -324,7 +317,6 @@ others could benefit from it.
         \s   normal   Sort sub-tree under cursor ascending
         \S   normal   Sort sub-tree under cursor descending
         \t   normal   Append timestamp (HH:MM:SS) to heading
-        \T   normal   Pre-pend timestamp (HH:MM:SS) to heading
         \T   normal   Pre-pend timestamp (HH:MM:SS) to heading
         \t   insert   Insert timestamp (HH:MM:SS) at cursor
         \d   normal   Append datestamp  (YYYY-MM-DD) to heading
