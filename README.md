@@ -147,7 +147,7 @@ Open a new outline with the following:
 ```shell
     rm $HOME/votl_test.otl
     gvim $HOME/votl_test.otl # or 
-	vim $HOME/votl_test.otl
+    vim $HOME/votl_test.otl
 ```
 
 Verify the following:
