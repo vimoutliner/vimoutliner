@@ -94,7 +94,7 @@ of vim could work with using vim-pathogen, Vundle):
    $ vim -u NONE -c "helptags vimoutliner/doc" -c q
 ```
 
-See Helper Scripts below for additional setup for external scripts.
+See [Helper Scripts](#helper-scripts) below for additional setup for external scripts.
 
 Submodule Install
 ------------------
