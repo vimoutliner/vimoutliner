@@ -1,4 +1,4 @@
-*votl_readme.txt*	For Vim version 8.1	Last change: 2021-04-22
+*votl.txt*	   For Vim version 8.1	                 Last change: 2021-04-23
 
                                                                 *vo* *votl* *vimoutliner*
 VimOutliner  0.5.0 ~
@@ -908,30 +908,34 @@ it's usable for the most important cases.
 Scripts                                                           *votl-scripts*
 
 
-The VimOutliner distribution currently includes several useful
+The VimOutliner distribution currently includes many useful
 external scripts to support interoutline links, HTML export and
-more. See the installation instructions for how to make those scripts
-accessible.  For more information on these scripts see usage section
-in the scripts. You can also find several of these scripts on
+more.  Details on a couple of the scripts appear in this section; for
+the others see the usage section in the scripts. You can
+also find several of these scripts on
 https://sites.google.com/site/vimoutlinerinfo/scripts-for-vimoutliner.
 
+The following instructions assume you have taken one of the recommended
+steps in the `Helper Scripts` subsection of README.md so that you can
+run the scripts without needing to spell out their location.
 
-Information on some of the scripts
 
+Interoutline Linking~
 votl_maketags.py                                                 *votl-maketags*
 
 This script supports links between different files.  To create such a
 link you should enter _tag_TTT where TTT is the tag name on one line,
 and the file to which it links on the next line, indented.  The target
-path may use ~/ or ~user/ and environment variables like $HOME,
-${HOME}, or %HOME% on Windows.  If the path is relative, it will be
+path may use ~/ or ~user/ and environment variables like `$HOME`,
+`${HOME}`, or `%HOME%` on Windows.  If the path is relative, it will be
 interpreted relative to the directory of the file in which the tag
 reference occurs.
 
 votl_maketags accepts one or more file names as arguments.  Each will
 be scanned for links.  This writes to VimOutliner's tag file
-~/.vim/vimoutliner/votl_tags.tag.  If any target files are
-missing, votl_maketags will create them.
+`~/.vim/vimoutliner/votl_tags.tag`, creating any necessary directories
+and files.  If any target files are missing, votl_maketags will create
+them.
 
 Running votl_maketags repeatedly with different file arguments will
 probably accumulate the results, but do so at your own risk.  You can
@@ -949,12 +953,12 @@ Place the following two lines in $HOME/votl_test.otl:
         votl_newfile.otl
 <
 Note that in the preceding, the 2nd line should be indented from the
-first.  Save the result.
+first.  Save the result.  At the command prompt, run
 >
      votl_maketags.py $HOME/votl_test.otl
+     vim $HOME/votl_test.otl
 <
-Try the following:
-- In $HOME/votl_test.otl
+In vim, do this:
 - Cursor to the _tag_newfile marker
 - Press CTRL-]
     You should be brought to $HOME/votl_newfile.otl
@@ -963,16 +967,17 @@ Try the following:
 
 This might also be achieved more efficiently by using the UTL plugin for
 linking to other files and text. Check out the plugin at:
-
 http://www.vim.org/scripts/script.php?script_id=293
 
 
-
-
+HTML~
 otl2html.py                                                           *otl2html*
 
-This Python script transforms an outline into an HTML file. Use $ otl2html.py
---help to get detailed information.
+This script transforms an outline into an HTML file. Get more
+detailed information with
+>
+    $ otl2html.py --help
+<
 
 This script does not adhere to the VimOutliner naming convention with the
 'votl_' prefix because it is not necessary for any VimOutliner functionality.
