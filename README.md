@@ -126,11 +126,11 @@ outside of vim.  None are necessary for the basic outlining behavior
 of VimOutliner.  If you do want to use them, you will probably want to
 make it easy to access them.
 
-If you followed the standard installation instructions, the scripts
-are in
-`~/.vim/pack/thirdparty/start/vimoutliner/vimoutliner/scripts/`.  They
-will be under the submodule if you followed the alternate installation
-instructions.   If you want to run them, you
+The scripts are in
+`~/.vim/pack/thirdparty/start/vimoutliner/vimoutliner/scripts/` if you
+followed the standard installation instructions.  Yes, `vimoutliner`
+occurs twice.  They will be under the submodule if you followed the
+alternate installation instructions.  If you want to run them, you
 will probably want a convenient way to access them.  Here are some
 possibilities:
 
