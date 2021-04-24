@@ -135,7 +135,7 @@ will probably want a convenient way to access them.  Here are some
 possibilities:
 
 	1. Add that directory to your PATH.
-	2. Only invoke them from menus within vim.
+	2. Only invoke them from menus within gvim.
 	3. Make links or copies of files you want to use to
 	   a directory already in your path.
 In all cases you should leave the originals in place, as various parts

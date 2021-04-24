@@ -1,7 +1,7 @@
-*votl.txt*	   For Vim version 8.1	                 Last change: 2021-04-23
+*votl.txt*		For Vim version 8.1		Last change: 2021-04-23
 
-                                                                *vo* *votl* *vimoutliner*
-VimOutliner  0.5.0 ~
+                                                       *vo* *votl* *vimoutliner*
+VimOutliner  0.5.0~
 
 VimOutliner is an outline processor designed with lighting fast authoring as
 the main feature, it also has many of the same features as Grandview, More,
@@ -19,7 +19,6 @@ and body text.
       Basic VimOutliner activities                             |votl-activities|
       Menu                                                           |votl-menu|
       Vim Outliner objects                                        |votl-objects|
-      Post Processors                                     |votl-post-processors|
   Advanced                                                       |votl-advanced|
       Executable Lines                                   |votl-executable-lines|
   Plugins                                                         |votl-plugins|
@@ -48,7 +47,7 @@ Absolutely no warranty, see COPYING file for details.
 
 
 ==============================================================================
-VimOutliner Philosophy~                                        *votl-philosophy*
+VimOutliner Philosophy                                         *votl-philosophy*
 
 
 Authoring Speed~
@@ -59,7 +58,7 @@ tree promotion/demotion, level sensitive colors, interoutline linking, and
 body text.
 
 What sets VimOutliner apart from the rest is that it's been constructed from
-the ground up for fast and easy authoring.  Keystrokes are quick and easy,
+the ground up for fast and easy authoring. Keystrokes are quick and easy,
 especially for someone knowing the Vim editor. The mouse is completely
 unnecessary (but is supported to the extent that Vim supports the mouse). Many
 of the VimOutliner commands start with a backslash because that's very
@@ -68,7 +67,7 @@ quick to type.
 Many outliners are prettier than VimOutliner. Most other outliners are more
 intuitive for the newbie not knowing Vim. Many outliners are more featureful
 than VimOutliner (although VimOutliner gains features monthly and is already
-very powerful).  Some outliners are faster on lookup than VimOutliner. But as
+very powerful). Some outliners are faster on lookup than VimOutliner. But as
 far as we know, NO outliner is faster at getting information out of your mind
 and into an outline than VimOutliner.
 
@@ -95,7 +94,7 @@ $HOME/.vim/ftplugin/votl.vim.
 
 
 ==============================================================================
-Running VimOutliner~                                              *votl-running*
+Running VimOutliner                                               *votl-running*
 
 
 Vim Knowledge~
@@ -143,7 +142,7 @@ VimOutliner were features accessed through keyboard commands starting
 with two commas. The backslash followed by a character is incredibly
 fast to type. However, with more widespread use of the VimOutliner some
 developers felt that all idiosyncrasies should be eliminated and
-VimOutliner should behave as a normal vim plugin.  Therefore now we
+VimOutliner should behave as a normal vim plugin. Therefore now we
 don't redefine this command leader (as it is called in the Vim lingo)
 and unless the user redefines it on her own (in |vimoutlinerrc|) it
 defaults to backslash. If you configure VimOutliner to use different key
@@ -313,11 +312,12 @@ specify other objects. Here is a list of each of the non-heading types:
       >      user-defined, text block (wrapping)
       <      user-defined, Pre-formatted text block (non-wrapping)
 
-The body text marker, :, is used to specify lines that are automatically
-wrapped and reformatted. VO and post-processors are free to wrap and reformat
-this text as well as use proportionally- spaced fonts. A post-processor will
-probably change the appearance of what you have written. If you are writing a
-book or other document, most of the information you enter will be body text.
+The body text marker, :, is used to specify lines that are
+automatically wrapped and reformatted. VO and post-processors (see
+|votl-scripts|) are free to wrap and reformat this text as well as use
+proportional fonts. A post-processor will probably change the
+appearance of what you have written. If you are writing a book or
+other document, most of the information you enter will be body text.
 
 Here is an example:
 >
@@ -335,8 +335,8 @@ When folded, body text looks something like this:
 	[TEXT] -------------------------------- (6 lines)
 <
 The Pre-formatted text marker, ;, is used to mark text that should not be
-reformatted nor wrapped by VO or any post-processor. A post- processor would
-use a fixed-space font, like courier, to render these lines. A post-processor
+reformatted nor wrapped by VO or any post-processor. A post-processor would
+use a fixed-width font, like courier, to render these lines. A post-processor
 will probably not change the appearance of what you have written. This is
 useful for making text picture, program code or other format-dependent text.
 
@@ -366,15 +366,15 @@ Here is an example:
 		| Sophia |   9 |    cat |         inside |
 <
 There is no automatic alignment of columns yet. It must be done manually. The
-post-processor, otl2thml.py, does have alignment functions. See its
-documentation for more information.
+otl2html.py post-processor does have alignment functions. See |otl2html|
+for more information.
 
 When folded, a table looks something like this:
 >
     Pets
 	[TABLE] ------------------------------- (4 lines)
 <
-User-defined text is similar to body text but more flexible and it's use is
+User-defined text is similar to body text but more flexible and its use is
 not pre-defined by Vim Outliner. The basic, user-defined text block marker, >,
 behaves just like body text.
 
@@ -393,7 +393,7 @@ When folded, body text looks something like this:
     Kirby the Wonder Dog
 	[USER] -------------------------------- (6 lines)
 <
-But unlike body text, user-defined text can be expanded. You could have
+But, unlike body text, user-defined text can be expanded. You could have
 user-defined text types. If you were writing a book, in addition to body text
 for paragraphs you might need special paragraphs for tips and warnings.
 User-defined text blocks can accomplish this:
@@ -495,15 +495,6 @@ When folded, the above would appear as:
 	[USER BLOCK Code] --------------------- (17 lines)
 <
 
-                                                          *votl-post-processors*
-VimOutliner Post-Processors~
-
-There are already several post processors for Vim Outliner. Some are general
-purpose in nature and others perform specific conversions. There are several of
-the tested scripts now included in the $HOME/.vim/vimoutliner/scripts folder.
-See also the scripts section.                                   |votl-scripts|
-
-
 ==============================================================================
 Advanced VimOutliner                                             *votl-advanced*
 
@@ -604,7 +595,7 @@ Start with a simple example. Let's start planning a small party, say a barbecue.
 
 2. Add the check boxes.
 
-This can be done by visually selecting them and typing \cb.  When done, you
+This can be done by visually selecting them and typing \cb. When done, you
 should see this:
 >
     [_] Barbecue
@@ -638,7 +629,7 @@ should see this:
 3. Now check off what's done.
 
 Checking off what is complete is easy with the
-\cx command.  Just place the cursor on a heading and \cx it. Now you can see
+\cx command. Just place the cursor on a heading and \cx it. Now you can see
 what's done as long as the outline is fully expanded.
 >
     [_] Barbecue
@@ -671,8 +662,8 @@ what's done as long as the outline is fully expanded.
 
 4. Now summarize what's done.
 
-You can summarize what is done with the \cz command.  Place the cursor on the
-'Barbecue' heading and \cz it.  The command will recursively process the
+You can summarize what is done with the \cz command. Place the cursor on the
+'Barbecue' heading and \cz it. The command will recursively process the
 outline and update the check boxes of the parent headlines. You should see:
 (Note: the only change is on the 'Guests' heading. It changed because all of
 its children are complete.)
@@ -708,7 +699,7 @@ its children are complete.)
 5. Add percentages for a better view.
 
 You can get a much better view of what's going on, especially with collapsed
-headings, if you add percentages.  Place a % on each heading that has children
+headings, if you add percentages. Place a % on each heading that has children
 like this:
 >
     [_] % Barbecue
@@ -775,7 +766,7 @@ weighted. You should see:
 
 7. Complete a few more just for fun.
 
-Mark Salad and Soda and you should see the outline below.  Try playing around
+Mark Salad and Soda and you should see the outline below. Try playing around
 with zc and zo to see the effects of opening and closing folds. Even if you
 place the cursor on 'Barbecue' and zo it, you still have a good understanding
 of how complete the project is.
@@ -910,7 +901,7 @@ Scripts                                                           *votl-scripts*
 
 The VimOutliner distribution currently includes many useful
 external scripts to support interoutline links, HTML export and
-more.  Details on a couple of the scripts appear in this section; for
+more. Details on a couple of the scripts appear in this section; for
 the others see the usage section in the scripts. You can
 also find several of these scripts on
 https://sites.google.com/site/vimoutlinerinfo/scripts-for-vimoutliner.
@@ -923,22 +914,22 @@ run the scripts without needing to spell out their location.
 Interoutline Linking~
 votl_maketags.py                                                 *votl-maketags*
 
-This script supports links between different files.  To create such a
+This script supports links between different files. To create such a
 link you should enter _tag_TTT where TTT is the tag name on one line,
-and the file to which it links on the next line, indented.  The target
+and the file to which it links on the next line, indented. The target
 path may use ~/ or ~user/ and environment variables like `$HOME`,
-`${HOME}`, or `%HOME%` on Windows.  If the path is relative, it will be
+`${HOME}`, or `%HOME%` on Windows. If the path is relative, it will be
 interpreted relative to the directory of the file in which the tag
 reference occurs.
 
-votl_maketags accepts one or more file names as arguments.  Each will
-be scanned for links.  This writes to VimOutliner's tag file
+votl_maketags accepts one or more file names as arguments. Each will
+be scanned for links. This writes to VimOutliner's tag file
 `~/.vim/vimoutliner/votl_tags.tag`, creating any necessary directories
-and files.  If any target files are missing, votl_maketags will create
+and files. If any target files are missing, votl_maketags will create
 them.
 
 Running votl_maketags repeatedly with different file arguments will
-probably accumulate the results, but do so at your own risk.  You can
+probably accumulate the results, but do so at your own risk. You can
 delete votl_tags.tag and rerun votl_maketags to get a fresh start.
 
 After having done that, if you are over the _tag_TTT in the source
@@ -953,7 +944,7 @@ Place the following two lines in $HOME/votl_test.otl:
         votl_newfile.otl
 <
 Note that in the preceding, the 2nd line should be indented from the
-first.  Save the result.  At the command prompt, run
+first. Save the result. At the command prompt, run
 >
      votl_maketags.py $HOME/votl_test.otl
      vim $HOME/votl_test.otl
@@ -986,7 +977,7 @@ from outlines and as a working demonstration of how to convert .otl files to
 other formats.
 
 ==============================================================================
-Using VimOutliner On Other File Types~                        *votl-other-files*
+Using VimOutliner On Other File Types                         *votl-other-files*
 
 How to use VimOutliner on non .otl files~
 
@@ -1015,7 +1006,7 @@ You should get:
 
 
 ==============================================================================
-Troubleshooting~                                          *votl-troubleshooting*
+Troubleshooting                                           *votl-troubleshooting*
 
 
 Q: I can't switch between colon based and space based body text.
@@ -1087,7 +1078,7 @@ Groupware
     A pipe dream, but VimOutliner itself was once a pipe dream
 
 Easy mode
-    Let's Windows users operate VO like a common insert-only editor. This will
+    Lets Windows users operate VO like a common insert-only editor. This will
     remove a great deal of VO's keyboarder- friendly features. But then,
     they're Windows users: let them use the mouse.
 
