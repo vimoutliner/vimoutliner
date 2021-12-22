@@ -25,13 +25,13 @@
 "#      Set of outliner friendly settings
 "# Steve Litt, 5/28/2001
 "# End of version 0.1.0
-"# 
+"#
 "#  V0.1.1 Pre-alpha
 "#      No change
-"# 
+"#
 "# Steve Litt, 5/28/2001
 "# End of version 0.1.1
-"# 
+"#
 "#  V0.1.2 Pre-alpha
 "# 	No Change
 "# Steve Litt, 5/30/2001
@@ -40,14 +40,14 @@
 "# 	No Change
 "# Steve Litt, 5/30/2001
 "# End of version 0.1.3
-"#  V0.2.0 
+"#  V0.2.0
 "# 	Noel Henson adds code for outliner-friendly expand and
 "# 	collapse, comma comma commands, color coding, hooks for a
 "# 	spellchecker, sorting, and date insertion.
 "# Noel Henson, 11/24/2002
 "# End of version 0.2.0
 "# END OF HISTORY
-"# 
+"#
 "#########################################################################
 
 " Colors linked {{{1
@@ -64,20 +64,20 @@
     " Changed a few linked groups to reduce chances of groups being invisible.
     " No longer use Ignore group for anything.
     " Still a little redundancy; different groups might linked to same color group.
-        " E.g., PT1 and UT1. But some color schemes (e.g. astronout) will differentiate between 
-        " Special and Debug. Others will use the same colors for, say, Identifier and Debug. 
+        " E.g., PT1 and UT1. But some color schemes (e.g. astronout) will differentiate between
+        " Special and Debug. Others will use the same colors for, say, Identifier and Debug.
         " It just depends.
     " To tweak these groups, try :h syntax and go to group-name.
     " This shows the color groups, highlighted in your current colorscheme.
 " }}}
-hi link OL1 Statement 
+hi link OL1 Statement
 hi link OL2 Identifier
 hi link OL3 Constant
-hi link OL4 PreProc   
-hi link OL5 Statement 
+hi link OL4 PreProc
+hi link OL5 Statement
 hi link OL6 Identifier
 hi link OL7 Constant
-hi link OL8 PreProc   
+hi link OL8 PreProc
 hi link OL9 Statement
 
 "colors for tags
@@ -106,7 +106,7 @@ hi link PT7 Special
 hi link PT8 Special
 hi link PT9 Special
 
-"color for tables 
+"color for tables
 hi link TA1 Type
 hi link TA2 Type
 hi link TA3 Type
@@ -236,13 +236,5 @@ syntax region OL7 start=+^\(\t\)\{6}[^:\t]+ end=+^\(\t\)\{6}[^:\t]+me=e-7 contai
 syntax region OL8 start=+^\(\t\)\{7}[^:\t]+ end=+^\(\t\)\{7}[^:\t]+me=e-8 contains=outlTags,BT8,BT9,PT8,PT9,TA8,TA9,UT8,UT9,UB8,UB9,spellErr,SpellErrors,BadWord,OL9 keepend
 syntax region OL9 start=+^\(\t\)\{8}[^:\t]+ end=+^\(\t\)\{8}[^:\t]+me=e-9 contains=outlTags,BT9,PT9,TA9,UT9,UB9,spellErr,SpellErrors,BadWord keepend
 
-" Auto-commands {{{1
-if !exists("autocommand_vo_loaded")
-	let autocommand_vo_loaded = 1
-	au BufNewFile,BufRead *.otl                     setf outliner
-"	au CursorHold *.otl                             syn sync fromstart
-"	set updatetime=500
-endif
-
 " The End
-" vim600: set foldmethod=marker foldlevel=0:
+"> vim600: set foldmethod=marker foldlevel=0:
