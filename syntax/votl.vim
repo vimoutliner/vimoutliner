@@ -239,9 +239,6 @@ syntax region OL9 start=+^\(\t\)\{8}[^:\t]+ end=+^\(\t\)\{8}[^:\t]+me=e-9 contai
 " Auto-commands {{{1
 if !exists("autocommand_vo_loaded")
 	let autocommand_vo_loaded = 1
-	au BufNewFile,BufRead *.otl                     setf outliner
-"	au CursorHold *.otl                             syn sync fromstart
-"	set updatetime=500
 endif
 
 " The End
