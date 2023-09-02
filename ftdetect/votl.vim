@@ -19,8 +19,6 @@
 "# Steve Litt, slitt@troubleshooters.com, http://www.troubleshooters.com
 "# #######################################################################
 
-augroup filetypedetect
-  au! BufRead,BufNewFile *.otl		setfiletype votl
-  au! BufRead,BufNewFile *.oln		setfiletype xoutliner
-augroup END
+au! BufRead,BufNewFile *.otl		setfiletype votl
+au! BufRead,BufNewFile *.oln		setfiletype xoutliner
 
