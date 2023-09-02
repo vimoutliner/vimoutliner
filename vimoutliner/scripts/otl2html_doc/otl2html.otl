@@ -1,0 +1,51 @@
+OTL2HTML.PY
+What is OTL2HTML.PY?
+	: It is a small program that converts Vim Outliner's OTL files 
+	: into nicely formatted HTML files. It has two main output methods. One is 
+	: for pretty, stand-alone web pages; useful for reports and instances 
+	: where a 'Word' document might suffice. The other is for created HTML 
+	: pages that might be used for web pages or for complete web sites. For 
+	: easy customization it supports the use of both in-line and external CSS 
+	: files. 
+Usage
+	otl2html.py &#91;options] inputfile > outputfile
+	Command Line Option
+		; -s    sheet        Use the specified style sheet with a link.
+		; -S    sheet        Include the specified style sheet in-line.
+		; -T                 The first line is not the title.
+		; -D                 First level is divisions for pretty web pages.
+		; -c                 Hide comments.
+		; -C   "copyright"   Use the specified copyright.
+		; -v                 Show the version.
+		; -H                 Show the syntax help.
+Beautification
+	: These are simple character styles. You must keep the start and end tags 
+	: on the same line.
+	|| Tag | Function | Usage  | Presentation |
+	| &#42;*  | bold | &#42;*This is bold&#42;* This is not | **This is bold** This is not  |
+	| &#47;/ | italic | &#47;/This is italic&#47;/ This is not | //This is italic// This is not  |
+	| &#43;++  | highlight | &#43;++As if I used a highlighter&#43;++ or not | +++As if I used a highlighter+++ or not  |
+	| &#45;--  | strikeout | The price is &#45;--old price&#45;-- new price | The price is ---old price--- new price  |
+	| &#40;c)  | copyright symbol | Copyright &#40;c) 2005 Noel Henson | Copyright (c) 2005 Noel Henson  |
+	| &#40;C)  | copyright symbol | Copyright &#40;C) 2005 Noel Henson | Copyright (C) 2005 Noel Henson  |
+	: If proper nesting of tags is observed, several can be used at once:
+	: +++//**Highlight-Bold-Italic**//+++.
+	Bullets
+		|| Tag | Function | Usage  | Presentation |
+		| - | bulleted heading | - Heading  | <ul><LI class="LB3">Heading<ul> |
+		| + | numbered heading | + Heading  | <ul><LI class="LN3">Heading<ul> |
+	Horizontal Rule
+		: This is the final beautifier. Just put 40 dashes on a line and it 
+		: will be show up as a simple horizontal rule.
+		&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;&#45;
+		: It makes this:
+		----------------------------------------
+Supported VO Data Blocks
+	+ Headings
+	+ Body Text
+	Preformatted Text
+	Tables
+Version and Copyright
+	; Version 1.37
+	; Copyright (c) 2005 Noel Henson
+	; License: GPL

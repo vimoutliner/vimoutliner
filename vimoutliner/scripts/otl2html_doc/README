@@ -1,0 +1,24 @@
+The html files have been created with these commands:
+
+otl2html.py -S -D webpage.css demo.otl > demo.html
+otl2html.py -S -D webpage.css demo1.otl > demo1.html
+otl2html.py -S -D webpage.css demo2.otl > demo2.html
+otl2html.py -S -D webpage.css demo3.otl > demo3.html
+otl2html.py -S nnnnnn.css party.otl > party.html
+otl2html.py -S nnnnnn.css otl2html.otl > otl2html.html
+
+This is the last of the 1.xx series of otl2html.py. It's internal logic has
+become complex and unwieldy. It is being rewritten from the ground up to
+be:
+	recursive
+	much simpler
+	use configuration files
+
+It will suport:
+	table of contents generation
+	slide shows
+	better general document authoring
+	better web page authoring
+	web site authoring
+
+Have fun!

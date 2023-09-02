@@ -1,0 +1,5 @@
+  * Remove docs from debian/examples which are not part of the upstream
+    tarball; they'll eventually be added again later
+  * Add examples, which had been hidden in the modified upstream tarball
+    to debian/contrib. 
+  * Add a README.source to document patch handling

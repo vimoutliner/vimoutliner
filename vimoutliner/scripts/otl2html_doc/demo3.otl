@@ -1,0 +1,65 @@
+OTL2HTML Webpage Demonstration
+_Menu
+	[demo.html Home]
+	[demo1.html About]
+	[demo2.html Usage]
+	**Party Report**
+	[mailto:noel@noels-lab.com Contact]
+_Main
+	Tina's Birthday
+	Scope
+		: Plan and execute a barbeque for the family and close friends. This is to 
+		: be a combination barbeque and birthday party for Tina.
+	Features
+		- Western Theme
+		- Hay rides
+		- Horseback rides
+		- Games
+	To Do (50%)
+		[_] 50% Vital
+			[_] Send Invitaions
+			[X] Buy Present
+				Options (in order of preference)
+					+ Pony
+					+ MP3 Player (the second choice is reasonable)
+					+ XBox
+					+ Bicycle
+		[X] 100% Important
+			[X] Order Clown
+			[X] Rent Horse and Handler
+		[_] 0% Optional
+			[_] Mow Lawn
+			[_] Trim Hedges
+			[_] Wash Dog
+	Materials (%)
+		[_] 63% Barbeque
+			[_] 83% Food
+				[X] 20 Burgers
+				[X] 20 Hamburger Buns
+				[X] 20 Hotdogs
+				[X] 20 Hotdog Buns
+				[X] Potato Chips
+				[_] Potato Salad
+			[_] 33% Drink
+				[_] Soda
+				[_] Diet Soda
+				[X] Beer
+			[_] Chairs for 30
+			[X] Tables (2 or 3)
+			[X] 5 Bags of ice
+			[_] 20 Hay Bails
+		[_] 66% Birthday
+			[_] Cake
+			[X] 100% Party Favors
+				[X] Hats
+				[X] Poppers
+				[X] Whistles
+			[X] Disposable Cameras
+		Guests
+			|| Name  | RSVP | Food to Bring  |
+			| Bill, Joan and Billie  | YES | Corn Bread  |
+			| Jones  | YES | Popcorn Balls  |
+			| Jack & Jill  | YES | Soda  |
+			| Grandma  | YES | none  |
+	Summary
+		: This is just a simple example of what can be done.
